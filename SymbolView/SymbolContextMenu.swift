@@ -25,11 +25,12 @@ struct SymbolContextMenu: View {
             } label: {
                 Label("Copy", systemImage: "doc.on.doc")
             }
-#endif
+
             Section("Size") {
                 Stepper(value: $gridSize, in: 9...200, step: 10) { EmptyView() }
                 
             }
+#endif
                 //            Button {
                 //                speak(say: icon)
                 //            } label: {

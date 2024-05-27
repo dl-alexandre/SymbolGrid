@@ -7,21 +7,66 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7703C5BC2C042D1800CA6F3C /* SymbolViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7703C5BB2C042D1800CA6F3C /* SymbolViewUITests.swift */; };
+		7703C5BE2C042D1800CA6F3C /* SymbolViewUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7703C5BD2C042D1800CA6F3C /* SymbolViewUITestsLaunchTests.swift */; };
 		77DC5FDC2C014AD7006407D2 /* SymbolViewApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC5FDB2C014AD7006407D2 /* SymbolViewApp.swift */; };
 		77DC5FDE2C014AD7006407D2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC5FDD2C014AD7006407D2 /* ContentView.swift */; };
-		77DC5FE02C014AD9006407D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77DC5FDF2C014AD9006407D2 /* Assets.xcassets */; };
 		77DC5FE32C014AD9006407D2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77DC5FE22C014AD9006407D2 /* Preview Assets.xcassets */; };
+		77DC5FEA2C014B0E006407D2 /* SymbolGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC5FE92C014B0E006407D2 /* SymbolGrid.swift */; };
+		77DC5FEC2C014B29006407D2 /* SymbolContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC5FEB2C014B29006407D2 /* SymbolContextMenu.swift */; };
+		77DC5FEE2C014B39006407D2 /* symbol_categories.plist in Resources */ = {isa = PBXBuildFile; fileRef = 77DC5FED2C014B39006407D2 /* symbol_categories.plist */; };
+		77DC5FF02C014C3A006407D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77DC5FEF2C014C3A006407D2 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		7703C5A42C04244700CA6F3C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 77DC5FD02C014AD7006407D2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 77DC5FD72C014AD7006407D2;
+			remoteInfo = SymbolView;
+		};
+		7703C5BF2C042D1800CA6F3C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 77DC5FD02C014AD7006407D2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 77DC5FD72C014AD7006407D2;
+			remoteInfo = SymbolView;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		7703C5A02C04244700CA6F3C /* SymbolViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SymbolViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7703C5AC2C04270500CA6F3C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/MacOSX.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		7703C5B12C0427A600CA6F3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		7703C5B92C042D1800CA6F3C /* SymbolViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SymbolViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7703C5BB2C042D1800CA6F3C /* SymbolViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolViewUITests.swift; sourceTree = "<group>"; };
+		7703C5BD2C042D1800CA6F3C /* SymbolViewUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolViewUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		77DC5FD82C014AD7006407D2 /* SymbolView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SymbolView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77DC5FDB2C014AD7006407D2 /* SymbolViewApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolViewApp.swift; sourceTree = "<group>"; };
 		77DC5FDD2C014AD7006407D2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		77DC5FDF2C014AD9006407D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		77DC5FE22C014AD9006407D2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		77DC5FE92C014B0E006407D2 /* SymbolGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolGrid.swift; sourceTree = "<group>"; };
+		77DC5FEB2C014B29006407D2 /* SymbolContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolContextMenu.swift; sourceTree = "<group>"; };
+		77DC5FED2C014B39006407D2 /* symbol_categories.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = symbol_categories.plist; path = ../../../aft/eco/xc15/SymbolView/Files/symbol_categories.plist; sourceTree = "<group>"; };
+		77DC5FEF2C014C3A006407D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		7703C59D2C04244700CA6F3C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7703C5B62C042D1800CA6F3C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		77DC5FD52C014AD7006407D2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -32,11 +77,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7703C59B2C04239100CA6F3C /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		7703C5AB2C04270500CA6F3C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7703C5AC2C04270500CA6F3C /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7703C5BA2C042D1800CA6F3C /* SymbolViewUITests */ = {
+			isa = PBXGroup;
+			children = (
+				7703C5BB2C042D1800CA6F3C /* SymbolViewUITests.swift */,
+				7703C5BD2C042D1800CA6F3C /* SymbolViewUITestsLaunchTests.swift */,
+			);
+			path = SymbolViewUITests;
+			sourceTree = "<group>";
+		};
 		77DC5FCF2C014AD7006407D2 = {
 			isa = PBXGroup;
 			children = (
+				7703C59B2C04239100CA6F3C /* Tests */,
 				77DC5FDA2C014AD7006407D2 /* SymbolView */,
+				7703C5BA2C042D1800CA6F3C /* SymbolViewUITests */,
 				77DC5FD92C014AD7006407D2 /* Products */,
+				7703C5AB2C04270500CA6F3C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -44,6 +116,8 @@
 			isa = PBXGroup;
 			children = (
 				77DC5FD82C014AD7006407D2 /* SymbolView.app */,
+				7703C5A02C04244700CA6F3C /* SymbolViewTests.xctest */,
+				7703C5B92C042D1800CA6F3C /* SymbolViewUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -51,9 +125,13 @@
 		77DC5FDA2C014AD7006407D2 /* SymbolView */ = {
 			isa = PBXGroup;
 			children = (
+				7703C5B12C0427A600CA6F3C /* Info.plist */,
 				77DC5FDB2C014AD7006407D2 /* SymbolViewApp.swift */,
 				77DC5FDD2C014AD7006407D2 /* ContentView.swift */,
-				77DC5FDF2C014AD9006407D2 /* Assets.xcassets */,
+				77DC5FE92C014B0E006407D2 /* SymbolGrid.swift */,
+				77DC5FEB2C014B29006407D2 /* SymbolContextMenu.swift */,
+				77DC5FEF2C014C3A006407D2 /* Assets.xcassets */,
+				77DC5FED2C014B39006407D2 /* symbol_categories.plist */,
 				77DC5FE12C014AD9006407D2 /* Preview Content */,
 			);
 			path = SymbolView;
@@ -70,6 +148,42 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		7703C59F2C04244700CA6F3C /* SymbolViewTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7703C5A62C04244700CA6F3C /* Build configuration list for PBXNativeTarget "SymbolViewTests" */;
+			buildPhases = (
+				7703C59C2C04244700CA6F3C /* Sources */,
+				7703C59D2C04244700CA6F3C /* Frameworks */,
+				7703C59E2C04244700CA6F3C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7703C5A52C04244700CA6F3C /* PBXTargetDependency */,
+			);
+			name = SymbolViewTests;
+			productName = SymbolViewTests;
+			productReference = 7703C5A02C04244700CA6F3C /* SymbolViewTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		7703C5B82C042D1800CA6F3C /* SymbolViewUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7703C5C12C042D1800CA6F3C /* Build configuration list for PBXNativeTarget "SymbolViewUITests" */;
+			buildPhases = (
+				7703C5B52C042D1800CA6F3C /* Sources */,
+				7703C5B62C042D1800CA6F3C /* Frameworks */,
+				7703C5B72C042D1800CA6F3C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7703C5C02C042D1800CA6F3C /* PBXTargetDependency */,
+			);
+			name = SymbolViewUITests;
+			productName = SymbolViewUITests;
+			productReference = 7703C5B92C042D1800CA6F3C /* SymbolViewUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		77DC5FD72C014AD7006407D2 /* SymbolView */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 77DC5FE62C014AD9006407D2 /* Build configuration list for PBXNativeTarget "SymbolView" */;
@@ -97,6 +211,14 @@
 				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
+					7703C59F2C04244700CA6F3C = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 77DC5FD72C014AD7006407D2;
+					};
+					7703C5B82C042D1800CA6F3C = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 77DC5FD72C014AD7006407D2;
+					};
 					77DC5FD72C014AD7006407D2 = {
 						CreatedOnToolsVersion = 15.4;
 					};
@@ -116,35 +238,169 @@
 			projectRoot = "";
 			targets = (
 				77DC5FD72C014AD7006407D2 /* SymbolView */,
+				7703C59F2C04244700CA6F3C /* SymbolViewTests */,
+				7703C5B82C042D1800CA6F3C /* SymbolViewUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		7703C59E2C04244700CA6F3C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7703C5B72C042D1800CA6F3C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		77DC5FD62C014AD7006407D2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77DC5FEE2C014B39006407D2 /* symbol_categories.plist in Resources */,
+				77DC5FF02C014C3A006407D2 /* Assets.xcassets in Resources */,
 				77DC5FE32C014AD9006407D2 /* Preview Assets.xcassets in Resources */,
-				77DC5FE02C014AD9006407D2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		7703C59C2C04244700CA6F3C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7703C5B52C042D1800CA6F3C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7703C5BC2C042D1800CA6F3C /* SymbolViewUITests.swift in Sources */,
+				7703C5BE2C042D1800CA6F3C /* SymbolViewUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		77DC5FD42C014AD7006407D2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				77DC5FDE2C014AD7006407D2 /* ContentView.swift in Sources */,
+				77DC5FEC2C014B29006407D2 /* SymbolContextMenu.swift in Sources */,
+				77DC5FEA2C014B0E006407D2 /* SymbolGrid.swift in Sources */,
 				77DC5FDC2C014AD7006407D2 /* SymbolViewApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		7703C5A52C04244700CA6F3C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 77DC5FD72C014AD7006407D2 /* SymbolView */;
+			targetProxy = 7703C5A42C04244700CA6F3C /* PBXContainerItemProxy */;
+		};
+		7703C5C02C042D1800CA6F3C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 77DC5FD72C014AD7006407D2 /* SymbolView */;
+			targetProxy = 7703C5BF2C042D1800CA6F3C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		7703C5A72C04244700CA6F3C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2MP8QWK7R6;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamiyfarm.SymbolViewTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SymbolView.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SymbolView";
+			};
+			name = Debug;
+		};
+		7703C5A82C04244700CA6F3C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2MP8QWK7R6;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamiyfarm.SymbolViewTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SymbolView.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SymbolView";
+			};
+			name = Release;
+		};
+		7703C5C22C042D1800CA6F3C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2MP8QWK7R6;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamiyfarm.SymbolViewUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SymbolView;
+			};
+			name = Debug;
+		};
+		7703C5C32C042D1800CA6F3C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2MP8QWK7R6;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamiyfarm.SymbolViewUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SymbolView;
+			};
+			name = Release;
+		};
 		77DC5FE42C014AD9006407D2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -275,6 +531,7 @@
 				DEVELOPMENT_TEAM = 2MP8QWK7R6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SymbolView/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -287,8 +544,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamiyfarm.SymbolView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -304,6 +565,7 @@
 				DEVELOPMENT_TEAM = 2MP8QWK7R6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SymbolView/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -316,8 +578,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamiyfarm.SymbolView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -325,6 +591,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		7703C5A62C04244700CA6F3C /* Build configuration list for PBXNativeTarget "SymbolViewTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7703C5A72C04244700CA6F3C /* Debug */,
+				7703C5A82C04244700CA6F3C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7703C5C12C042D1800CA6F3C /* Build configuration list for PBXNativeTarget "SymbolViewUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7703C5C22C042D1800CA6F3C /* Debug */,
+				7703C5C32C042D1800CA6F3C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		77DC5FD32C014AD7006407D2 /* Build configuration list for PBXProject "SymbolView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
