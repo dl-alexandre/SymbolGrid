@@ -25,10 +25,8 @@ struct SymbolViewApp: App {
         Settings {
             SettingsView()
         }
-        
         .commands {
             SidebarCommands()
-            
             CommandMenu("Symbols") {
                 Button {
                     showSearch()
@@ -41,12 +39,12 @@ struct SymbolViewApp: App {
                     Label("Clear", systemImage: "delete.left")
                 }.keyboardShortcut(.escape, modifiers: [])
                 Button {
-                    gridSize = max(9, gridSize - 5)
+                    fontSize = max(9, fontSize - 5)
                 } label: {
                     Label("Smaller", systemImage: "minus")
                 }.keyboardShortcut("-")
                 Button {
-                    gridSize = min(2000, gridSize + 10)
+                    fontSize = min(2000, fontSize + 10)
                 } label: {
                     Label("Larger", systemImage: "plus")
                 }.keyboardShortcut("=")
@@ -56,7 +54,7 @@ struct SymbolViewApp: App {
     }
     @AppStorage("showingSearch") var showingSearch = false
     @AppStorage("searchText") var searchText = ""
-    @AppStorage("gridsize") var gridSize = 50.0
+    @AppStorage("fontSize") var fontSize = 50.0
     func showSearch() { showingSearch.toggle() }
     
     func clearSearch() {
@@ -66,7 +64,6 @@ struct SymbolViewApp: App {
 }
 
 extension App {
-    
     func decodePList() -> [String] {
             // Get the URL of the plist file in the main bundle
         guard let fileURL = Bundle.main.url(forResource: "symbol_categories", withExtension: "plist") else {
@@ -90,19 +87,17 @@ extension App {
 }
 
 struct SettingsView: View {
-    
-    
     var body: some View {
         TabView {
-            LanguageSetting().tabItem { Label("lang", systemImage: "character") }
-            GridSizeSetting().tabItem { Label("size", systemImage: "textformat.size")}
+            LanguageSetting().tabItem { Label("Language", systemImage: "character") }
+            FontSizeSetting().tabItem { Label("Size", systemImage: "textformat.size")}
         }.padding()
             .frame(width: 400, height: 300)
     }
 }
 
-struct GridSizeSetting: View {
-    @AppStorage("gridsize") var gridSize = 50.0
+struct FontSizeSetting: View {
+    @AppStorage("fontsize") var fontSize = 50.0
     @State private var linearValue: Double = log10(50) // Linear slider value
     var exponentialValue: Double {
         get {
@@ -112,7 +107,7 @@ struct GridSizeSetting: View {
         set {
                 // Convert the new exponential value back to a linear slider value
             linearValue = log10(newValue)
-            gridSize = newValue
+            fontSize = newValue
         }
     }
     
@@ -122,19 +117,19 @@ struct GridSizeSetting: View {
                 get: { self.linearValue },
                 set: { newValue in
                     self.linearValue = newValue
-                    self.gridSize = pow(10, newValue)
+                    self.fontSize = pow(10, newValue)
                 }
             ), in: log10(9)...log10(2000))
-            Text("Grid Size: \(gridSize, specifier: "%.2f")")
+            Text("Grid Size: \(fontSize, specifier: "%.2f")")
 
             HStack {
                 Button {
-                    gridSize = max(9, gridSize - 5)
+                    fontSize = max(9, fontSize - 5)
                 } label: {
                     Label("Smaller", systemImage: "minus")
                 }.keyboardShortcut("-")
                 Button {
-                    gridSize = min(2000, gridSize + 10)
+                    fontSize = min(2000, fontSize + 10)
                 } label: {
                     Label("Larger", systemImage: "plus")
                 }.keyboardShortcut("=")
@@ -144,13 +139,13 @@ struct GridSizeSetting: View {
 }
 
 struct LanguageSetting: View {
-    @AppStorage("Arabic") private var arabicSetting = true
-    @AppStorage("Hebrew") private var hebrewSetting = true
-    @AppStorage("Hindi") private var hindiSetting = true
-    @AppStorage("Japanese") private var japaneseSetting = true
-    @AppStorage("Korean") private var koreanSetting = true
-    @AppStorage("Thai") private var thaiSetting = true
-    @AppStorage("Chinese") private var chineseSetting = true
+    @AppStorage("symbol_arabic") private var arabicSetting = false
+    @AppStorage("symbol_hebrew") private var hebrewSetting = false
+    @AppStorage("symbol_hindi") private var hindiSetting = false
+    @AppStorage("symbol_japanese") private var japaneseSetting = false
+    @AppStorage("symbol_korean") private var koreanSetting = false
+    @AppStorage("symbol_thai") private var thaiSetting = false
+    @AppStorage("symbol_chinese") private var chineseSetting = false
     
     var body: some View {
         Form {
@@ -171,9 +166,13 @@ struct LoadingView: View {
     @Binding var isActive: Bool
     var body: some View {
         ZStack {
+            #if os(iOS)
             Color(.systemBackground)
                 .edgesIgnoringSafeArea(.all)
-            
+            #else
+            Color(.green)
+                .edgesIgnoringSafeArea(.all)
+            #endif
             ProgressView()
                 .progressViewStyle(DefaultProgressViewStyle())
         }.onAppear {

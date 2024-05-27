@@ -11,10 +11,13 @@ import UniformTypeIdentifiers
 import AVFoundation
 
 struct SymbolContextMenu: View {
+    @AppStorage("showingSearch") var showingSearch = true
+    @AppStorage("showingRender") var showingRender = true
+    @AppStorage("showingWeight") var showingWeight = true
         //    let speechSynthesizer = AVSpeechSynthesizer()
     var icon: String
         // @State var mode: RenderSamples
-    @AppStorage("gridsize") var gridSize = 50.0
+    @AppStorage("fontSize") var fontSize = 50.0
     
     var body: some View {
         Section {
@@ -27,9 +30,10 @@ struct SymbolContextMenu: View {
             }
 
             Section("Size") {
-                Stepper(value: $gridSize, in: 9...200, step: 10) { EmptyView() }
+                Stepper(value: $fontSize, in: 9...200, step: 10) { EmptyView() }
                 
             }
+            
 #endif
                 //            Button {
                 //                speak(say: icon)
@@ -38,6 +42,27 @@ struct SymbolContextMenu: View {
                 //                      systemImage:
                 //                        "speaker.wave.3")
                 //            }
+            Section("Font Weight") {
+                Button {
+                    showingWeight.toggle()
+                } label: {
+                    Label("Weight", systemImage: "arrowtriangle.left.and.line.vertical.and.arrowtriangle.right.fill")
+                }
+            }
+            Section("Color Mode") {
+                Button {
+                    showingRender.toggle()
+                } label: {
+                    Label("Render", systemImage: "paintbrush")
+                }
+            }
+            Section("Search") {
+                Button {
+                    showingSearch.toggle()
+                } label: {
+                    Label("Search", systemImage: "magnifyingglass")
+                }
+            }
         }
         
     }

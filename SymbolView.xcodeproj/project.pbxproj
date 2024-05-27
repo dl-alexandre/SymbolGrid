@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		7703C5BC2C042D1800CA6F3C /* SymbolViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7703C5BB2C042D1800CA6F3C /* SymbolViewUITests.swift */; };
 		7703C5BE2C042D1800CA6F3C /* SymbolViewUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7703C5BD2C042D1800CA6F3C /* SymbolViewUITestsLaunchTests.swift */; };
+		7703C5C52C04F99800CA6F3C /* SymbolRenderings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7703C5C42C04F99800CA6F3C /* SymbolRenderings.swift */; };
+		7703C5C72C04F9A400CA6F3C /* FontWeights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7703C5C62C04F9A400CA6F3C /* FontWeights.swift */; };
+		7703C5C92C04FC6800CA6F3C /* SymbolVariants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7703C5C82C04FC6800CA6F3C /* SymbolVariants.swift */; };
+		7703C5CF2C05080800CA6F3C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7703C5CE2C05080800CA6F3C /* Settings.bundle */; };
 		77DC5FDC2C014AD7006407D2 /* SymbolViewApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC5FDB2C014AD7006407D2 /* SymbolViewApp.swift */; };
 		77DC5FDE2C014AD7006407D2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC5FDD2C014AD7006407D2 /* ContentView.swift */; };
 		77DC5FE32C014AD9006407D2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77DC5FE22C014AD9006407D2 /* Preview Assets.xcassets */; };
@@ -42,6 +46,10 @@
 		7703C5B92C042D1800CA6F3C /* SymbolViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SymbolViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7703C5BB2C042D1800CA6F3C /* SymbolViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolViewUITests.swift; sourceTree = "<group>"; };
 		7703C5BD2C042D1800CA6F3C /* SymbolViewUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolViewUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7703C5C42C04F99800CA6F3C /* SymbolRenderings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolRenderings.swift; sourceTree = "<group>"; };
+		7703C5C62C04F9A400CA6F3C /* FontWeights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontWeights.swift; sourceTree = "<group>"; };
+		7703C5C82C04FC6800CA6F3C /* SymbolVariants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolVariants.swift; sourceTree = "<group>"; };
+		7703C5CE2C05080800CA6F3C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		77DC5FD82C014AD7006407D2 /* SymbolView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SymbolView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77DC5FDB2C014AD7006407D2 /* SymbolViewApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolViewApp.swift; sourceTree = "<group>"; };
 		77DC5FDD2C014AD7006407D2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -77,13 +85,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7703C59B2C04239100CA6F3C /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Tests;
-			sourceTree = "<group>";
-		};
 		7703C5AB2C04270500CA6F3C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -104,7 +105,6 @@
 		77DC5FCF2C014AD7006407D2 = {
 			isa = PBXGroup;
 			children = (
-				7703C59B2C04239100CA6F3C /* Tests */,
 				77DC5FDA2C014AD7006407D2 /* SymbolView */,
 				7703C5BA2C042D1800CA6F3C /* SymbolViewUITests */,
 				77DC5FD92C014AD7006407D2 /* Products */,
@@ -129,8 +129,12 @@
 				77DC5FDB2C014AD7006407D2 /* SymbolViewApp.swift */,
 				77DC5FDD2C014AD7006407D2 /* ContentView.swift */,
 				77DC5FE92C014B0E006407D2 /* SymbolGrid.swift */,
+				7703C5C82C04FC6800CA6F3C /* SymbolVariants.swift */,
+				7703C5C42C04F99800CA6F3C /* SymbolRenderings.swift */,
+				7703C5C62C04F9A400CA6F3C /* FontWeights.swift */,
 				77DC5FEB2C014B29006407D2 /* SymbolContextMenu.swift */,
 				77DC5FEF2C014C3A006407D2 /* Assets.xcassets */,
+				7703C5CE2C05080800CA6F3C /* Settings.bundle */,
 				77DC5FED2C014B39006407D2 /* symbol_categories.plist */,
 				77DC5FE12C014AD9006407D2 /* Preview Content */,
 			);
@@ -263,6 +267,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7703C5CF2C05080800CA6F3C /* Settings.bundle in Resources */,
 				77DC5FEE2C014B39006407D2 /* symbol_categories.plist in Resources */,
 				77DC5FF02C014C3A006407D2 /* Assets.xcassets in Resources */,
 				77DC5FE32C014AD9006407D2 /* Preview Assets.xcassets in Resources */,
@@ -292,8 +297,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7703C5C72C04F9A400CA6F3C /* FontWeights.swift in Sources */,
+				7703C5C52C04F99800CA6F3C /* SymbolRenderings.swift in Sources */,
 				77DC5FDE2C014AD7006407D2 /* ContentView.swift in Sources */,
 				77DC5FEC2C014B29006407D2 /* SymbolContextMenu.swift in Sources */,
+				7703C5C92C04FC6800CA6F3C /* SymbolVariants.swift in Sources */,
 				77DC5FEA2C014B0E006407D2 /* SymbolGrid.swift in Sources */,
 				77DC5FDC2C014AD7006407D2 /* SymbolViewApp.swift in Sources */,
 			);
@@ -541,7 +549,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 3.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamiyfarm.SymbolView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -575,7 +583,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 3.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamiyfarm.SymbolView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
