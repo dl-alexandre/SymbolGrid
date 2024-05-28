@@ -14,13 +14,14 @@ struct SymbolContextMenu: View {
     @AppStorage("showingSearch") var showingSearch = true
     @AppStorage("showingRender") var showingRender = true
     @AppStorage("showingWeight") var showingWeight = true
+    @AppStorage("showingCanvas") var showingCanvas = false
+    @AppStorage("canvasIcon") var canvasIcon = ""
         //    let speechSynthesizer = AVSpeechSynthesizer()
     var icon: String
         // @State var mode: RenderSamples
     @AppStorage("fontSize") var fontSize = 50.0
     
     var body: some View {
-        Section {
 #if os(iOS)
             Button {
                 UIPasteboard.general .setValue(icon.description,
@@ -42,28 +43,36 @@ struct SymbolContextMenu: View {
                 //                      systemImage:
                 //                        "speaker.wave.3")
                 //            }
-            Section("Font Weight") {
+//            Section("Font Weight") {
                 Button {
                     showingWeight.toggle()
                 } label: {
                     Label("Weight", systemImage: "arrowtriangle.left.and.line.vertical.and.arrowtriangle.right.fill")
                 }
-            }
-            Section("Color Mode") {
+//            }
+//            Section("Color Mode") {
                 Button {
                     showingRender.toggle()
                 } label: {
                     Label("Render", systemImage: "paintbrush")
                 }
-            }
-            Section("Search") {
+//            }
+//            Section("Search") {
                 Button {
                     showingSearch.toggle()
                 } label: {
                     Label("Search", systemImage: "magnifyingglass")
                 }
-            }
-        }
+//            }
+//            Section("Canvas") {
+//                Button {
+//                    showingCanvas = true
+//                    canvasIcon = icon
+//                } label: {
+//                    Label("Canvas", systemImage: "square")
+//                }
+//            }
+        
         
     }
     

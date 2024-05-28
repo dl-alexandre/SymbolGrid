@@ -10,9 +10,9 @@
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 			<key>Title</key>
-			<string>Languages</string>
+			<string>Localizations</string>
 			<key>File</key>
-			<string>Languages</string>
+			<string>Localizations</string>
 		</dict>
 		<dict>
 			<key>Type</key>

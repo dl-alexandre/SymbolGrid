@@ -12,26 +12,27 @@ import UniformTypeIdentifiers
 struct SymbolGrid: View {
     @Environment(\.layoutDirection) private var layoutDirection
     @AppStorage("symbol_arabic") private var arabicSetting = false
+    @AppStorage("symbol_burmese") private var burmeseSetting = false
     @AppStorage("symbol_hebrew") private var hebrewSetting = false
     @AppStorage("symbol_hindi") private var hindiSetting = false
     @AppStorage("symbol_japanese") private var japaneseSetting = false
+    @AppStorage("symbol_khmer") private var khmerSetting = false
     @AppStorage("symbol_korean") private var koreanSetting = false
     @AppStorage("symbol_thai") private var thaiSetting = false
     @AppStorage("symbol_chinese") private var chineseSetting = false
+    @AppStorage("searchText") var searchText = ""
     @Binding public var icon: String
-    @Binding public var searchText: String
+//    @Binding public var searchText: String
     @Binding public var renderMode: SymbolRenderings
     @Binding public var fontWeight: FontWeights
     init(
         icon: Binding<String>,
-        searchText: Binding<String>,
         renderMode: Binding<SymbolRenderings>,
         fontWeight: Binding<FontWeights>,
         symbols: [String]
     )
     {
         self._icon = icon
-        self._searchText = searchText
         self._renderMode = renderMode
         self._fontWeight = fontWeight
         self.symbols = symbols
@@ -51,9 +52,11 @@ struct SymbolGrid: View {
     var searchResults: [String] {
         return symbols.filter { key in
             if !arabicSetting && key.hasSuffix(".ar") { return false }
+            if !burmeseSetting && key.hasSuffix(".my") { return false }
             if !hebrewSetting && key.hasSuffix(".he") { return false }
             if !hindiSetting && key.hasSuffix(".hi") { return false }
             if !japaneseSetting && key.hasSuffix(".ja") { return false }
+            if !khmerSetting && key.hasSuffix(".km") { return false }
             if !koreanSetting && key.hasSuffix(".ko") { return false }
             if !thaiSetting && key.hasSuffix(".th") { return false }
             if !chineseSetting && key.hasSuffix(".zh") { return false }
@@ -74,7 +77,7 @@ struct SymbolGrid: View {
                                 .symbolRenderingMode(renderMode.mode)
                                 .font(.system(size: (fontSize), weight: fontWeight.weight))
                                 .animation(.linear, value: 0.5)
-                                .foregroundColor(self.icon == systemName ? Color.accentColor : Color.primary)
+                                .foregroundColor(self.icon == systemName ? Color.secondary : Color.primary)
                                 .contentShape(Circle())
                                 .onTapGesture {
                                     withAnimation {
@@ -116,6 +119,7 @@ struct SymbolGrid: View {
                             .onTapGesture(count: 1) {
 #if os(macOS)
                                 NSPasteboard.general.setString(icon, forType: .string)
+                                print(icon)
 #endif
                             }
                     }

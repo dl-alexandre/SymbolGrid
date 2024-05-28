@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+//#warning("provide varients")
 enum SymbolVariants: Int, CaseIterable {
     case circle
     case square

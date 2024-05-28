@@ -7,7 +7,7 @@
 
 import SwiftUI
 import UniformTypeIdentifiers
-
+//#warning("make symbol Preview")
 struct ContentView: View {
     enum Field: Hashable {
         case symbolGrid
@@ -16,10 +16,12 @@ struct ContentView: View {
     @AppStorage("showingSearch") var showingSearch = false
     @AppStorage("showingRender") var showingRender = false
     @AppStorage("showingWeight") var showingWeight = false
+    @AppStorage("showingCanvas") var showingCanvas = false
+    @AppStorage("canvasIcon") var canvasIcon = ""
+    @AppStorage("fontSize") var fontSize = 50.0
     @AppStorage("searchText") var searchText = ""
     @FocusState private var focus: Field?
     @State private var icon = ""
-//    @State private var isSearching: Bool = false
     @State private var isTapped: Bool = false
     @State private var isLoading: Bool = true
     @State private var needsNewJSON: Bool = false
@@ -32,7 +34,7 @@ struct ContentView: View {
         ZStack {
             VStack {
                 Spacer(minLength: 10)
-                SymbolGrid(icon: $icon, searchText: $searchText, renderMode: $selectedSample, fontWeight: $selectedWeight, symbols: symbols)
+                SymbolGrid(icon: $icon, renderMode: $selectedSample, fontWeight: $selectedWeight, symbols: symbols)
             }
 #if os(iOS)
             if !icon.isEmpty {
@@ -48,6 +50,9 @@ struct ContentView: View {
             if showingRender {
                 renderingPicker()
             }
+//            if showingCanvas {
+//                symbolCanvas(icon: icon)
+//            }
         }
     }
     
@@ -122,7 +127,7 @@ struct ContentView: View {
             HStack {
                 Spacer()
                 Capsule()
-                    .fill(.primary)
+                    .fill(.ultraThinMaterial)
                     .frame(maxWidth: .infinity, maxHeight: 40, alignment: .trailing)
                     .overlay {
                         ScrollView(.horizontal) {
@@ -132,10 +137,10 @@ struct ContentView: View {
                                 Text("\(icon)")
                                     .font(.headline)
                                     .bold()
-                                    .foregroundColor(.accentColor)
+//                                    .foregroundColor(.black)
                                     .padding()
                             }
-                        }.defaultScrollAnchor(.trailing)
+                       }.defaultScrollAnchor(.trailing)
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }.padding()
             }.onTapGesture(count: 1) {
@@ -144,7 +149,6 @@ struct ContentView: View {
                 }
 #if os(iOS)
                 UIPasteboard.general.setValue(icon, forPasteboardType: UTType.plainText.identifier)
-                print(icon)
 #else
                     /// Mac Copypasta
                 print(icon)
@@ -175,7 +179,7 @@ struct ContentView: View {
             Capsule()
                 .fill(.ultraThickMaterial)
                 .frame(maxWidth: .infinity, maxHeight: 40, alignment: .bottomLeading)
-                .border(.ultraThinMaterial, width: 10)
+//                .border(.ultraThinMaterial, width: 10)
                 .cornerRadius(20)
                 .overlay {
                     TextField("Search Symbols", text: text)
@@ -184,12 +188,41 @@ struct ContentView: View {
                         .padding()
                 }.padding()
         }
-        .onAppear {
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 15) {
-                withAnimation {
-                    showingSearch = false
-                }
+//        .onAppear {
+//            
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 15) {
+//                withAnimation {
+//                    showingSearch = false
+//                }
+//            }
+//        }
+    }
+    
+    @ViewBuilder
+    func symbolCanvas(icon: String) -> some View {
+        GeometryReader { geo in
+            VStack {
+                Rectangle()
+                    .fill(.ultraThickMaterial)
+                    .frame(maxWidth: geo.size.width / 4, maxHeight: geo.size.height / 4, alignment: .topLeading)
+                    .border(.ultraThinMaterial, width: 10)
+                    .cornerRadius(20)
+                    .overlay {
+                        Image(systemName: canvasIcon)
+                            .font(.system(size: fontSize * 3))
+                            .foregroundColor(.primary)
+                            .padding()
+                    }.padding()
+            }
+//            .onAppear {
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 15) {
+//                    withAnimation {
+//                        showingCanvas = false
+//                    }
+//                }
+//            }
+            .onTapGesture {
+                print("Canvas Activated")
             }
         }
     }

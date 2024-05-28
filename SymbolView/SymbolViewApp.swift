@@ -9,6 +9,10 @@ import SwiftUI
 
 @main
 struct SymbolViewApp: App {
+#if os(macOS)
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    #endif
+    
     @State private var isActive: Bool = true
     
     var body: some Scene {
@@ -49,6 +53,13 @@ struct SymbolViewApp: App {
                     Label("Larger", systemImage: "plus")
                 }.keyboardShortcut("=")
             }
+            CommandGroup(replacing: CommandGroupPlacement.appInfo) {
+                Button(action: {
+                    appDelegate.showAboutPanel()
+                }) {
+                    Text("About \(NSApplication.appName ?? "SymbolView")")
+                }
+            }
         }
 #endif
     }
@@ -62,7 +73,57 @@ struct SymbolViewApp: App {
         searchText = ""
     }
 }
+#if os(macOS)
+import AppKit
+class AppDelegate: NSObject, NSApplicationDelegate {
+    private var aboutBoxWindowController: NSWindowController?
+    
+    func showAboutPanel() {
+        if aboutBoxWindowController == nil {
+            let styleMask: NSWindow.StyleMask = [.closable, .miniaturizable, .titled]
+            let window = NSWindow()
+            window.styleMask = styleMask
+            window.title = "About \(NSApplication.appName ?? "SymbolView")"
+            window.contentView = NSHostingView(rootView: AboutView())
+            aboutBoxWindowController = NSWindowController(window: window)
+        }
+        aboutBoxWindowController?.showWindow(aboutBoxWindowController?.window)
+    }
+}
 
+struct AboutView: View {
+    var body: some View {
+        VStack {
+            Spacer()
+            HStack {
+                Spacer()
+                Text("\(NSApplication.appName ?? "1")")
+                Text("Build: \(NSApplication.buildVersion ?? "1")")
+                Text("Version: \(NSApplication.appVersion ?? "3")")
+                Spacer()
+            }
+            Spacer()
+        }
+        .frame(minWidth: 100, minHeight: 300)
+    }
+}
+
+
+public extension NSApplication
+{
+    static var appName: String? {
+        return Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String
+    }
+    
+    static var appVersion: String? {
+        return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
+    }
+    
+    static var buildVersion: String? {
+        return Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String
+    }
+}
+#endif
 extension App {
     func decodePList() -> [String] {
             // Get the URL of the plist file in the main bundle
@@ -89,12 +150,14 @@ extension App {
 struct SettingsView: View {
     var body: some View {
         TabView {
-            LanguageSetting().tabItem { Label("Language", systemImage: "character") }
+            LocalizationSetting().tabItem { Label("Language", systemImage: "character") }
             FontSizeSetting().tabItem { Label("Size", systemImage: "textformat.size")}
         }.padding()
             .frame(width: 400, height: 300)
     }
 }
+
+
 
 struct FontSizeSetting: View {
     @AppStorage("fontsize") var fontSize = 50.0
@@ -138,27 +201,30 @@ struct FontSizeSetting: View {
     }
 }
 
-struct LanguageSetting: View {
+struct LocalizationSetting: View {
     @AppStorage("symbol_arabic") private var arabicSetting = false
+    @AppStorage("symbol_burmese") private var burmeseSetting = false
     @AppStorage("symbol_hebrew") private var hebrewSetting = false
     @AppStorage("symbol_hindi") private var hindiSetting = false
     @AppStorage("symbol_japanese") private var japaneseSetting = false
+    @AppStorage("symbol_khmer") private var khmerSetting = false
     @AppStorage("symbol_korean") private var koreanSetting = false
     @AppStorage("symbol_thai") private var thaiSetting = false
     @AppStorage("symbol_chinese") private var chineseSetting = false
     
     var body: some View {
         Form {
-            Text("**Special Characters**")
+            Text("**Special Character Localization**")
             Toggle("Arabic", isOn: $arabicSetting).keyboardShortcut("a")
-            Toggle("Hebrew", isOn: $hebrewSetting).keyboardShortcut("b")
-            Toggle("Hindi", isOn: $hindiSetting).keyboardShortcut("h")
+            Toggle("Burmese", isOn: $burmeseSetting).keyboardShortcut("b")
+            Toggle("Hebrew", isOn: $hebrewSetting).keyboardShortcut("h")
+            Toggle("Hindi", isOn: $hindiSetting).keyboardShortcut("i")
             Toggle("Japanese", isOn: $japaneseSetting).keyboardShortcut("j")
+            Toggle("Khmer", isOn: $khmerSetting).keyboardShortcut("m")
             Toggle("Korean", isOn: $koreanSetting).keyboardShortcut("k")
             Toggle("Thai", isOn: $thaiSetting).keyboardShortcut("t")
             Toggle("Chinese", isOn: $chineseSetting).keyboardShortcut("c")
         }
-        
     }
 }
 
@@ -170,7 +236,7 @@ struct LoadingView: View {
             Color(.systemBackground)
                 .edgesIgnoringSafeArea(.all)
             #else
-            Color(.green)
+            Color(.controlBackgroundColor)
                 .edgesIgnoringSafeArea(.all)
             #endif
             ProgressView()
