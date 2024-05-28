@@ -13,12 +13,12 @@
 		7703C5C72C04F9A400CA6F3C /* FontWeights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7703C5C62C04F9A400CA6F3C /* FontWeights.swift */; };
 		7703C5C92C04FC6800CA6F3C /* SymbolVariants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7703C5C82C04FC6800CA6F3C /* SymbolVariants.swift */; };
 		7703C5CF2C05080800CA6F3C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7703C5CE2C05080800CA6F3C /* Settings.bundle */; };
+		779594462C065A3C00D67D81 /* symbol_categories.plist in Resources */ = {isa = PBXBuildFile; fileRef = 779594452C065A3C00D67D81 /* symbol_categories.plist */; };
 		77DC5FDC2C014AD7006407D2 /* SymbolViewApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC5FDB2C014AD7006407D2 /* SymbolViewApp.swift */; };
 		77DC5FDE2C014AD7006407D2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC5FDD2C014AD7006407D2 /* ContentView.swift */; };
 		77DC5FE32C014AD9006407D2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77DC5FE22C014AD9006407D2 /* Preview Assets.xcassets */; };
 		77DC5FEA2C014B0E006407D2 /* SymbolGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC5FE92C014B0E006407D2 /* SymbolGrid.swift */; };
 		77DC5FEC2C014B29006407D2 /* SymbolContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC5FEB2C014B29006407D2 /* SymbolContextMenu.swift */; };
-		77DC5FEE2C014B39006407D2 /* symbol_categories.plist in Resources */ = {isa = PBXBuildFile; fileRef = 77DC5FED2C014B39006407D2 /* symbol_categories.plist */; };
 		77DC5FF02C014C3A006407D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77DC5FEF2C014C3A006407D2 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -50,13 +50,13 @@
 		7703C5C62C04F9A400CA6F3C /* FontWeights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontWeights.swift; sourceTree = "<group>"; };
 		7703C5C82C04FC6800CA6F3C /* SymbolVariants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolVariants.swift; sourceTree = "<group>"; };
 		7703C5CE2C05080800CA6F3C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		779594452C065A3C00D67D81 /* symbol_categories.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = symbol_categories.plist; sourceTree = "<group>"; };
 		77DC5FD82C014AD7006407D2 /* SymbolView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SymbolView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77DC5FDB2C014AD7006407D2 /* SymbolViewApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolViewApp.swift; sourceTree = "<group>"; };
 		77DC5FDD2C014AD7006407D2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		77DC5FE22C014AD9006407D2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		77DC5FE92C014B0E006407D2 /* SymbolGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolGrid.swift; sourceTree = "<group>"; };
 		77DC5FEB2C014B29006407D2 /* SymbolContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolContextMenu.swift; sourceTree = "<group>"; };
-		77DC5FED2C014B39006407D2 /* symbol_categories.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = symbol_categories.plist; path = ../../../aft/eco/xc15/SymbolView/Files/symbol_categories.plist; sourceTree = "<group>"; };
 		77DC5FEF2C014C3A006407D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -126,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				7703C5B12C0427A600CA6F3C /* Info.plist */,
+				779594452C065A3C00D67D81 /* symbol_categories.plist */,
 				77DC5FDB2C014AD7006407D2 /* SymbolViewApp.swift */,
 				77DC5FDD2C014AD7006407D2 /* ContentView.swift */,
 				77DC5FE92C014B0E006407D2 /* SymbolGrid.swift */,
@@ -135,7 +136,6 @@
 				77DC5FEB2C014B29006407D2 /* SymbolContextMenu.swift */,
 				77DC5FEF2C014C3A006407D2 /* Assets.xcassets */,
 				7703C5CE2C05080800CA6F3C /* Settings.bundle */,
-				77DC5FED2C014B39006407D2 /* symbol_categories.plist */,
 				77DC5FE12C014AD9006407D2 /* Preview Content */,
 			);
 			path = SymbolView;
@@ -268,8 +268,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7703C5CF2C05080800CA6F3C /* Settings.bundle in Resources */,
-				77DC5FEE2C014B39006407D2 /* symbol_categories.plist in Resources */,
 				77DC5FF02C014C3A006407D2 /* Assets.xcassets in Resources */,
+				779594462C065A3C00D67D81 /* symbol_categories.plist in Resources */,
 				77DC5FE32C014AD9006407D2 /* Preview Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
