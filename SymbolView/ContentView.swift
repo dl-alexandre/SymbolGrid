@@ -6,8 +6,9 @@
     //
 
 import SwiftUI
+import SFSymbolKit
 import UniformTypeIdentifiers
-//#warning("make symbol Preview")
+
 struct ContentView: View {
     enum Field: Hashable {
         case symbolGrid
@@ -20,12 +21,13 @@ struct ContentView: View {
     @AppStorage("canvasIcon") var canvasIcon = ""
     @AppStorage("fontSize") var fontSize = 50.0
     @AppStorage("searchText") var searchText = ""
+    
     @FocusState private var focus: Field?
     @State private var icon = ""
     @State private var isTapped: Bool = false
     @State private var isLoading: Bool = true
     @State private var needsNewJSON: Bool = false
-    @State private var selectedSample = SymbolRenderings.monochrome
+    @State private var selectedSample = RenderModes.monochrome
     @State private var selectedWeight = FontWeights.medium
     @State private var isCopied = false
     @State private var tapLocation: CGPoint = .zero
@@ -63,7 +65,7 @@ struct ContentView: View {
             Spacer()
             Spacer()
             Picker("", selection: $selectedSample) {
-                ForEach(SymbolRenderings.allCases, id: \.self) { sample in
+                ForEach(RenderModes.allCases, id: \.self) { sample in
                     Capsule()
                         .overlay {
                             Text(sample.name)

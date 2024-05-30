@@ -1,11 +1,12 @@
-//
-//  File.swift
-//  SymbolView
-//
-//  Created by Dalton Alexandre on 5/24/24.
-//
+    //
+    //  File.swift
+    //  SymbolView
+    //
+    //  Created by Dalton Alexandre on 5/24/24.
+    //
 
 import SwiftUI
+import SFSymbolKit
 import UniformTypeIdentifiers
 
 
@@ -21,13 +22,14 @@ struct SymbolGrid: View {
     @AppStorage("symbol_thai") private var thaiSetting = false
     @AppStorage("symbol_chinese") private var chineseSetting = false
     @AppStorage("searchText") var searchText = ""
+    @AppStorage("fontSize") var fontSize = 50.0
     @Binding public var icon: String
-//    @Binding public var searchText: String
-    @Binding public var renderMode: SymbolRenderings
+    @Binding public var renderMode: RenderModes
     @Binding public var fontWeight: FontWeights
+    
     init(
         icon: Binding<String>,
-        renderMode: Binding<SymbolRenderings>,
+        renderMode: Binding<RenderModes>,
         fontWeight: Binding<FontWeights>,
         symbols: [String]
     )
@@ -38,7 +40,6 @@ struct SymbolGrid: View {
         self.symbols = symbols
     }
     
-    @AppStorage("fontSize") var fontSize = 50.0
     private var columns: [GridItem] {
         [GridItem(.adaptive(minimum: 1.5 * fontSize))]
     }
@@ -68,63 +69,85 @@ struct SymbolGrid: View {
     }
     
     var body: some View {
-        GeometryReader { geometryProxy in
-            ScrollViewReader { scrollViewProxy in
-                ScrollView([.vertical]) {
-                    LazyVGrid(columns: columns, spacing: spacing) {
-                        ForEach(searchResults, id: \.hash) { systemName in
-                            Image(systemName: systemName)
-                                .symbolRenderingMode(renderMode.mode)
-                                .font(.system(size: (fontSize), weight: fontWeight.weight))
-                                .animation(.linear, value: 0.5)
-                                .foregroundColor(self.icon == systemName ? Color.secondary : Color.primary)
-                                .contentShape(Circle())
-                                .onTapGesture {
-                                    withAnimation {
-                                        if self.icon.isEmpty {
-                                            self.icon = systemName
-                                        } else if self.icon == systemName {
-                                            self.icon = ""
-                                        } else {
-                                            self.icon = systemName
-                                        }
-                                    }
-                                }
-                                .contextMenu {
-                                    SymbolContextMenu(icon: icon, fontSize:  fontSize)
-                                } preview: {
-                                    Group {
-                                        Image(systemName: systemName).font(.system(size: (fontSize * 4), weight: fontWeight.weight))
-                                        Text("\(systemName)").font(.title)
-                                    }
-                                        .padding()
-                                }
-                        }
-                        .frame(maxWidth: 500)
-                        .defaultScrollAnchor(.center)
-                    }
-                    .focusable()
-                    .focusEffectDisabled()
+        ScrollView {
+            LazyVGrid(columns: columns, spacing: spacing) {
+                ForEach(searchResults, id: \.hash) { systemName in
+                    Symbol(systemName: systemName, icon: $icon, fontSize: fontSize, fontWeight: fontWeight, renderMode: renderMode)
+                    
                 }
-                .coordinateSpace(name: "scroll")
-                .offset(x: 0, y: searchText.isEmpty ? 0: 150)
-                .edgesIgnoringSafeArea(.top)
+                .frame(maxWidth: 500)
+                .defaultScrollAnchor(.center)
+            }
+            .focusable()
+            .focusEffectDisabled()
+        }
+        .coordinateSpace(name: "scroll")
+        .offset(x: 0, y: searchText.isEmpty ? 0: 150)
+        .edgesIgnoringSafeArea(.top)
 #if os(iOS)
-                .navigationBarTitleDisplayMode(.inline)
+        .navigationBarTitleDisplayMode(.inline)
 #endif
-                .toolbar {
-                    ToolbarItem(placement: .automatic) {
-                        Text("\(icon)")
-                            .padding()
-                            .onTapGesture(count: 1) {
+        .toolbar {
+            ToolbarItem(placement: .automatic) {
+                Text("\(icon)")
+                    .padding()
+                    .onTapGesture(count: 1) {
 #if os(macOS)
-                                NSPasteboard.general.setString(icon, forType: .string)
-                                print(icon)
+                        NSPasteboard.general.setString(icon, forType: .string)
+                        print(icon)
 #endif
-                            }
+                    }
+            }
+        }
+    }
+}
+
+
+struct Symbol: View {
+    let systemName: String
+    @Binding var icon: String
+    let fontSize: CGFloat
+    let fontWeight: FontWeights
+    var renderMode: RenderModes
+    
+    var body: some View {
+        Image(systemName: systemName)
+            .symbolRenderingMode(renderMode.mode)
+            .font(.system(size: fontSize, weight: fontWeight.weight))
+            .animation(.linear, value: 0.5)
+            .foregroundColor(icon == systemName ? Color.secondary : Color.primary)
+            .onTapGesture {
+                withAnimation {
+                    if icon.isEmpty {
+                        icon = systemName
+                    } else if icon == systemName {
+                        icon = ""
+                    } else {
+                        icon = systemName
                     }
                 }
             }
-        }
+        
+            .onDrag {
+                let provider = NSItemProvider(object: (Image(systemName: systemName).asNSImage() ?? Image(systemName: "plus").asNSImage()!) as NSImage)
+                return provider
+            }
+            .previewLayout(.sizeThatFits)
+            .contextMenu {
+                SymbolContextMenu(fontSize: fontSize, icon: icon)
+            }
+            .previewLayout(.sizeThatFits)
+    }
+}
+
+extension View {
+    func asNSImage() -> NSImage? {
+        let hostingView = NSHostingView(rootView: self)
+        hostingView.setFrameSize(hostingView.fittingSize)
+        guard let bitmapRep = hostingView.bitmapImageRepForCachingDisplay(in: hostingView.bounds) else { return nil }
+        hostingView.cacheDisplay(in: hostingView.bounds, to: bitmapRep)
+        let image = NSImage(size: hostingView.bounds.size)
+        image.addRepresentation(bitmapRep)
+        return image
     }
 }

@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7703C5BC2C042D1800CA6F3C /* SymbolViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7703C5BB2C042D1800CA6F3C /* SymbolViewUITests.swift */; };
-		7703C5BE2C042D1800CA6F3C /* SymbolViewUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7703C5BD2C042D1800CA6F3C /* SymbolViewUITestsLaunchTests.swift */; };
-		7703C5C52C04F99800CA6F3C /* SymbolRenderings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7703C5C42C04F99800CA6F3C /* SymbolRenderings.swift */; };
-		7703C5C72C04F9A400CA6F3C /* FontWeights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7703C5C62C04F9A400CA6F3C /* FontWeights.swift */; };
-		7703C5C92C04FC6800CA6F3C /* SymbolVariants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7703C5C82C04FC6800CA6F3C /* SymbolVariants.swift */; };
 		7703C5CF2C05080800CA6F3C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7703C5CE2C05080800CA6F3C /* Settings.bundle */; };
-		779594462C065A3C00D67D81 /* symbol_categories.plist in Resources */ = {isa = PBXBuildFile; fileRef = 779594452C065A3C00D67D81 /* symbol_categories.plist */; };
+		779594492C078CA100D67D81 /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779594482C078CA100D67D81 /* System.swift */; };
+		7795944C2C07EB2100D67D81 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7795944B2C07EB2100D67D81 /* SettingsView.swift */; };
+		7795944E2C07EB4400D67D81 /* FontSizeSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7795944D2C07EB4400D67D81 /* FontSizeSetting.swift */; };
+		779594502C07EB6000D67D81 /* LocalizationSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7795944F2C07EB6000D67D81 /* LocalizationSetting.swift */; };
+		779594522C07EB7E00D67D81 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779594512C07EB7E00D67D81 /* LoadingView.swift */; };
+		77A2E9052C080E96009F456E /* SFSymbolKit in Frameworks */ = {isa = PBXBuildFile; productRef = 77A2E9042C080E96009F456E /* SFSymbolKit */; };
+		77A2E9082C080F27009F456E /* SFSymbolKit in Frameworks */ = {isa = PBXBuildFile; productRef = 77A2E9072C080F27009F456E /* SFSymbolKit */; };
 		77DC5FDC2C014AD7006407D2 /* SymbolViewApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC5FDB2C014AD7006407D2 /* SymbolViewApp.swift */; };
 		77DC5FDE2C014AD7006407D2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC5FDD2C014AD7006407D2 /* ContentView.swift */; };
 		77DC5FE32C014AD9006407D2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77DC5FE22C014AD9006407D2 /* Preview Assets.xcassets */; };
@@ -22,35 +23,30 @@
 		77DC5FF02C014C3A006407D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77DC5FEF2C014C3A006407D2 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		7703C5A42C04244700CA6F3C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 77DC5FD02C014AD7006407D2 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 77DC5FD72C014AD7006407D2;
-			remoteInfo = SymbolView;
+/* Begin PBXCopyFilesBuildPhase section */
+		77E5AC212C08002E004820B2 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7703C5BF2C042D1800CA6F3C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 77DC5FD02C014AD7006407D2 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 77DC5FD72C014AD7006407D2;
-			remoteInfo = SymbolView;
-		};
-/* End PBXContainerItemProxy section */
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		7703C5A02C04244700CA6F3C /* SymbolViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SymbolViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7703C5AC2C04270500CA6F3C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/MacOSX.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		7703C5B12C0427A600CA6F3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		7703C5B92C042D1800CA6F3C /* SymbolViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SymbolViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7703C5BB2C042D1800CA6F3C /* SymbolViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolViewUITests.swift; sourceTree = "<group>"; };
 		7703C5BD2C042D1800CA6F3C /* SymbolViewUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolViewUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		7703C5C42C04F99800CA6F3C /* SymbolRenderings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolRenderings.swift; sourceTree = "<group>"; };
-		7703C5C62C04F9A400CA6F3C /* FontWeights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontWeights.swift; sourceTree = "<group>"; };
-		7703C5C82C04FC6800CA6F3C /* SymbolVariants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolVariants.swift; sourceTree = "<group>"; };
 		7703C5CE2C05080800CA6F3C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		779594452C065A3C00D67D81 /* symbol_categories.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = symbol_categories.plist; sourceTree = "<group>"; };
+		779594472C06AD2000D67D81 /* SymbolView.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SymbolView.entitlements; sourceTree = "<group>"; };
+		779594482C078CA100D67D81 /* System.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
+		7795944B2C07EB2100D67D81 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		7795944D2C07EB4400D67D81 /* FontSizeSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSizeSetting.swift; sourceTree = "<group>"; };
+		7795944F2C07EB6000D67D81 /* LocalizationSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationSetting.swift; sourceTree = "<group>"; };
+		779594512C07EB7E00D67D81 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		77DC5FD82C014AD7006407D2 /* SymbolView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SymbolView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77DC5FDB2C014AD7006407D2 /* SymbolViewApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolViewApp.swift; sourceTree = "<group>"; };
 		77DC5FDD2C014AD7006407D2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -61,38 +57,18 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		7703C59D2C04244700CA6F3C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7703C5B62C042D1800CA6F3C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		77DC5FD52C014AD7006407D2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77A2E9082C080F27009F456E /* SFSymbolKit in Frameworks */,
+				77A2E9052C080E96009F456E /* SFSymbolKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7703C5AB2C04270500CA6F3C /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				7703C5AC2C04270500CA6F3C /* XCTest.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		7703C5BA2C042D1800CA6F3C /* SymbolViewUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -102,13 +78,22 @@
 			path = SymbolViewUITests;
 			sourceTree = "<group>";
 		};
+		7795944A2C07EB0500D67D81 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				7795944B2C07EB2100D67D81 /* SettingsView.swift */,
+				7795944D2C07EB4400D67D81 /* FontSizeSetting.swift */,
+				7795944F2C07EB6000D67D81 /* LocalizationSetting.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		77DC5FCF2C014AD7006407D2 = {
 			isa = PBXGroup;
 			children = (
 				77DC5FDA2C014AD7006407D2 /* SymbolView */,
 				7703C5BA2C042D1800CA6F3C /* SymbolViewUITests */,
 				77DC5FD92C014AD7006407D2 /* Products */,
-				7703C5AB2C04270500CA6F3C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -116,8 +101,6 @@
 			isa = PBXGroup;
 			children = (
 				77DC5FD82C014AD7006407D2 /* SymbolView.app */,
-				7703C5A02C04244700CA6F3C /* SymbolViewTests.xctest */,
-				7703C5B92C042D1800CA6F3C /* SymbolViewUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -125,14 +108,14 @@
 		77DC5FDA2C014AD7006407D2 /* SymbolView */ = {
 			isa = PBXGroup;
 			children = (
+				779594472C06AD2000D67D81 /* SymbolView.entitlements */,
 				7703C5B12C0427A600CA6F3C /* Info.plist */,
-				779594452C065A3C00D67D81 /* symbol_categories.plist */,
 				77DC5FDB2C014AD7006407D2 /* SymbolViewApp.swift */,
+				779594512C07EB7E00D67D81 /* LoadingView.swift */,
+				7795944A2C07EB0500D67D81 /* Settings */,
 				77DC5FDD2C014AD7006407D2 /* ContentView.swift */,
 				77DC5FE92C014B0E006407D2 /* SymbolGrid.swift */,
-				7703C5C82C04FC6800CA6F3C /* SymbolVariants.swift */,
-				7703C5C42C04F99800CA6F3C /* SymbolRenderings.swift */,
-				7703C5C62C04F9A400CA6F3C /* FontWeights.swift */,
+				779594482C078CA100D67D81 /* System.swift */,
 				77DC5FEB2C014B29006407D2 /* SymbolContextMenu.swift */,
 				77DC5FEF2C014C3A006407D2 /* Assets.xcassets */,
 				7703C5CE2C05080800CA6F3C /* Settings.bundle */,
@@ -152,42 +135,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7703C59F2C04244700CA6F3C /* SymbolViewTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 7703C5A62C04244700CA6F3C /* Build configuration list for PBXNativeTarget "SymbolViewTests" */;
-			buildPhases = (
-				7703C59C2C04244700CA6F3C /* Sources */,
-				7703C59D2C04244700CA6F3C /* Frameworks */,
-				7703C59E2C04244700CA6F3C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				7703C5A52C04244700CA6F3C /* PBXTargetDependency */,
-			);
-			name = SymbolViewTests;
-			productName = SymbolViewTests;
-			productReference = 7703C5A02C04244700CA6F3C /* SymbolViewTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		7703C5B82C042D1800CA6F3C /* SymbolViewUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 7703C5C12C042D1800CA6F3C /* Build configuration list for PBXNativeTarget "SymbolViewUITests" */;
-			buildPhases = (
-				7703C5B52C042D1800CA6F3C /* Sources */,
-				7703C5B62C042D1800CA6F3C /* Frameworks */,
-				7703C5B72C042D1800CA6F3C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				7703C5C02C042D1800CA6F3C /* PBXTargetDependency */,
-			);
-			name = SymbolViewUITests;
-			productName = SymbolViewUITests;
-			productReference = 7703C5B92C042D1800CA6F3C /* SymbolViewUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 		77DC5FD72C014AD7006407D2 /* SymbolView */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 77DC5FE62C014AD9006407D2 /* Build configuration list for PBXNativeTarget "SymbolView" */;
@@ -195,12 +142,17 @@
 				77DC5FD42C014AD7006407D2 /* Sources */,
 				77DC5FD52C014AD7006407D2 /* Frameworks */,
 				77DC5FD62C014AD7006407D2 /* Resources */,
+				77E5AC212C08002E004820B2 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = SymbolView;
+			packageProductDependencies = (
+				77A2E9042C080E96009F456E /* SFSymbolKit */,
+				77A2E9072C080F27009F456E /* SFSymbolKit */,
+			);
 			productName = SymbolView;
 			productReference = 77DC5FD82C014AD7006407D2 /* SymbolView.app */;
 			productType = "com.apple.product-type.application";
@@ -215,14 +167,6 @@
 				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
-					7703C59F2C04244700CA6F3C = {
-						CreatedOnToolsVersion = 15.4;
-						TestTargetID = 77DC5FD72C014AD7006407D2;
-					};
-					7703C5B82C042D1800CA6F3C = {
-						CreatedOnToolsVersion = 15.4;
-						TestTargetID = 77DC5FD72C014AD7006407D2;
-					};
 					77DC5FD72C014AD7006407D2 = {
 						CreatedOnToolsVersion = 15.4;
 					};
@@ -237,39 +181,25 @@
 				Base,
 			);
 			mainGroup = 77DC5FCF2C014AD7006407D2;
+			packageReferences = (
+				77A2E9062C080F27009F456E /* XCRemoteSwiftPackageReference "SFSymbolKit" */,
+			);
 			productRefGroup = 77DC5FD92C014AD7006407D2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				77DC5FD72C014AD7006407D2 /* SymbolView */,
-				7703C59F2C04244700CA6F3C /* SymbolViewTests */,
-				7703C5B82C042D1800CA6F3C /* SymbolViewUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		7703C59E2C04244700CA6F3C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7703C5B72C042D1800CA6F3C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		77DC5FD62C014AD7006407D2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				7703C5CF2C05080800CA6F3C /* Settings.bundle in Resources */,
 				77DC5FF02C014C3A006407D2 /* Assets.xcassets in Resources */,
-				779594462C065A3C00D67D81 /* symbol_categories.plist in Resources */,
 				77DC5FE32C014AD9006407D2 /* Preview Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,31 +207,17 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		7703C59C2C04244700CA6F3C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7703C5B52C042D1800CA6F3C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7703C5BC2C042D1800CA6F3C /* SymbolViewUITests.swift in Sources */,
-				7703C5BE2C042D1800CA6F3C /* SymbolViewUITestsLaunchTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		77DC5FD42C014AD7006407D2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7703C5C72C04F9A400CA6F3C /* FontWeights.swift in Sources */,
-				7703C5C52C04F99800CA6F3C /* SymbolRenderings.swift in Sources */,
 				77DC5FDE2C014AD7006407D2 /* ContentView.swift in Sources */,
+				7795944C2C07EB2100D67D81 /* SettingsView.swift in Sources */,
+				7795944E2C07EB4400D67D81 /* FontSizeSetting.swift in Sources */,
+				779594522C07EB7E00D67D81 /* LoadingView.swift in Sources */,
 				77DC5FEC2C014B29006407D2 /* SymbolContextMenu.swift in Sources */,
-				7703C5C92C04FC6800CA6F3C /* SymbolVariants.swift in Sources */,
+				779594492C078CA100D67D81 /* System.swift in Sources */,
+				779594502C07EB6000D67D81 /* LocalizationSetting.swift in Sources */,
 				77DC5FEA2C014B0E006407D2 /* SymbolGrid.swift in Sources */,
 				77DC5FDC2C014AD7006407D2 /* SymbolViewApp.swift in Sources */,
 			);
@@ -309,106 +225,7 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		7703C5A52C04244700CA6F3C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 77DC5FD72C014AD7006407D2 /* SymbolView */;
-			targetProxy = 7703C5A42C04244700CA6F3C /* PBXContainerItemProxy */;
-		};
-		7703C5C02C042D1800CA6F3C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 77DC5FD72C014AD7006407D2 /* SymbolView */;
-			targetProxy = 7703C5BF2C042D1800CA6F3C /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
-		7703C5A72C04244700CA6F3C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2MP8QWK7R6;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
-				MACOSX_DEPLOYMENT_TARGET = 14.5;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamiyfarm.SymbolViewTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SymbolView.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SymbolView";
-			};
-			name = Debug;
-		};
-		7703C5A82C04244700CA6F3C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2MP8QWK7R6;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
-				MACOSX_DEPLOYMENT_TARGET = 14.5;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamiyfarm.SymbolViewTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SymbolView.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SymbolView";
-			};
-			name = Release;
-		};
-		7703C5C22C042D1800CA6F3C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2MP8QWK7R6;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
-				MACOSX_DEPLOYMENT_TARGET = 14.5;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamiyfarm.SymbolViewUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = SymbolView;
-			};
-			name = Debug;
-		};
-		7703C5C32C042D1800CA6F3C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2MP8QWK7R6;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
-				MACOSX_DEPLOYMENT_TARGET = 14.5;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamiyfarm.SymbolViewUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = SymbolView;
-			};
-			name = Release;
-		};
 		77DC5FE42C014AD9006407D2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -533,11 +350,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SymbolView/SymbolView.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SymbolView/Preview Content\"";
 				DEVELOPMENT_TEAM = 2MP8QWK7R6;
 				ENABLE_APP_SANDBOX = YES;
+				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SymbolView/Info.plist;
@@ -570,11 +389,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SymbolView/SymbolView.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SymbolView/Preview Content\"";
 				DEVELOPMENT_TEAM = 2MP8QWK7R6;
 				ENABLE_APP_SANDBOX = YES;
+				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SymbolView/Info.plist;
@@ -605,24 +426,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7703C5A62C04244700CA6F3C /* Build configuration list for PBXNativeTarget "SymbolViewTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7703C5A72C04244700CA6F3C /* Debug */,
-				7703C5A82C04244700CA6F3C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		7703C5C12C042D1800CA6F3C /* Build configuration list for PBXNativeTarget "SymbolViewUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7703C5C22C042D1800CA6F3C /* Debug */,
-				7703C5C32C042D1800CA6F3C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		77DC5FD32C014AD7006407D2 /* Build configuration list for PBXProject "SymbolView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -642,6 +445,29 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		77A2E9062C080F27009F456E /* XCRemoteSwiftPackageReference "SFSymbolKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dl-alexandre/SFSymbolKit";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		77A2E9042C080E96009F456E /* SFSymbolKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SFSymbolKit;
+		};
+		77A2E9072C080F27009F456E /* SFSymbolKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 77A2E9062C080F27009F456E /* XCRemoteSwiftPackageReference "SFSymbolKit" */;
+			productName = SFSymbolKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 77DC5FD02C014AD7006407D2 /* Project object */;
 }
