@@ -1,0 +1,593 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		778C783F2C0A4656000CDC92 /* SymbolGridApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C783E2C0A4656000CDC92 /* SymbolGridApp.swift */; };
+		778C78412C0A4656000CDC92 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C78402C0A4656000CDC92 /* ContentView.swift */; };
+		778C78432C0A4657000CDC92 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 778C78422C0A4657000CDC92 /* Assets.xcassets */; };
+		778C78462C0A4657000CDC92 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 778C78452C0A4657000CDC92 /* Preview Assets.xcassets */; };
+		778C78502C0A4658000CDC92 /* SymbolGridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C784F2C0A4658000CDC92 /* SymbolGridTests.swift */; };
+		778C785A2C0A4658000CDC92 /* SymbolGridUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C78592C0A4658000CDC92 /* SymbolGridUITests.swift */; };
+		778C785C2C0A4658000CDC92 /* SymbolGridUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C785B2C0A4658000CDC92 /* SymbolGridUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		778C784C2C0A4658000CDC92 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 778C78332C0A4656000CDC92 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 778C783A2C0A4656000CDC92;
+			remoteInfo = SymbolGrid;
+		};
+		778C78562C0A4658000CDC92 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 778C78332C0A4656000CDC92 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 778C783A2C0A4656000CDC92;
+			remoteInfo = SymbolGrid;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		778C783B2C0A4656000CDC92 /* SymbolGrid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SymbolGrid.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		778C783E2C0A4656000CDC92 /* SymbolGridApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolGridApp.swift; sourceTree = "<group>"; };
+		778C78402C0A4656000CDC92 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		778C78422C0A4657000CDC92 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		778C78452C0A4657000CDC92 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		778C784B2C0A4658000CDC92 /* SymbolGridTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SymbolGridTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		778C784F2C0A4658000CDC92 /* SymbolGridTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolGridTests.swift; sourceTree = "<group>"; };
+		778C78552C0A4658000CDC92 /* SymbolGridUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SymbolGridUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		778C78592C0A4658000CDC92 /* SymbolGridUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolGridUITests.swift; sourceTree = "<group>"; };
+		778C785B2C0A4658000CDC92 /* SymbolGridUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolGridUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		778C78382C0A4656000CDC92 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		778C78482C0A4658000CDC92 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		778C78522C0A4658000CDC92 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		778C78322C0A4656000CDC92 = {
+			isa = PBXGroup;
+			children = (
+				778C783D2C0A4656000CDC92 /* SymbolGrid */,
+				778C784E2C0A4658000CDC92 /* SymbolGridTests */,
+				778C78582C0A4658000CDC92 /* SymbolGridUITests */,
+				778C783C2C0A4656000CDC92 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		778C783C2C0A4656000CDC92 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				778C783B2C0A4656000CDC92 /* SymbolGrid.app */,
+				778C784B2C0A4658000CDC92 /* SymbolGridTests.xctest */,
+				778C78552C0A4658000CDC92 /* SymbolGridUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		778C783D2C0A4656000CDC92 /* SymbolGrid */ = {
+			isa = PBXGroup;
+			children = (
+				778C783E2C0A4656000CDC92 /* SymbolGridApp.swift */,
+				778C78402C0A4656000CDC92 /* ContentView.swift */,
+				778C78422C0A4657000CDC92 /* Assets.xcassets */,
+				778C78442C0A4657000CDC92 /* Preview Content */,
+			);
+			path = SymbolGrid;
+			sourceTree = "<group>";
+		};
+		778C78442C0A4657000CDC92 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				778C78452C0A4657000CDC92 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		778C784E2C0A4658000CDC92 /* SymbolGridTests */ = {
+			isa = PBXGroup;
+			children = (
+				778C784F2C0A4658000CDC92 /* SymbolGridTests.swift */,
+			);
+			path = SymbolGridTests;
+			sourceTree = "<group>";
+		};
+		778C78582C0A4658000CDC92 /* SymbolGridUITests */ = {
+			isa = PBXGroup;
+			children = (
+				778C78592C0A4658000CDC92 /* SymbolGridUITests.swift */,
+				778C785B2C0A4658000CDC92 /* SymbolGridUITestsLaunchTests.swift */,
+			);
+			path = SymbolGridUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		778C783A2C0A4656000CDC92 /* SymbolGrid */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 778C785F2C0A4658000CDC92 /* Build configuration list for PBXNativeTarget "SymbolGrid" */;
+			buildPhases = (
+				778C78372C0A4656000CDC92 /* Sources */,
+				778C78382C0A4656000CDC92 /* Frameworks */,
+				778C78392C0A4656000CDC92 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SymbolGrid;
+			productName = SymbolGrid;
+			productReference = 778C783B2C0A4656000CDC92 /* SymbolGrid.app */;
+			productType = "com.apple.product-type.application";
+		};
+		778C784A2C0A4658000CDC92 /* SymbolGridTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 778C78622C0A4658000CDC92 /* Build configuration list for PBXNativeTarget "SymbolGridTests" */;
+			buildPhases = (
+				778C78472C0A4658000CDC92 /* Sources */,
+				778C78482C0A4658000CDC92 /* Frameworks */,
+				778C78492C0A4658000CDC92 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				778C784D2C0A4658000CDC92 /* PBXTargetDependency */,
+			);
+			name = SymbolGridTests;
+			productName = SymbolGridTests;
+			productReference = 778C784B2C0A4658000CDC92 /* SymbolGridTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		778C78542C0A4658000CDC92 /* SymbolGridUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 778C78652C0A4658000CDC92 /* Build configuration list for PBXNativeTarget "SymbolGridUITests" */;
+			buildPhases = (
+				778C78512C0A4658000CDC92 /* Sources */,
+				778C78522C0A4658000CDC92 /* Frameworks */,
+				778C78532C0A4658000CDC92 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				778C78572C0A4658000CDC92 /* PBXTargetDependency */,
+			);
+			name = SymbolGridUITests;
+			productName = SymbolGridUITests;
+			productReference = 778C78552C0A4658000CDC92 /* SymbolGridUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		778C78332C0A4656000CDC92 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					778C783A2C0A4656000CDC92 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					778C784A2C0A4658000CDC92 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 778C783A2C0A4656000CDC92;
+					};
+					778C78542C0A4658000CDC92 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 778C783A2C0A4656000CDC92;
+					};
+				};
+			};
+			buildConfigurationList = 778C78362C0A4656000CDC92 /* Build configuration list for PBXProject "SymbolGrid" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 778C78322C0A4656000CDC92;
+			productRefGroup = 778C783C2C0A4656000CDC92 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				778C783A2C0A4656000CDC92 /* SymbolGrid */,
+				778C784A2C0A4658000CDC92 /* SymbolGridTests */,
+				778C78542C0A4658000CDC92 /* SymbolGridUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		778C78392C0A4656000CDC92 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				778C78462C0A4657000CDC92 /* Preview Assets.xcassets in Resources */,
+				778C78432C0A4657000CDC92 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		778C78492C0A4658000CDC92 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		778C78532C0A4658000CDC92 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		778C78372C0A4656000CDC92 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				778C78412C0A4656000CDC92 /* ContentView.swift in Sources */,
+				778C783F2C0A4656000CDC92 /* SymbolGridApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		778C78472C0A4658000CDC92 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				778C78502C0A4658000CDC92 /* SymbolGridTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		778C78512C0A4658000CDC92 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				778C785C2C0A4658000CDC92 /* SymbolGridUITestsLaunchTests.swift in Sources */,
+				778C785A2C0A4658000CDC92 /* SymbolGridUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		778C784D2C0A4658000CDC92 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 778C783A2C0A4656000CDC92 /* SymbolGrid */;
+			targetProxy = 778C784C2C0A4658000CDC92 /* PBXContainerItemProxy */;
+		};
+		778C78572C0A4658000CDC92 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 778C783A2C0A4656000CDC92 /* SymbolGrid */;
+			targetProxy = 778C78562C0A4658000CDC92 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		778C785D2C0A4658000CDC92 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		778C785E2C0A4658000CDC92 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		778C78602C0A4658000CDC92 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SymbolGrid/Preview Content\"";
+				DEVELOPMENT_TEAM = 2MP8QWK7R6;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamiyfarm.SymbolGrid;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		778C78612C0A4658000CDC92 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SymbolGrid/Preview Content\"";
+				DEVELOPMENT_TEAM = 2MP8QWK7R6;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamiyfarm.SymbolGrid;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		778C78632C0A4658000CDC92 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2MP8QWK7R6;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamiyfarm.SymbolGridTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SymbolGrid.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SymbolGrid";
+			};
+			name = Debug;
+		};
+		778C78642C0A4658000CDC92 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2MP8QWK7R6;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamiyfarm.SymbolGridTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SymbolGrid.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SymbolGrid";
+			};
+			name = Release;
+		};
+		778C78662C0A4658000CDC92 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2MP8QWK7R6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamiyfarm.SymbolGridUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SymbolGrid;
+			};
+			name = Debug;
+		};
+		778C78672C0A4658000CDC92 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2MP8QWK7R6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamiyfarm.SymbolGridUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SymbolGrid;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		778C78362C0A4656000CDC92 /* Build configuration list for PBXProject "SymbolGrid" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				778C785D2C0A4658000CDC92 /* Debug */,
+				778C785E2C0A4658000CDC92 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		778C785F2C0A4658000CDC92 /* Build configuration list for PBXNativeTarget "SymbolGrid" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				778C78602C0A4658000CDC92 /* Debug */,
+				778C78612C0A4658000CDC92 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		778C78622C0A4658000CDC92 /* Build configuration list for PBXNativeTarget "SymbolGridTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				778C78632C0A4658000CDC92 /* Debug */,
+				778C78642C0A4658000CDC92 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		778C78652C0A4658000CDC92 /* Build configuration list for PBXNativeTarget "SymbolGridUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				778C78662C0A4658000CDC92 /* Debug */,
+				778C78672C0A4658000CDC92 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 778C78332C0A4656000CDC92 /* Project object */;
+}
