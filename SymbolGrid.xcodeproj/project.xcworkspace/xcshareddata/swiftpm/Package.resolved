@@ -1,0 +1,15 @@
+{
+  "originHash" : "c487ca295d871f640ea0a76f5f032c1f7ab3a2129ffa9e086285569a2397d1a1",
+  "pins" : [
+    {
+      "identity" : "sfsymbolkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/dl-alexandre/SFSymbolKit",
+      "state" : {
+        "branch" : "main",
+        "revision" : "8daa8d951b7ba8e33099eb7c27c5dfe2d4406b06"
+      }
+    }
+  ],
+  "version" : 3
+}
