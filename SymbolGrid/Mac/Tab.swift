@@ -105,3 +105,5 @@ struct HideTabBar: NSViewRepresentable {
     }
 }
 #endif
+
+

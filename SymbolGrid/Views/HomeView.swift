@@ -36,7 +36,6 @@ struct HomeView: View {
     @AppStorage("showingRender") var showingRender = false
     @AppStorage("showingWeight") var showingWeight = false
     @AppStorage("showingCanvas") var showingCanvas = false
-    @AppStorage("showingFavorites") var showingFavorites = false
     @AppStorage("canvasIcon") var canvasIcon = ""
     @AppStorage("fontSize") var fontSize = 50.0
     @AppStorage("searchText") var searchText = ""

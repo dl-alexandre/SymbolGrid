@@ -13,10 +13,14 @@ struct SymbolContextMenu: View {
         Section("Favorites") {
             if !self.favoritesBinding.wrappedValue.isEmpty {
                 Button {
-                    selectedTab = 1
+                    if tabModel.activeTab == .home {
+                        tabModel.activeTab = .favorites
+                    } else {
+                        tabModel.activeTab = .home
+                    }
                 } label: {
                     Label("Show", systemImage: "line.horizontal.star.fill.line.horizontal")
-                }
+                }/*.keyboardShortcut("f", modifiers: [])*/
             }
             
             Button {
@@ -36,7 +40,7 @@ struct SymbolContextMenu: View {
                 } else {
                     Label("Add", systemImage: "star")          
                 }
-            }
+            }/*.keyboardShortcut("a", modifiers: [])*/
         }
         
 #if os(iOS)
@@ -72,6 +76,7 @@ struct SymbolContextMenu: View {
             Label("Search", systemImage: "magnifyingglass")
         }
     }
+    
     @AppStorage("favorites") private var favorites: String = "[]"
     @AppStorage("showingSearch") var showingSearch = true
     @AppStorage("showingRender") var showingRender = true
@@ -79,7 +84,8 @@ struct SymbolContextMenu: View {
     @AppStorage("showingCanvas") var showingCanvas = false
     @AppStorage("canvasIcon") var canvasIcon = ""
     @AppStorage("fontSize") var fontSize = 50.0
-    @AppStorage("tab") var selectedTab = 0
+    //@AppStorage("tab") var selectedTab = 0
+    @EnvironmentObject private var tabModel: TabModel
     
     var icon: String
     
@@ -92,6 +98,6 @@ struct SymbolContextMenu: View {
 }
 
 #Preview {
-    SymbolContextMenu(icon: "doc.on.doc")
+    SymbolContextMenu(icon: "doc.on.doc"/*, tabs: Tab.home*/)
 }
 

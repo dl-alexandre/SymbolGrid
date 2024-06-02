@@ -11,6 +11,7 @@ import UniformTypeIdentifiers
 
 struct FavoritesView: View {
     @Environment(\.layoutDirection) private var layoutDirection
+    @EnvironmentObject private var tabModel: TabModel
     @AppStorage("searchText") var searchText = ""
     @AppStorage("fontSize") var fontSize = 50.0
     @AppStorage("icon") var icon = ""
@@ -59,7 +60,7 @@ struct FavoritesView: View {
                 Text("Favorites").font(.title).bold()
                 List {
                     ForEach(searchResults, id: \.hash) { systemName in
-                        Favorite(systemName: systemName, icon: icon, fontSize: fontSize, fontWeight: fontWeight, renderMode: renderMode)
+                        Favorite(systemName: systemName, icon: icon, fontSize: fontSize, fontWeight: fontWeight, renderMode: renderMode).environmentObject(tabModel)
                         
                     }
                     .defaultScrollAnchor(.center)
@@ -77,8 +78,9 @@ struct FavoritesView: View {
 
 
 struct Favorite: View {
+    @EnvironmentObject private var tabModel: TabModel
     @AppStorage("favorites") private var favorites: String = "[]"
-    @SceneStorage("tab") var selectedTab = 0
+//    @SceneStorage("tab") var selectedTab = 0
     var favoritesBinding: Binding<[String]> {
         Binding(
             get: { Array(jsonString: self.favorites) ?? [] },
@@ -125,7 +127,7 @@ struct Favorite: View {
                 
             }
             .contextMenu {
-                SymbolContextMenu(icon: systemName)
+                SymbolContextMenu(icon: systemName).environmentObject(tabModel)
             }
         
         

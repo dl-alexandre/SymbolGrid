@@ -30,26 +30,27 @@ struct SymbolView: View {
             LazyVGrid(columns: columns, spacing: spacing) {
                 ForEach(searchResults, id: \.hash) { systemName in
                     Symbol(icon: icon, systemName: systemName, fontSize: fontSize, fontWeight: fontWeight, renderMode: renderMode)
-                        .onTapGesture {
-                            if sys.selectedSymbols.contains(icon) {
-                                sys.selectedSymbols.remove(icon)
-                                if let index = iconArray.firstIndex(of: systemName) {
-                                    iconArray.remove(at: index)
-                                }
-                                icon = iconArray.joined(separator: " ")
-                            } else {
-                                sys.selectedSymbols.insert(icon)
-                                if icon.isEmpty {
-                                    icon = systemName
-                                } else {
-                                    if !iconArray.contains(systemName) {
-                                        iconArray.append(systemName)
-                                    }
-                                    icon = iconArray.joined(separator: " ")
-                                }
-                            }
-                        }
-                        .shadow(color: sys.selectedSymbols.contains(systemName) ? Color.secondary : Color.clear, radius: 10)
+//                        .onTapGesture {
+//                            if sys.selectedSymbols.contains(icon) {
+//                                sys.selectedSymbols.remove(icon)
+//                                if let index = iconArray.firstIndex(of: systemName) {
+//                                    iconArray.remove(at: index)
+//                                }
+//                                icon = iconArray.joined(separator: " ")
+//                            } else {
+//                                sys.selectedSymbols.insert(icon)
+//                                if icon.isEmpty {
+//                                    icon = systemName
+//                                } else {
+//                                    if !iconArray.contains(systemName) {
+//                                        iconArray.append(systemName)
+//                                    }
+//                                    icon = iconArray.joined(separator: " ")
+//                                }
+//                            }
+//                        }
+//                        .shadow(color: sys.selectedSymbols.contains(systemName) ? Color.secondary : Color.clear, radius: 10)
+                        .environmentObject(tabModel)
                 }
                 .frame(maxWidth: 500)
                 .defaultScrollAnchor(.center)
@@ -76,6 +77,7 @@ struct SymbolView: View {
         }
     }
     @Environment(\.layoutDirection) private var layoutDirection
+    @EnvironmentObject private var tabModel: TabModel
     @AppStorage("symbol_arabic") private var arabicSetting = false
     @AppStorage("symbol_burmese") private var burmeseSetting = false
     @AppStorage("symbol_hebrew") private var hebrewSetting = false
@@ -135,6 +137,7 @@ struct SymbolView: View {
 
 
 struct Symbol: View {
+    @EnvironmentObject private var tabModel: TabModel
     @AppStorage("icon") var icon = ""
     @AppStorage("tab") var selectedTab = 0
     let systemName: String
@@ -148,6 +151,17 @@ struct Symbol: View {
             .font(.system(size: fontSize, weight: fontWeight.weight))
             .animation(.linear, value: 0.5)
             .foregroundColor(icon == systemName ? Color.secondary : Color.primary)
+            .onTapGesture {
+                withAnimation {
+                    if icon.isEmpty {
+                        icon = systemName
+                    } else if icon == systemName {
+                        icon = ""
+                    } else {
+                        icon = systemName
+                    }
+                }
+            }
             .onDrag {
 #if os(macOS)
                 let provider = NSItemProvider(object: (Image(systemName: systemName).asNSImage() ?? Image(systemName: "plus").asNSImage()!) as NSImage)
@@ -159,7 +173,7 @@ struct Symbol: View {
             }
             .previewLayout(.sizeThatFits)
             .contextMenu {
-                SymbolContextMenu(icon: systemName)
+                SymbolContextMenu(icon: systemName).environmentObject(tabModel)
             } preview: {
                 Group {
                     Image(systemName: systemName)

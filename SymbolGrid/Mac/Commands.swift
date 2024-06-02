@@ -11,13 +11,11 @@ struct SymbolCommands: Commands {
     var body: some Commands {
         SidebarCommands()
         CommandMenu("Symbols") {
-            
             Button {
                 showSearch()
             } label: {
                 Label("Search", systemImage: "magnifyingglass")
             }.keyboardShortcut("s")
-            
             Button {
                 clearSearch()
             } label: {
@@ -36,12 +34,12 @@ struct SymbolCommands: Commands {
                 Label("Larger", systemImage: "plus")
             }.keyboardShortcut("=")
             Section("Favorites") {
-                Button {
-                    showFavorites()
-                } label: {
-                    Label("View", systemImage: "star.slash")
-                }.keyboardShortcut("f", modifiers: [])
-                
+//                Button {
+//                    showFavorites()
+//                } label: {
+//                    Label("View", systemImage: "star.slash")
+//                }.keyboardShortcut("f", modifiers: [])
+//                
                 Button {
                     if myFavorites.contains(icon) {
                         removeFavorite(icons: icon)
@@ -78,7 +76,8 @@ struct SymbolCommands: Commands {
     @AppStorage("searchText") var searchText = ""
     @AppStorage("icon") var icon = ""
     @AppStorage("fontSize") var fontSize = 50.0
-    @AppStorage("tab") var selectedTab = 0
+//    @AppStorage("tab") var selectedTab = 0
+//    @EnvironmentObject private var tabModel: TabModel
     
     func showSearch() { showingSearch.toggle() }
     
@@ -86,7 +85,11 @@ struct SymbolCommands: Commands {
     
     func clearFavorites() { favorites = "[]" }
     
-    func showFavorites() { selectedTab = 1 }
+//    func showFavorites() { if tabModel.activeTab == .home {
+//        tabModel.activeTab = .favorites
+//    } else {
+//        tabModel.activeTab = .home
+//    } }
     
     var myFavorites: [String] {
         get { Array(jsonString: favorites) ?? [] }
