@@ -17,25 +17,13 @@ struct ContentView: View {
         TabView(selection: $tabModel.activeTab) {
             HomeView(symbols: system.symbols).environmentObject(tabModel)
                 .transition(.move(edge: .bottom))
-            //                    .toolbar(.hidden)
-#if os(iOS)
-                .tag(0)
-#elseif os(macOS)
-                .tag(Tab.home).tabItem {
-                    Text("Symbols")
-                }
-            
+                .tag(Tab.home)
+#if os(macOS)
                 .background(HideTabBar())
 #endif
-            FavoritesView(renderMode: $selectedSample, fontWeight: $selectedWeight).environmentObject(tabModel)
-#if os(iOS)
-                .tag(1)
-#elseif os(macOS)
-                .tag(Tab.favorites).tabItem {
-                    Text("Favorites")
-                }
-#endif
-            
+            FavoritesView(renderMode: $selectedSample, fontWeight: $selectedWeight)
+                .environmentObject(tabModel)
+                .tag(Tab.favorites)
         }
 #if os(macOS)
         .background {
