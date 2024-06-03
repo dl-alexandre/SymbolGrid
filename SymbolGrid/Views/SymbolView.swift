@@ -24,7 +24,7 @@ struct SymbolView: View {
     var sys = System()
     
     var body: some View {
-        var iconArray = icon.components(separatedBy: " ")
+//        var iconArray = icon.components(separatedBy: " ")
         
         ScrollView {
             LazyVGrid(columns: columns, spacing: spacing) {
