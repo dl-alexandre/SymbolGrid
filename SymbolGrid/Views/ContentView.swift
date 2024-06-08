@@ -48,7 +48,6 @@ struct ContentView: View {
         .tabViewStyle(DefaultTabViewStyle())
 #endif
     }
-    //    @AppStorage("tab") var selectedTab = 0
     @State private var selectedSample = RenderModes.monochrome
     @State private var selectedWeight = FontWeights.medium
     @State private var isActive: Bool = true

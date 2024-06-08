@@ -11,23 +11,23 @@ import UniformTypeIdentifiers
 
 struct HomeView: View {
     var body: some View {
-        ZStack {
-            VStack {
+        NavigationStack {
+            ZStack {
                 SymbolView(/*icon: $icon, */renderMode: $selectedSample, fontWeight: $selectedWeight, symbols: symbols)
-            }
 #if os(iOS)
-            if !icon.isEmpty {
-                iconLabel(icon: icon)
-            }
+                if !icon.isEmpty {
+                    iconLabel(icon: icon)
+                }
 #endif
-            if showingSearch {
-                searchBar(text: $searchText)
-            }
-            if showingWeight {
-                weightPicker()
-            }
-            if showingRender {
-                renderingPicker()
+                if showingSearch {
+                    searchBar(text: $searchText, focus: $searchField)
+                }
+                if showingWeight {
+                    weightPicker()
+                }
+                if showingRender {
+                    renderingPicker()
+                }
             }
         }
     }
@@ -41,7 +41,7 @@ struct HomeView: View {
     @AppStorage("searchText") var searchText = ""
     @AppStorage("icon") var icon = ""
     
-    @FocusState private var focus: Field?
+    @FocusState private var searchField: Field?
     @State private var isTapped: Bool = false
     @State private var isLoading: Bool = true
     @State private var needsNewJSON: Bool = false
@@ -129,7 +129,7 @@ struct HomeView: View {
                             HStack {
                                 Spacer()
                                 Spacer()
-                                Text("\(icon)")
+                                Text("\(icon)  \(Image(systemName: "\(icon)"))")
                                     .font(.headline)
                                     .bold()
                                     .padding()
@@ -144,43 +144,11 @@ struct HomeView: View {
 #if os(iOS)
                 UIPasteboard.general.setValue(icon, forPasteboardType: UTType.plainText.identifier)
 #else
-                /// Mac Copypasta
-                print(icon)
+                NSPasteboard.general.setString(icon, forType: .string)
 #endif
             }
-            if isCopied {
-                Text("Copied")
-                    .font(.title)
-                    .bold()
-                    .foregroundColor(.green)
-                    .transition(.move(edge: .bottom))
-                    .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                            withAnimation(.easeOut(duration: 0.2)) {
-                                isCopied = false
-                                self.icon = ""
-                            }
-                        }
-                    }
-            }
+            copyNotification(isCopied: $isCopied, icon: $icon)
             Spacer()
-        }
-    }
-    
-    @ViewBuilder
-    func searchBar(text: Binding<String>) -> some View {
-        VStack {
-            Spacer()
-            Capsule()
-                .fill(.ultraThickMaterial)
-                .frame(maxWidth: .infinity, maxHeight: 40, alignment: .bottomLeading)
-                .cornerRadius(20)
-                .overlay {
-                    TextField("Search Symbols", text: text)
-                        .focused($focus, equals: .searchBar)
-                        .foregroundColor(.primary)
-                        .padding()
-                }.padding()
         }
     }
     
@@ -204,11 +172,6 @@ struct HomeView: View {
                 print("Canvas Activated")
             }
         }
-    }
-    
-    enum Field: Hashable {
-        case symbolGrid
-        case searchBar
     }
 }
 

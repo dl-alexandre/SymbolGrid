@@ -6,10 +6,20 @@
 //
 
 import SwiftUI
+import SFSymbolKit
+
 
 @main
 struct SymbolGridApp: App {
     @StateObject private var tabModel: TabModel = .init()
+    
+    init() {
+        FontRegister.load()
+//        FontLoader.loadFonts()
+//        FontLoader.registerFonts()
+        print("fonts \"loaded\"")
+    }
+
     var body: some Scene {
         WindowGroup {
             ContentView().environmentObject(tabModel)

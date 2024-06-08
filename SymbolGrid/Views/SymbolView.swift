@@ -8,18 +8,6 @@
 import SwiftUI
 import SFSymbolKit
 
-
-//extension Set where Element: Codable {
-//    func toData() -> Data? {
-//        try? JSONEncoder().encode(self)
-//    }
-//    
-//    static func from(data: Data) -> Set<Element>? {
-//        try? JSONDecoder().decode(Set<Element>.self, from: data)
-//    }
-//}
-
-
 struct SymbolView: View {
     var sys = System()
     
@@ -30,26 +18,6 @@ struct SymbolView: View {
             LazyVGrid(columns: columns, spacing: spacing) {
                 ForEach(searchResults, id: \.hash) { systemName in
                     Symbol(icon: icon, systemName: systemName, fontSize: fontSize, fontWeight: fontWeight, renderMode: renderMode)
-//                        .onTapGesture {
-//                            if sys.selectedSymbols.contains(icon) {
-//                                sys.selectedSymbols.remove(icon)
-//                                if let index = iconArray.firstIndex(of: systemName) {
-//                                    iconArray.remove(at: index)
-//                                }
-//                                icon = iconArray.joined(separator: " ")
-//                            } else {
-//                                sys.selectedSymbols.insert(icon)
-//                                if icon.isEmpty {
-//                                    icon = systemName
-//                                } else {
-//                                    if !iconArray.contains(systemName) {
-//                                        iconArray.append(systemName)
-//                                    }
-//                                    icon = iconArray.joined(separator: " ")
-//                                }
-//                            }
-//                        }
-//                        .shadow(color: sys.selectedSymbols.contains(systemName) ? Color.secondary : Color.clear, radius: 10)
                         .environmentObject(tabModel)
                 }
                 .frame(maxWidth: 500)
@@ -63,18 +31,18 @@ struct SymbolView: View {
 #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
 #endif
+#if os(macOS)
         .toolbar {
             ToolbarItem(placement: .automatic) {
                 Text("\(icon)")
                     .padding()
                     .onTapGesture(count: 1) {
-#if os(macOS)
                         NSPasteboard.general.setString(icon, forType: .string)
                         print(icon)
-#endif
                     }
             }
         }
+#endif
     }
     @Environment(\.layoutDirection) private var layoutDirection
     @EnvironmentObject private var tabModel: TabModel

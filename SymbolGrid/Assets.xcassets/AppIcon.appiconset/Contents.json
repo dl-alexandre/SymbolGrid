@@ -1,67 +1,67 @@
 {
   "images" : [
     {
-      "filename" : "ios-marketing-1024x1024 4.png",
+      "filename" : "SymbolGridIcon.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
     },
     {
-      "filename" : "ios-marketing-1024x1024 5.png",
+      "filename" : "SymbolGridIcon 1.png",
       "idiom" : "ios-marketing",
       "scale" : "1x",
       "size" : "1024x1024"
     },
     {
-      "filename" : "ios-marketing-16x16.png",
+      "filename" : "SymbolGridIcon 10.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "16x16"
     },
     {
-      "filename" : "ios-marketing-32x32 1.png",
+      "filename" : "SymbolGridIcon 9.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "16x16"
     },
     {
-      "filename" : "ios-marketing-32x32.png",
+      "filename" : "SymbolGridIcon 8.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "32x32"
     },
     {
-      "filename" : "ios-marketing-64x64.png",
+      "filename" : "SymbolGridIcon 7.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "32x32"
     },
     {
-      "filename" : "ios-marketing-128x128.png",
+      "filename" : "SymbolGridIcon 6.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "128x128"
     },
     {
-      "filename" : "ios-marketing-256x256.png",
+      "filename" : "SymbolGridIcon 4.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "128x128"
     },
     {
-      "filename" : "ios-marketing-512x512 1.png",
+      "filename" : "SymbolGridIcon 3.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "256x256"
     },
     {
-      "filename" : "ios-marketing-512x512.png",
+      "filename" : "SymbolGridIcon 5.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "512x512"
     },
     {
-      "filename" : "ios-marketing-1024x1024 6.png",
+      "filename" : "SymbolGridIcon 2.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "512x512"

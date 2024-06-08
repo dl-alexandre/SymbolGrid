@@ -12,7 +12,6 @@ enum Tab: String, CaseIterable {
     case favorites = "star"
 }
 
-
 class TabModel: ObservableObject {
     @Published var activeTab: Tab = .home
     @Published private(set) var isTabBarAdded: Bool = false

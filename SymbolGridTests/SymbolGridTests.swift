@@ -33,4 +33,12 @@ final class SymbolGridTests: XCTestCase {
         }
     }
 
+    func testAllFonts() {
+        let size: CGFloat = 12
+        postScriptNames.forEach { fontName in
+            // Convert SwiftUI Font to CTFont to test its existence
+            let ctFont = CTFontCreateWithName(fontName as CFString, size, nil)
+            XCTAssertNotNil(ctFont, "Custom font \(fontName) should be loaded.")
+        }
+    }
 }

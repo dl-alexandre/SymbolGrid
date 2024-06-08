@@ -95,6 +95,7 @@ struct SymbolContextMenu: View {
             set: { self.favorites = $0.jsonString() ?? "[]" }
         )
     }
+     
 }
 
 #Preview {

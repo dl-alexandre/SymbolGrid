@@ -10,34 +10,26 @@ import SFSymbolKit
 import UniformTypeIdentifiers
 
 struct FavoritesView: View {
-    @Environment(\.layoutDirection) private var layoutDirection
     @EnvironmentObject private var tabModel: TabModel
+    @AppStorage("favorites") private var favorites: String = "[]"
+    @AppStorage("showingSearch") var showingSearch = false
     @AppStorage("searchText") var searchText = ""
     @AppStorage("fontSize") var fontSize = 50.0
     @AppStorage("icon") var icon = ""
+    @FocusState private var searchField: Field?
     @Binding public var renderMode: RenderModes
     @Binding public var fontWeight: FontWeights
     
-    @AppStorage("favorites") private var favorites: String = "[]"
-    
-    
+    @State private var selectedFontWeight = FontWeights.medium
+    @State private var selectedFont: SF = .pro
+    @State private var selectedStyle: Style = .text
+    @State private var selectedWeight: FontWeights = .regular
+    @State private var italic = false
+    @State private var isCopied = false
     
     var myFavorites: [String] {
         get { Array(jsonString: favorites) ?? [] }
         set { favorites = newValue.jsonString() ?? "[]" }
-    }
-    
-    init(
-        renderMode: Binding<RenderModes>,
-        fontWeight: Binding<FontWeights>
-    )
-    {
-        self._renderMode = renderMode
-        self._fontWeight = fontWeight
-    }
-    
-    private var spacing: CGFloat {
-        fontSize * 0.1
     }
     
     var searchResults: [String] {
@@ -48,106 +40,116 @@ struct FavoritesView: View {
         }
     }
     
+    let fontWithoutItalics = [
+        "SFCompactRounded",
+        "SFCompactDisplay"
+    ]
+    
+    var baseFontName: String {
+        "SF\(selectedFont)\(selectedStyle)"
+    }
+    
+    var FontName: String {
+        let FontName = "\(baseFontName)-\(selectedWeight)"
+        return italic ? "\(FontName)Italic" : FontName
+    }
+    
+    var dynamicFont: Font {
+        return .custom(FontName, size: fontSize/2)
+    }
+    
     var body: some View {
-        if myFavorites.isEmpty {
-            ContentUnavailableView {
-                Label("Favorites", systemImage: "star.slash")
-            } description: {
-                Text("Find your favorite symbols here")
-            }
-        } else {
-            VStack {
-                Text("Favorites").font(.title).bold()
-                List {
-                    ForEach(searchResults, id: \.hash) { systemName in
-                        Favorite(systemName: systemName, icon: icon, fontSize: fontSize, fontWeight: fontWeight, renderMode: renderMode).environmentObject(tabModel)
-                        
+        ZStack {
+            NavigationStack {
+                if myFavorites.isEmpty {
+                    ContentUnavailableView {
+                        Label("Favorites", systemImage: "star.slash")
+                    } description: {
+                        Text("Find your favorite symbols here")
+                        Button {
+                            if tabModel.activeTab == .home {
+                                tabModel.activeTab = .favorites
+                            } else {
+                                tabModel.activeTab = .home
+                            }
+                        } label: {
+                            Label("Show", systemImage: "line.horizontal.star.fill.line.horizontal")
+                        }
                     }
-                    .defaultScrollAnchor(.center)
-                }
-            }
-            .coordinateSpace(name: "scroll")
-            .offset(x: 0, y: searchText.isEmpty ? 0: 150)
-            .edgesIgnoringSafeArea(.top)
+                } else {
+                    VStack {
+                        List {
+                            ForEach(searchResults, id: \.hash) { systemName in
+                                favorite(systemName: systemName, font: dynamicFont, icon: icon, isCopied: $isCopied)
+                                    .onChange(of: dynamicFont) {
+                                        print(dynamicFont)
+                                    }
+                                    .environmentObject(tabModel)
+                            }
+                        }
+                        .navigationTitle("Favorites")
 #if os(iOS)
-            .navigationBarTitleDisplayMode(.inline)
+                        .navigationBarTitleDisplayMode(.inline)
 #endif
-        }
-    }
-}
-
-
-struct Favorite: View {
-    @EnvironmentObject private var tabModel: TabModel
-    @AppStorage("favorites") private var favorites: String = "[]"
-//    @SceneStorage("tab") var selectedTab = 0
-    var favoritesBinding: Binding<[String]> {
-        Binding(
-            get: { Array(jsonString: self.favorites) ?? [] },
-            set: { self.favorites = $0.jsonString() ?? "[]" }
-        )
-    }
-    
-    let systemName: String
-    @AppStorage("icon") var icon = ""
-    //    @Binding var icon: String
-    let fontSize: CGFloat
-    let fontWeight: FontWeights
-    var renderMode: RenderModes
-    
-    var body: some View {
-        HStack {
-            Image(systemName: systemName)
-                .symbolRenderingMode(renderMode.mode)
-                .font(.system(size: fontSize, weight: fontWeight.weight))
-                .animation(.linear, value: 0.5).frame(width: fontSize * 1.3, height: fontSize * 1.3)
-            Text(systemName).lineLimit(1).font(.system(size: fontSize/2))
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-            .foregroundColor(icon == systemName ? Color.secondary : Color.primary)
-            .onTapGesture {
-                withAnimation {
-                    if icon.isEmpty {
-                        icon = systemName
-                    } else if icon == systemName {
-                        icon = ""
-                    } else {
-                        icon = systemName
+                        .toolbar {
+                            ToolbarItem(placement: .principal) {
+                                copyNotification(isCopied: $isCopied, icon: $icon)
+                            }
+                            ToolbarItem(placement: .secondaryAction) {
+                                if tabModel.activeTab == .favorites {
+                                    Menu {
+                                        
+                                        Menu {
+                                            ForEach(SF.allCases, id: \.self) { font in
+                                                Button {
+                                                    selectedFont = font
+                                                } label: {
+                                                    Text(font.name)
+                                                }
+                                            }
+                                        } label: {
+                                            Text("Font")
+                                        }
+                                        Menu {
+                                            ForEach(Style.allCases, id: \.self) { style in
+                                                Button {
+                                                    selectedStyle = style
+                                                } label: {
+                                                    Text(style.name)
+                                                }
+                                            }
+                                        } label: {
+                                            Text("Style")
+                                        }
+                                        Menu {
+                                            ForEach(FontWeights.allCases, id: \.self) { weight in
+                                                Button {
+                                                    selectedWeight = weight
+                                                    
+                                                } label: {
+                                                    Text(weight.name)
+                                                }
+                                            }
+                                        } label: {
+                                            Text("Weight")
+                                        }
+                                        Toggle("Italic", isOn: $italic)
+                                            .disabled(fontWithoutItalics.contains(baseFontName))
+                                    } label: {
+                                        Label("\(FontName)", systemImage: "abc")
+                                            .padding()
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
-        
-            .onDrag {
-#if os(macOS)
-                let provider = NSItemProvider(object: (Image(systemName: systemName).asNSImage() ?? Image(systemName: "plus").asNSImage()!) as NSImage)
-#else
-                let provider = NSItemProvider(object: (UIImage(systemName: systemName) ?? UIImage(systemName: "plus")!))
-#endif
-                return provider
-                
+            if showingSearch {
+                searchBar(text: $searchText, focus: $searchField)
             }
-            .contextMenu {
-                SymbolContextMenu(icon: systemName).environmentObject(tabModel)
-            }
-        
-        
-    }
-}
-
-extension Array where Element: Codable {
-    func jsonString() -> String? {
-        guard let data = try? JSONEncoder().encode(self) else { return nil }
-        return String(data: data, encoding: .utf8)
-    }
-    
-    init?(jsonString: String) {
-        guard let data = jsonString.data(using: .utf8),
-              let result = try? JSONDecoder().decode([Element].self, from: data) else { return nil }
-        self = result
+        }
     }
 }
 
 
-//#Preview {
-//    Favorites()
-//}
