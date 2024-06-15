@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/dl-alexandre/SFSymbolKit",
       "state" : {
-        "branch" : "fonted",
-        "revision" : "911dc3c08be5cf5bb11ac940dd439db5fe07b891"
+        "branch" : "main",
+        "revision" : "8d111c285d586761ea1b2f8d62163dce8bc4b387"
       }
     }
   ],

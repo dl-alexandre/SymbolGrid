@@ -15,7 +15,6 @@
 		778C78502C0A4658000CDC92 /* SymbolGridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C784F2C0A4658000CDC92 /* SymbolGridTests.swift */; };
 		778C785A2C0A4658000CDC92 /* SymbolGridUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C78592C0A4658000CDC92 /* SymbolGridUITests.swift */; };
 		778C785C2C0A4658000CDC92 /* SymbolGridUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C785B2C0A4658000CDC92 /* SymbolGridUITestsLaunchTests.swift */; };
-		778C78792C0A46CA000CDC92 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 778C78722C0A46CA000CDC92 /* Settings.bundle */; };
 		778C787A2C0A46CA000CDC92 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C78732C0A46CA000CDC92 /* LoadingView.swift */; };
 		778C787B2C0A46CA000CDC92 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C78742C0A46CA000CDC92 /* HomeView.swift */; };
 		778C787C2C0A46CA000CDC92 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C78752C0A46CA000CDC92 /* FavoritesView.swift */; };
@@ -37,6 +36,7 @@
 		77CDC3D32C14D77200BF6E07 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CDC3D22C14D77200BF6E07 /* Favorite.swift */; };
 		77CDC3D52C14D83400BF6E07 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CDC3D42C14D83400BF6E07 /* SearchBar.swift */; };
 		77CDC3D72C14DA2400BF6E07 /* Extension+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CDC3D62C14DA2400BF6E07 /* Extension+Array.swift */; };
+		8BDB8F542C1D436800E39D99 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8BDB8F532C1D436800E39D99 /* Settings.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,7 +67,6 @@
 		778C78552C0A4658000CDC92 /* SymbolGridUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SymbolGridUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		778C78592C0A4658000CDC92 /* SymbolGridUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolGridUITests.swift; sourceTree = "<group>"; };
 		778C785B2C0A4658000CDC92 /* SymbolGridUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolGridUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		778C78722C0A46CA000CDC92 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		778C78732C0A46CA000CDC92 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		778C78742C0A46CA000CDC92 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		778C78752C0A46CA000CDC92 /* FavoritesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
@@ -84,13 +83,14 @@
 		778C789A2C0A5CFA000CDC92 /* AddFavorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFavorite.swift; sourceTree = "<group>"; };
 		778C789C2C0A5D19000CDC92 /* RemoveFavorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveFavorite.swift; sourceTree = "<group>"; };
 		778C789E2C0A9532000CDC92 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
-		77CDC3CB2C1226F200BF6E07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		77CDC3CE2C14D5C700BF6E07 /* Focus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Focus.swift; sourceTree = "<group>"; };
 		77CDC3D02C14D69800BF6E07 /* Notification+Copy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Copy.swift"; sourceTree = "<group>"; };
 		77CDC3D22C14D77200BF6E07 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		77CDC3D42C14D83400BF6E07 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		77CDC3D62C14DA2400BF6E07 /* Extension+Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Array.swift"; sourceTree = "<group>"; };
 		77DDEDDB2C0D5794002E71F9 /* SymbolGrid.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SymbolGrid.entitlements; sourceTree = "<group>"; };
+		8BDB8F4F2C1D3E6300E39D99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8BDB8F532C1D436800E39D99 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,7 +142,6 @@
 		778C783D2C0A4656000CDC92 /* SymbolGrid */ = {
 			isa = PBXGroup;
 			children = (
-				77CDC3CB2C1226F200BF6E07 /* Info.plist */,
 				77DDEDDB2C0D5794002E71F9 /* SymbolGrid.entitlements */,
 				778C783E2C0A4656000CDC92 /* SymbolGridApp.swift */,
 				778C788F2C0A4CEA000CDC92 /* Mac */,
@@ -152,6 +151,8 @@
 				778C78682C0A4689000CDC92 /* Views */,
 				778C78422C0A4657000CDC92 /* Assets.xcassets */,
 				778C78442C0A4657000CDC92 /* Preview Content */,
+				8BDB8F4F2C1D3E6300E39D99 /* Info.plist */,
+				8BDB8F532C1D436800E39D99 /* Settings.bundle */,
 			);
 			path = SymbolGrid;
 			sourceTree = "<group>";
@@ -207,7 +208,6 @@
 		778C788C2C0A4C0C000CDC92 /* Admin */ = {
 			isa = PBXGroup;
 			children = (
-				778C78722C0A46CA000CDC92 /* Settings.bundle */,
 				77CDC3CE2C14D5C700BF6E07 /* Focus.swift */,
 				77CDC3D02C14D69800BF6E07 /* Notification+Copy.swift */,
 				77CDC3D62C14DA2400BF6E07 /* Extension+Array.swift */,
@@ -314,7 +314,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1540;
-				LastUpgradeCheck = 1540;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					778C783A2C0A4656000CDC92 = {
 						CreatedOnToolsVersion = 15.4;
@@ -358,7 +358,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				778C78462C0A4657000CDC92 /* Preview Assets.xcassets in Resources */,
-				778C78792C0A46CA000CDC92 /* Settings.bundle in Resources */,
+				8BDB8F542C1D436800E39D99 /* Settings.bundle in Resources */,
 				778C78432C0A4657000CDC92 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -651,13 +651,12 @@
 		778C78632C0A4658000CDC92 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2MP8QWK7R6;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamiyfarm.SymbolGridTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -671,13 +670,12 @@
 		778C78642C0A4658000CDC92 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2MP8QWK7R6;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamiyfarm.SymbolGridTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -691,7 +689,6 @@
 		778C78662C0A4658000CDC92 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2MP8QWK7R6;
@@ -709,7 +706,6 @@
 		778C78672C0A4658000CDC92 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2MP8QWK7R6;
@@ -770,7 +766,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/dl-alexandre/SFSymbolKit";
 			requirement = {
-				branch = fonted;
+				branch = main;
 				kind = branch;
 			};
 		};

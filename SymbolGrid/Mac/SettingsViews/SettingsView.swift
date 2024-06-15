@@ -13,7 +13,7 @@ struct SettingsView: View {
             LocalizationSetting().tabItem { Label("Language", systemImage: "character") }
             FontSizeSetting().tabItem { Label("Size", systemImage: "textformat.size")}
         }.padding()
-            .frame(width: 400, height: 300)
+            .frame(width: 200, height: 500)
     }
 }
 
