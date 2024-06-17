@@ -11,24 +11,33 @@ import UniformTypeIdentifiers
 
 struct HomeView: View {
     var body: some View {
-        NavigationStack {
-            ZStack {
-                SymbolView(/*icon: $icon, */renderMode: $selectedSample, fontWeight: $selectedWeight, symbols: symbols)
+        ZStack {
+            SymbolView(renderMode: $selectedSample, fontWeight: $selectedWeight, symbols: symbols)
 #if os(iOS)
-                if !icon.isEmpty {
-                    iconLabel(icon: icon)
-                }
-#endif
-                if showingSearch {
-                    searchBar(text: $searchText, focus: $searchField)
-                }
-                if showingWeight {
-                    weightPicker()
-                }
-                if showingRender {
-                    renderingPicker()
-                }
+            if !icon.isEmpty {
+                iconLabel(icon: icon)
             }
+#endif
+            if showingSearch {
+                searchBar(text: $searchText, focus: $searchField, showingSearch: $showingSearch)
+                #if os(iOS)
+                    .keyboardAdaptive()
+                    .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)) { _ in
+                        searchField = nil
+                        showingSearch = false
+                    }
+                #endif
+            }
+            if showingWeight {
+                weightPicker()
+            }
+            if showingRender {
+                renderingPicker()
+            }
+        }
+        .edgesIgnoringSafeArea(.all)
+        .onTapGesture(count: 3) {
+            searchText = ""
         }
     }
     
@@ -124,6 +133,8 @@ struct HomeView: View {
                 Capsule()
                     .fill(.ultraThinMaterial)
                     .frame(maxWidth: .infinity, maxHeight: 40, alignment: .trailing)
+                    .shadow(color: .white, radius: 1, x: -2, y: -2)
+                    .shadow(color: .gray, radius: 1, x: 2, y: 2)
                     .overlay {
                         ScrollView(.horizontal) {
                             HStack {
@@ -148,8 +159,8 @@ struct HomeView: View {
 #endif
             }
             copyNotification(isCopied: $isCopied, icon: $icon)
-            Spacer()
-        }
+        }.frame(maxHeight: .infinity, alignment: .top)
+            .offset(y: fontSize + 20)
     }
     
     @ViewBuilder
@@ -176,5 +187,9 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView(symbols: System().symbols)
+    @Previewable var tabModel = TabModel()
+    @Previewable var system = System()
+    @Previewable var fw: FontWeights = .regular
+    @Previewable var rm: RenderModes = .monochrome
+    HomeView(symbols: System().symbols).environmentObject(tabModel)
 }

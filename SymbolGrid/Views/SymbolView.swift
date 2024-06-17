@@ -1,96 +1,15 @@
 //
-//  SymbolGrid.swift
-//  SymbolView
+//  SheetView.swift
+//  SymbolGrid
 //
-//  Created by Dalton Alexandre on 5/24/24.
+//  Created by Dalton on 6/15/24.
 //
 
 import SwiftUI
 import SFSymbolKit
 
 struct SymbolView: View {
-    var sys = System()
-    
-    var body: some View {
-//        var iconArray = icon.components(separatedBy: " ")
-        
-        ScrollView {
-            LazyVGrid(columns: columns, spacing: spacing) {
-                ForEach(searchResults, id: \.hash) { systemName in
-                    Symbol(icon: icon, systemName: systemName, fontSize: fontSize, fontWeight: fontWeight, renderMode: renderMode)
-                        .environmentObject(tabModel)
-                }
-                .frame(maxWidth: 500)
-                .defaultScrollAnchor(.center)
-            }
-            .focusable()
-            .focusEffectDisabled()
-        }
-        .offset(x: 0, y: searchText.isEmpty ? 0: 150)
-        .edgesIgnoringSafeArea(.top)
-#if os(iOS)
-        .navigationBarTitleDisplayMode(.inline)
-#endif
-#if os(macOS)
-        .toolbar {
-            ToolbarItem(placement: .automatic) {
-                Text("\(icon)")
-                    .padding()
-                    .onTapGesture(count: 1) {
-                        NSPasteboard.general.setString(icon, forType: .string)
-                        print(icon)
-                    }
-            }
-        }
-#endif
-    }
-    @Environment(\.layoutDirection) private var layoutDirection
     @EnvironmentObject private var tabModel: TabModel
-    @AppStorage("symbol_arabic") private var arabicSetting = false
-    @AppStorage("symbol_bengali") private var bengaliSetting = false //bn
-    @AppStorage("symbol_burmese") private var burmeseSetting = false
-    @AppStorage("symbol_chinese") private var chineseSetting = false
-    @AppStorage("symbol_gujarati") private var gujaratiSetting = false //gu
-    @AppStorage("symbol_hebrew") private var hebrewSetting = false
-    @AppStorage("symbol_hindi") private var hindiSetting = false
-    @AppStorage("symbol_japanese") private var japaneseSetting = false
-    @AppStorage("symbol_kannada") private var kannadaSetting = false //kn
-    @AppStorage("symbol_khmer") private var khmerSetting = false
-    @AppStorage("symbol_korean") private var koreanSetting = false
-    @AppStorage("symbol_latin") private var latinSetting = false //el
-    @AppStorage("symbol_malayalam") private var malayalamSetting = false //ml
-    @AppStorage("symbol_manipuri") private var manipuriSetting = false //mni
-    @AppStorage("symbol_oriya") private var oriyaSetting = false //or
-    @AppStorage("symbol_russian") private var russianSetting = false //ru
-    @AppStorage("symbol_santali") private var santaliSetting = false //sat
-    @AppStorage("symbol_telugu") private var teluguSetting = false //te
-    @AppStorage("symbol_thai") private var thaiSetting = false
-    @AppStorage("symbol_punjabi") private var punjabiSetting = false //pa
-    @AppStorage("searchText") var searchText = ""
-    @AppStorage("fontSize") var fontSize = 50.0
-    @AppStorage("icon") var icon = ""
-    
-    @Binding public var renderMode: RenderModes
-    @Binding public var fontWeight: FontWeights
-    
-    init(
-        renderMode: Binding<RenderModes>,
-        fontWeight: Binding<FontWeights>,
-        symbols: [String]
-    )
-    {
-        self._renderMode = renderMode
-        self._fontWeight = fontWeight
-        self.symbols = symbols
-    }
-    
-    private var columns: [GridItem] {
-        [GridItem(.adaptive(minimum: 1.5 * fontSize))]
-    }
-    
-    private var spacing: CGFloat {
-        fontSize * 0.1
-    }
     
     var symbols: [String]
     
@@ -116,65 +35,108 @@ struct SymbolView: View {
             if !teluguSetting && key.hasSuffix(".te") { return false }
             if !thaiSetting && key.hasSuffix(".th") { return false }
             if !punjabiSetting && key.hasSuffix(".pa") { return false }
-
+            
             // Apply search text filter if searchText is not empty
             if !searchText.isEmpty { return key.contains(searchText.lowercased()) }
             return true // Include the key if none of the above conditions are met and searchText is empty
         }
     }
     
-}
-
-
-struct Symbol: View {
-    @EnvironmentObject private var tabModel: TabModel
-    @AppStorage("icon") var icon = ""
-    @AppStorage("tab") var selectedTab = 0
-    let systemName: String
-    let fontSize: CGFloat
-    let fontWeight: FontWeights
-    var renderMode: RenderModes
+    
+    init(
+        renderMode: Binding<RenderModes>,
+        fontWeight: Binding<FontWeights>,
+        symbols: [String]
+    )
+    {
+        self._renderMode = renderMode
+        self._fontWeight = fontWeight
+        self.symbols = symbols
+    }
+    
+    private var columns: [GridItem] {
+        [GridItem(.adaptive(minimum: 1.5 * fontSize))]
+    }
+    
+    private var spacing: CGFloat {
+        fontSize * 0.1
+    }
+    
+    
+    @Namespace var animation
+    @State private var selected: Icon?
+    
+    @Binding public var renderMode: RenderModes
+    @Binding public var fontWeight: FontWeights
     
     var body: some View {
-        Image(systemName: systemName)
-            .symbolRenderingMode(renderMode.mode)
-            .font(.system(size: fontSize, weight: fontWeight.weight))
-            .animation(.linear, value: 0.5)
-            .foregroundColor(icon == systemName ? Color.secondary : Color.primary)
-            .onTapGesture {
-                withAnimation {
-                    if icon.isEmpty {
-                        icon = systemName
-                    } else if icon == systemName {
-                        icon = ""
-                    } else {
-                        icon = systemName
+        let icons: [Icon] = searchResults.map { symbolName in
+            Icon(id: symbolName)
+        }
+        GeometryReader { geo in
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: spacing) {
+                    ForEach(icons) { icon in
+                        Symbol(systemName: icon, fontSize: fontSize, fontWeight: fontWeight, renderMode: renderMode, selected: $selected).environmentObject(tabModel)
+                            .font(.system(size: 20))
+                            .matchedTransitionSource(id: icon.id, in: animation)
                     }
-                }
+                }.offset(x: 0, y: searchText.isEmpty ? 0: (fontSize * 3))
             }
-            .onDrag {
+            .sheet(item: $selected) { icon in
+                DetailView(icon: icon, animation: animation, color: .blue)
 #if os(macOS)
-                let provider = NSItemProvider(object: (Image(systemName: systemName).asNSImage() ?? Image(systemName: "plus").asNSImage()!) as NSImage)
-#else
-                let provider = NSItemProvider(object: (UIImage(systemName: systemName) ?? UIImage(systemName: "plus")!))
+                    .frame(minWidth: geo.size.width * 0.25, minHeight: geo.size.height * 0.50)
 #endif
-                return provider
-                
+                    .presentationDetents([.medium])
             }
-            .previewLayout(.sizeThatFits)
-            .contextMenu {
-                SymbolContextMenu(icon: systemName).environmentObject(tabModel)
-            } preview: {
-                Group {
-                    Image(systemName: systemName)
-                        .font(.system(size: fontSize * 3))
-                        .foregroundColor(.primary)
-                    Text(systemName)
-                }.padding()
-            }
+        }
+#if os(iOS)
+        .navigationBarTitleDisplayMode(.inline)
+#endif
+//#if os(macOS)
+//        .toolbar {
+//            ToolbarItem(placement: .automatic) {
+//                Text("\(icon)")
+//                    .padding()
+//                    .onTapGesture(count: 1) {
+//                        NSPasteboard.general.setString(icon, forType: .string)
+//                        print(icon)
+//                    }
+//            }
+//        }
+//#endif
+        
     }
+    @AppStorage("fontSize") var fontSize = 50.0
+    @AppStorage("symbol_arabic") private var arabicSetting = false
+    @AppStorage("symbol_bengali") private var bengaliSetting = false //bn
+    @AppStorage("symbol_burmese") private var burmeseSetting = false
+    @AppStorage("symbol_chinese") private var chineseSetting = false
+    @AppStorage("symbol_gujarati") private var gujaratiSetting = false //gu
+    @AppStorage("symbol_hebrew") private var hebrewSetting = false
+    @AppStorage("symbol_hindi") private var hindiSetting = false
+    @AppStorage("symbol_japanese") private var japaneseSetting = false
+    @AppStorage("symbol_kannada") private var kannadaSetting = false //kn
+    @AppStorage("symbol_khmer") private var khmerSetting = false
+    @AppStorage("symbol_korean") private var koreanSetting = false
+    @AppStorage("symbol_latin") private var latinSetting = false //el
+    @AppStorage("symbol_malayalam") private var malayalamSetting = false //ml
+    @AppStorage("symbol_manipuri") private var manipuriSetting = false //mni
+    @AppStorage("symbol_oriya") private var oriyaSetting = false //or
+    @AppStorage("symbol_russian") private var russianSetting = false //ru
+    @AppStorage("symbol_santali") private var santaliSetting = false //sat
+    @AppStorage("symbol_telugu") private var teluguSetting = false //te
+    @AppStorage("symbol_thai") private var thaiSetting = false
+    @AppStorage("symbol_punjabi") private var punjabiSetting = false //pa
+    @AppStorage("searchText") var searchText = ""
 }
 
-extension View {
-    
+
+#Preview {
+    @Previewable var tabModel = TabModel()
+    @Previewable var system = System()
+    @Previewable var fw: FontWeights = .regular
+    @Previewable var rm: RenderModes = .monochrome
+    SymbolView(renderMode: .constant(rm), fontWeight: .constant(fw), symbols: system.symbols).environmentObject(tabModel)
 }

@@ -7,5 +7,7 @@
 		<string>app-usage</string>
 		<string>system-installation</string>
 	</array>
+	<key>com.apple.security.app-sandbox</key>
+	<true/>
 </dict>
 </plist>

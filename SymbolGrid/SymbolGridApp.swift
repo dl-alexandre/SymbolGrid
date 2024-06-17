@@ -8,20 +8,23 @@
 import SwiftUI
 import SFSymbolKit
 
-
 @main
 struct SymbolGridApp: App {
-    @StateObject private var tabModel: TabModel = .init()
-    
     init() {
         FontRegister.load()
         registerDefaultsFromSettingsBundle()
-        print("fonts \"loaded\"")
     }
+    
+    @StateObject private var tabModel: TabModel = .init()
+    @State private var isAnimating = true
 
     var body: some Scene {
         WindowGroup {
-            ContentView().environmentObject(tabModel)
+            if isAnimating {
+                SplashView(isAnimating: $isAnimating)
+            } else {
+                ContentView().environmentObject(tabModel)
+            }
         }
 #if os(macOS)
         .windowStyle(HiddenTitleBarWindowStyle())

@@ -9,10 +9,10 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 @ViewBuilder
-func favorite(systemName: String, font: Font, icon: String, isCopied: Binding<Bool>) -> some View {
-    Text("\(Image(systemName: "\(systemName)")) \(systemName)").lineLimit(1)
+func favorite(systemName: Icon, font: Font, icon: String, isCopied: Binding<Bool>, selected: Binding<Icon?>, tabModel: TabModel, fontSize: CGFloat) -> some View {
+    Text("\(Image(systemName: "\(systemName.id)")) \(systemName.id)").lineLimit(1)
         .font(font)
-        .foregroundColor(icon == systemName ? Color.secondary : Color.primary)
+        .foregroundColor(icon == systemName.id ? Color.secondary : Color.primary)
         .onTapGesture(count: 2) {
             withAnimation(.spring()) {
                 isCopied.wrappedValue.toggle()
@@ -26,11 +26,21 @@ func favorite(systemName: String, font: Font, icon: String, isCopied: Binding<Bo
         }
         .onDrag {
 #if os(macOS)
-            let provider = NSItemProvider(object: (Image(systemName: systemName).asNSImage() ?? Image(systemName: "plus").asNSImage()!) as NSImage)
+            let provider = NSItemProvider(object: (Image(systemName: systemName.id).asNSImage() ?? Image(systemName: "plus").asNSImage()!) as NSImage)
 #else
-            let provider = NSItemProvider(object: (UIImage(systemName: systemName) ?? UIImage(systemName: "plus")!))
+            let provider = NSItemProvider(object: (UIImage(systemName: systemName.id) ?? UIImage(systemName: "plus")!))
 #endif
             return provider
             
+        }
+        .contextMenu {
+            SymbolContextMenu(icon: systemName, selected: selected).environmentObject(tabModel)
+        } preview: {
+            Group {
+                Image(systemName: systemName.id)
+                    .font(.system(size: fontSize * 3))
+                    .foregroundColor(.primary)
+                Text(systemName.id)
+            }.padding()
         }
 }

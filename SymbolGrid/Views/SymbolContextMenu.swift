@@ -10,6 +10,13 @@ import UniformTypeIdentifiers
 
 struct SymbolContextMenu: View {
     var body: some View {
+        Section("Symbol") {
+            Button {
+                selected = icon
+            } label: {
+                Label("View", systemImage: "drop.halffull")
+            }
+        }
         Section("Favorites") {
             if !self.favoritesBinding.wrappedValue.isEmpty {
                 Button {
@@ -24,18 +31,18 @@ struct SymbolContextMenu: View {
             }
             
             Button {
-                if self.favoritesBinding.wrappedValue.contains(icon) {
+                if self.favoritesBinding.wrappedValue.contains(icon!.id) {
                     var updatedFavorites = self.favoritesBinding.wrappedValue
-                    updatedFavorites.removeAll(where: { $0 == icon })
+                    updatedFavorites.removeAll(where: { $0 == icon?.id })
                     self.favoritesBinding.wrappedValue = updatedFavorites
                 } else {
                     var updatedFavorites = self.favoritesBinding.wrappedValue
-                    updatedFavorites.append(icon)
+                    updatedFavorites.append(icon!.id)
                     self.favoritesBinding.wrappedValue = updatedFavorites
                     
                 }
             } label: {
-                if self.favoritesBinding.wrappedValue.contains(icon) {
+                if self.favoritesBinding.wrappedValue.contains(icon!.id) {
                     Label("Remove", systemImage: "star.fill")
                 } else {
                     Label("Add", systemImage: "star")          
@@ -45,7 +52,7 @@ struct SymbolContextMenu: View {
         
 #if os(iOS)
         Button {
-            UIPasteboard.general .setValue(icon.description,
+            UIPasteboard.general .setValue(icon!.id.description,
                                            forPasteboardType: UTType.plainText .identifier)
         } label: {
             Label("Copy", systemImage: "doc.on.doc")
@@ -87,7 +94,9 @@ struct SymbolContextMenu: View {
     //@AppStorage("tab") var selectedTab = 0
     @EnvironmentObject private var tabModel: TabModel
     
-    var icon: String
+    var icon: Icon?
+    
+    @Binding var selected: Icon?
     
     var favoritesBinding: Binding<[String]> {
         Binding(
@@ -95,10 +104,10 @@ struct SymbolContextMenu: View {
             set: { self.favorites = $0.jsonString() ?? "[]" }
         )
     }
-     
+    
 }
 
 #Preview {
-    SymbolContextMenu(icon: "doc.on.doc"/*, tabs: Tab.home*/)
+    SymbolContextMenu(icon: Icon(id: "minus"), selected: .constant(Icon(id: "plus"))/*, tabs: Tab.home*/)
 }
 
