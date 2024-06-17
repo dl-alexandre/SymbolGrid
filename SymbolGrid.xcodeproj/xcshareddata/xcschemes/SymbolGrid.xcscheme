@@ -114,7 +114,6 @@
    <ArchiveAction
       buildConfiguration = "Release"
       customArchiveName = "SymbolGrid"
-      revealArchiveInOrganizer = "YES"
-      allowsArchivingForSimulator = "YES">
+      revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

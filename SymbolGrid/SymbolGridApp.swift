@@ -8,7 +8,6 @@
 import SwiftUI
 import SFSymbolKit
 
-
 @main
 struct SymbolGridApp: App {
     init() {
