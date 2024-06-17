@@ -16,7 +16,6 @@ struct SymbolGridApp: App {
     init() {
         FontRegister.load()
         registerDefaultsFromSettingsBundle()
-        print("fonts \"loaded\"")
     }
 
     var body: some Scene {

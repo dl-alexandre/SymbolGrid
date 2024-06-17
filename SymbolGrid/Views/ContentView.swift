@@ -24,7 +24,7 @@ struct ContentView: View {
             FavoritesView(renderMode: $selectedSample, fontWeight: $selectedWeight)
                 .environmentObject(tabModel)
                 .tag(Tab.favorites)
-        }
+        }.edgesIgnoringSafeArea(.all)
 #if os(macOS)
         .background {
             GeometryReader {
