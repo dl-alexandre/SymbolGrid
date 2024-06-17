@@ -37,6 +37,8 @@
 		77CDC3D52C14D83400BF6E07 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CDC3D42C14D83400BF6E07 /* SearchBar.swift */; };
 		77CDC3D72C14DA2400BF6E07 /* Extension+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CDC3D62C14DA2400BF6E07 /* Extension+Array.swift */; };
 		8B36CCD42C1EA3B900AFB088 /* SymbolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B36CCD32C1EA3B900AFB088 /* SymbolView.swift */; };
+		8B4D0FB22C20BDC400F660BF /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4D0FB12C20BDC400F660BF /* SplashView.swift */; };
+		8B4D0FB42C20C74400F660BF /* SymbolGridGif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8B4D0FB32C20C74400F660BF /* SymbolGridGif.gif */; };
 		8B9C0A582C1FBF8C0071B640 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9C0A572C1FBF8C0071B640 /* Icon.swift */; };
 		8B9C0A5A2C1FBFC30071B640 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9C0A592C1FBFC30071B640 /* DetailView.swift */; };
 		8BDB8F542C1D436800E39D99 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8BDB8F532C1D436800E39D99 /* Settings.bundle */; };
@@ -93,6 +95,8 @@
 		77CDC3D62C14DA2400BF6E07 /* Extension+Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Array.swift"; sourceTree = "<group>"; };
 		77DDEDDB2C0D5794002E71F9 /* SymbolGrid.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SymbolGrid.entitlements; sourceTree = "<group>"; };
 		8B36CCD32C1EA3B900AFB088 /* SymbolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolView.swift; sourceTree = "<group>"; };
+		8B4D0FB12C20BDC400F660BF /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		8B4D0FB32C20C74400F660BF /* SymbolGridGif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = SymbolGridGif.gif; sourceTree = "<group>"; };
 		8B9C0A572C1FBF8C0071B640 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		8B9C0A592C1FBFC30071B640 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		8BDB8F4F2C1D3E6300E39D99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -167,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				778C78452C0A4657000CDC92 /* Preview Assets.xcassets */,
+				8B4D0FB32C20C74400F660BF /* SymbolGridGif.gif */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -191,6 +196,7 @@
 		778C78682C0A4689000CDC92 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8B4D0FB12C20BDC400F660BF /* SplashView.swift */,
 				778C70E92C0CEFA800162DE1 /* ContentView.swift */,
 				778C78742C0A46CA000CDC92 /* HomeView.swift */,
 				8B36CCD32C1EA3B900AFB088 /* SymbolView.swift */,
@@ -369,6 +375,7 @@
 				778C78462C0A4657000CDC92 /* Preview Assets.xcassets in Resources */,
 				8BDB8F542C1D436800E39D99 /* Settings.bundle in Resources */,
 				778C78432C0A4657000CDC92 /* Assets.xcassets in Resources */,
+				8B4D0FB42C20C74400F660BF /* SymbolGridGif.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +408,7 @@
 				778C787C2C0A46CA000CDC92 /* FavoritesView.swift in Sources */,
 				778C787E2C0A46CA000CDC92 /* SymbolContextMenu.swift in Sources */,
 				8B9C0A5A2C1FBFC30071B640 /* DetailView.swift in Sources */,
+				8B4D0FB22C20BDC400F660BF /* SplashView.swift in Sources */,
 				77CDC3D72C14DA2400BF6E07 /* Extension+Array.swift in Sources */,
 				778C787F2C0A46CA000CDC92 /* System.swift in Sources */,
 				778C78912C0A4CFC000CDC92 /* AboutView.swift in Sources */,
@@ -603,11 +611,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 3.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamilyfarm.symbols;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "xrsimulator xros watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				REGISTER_APP_GROUPS = YES;
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator driverkit iphoneos iphonesimulator macosx watchos watchsimulator xros xrsimulator";
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
@@ -645,11 +654,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 3.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamilyfarm.symbols;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "xrsimulator xros watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				REGISTER_APP_GROUPS = YES;
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator driverkit iphoneos iphonesimulator macosx watchos watchsimulator xros xrsimulator";
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;

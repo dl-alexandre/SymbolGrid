@@ -73,37 +73,39 @@ struct SymbolView: View {
         let icons: [Icon] = searchResults.map { symbolName in
             Icon(id: symbolName)
         }
-        
-        ScrollView {
-            LazyVGrid(columns: columns, spacing: spacing) {
-                ForEach(icons) { icon in
-                    Symbol(systemName: icon, fontSize: fontSize, fontWeight: fontWeight, renderMode: renderMode, selected: $selected).environmentObject(tabModel)
-                    
-                    //                .foregroundStyle(icon.color.gradient)
-                        .font(.system(size: 20))
-                        .matchedTransitionSource(id: icon.id, in: animation)
-                }
-            }.offset(x: 0, y: searchText.isEmpty ? 0: (fontSize * 3))
-        }
-        .sheet(item: $selected) { icon in
-            DetailView(icon: icon, animation: animation, color: .blue)
-                .presentationDetents([.medium])
+        GeometryReader { geo in
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: spacing) {
+                    ForEach(icons) { icon in
+                        Symbol(systemName: icon, fontSize: fontSize, fontWeight: fontWeight, renderMode: renderMode, selected: $selected).environmentObject(tabModel)
+                            .font(.system(size: 20))
+                            .matchedTransitionSource(id: icon.id, in: animation)
+                    }
+                }.offset(x: 0, y: searchText.isEmpty ? 0: (fontSize * 3))
+            }
+            .sheet(item: $selected) { icon in
+                DetailView(icon: icon, animation: animation, color: .blue)
+#if os(macOS)
+                    .frame(minWidth: geo.size.width * 0.25, minHeight: geo.size.height * 0.50)
+#endif
+                    .presentationDetents([.medium])
+            }
         }
 #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
 #endif
-#if os(macOS)
-        .toolbar {
-            ToolbarItem(placement: .automatic) {
-                Text("\(icon)")
-                    .padding()
-                    .onTapGesture(count: 1) {
-                        NSPasteboard.general.setString(icon, forType: .string)
-                        print(icon)
-                    }
-            }
-        }
-#endif
+//#if os(macOS)
+//        .toolbar {
+//            ToolbarItem(placement: .automatic) {
+//                Text("\(icon)")
+//                    .padding()
+//                    .onTapGesture(count: 1) {
+//                        NSPasteboard.general.setString(icon, forType: .string)
+//                        print(icon)
+//                    }
+//            }
+//        }
+//#endif
         
     }
     @AppStorage("fontSize") var fontSize = 50.0

@@ -20,12 +20,13 @@ struct HomeView: View {
 #endif
             if showingSearch {
                 searchBar(text: $searchText, focus: $searchField, showingSearch: $showingSearch)
+                #if os(iOS)
                     .keyboardAdaptive()
                     .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)) { _ in
                         searchField = nil
                         showingSearch = false
                     }
-                
+                #endif
             }
             if showingWeight {
                 weightPicker()

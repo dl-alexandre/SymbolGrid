@@ -13,7 +13,9 @@ struct SearchBar: View {
     
     var body: some View {
         searchBar(text: .constant("plus"), focus: $searchField, showingSearch: $showingSearch)
+        #if os(iOS)
             .keyboardAdaptive()
+        #endif
     }
 }
 
@@ -68,6 +70,7 @@ func searchBar(text: Binding<String>, focus: FocusState<Field?>.Binding, showing
     }
 }
 
+#if os(iOS)
 // Add this extension to make the view keyboard adaptive
 extension View {
     func keyboardAdaptive() -> some View {
@@ -97,3 +100,4 @@ struct KeyboardAdaptive: ViewModifier {
         NotificationCenter.default.removeObserver(self)
     }
 }
+#endif
