@@ -13,14 +13,25 @@ struct ContentView: View {
 #if os(macOS)
     @Environment(\.controlActiveState) private var state
 #endif
+    @State private var isAnimating = true
     var body: some View {
         TabView(selection: $tabModel.activeTab) {
-            HomeView(symbols: system.symbols).environmentObject(tabModel)
-                .transition(.move(edge: .bottom))
-                .tag(Tab.home)
-#if os(macOS)
-                .background(HideTabBar())
-#endif
+            if isAnimating {
+                //SplashView(isAnimating: $isAnimating)
+                PreSplashView2(symbols: system.symbols, renderMode: $selectedSample, fontWeight: $selectedWeight, isAnimating: $isAnimating)
+//                    .transition(.blurReplace)
+                    .tag(Tab.home)
+    #if os(macOS)
+                    .background(HideTabBar())
+    #endif
+            } else {
+                HomeView(symbols: system.symbols).environmentObject(tabModel)
+                    .transition(.blurReplace)
+                    .tag(Tab.home)
+    #if os(macOS)
+                    .background(HideTabBar())
+    #endif
+            }
             FavoritesView(renderMode: $selectedSample, fontWeight: $selectedWeight)
                 .environmentObject(tabModel)
                 .tag(Tab.favorites)
@@ -57,5 +68,6 @@ struct ContentView: View {
 
 
 #Preview {
-    ContentView()
+    @Previewable var tabModel = TabModel()
+    ContentView().environmentObject(tabModel)
 }

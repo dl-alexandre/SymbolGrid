@@ -62,7 +62,6 @@ struct SymbolView: View {
         fontSize * 0.1
     }
     
-    
     @Namespace var animation
     @State private var selected: Icon?
     
@@ -78,7 +77,6 @@ struct SymbolView: View {
                 LazyVGrid(columns: columns, spacing: spacing) {
                     ForEach(icons) { icon in
                         Symbol(systemName: icon, fontSize: fontSize, fontWeight: fontWeight, renderMode: renderMode, selected: $selected).environmentObject(tabModel)
-                            .font(.system(size: 20))
                             .matchedTransitionSource(id: icon.id, in: animation)
                     }
                 }.offset(x: 0, y: searchText.isEmpty ? 0: (fontSize * 3))

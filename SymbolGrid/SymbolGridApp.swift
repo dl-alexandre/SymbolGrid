@@ -10,21 +10,17 @@ import SFSymbolKit
 
 @main
 struct SymbolGridApp: App {
+    
     init() {
         FontRegister.load()
         registerDefaultsFromSettingsBundle()
     }
     
     @StateObject private var tabModel: TabModel = .init()
-    @State private var isAnimating = true
-
+    
     var body: some Scene {
         WindowGroup {
-            if isAnimating {
-                SplashView(isAnimating: $isAnimating)
-            } else {
-                ContentView().environmentObject(tabModel)
-            }
+            ContentView().environmentObject(tabModel)
         }
 #if os(macOS)
         .windowStyle(HiddenTitleBarWindowStyle())
@@ -53,5 +49,5 @@ func registerDefaultsFromSettingsBundle() {
             }
         }
     }
-
+    
 }

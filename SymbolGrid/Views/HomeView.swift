@@ -20,13 +20,13 @@ struct HomeView: View {
 #endif
             if showingSearch {
                 searchBar(text: $searchText, focus: $searchField, showingSearch: $showingSearch)
-                #if os(iOS)
+#if os(iOS)
                     .keyboardAdaptive()
                     .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)) { _ in
                         searchField = nil
                         showingSearch = false
                     }
-                #endif
+#endif
             }
             if showingWeight {
                 weightPicker()
@@ -137,18 +137,16 @@ struct HomeView: View {
                     .shadow(color: .gray, radius: 1, x: 2, y: 2)
                     .overlay {
                         ScrollView(.horizontal) {
-                            HStack {
-                                Spacer()
-                                Spacer()
-                                Text("\(icon)  \(Image(systemName: "\(icon)"))")
-                                    .font(.headline)
-                                    .bold()
-                                    .padding()
-                            }
-                        }.defaultScrollAnchor(.trailing)
-                            .frame(maxWidth: .infinity, alignment: .trailing)
+                            Text("\(Image(systemName: "\(icon)")) \(icon)")
+                                .font(.headline)
+                                .bold()
+                                .padding()
+                        }
+                        .defaultScrollAnchor(.trailing)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
                     }.padding()
-            }.onTapGesture(count: 1) {
+            }
+            .onTapGesture(count: 1) {
                 withAnimation(.spring()) {
                     isCopied.toggle()
                 }

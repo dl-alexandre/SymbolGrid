@@ -22,7 +22,8 @@ struct Symbol: View {
             .symbolRenderingMode(renderMode.mode)
             .font(.system(size: fontSize, weight: fontWeight.weight))
             .animation(.linear, value: 0.5)
-            .foregroundColor(icon == systemName!.id ? Color.secondary : Color.primary)
+//            .foregroundStyle(Color.random())
+            .foregroundColor(icon == systemName!.id ? systemName?.color : Color.primary)
             .onTapGesture {
                 withAnimation {
                     if icon.isEmpty {
@@ -56,8 +57,4 @@ struct Symbol: View {
             }
             
     }
-}
-
-extension View {
-    
 }
