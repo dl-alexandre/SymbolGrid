@@ -13,9 +13,9 @@ struct SearchBar: View {
     
     var body: some View {
         searchBar(text: .constant("plus"), focus: $searchField, showingSearch: $showingSearch)
-        #if os(iOS)
+#if os(iOS)
             .keyboardAdaptive()
-        #endif
+#endif
     }
 }
 

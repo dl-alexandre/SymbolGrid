@@ -11,3 +11,5 @@ struct Icon: Identifiable {
     var id: String
     var color = Color.random()
 }
+
+

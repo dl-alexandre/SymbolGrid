@@ -8,14 +8,15 @@
 import SwiftUI
 import SFSymbolKit
 import UniformTypeIdentifiers
+import CoreSpotlight
 
 struct HomeView: View {
     var body: some View {
         ZStack {
             SymbolView(renderMode: $selectedSample, fontWeight: $selectedWeight, symbols: symbols)
 #if os(iOS)
-            if !icon.isEmpty {
-                iconLabel(icon: icon)
+            if !systemName.isEmpty {
+                iconLabel(icon: systemName)
             }
 #endif
             if showingSearch {
@@ -48,7 +49,7 @@ struct HomeView: View {
     @AppStorage("canvasIcon") var canvasIcon = ""
     @AppStorage("fontSize") var fontSize = 50.0
     @AppStorage("searchText") var searchText = ""
-    @AppStorage("icon") var icon = ""
+    @AppStorage("systemName") var systemName = ""
     
     @FocusState private var searchField: Field?
     @State private var isTapped: Bool = false
@@ -142,8 +143,6 @@ struct HomeView: View {
                                 .bold()
                                 .padding()
                         }
-                        .defaultScrollAnchor(.trailing)
-                        .frame(maxWidth: .infinity, alignment: .trailing)
                     }.padding()
             }
             .onTapGesture(count: 1) {
@@ -156,7 +155,7 @@ struct HomeView: View {
                 NSPasteboard.general.setString(icon, forType: .string)
 #endif
             }
-            copyNotification(isCopied: $isCopied, icon: $icon)
+            copyNotification(isCopied: $isCopied, icon: $systemName)
         }.frame(maxHeight: .infinity, alignment: .top)
             .offset(y: fontSize + 20)
     }

@@ -15,11 +15,8 @@
 		778C78502C0A4658000CDC92 /* SymbolGridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C784F2C0A4658000CDC92 /* SymbolGridTests.swift */; };
 		778C785A2C0A4658000CDC92 /* SymbolGridUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C78592C0A4658000CDC92 /* SymbolGridUITests.swift */; };
 		778C785C2C0A4658000CDC92 /* SymbolGridUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C785B2C0A4658000CDC92 /* SymbolGridUITestsLaunchTests.swift */; };
-		778C787A2C0A46CA000CDC92 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C78732C0A46CA000CDC92 /* LoadingView.swift */; };
 		778C787B2C0A46CA000CDC92 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C78742C0A46CA000CDC92 /* HomeView.swift */; };
 		778C787C2C0A46CA000CDC92 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C78752C0A46CA000CDC92 /* FavoritesView.swift */; };
-		778C787D2C0A46CA000CDC92 /* Symbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C78762C0A46CA000CDC92 /* Symbol.swift */; };
-		778C787E2C0A46CA000CDC92 /* SymbolContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C78772C0A46CA000CDC92 /* SymbolContextMenu.swift */; };
 		778C787F2C0A46CA000CDC92 /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C78782C0A46CA000CDC92 /* System.swift */; };
 		778C78842C0A46D4000CDC92 /* FontSizeSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C78802C0A46D4000CDC92 /* FontSizeSetting.swift */; };
 		778C78852C0A46D4000CDC92 /* LocalizationSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C78812C0A46D4000CDC92 /* LocalizationSetting.swift */; };
@@ -36,10 +33,21 @@
 		77CDC3D32C14D77200BF6E07 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CDC3D22C14D77200BF6E07 /* Favorite.swift */; };
 		77CDC3D52C14D83400BF6E07 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CDC3D42C14D83400BF6E07 /* SearchBar.swift */; };
 		77CDC3D72C14DA2400BF6E07 /* Extension+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CDC3D62C14DA2400BF6E07 /* Extension+Array.swift */; };
+		8B21B73B2C224F07008A0518 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B21B73A2C224F07008A0518 /* Search.swift */; };
+		8B21B73F2C224F07008A0518 /* Search.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 8B21B7382C224F07008A0518 /* Search.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8B21B7442C227E39008A0518 /* Symbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B21B7432C227E39008A0518 /* Symbol.swift */; };
+		8B21B7462C228100008A0518 /* SymbolContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B21B7452C228100008A0518 /* SymbolContextMenu.swift */; };
+		8B21B7482C229401008A0518 /* Extension+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B21B7472C229401008A0518 /* Extension+Color.swift */; };
+		8B21B7492C22A313008A0518 /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C78782C0A46CA000CDC92 /* System.swift */; };
 		8B36CCD42C1EA3B900AFB088 /* SymbolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B36CCD32C1EA3B900AFB088 /* SymbolView.swift */; };
 		8B4D0FB22C20BDC400F660BF /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4D0FB12C20BDC400F660BF /* SplashView.swift */; };
-		8B4D0FB42C20C74400F660BF /* SymbolGridGif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8B4D0FB32C20C74400F660BF /* SymbolGridGif.gif */; };
-		8B5F6EC12C2133B600D47611 /* SymbolGridLetteringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5F6EC02C2133B600D47611 /* SymbolGridLetteringView.swift */; };
+		8B5F6EC92C22427000D47611 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5F6EC82C22427000D47611 /* WidgetKit.framework */; };
+		8B5F6ECB2C22427000D47611 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5F6ECA2C22427000D47611 /* SwiftUI.framework */; };
+		8B5F6ECE2C22427000D47611 /* SymbolGridWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5F6ECD2C22427000D47611 /* SymbolGridWidgetBundle.swift */; };
+		8B5F6ED02C22427000D47611 /* SymbolGridWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5F6ECF2C22427000D47611 /* SymbolGridWidget.swift */; };
+		8B5F6ED22C22427000D47611 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5F6ED12C22427000D47611 /* AppIntent.swift */; };
+		8B5F6ED42C22427200D47611 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B5F6ED32C22427200D47611 /* Assets.xcassets */; };
+		8B5F6ED92C22427200D47611 /* SymbolGridWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 8B5F6EC62C22427000D47611 /* SymbolGridWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8B9C0A582C1FBF8C0071B640 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9C0A572C1FBF8C0071B640 /* Icon.swift */; };
 		8B9C0A5A2C1FBFC30071B640 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9C0A592C1FBFC30071B640 /* DetailView.swift */; };
 		8BDB8F542C1D436800E39D99 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8BDB8F532C1D436800E39D99 /* Settings.bundle */; };
@@ -60,7 +68,36 @@
 			remoteGlobalIDString = 778C783A2C0A4656000CDC92;
 			remoteInfo = SymbolGrid;
 		};
+		8B21B73D2C224F07008A0518 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 778C78332C0A4656000CDC92 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8B21B7372C224F07008A0518;
+			remoteInfo = Search;
+		};
+		8B5F6ED72C22427200D47611 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 778C78332C0A4656000CDC92 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8B5F6EC52C22427000D47611;
+			remoteInfo = SymbolGridWidgetExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8B5F6EDA2C22427200D47611 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				8B21B73F2C224F07008A0518 /* Search.appex in Embed Foundation Extensions */,
+				8B5F6ED92C22427200D47611 /* SymbolGridWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		778C70E92C0CEFA800162DE1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -73,11 +110,8 @@
 		778C78552C0A4658000CDC92 /* SymbolGridUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SymbolGridUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		778C78592C0A4658000CDC92 /* SymbolGridUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolGridUITests.swift; sourceTree = "<group>"; };
 		778C785B2C0A4658000CDC92 /* SymbolGridUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolGridUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		778C78732C0A46CA000CDC92 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		778C78742C0A46CA000CDC92 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		778C78752C0A46CA000CDC92 /* FavoritesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
-		778C78762C0A46CA000CDC92 /* Symbol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Symbol.swift; sourceTree = "<group>"; };
-		778C78772C0A46CA000CDC92 /* SymbolContextMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymbolContextMenu.swift; sourceTree = "<group>"; };
 		778C78782C0A46CA000CDC92 /* System.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
 		778C78802C0A46D4000CDC92 /* FontSizeSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontSizeSetting.swift; sourceTree = "<group>"; };
 		778C78812C0A46D4000CDC92 /* LocalizationSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationSetting.swift; sourceTree = "<group>"; };
@@ -95,10 +129,23 @@
 		77CDC3D42C14D83400BF6E07 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		77CDC3D62C14DA2400BF6E07 /* Extension+Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Array.swift"; sourceTree = "<group>"; };
 		77DDEDDB2C0D5794002E71F9 /* SymbolGrid.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SymbolGrid.entitlements; sourceTree = "<group>"; };
+		8B21B7382C224F07008A0518 /* Search.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Search.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B21B73A2C224F07008A0518 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
+		8B21B73C2C224F07008A0518 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8B21B7432C227E39008A0518 /* Symbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbol.swift; sourceTree = "<group>"; };
+		8B21B7452C228100008A0518 /* SymbolContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolContextMenu.swift; sourceTree = "<group>"; };
+		8B21B7472C229401008A0518 /* Extension+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Color.swift"; sourceTree = "<group>"; };
 		8B36CCD32C1EA3B900AFB088 /* SymbolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolView.swift; sourceTree = "<group>"; };
 		8B4D0FB12C20BDC400F660BF /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
-		8B4D0FB32C20C74400F660BF /* SymbolGridGif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = SymbolGridGif.gif; sourceTree = "<group>"; };
-		8B5F6EC02C2133B600D47611 /* SymbolGridLetteringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolGridLetteringView.swift; sourceTree = "<group>"; };
+		8B5F6EC62C22427000D47611 /* SymbolGridWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SymbolGridWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B5F6EC82C22427000D47611 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = /System/Library/Frameworks/WidgetKit.framework; sourceTree = "<absolute>"; };
+		8B5F6ECA2C22427000D47611 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = /System/Library/Frameworks/SwiftUI.framework; sourceTree = "<absolute>"; };
+		8B5F6ECD2C22427000D47611 /* SymbolGridWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolGridWidgetBundle.swift; sourceTree = "<group>"; };
+		8B5F6ECF2C22427000D47611 /* SymbolGridWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolGridWidget.swift; sourceTree = "<group>"; };
+		8B5F6ED12C22427000D47611 /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
+		8B5F6ED32C22427200D47611 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8B5F6ED52C22427200D47611 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8B5F6ED62C22427200D47611 /* SymbolGridWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SymbolGridWidget.entitlements; sourceTree = "<group>"; };
 		8B9C0A572C1FBF8C0071B640 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		8B9C0A592C1FBFC30071B640 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		8BDB8F4F2C1D3E6300E39D99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -128,6 +175,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8B21B7352C224F07008A0518 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8B5F6EC32C22427000D47611 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B5F6ECB2C22427000D47611 /* SwiftUI.framework in Frameworks */,
+				8B5F6EC92C22427000D47611 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -137,6 +200,9 @@
 				778C783D2C0A4656000CDC92 /* SymbolGrid */,
 				778C784E2C0A4658000CDC92 /* SymbolGridTests */,
 				778C78582C0A4658000CDC92 /* SymbolGridUITests */,
+				8B5F6ECC2C22427000D47611 /* SymbolGridWidget */,
+				8B21B7392C224F07008A0518 /* Search */,
+				8B5F6EC72C22427000D47611 /* Frameworks */,
 				778C783C2C0A4656000CDC92 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -147,6 +213,8 @@
 				778C783B2C0A4656000CDC92 /* SymbolGrid.app */,
 				778C784B2C0A4658000CDC92 /* SymbolGridTests.xctest */,
 				778C78552C0A4658000CDC92 /* SymbolGridUITests.xctest */,
+				8B5F6EC62C22427000D47611 /* SymbolGridWidgetExtension.appex */,
+				8B21B7382C224F07008A0518 /* Search.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -173,7 +241,6 @@
 			isa = PBXGroup;
 			children = (
 				778C78452C0A4657000CDC92 /* Preview Assets.xcassets */,
-				8B4D0FB32C20C74400F660BF /* SymbolGridGif.gif */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -203,11 +270,7 @@
 				778C78742C0A46CA000CDC92 /* HomeView.swift */,
 				8B36CCD32C1EA3B900AFB088 /* SymbolView.swift */,
 				8B9C0A592C1FBFC30071B640 /* DetailView.swift */,
-				8B5F6EC02C2133B600D47611 /* SymbolGridLetteringView.swift */,
 				778C78752C0A46CA000CDC92 /* FavoritesView.swift */,
-				778C78762C0A46CA000CDC92 /* Symbol.swift */,
-				778C78732C0A46CA000CDC92 /* LoadingView.swift */,
-				778C78772C0A46CA000CDC92 /* SymbolContextMenu.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -228,6 +291,7 @@
 				77CDC3CE2C14D5C700BF6E07 /* Focus.swift */,
 				77CDC3D02C14D69800BF6E07 /* Notification+Copy.swift */,
 				77CDC3D62C14DA2400BF6E07 /* Extension+Array.swift */,
+				8B21B7472C229401008A0518 /* Extension+Color.swift */,
 			);
 			path = Admin;
 			sourceTree = "<group>";
@@ -260,9 +324,42 @@
 				778C789A2C0A5CFA000CDC92 /* AddFavorite.swift */,
 				778C789C2C0A5D19000CDC92 /* RemoveFavorite.swift */,
 				77CDC3D22C14D77200BF6E07 /* Favorite.swift */,
+				8B21B7432C227E39008A0518 /* Symbol.swift */,
+				8B21B7452C228100008A0518 /* SymbolContextMenu.swift */,
 				77CDC3D42C14D83400BF6E07 /* SearchBar.swift */,
 			);
 			path = Functions;
+			sourceTree = "<group>";
+		};
+		8B21B7392C224F07008A0518 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				8B21B73A2C224F07008A0518 /* Search.swift */,
+				8B21B73C2C224F07008A0518 /* Info.plist */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		8B5F6EC72C22427000D47611 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8B5F6EC82C22427000D47611 /* WidgetKit.framework */,
+				8B5F6ECA2C22427000D47611 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8B5F6ECC2C22427000D47611 /* SymbolGridWidget */ = {
+			isa = PBXGroup;
+			children = (
+				8B5F6ECD2C22427000D47611 /* SymbolGridWidgetBundle.swift */,
+				8B5F6ECF2C22427000D47611 /* SymbolGridWidget.swift */,
+				8B5F6ED12C22427000D47611 /* AppIntent.swift */,
+				8B5F6ED32C22427200D47611 /* Assets.xcassets */,
+				8B5F6ED52C22427200D47611 /* Info.plist */,
+				8B5F6ED62C22427200D47611 /* SymbolGridWidget.entitlements */,
+			);
+			path = SymbolGridWidget;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,10 +372,13 @@
 				778C78372C0A4656000CDC92 /* Sources */,
 				778C78382C0A4656000CDC92 /* Frameworks */,
 				778C78392C0A4656000CDC92 /* Resources */,
+				8B5F6EDA2C22427200D47611 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				8B5F6ED82C22427200D47611 /* PBXTargetDependency */,
+				8B21B73E2C224F07008A0518 /* PBXTargetDependency */,
 			);
 			name = SymbolGrid;
 			packageProductDependencies = (
@@ -324,6 +424,40 @@
 			productReference = 778C78552C0A4658000CDC92 /* SymbolGridUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		8B21B7372C224F07008A0518 /* Search */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8B21B7402C224F07008A0518 /* Build configuration list for PBXNativeTarget "Search" */;
+			buildPhases = (
+				8B21B7342C224F07008A0518 /* Sources */,
+				8B21B7352C224F07008A0518 /* Frameworks */,
+				8B21B7362C224F07008A0518 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Search;
+			productName = Search;
+			productReference = 8B21B7382C224F07008A0518 /* Search.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		8B5F6EC52C22427000D47611 /* SymbolGridWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8B5F6EDD2C22427200D47611 /* Build configuration list for PBXNativeTarget "SymbolGridWidgetExtension" */;
+			buildPhases = (
+				8B5F6EC22C22427000D47611 /* Sources */,
+				8B5F6EC32C22427000D47611 /* Frameworks */,
+				8B5F6EC42C22427000D47611 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SymbolGridWidgetExtension;
+			productName = SymbolGridWidgetExtension;
+			productReference = 8B5F6EC62C22427000D47611 /* SymbolGridWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -331,7 +465,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1540;
+				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					778C783A2C0A4656000CDC92 = {
@@ -344,6 +478,12 @@
 					778C78542C0A4658000CDC92 = {
 						CreatedOnToolsVersion = 15.4;
 						TestTargetID = 778C783A2C0A4656000CDC92;
+					};
+					8B21B7372C224F07008A0518 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					8B5F6EC52C22427000D47611 = {
+						CreatedOnToolsVersion = 16.0;
 					};
 				};
 			};
@@ -366,6 +506,8 @@
 				778C783A2C0A4656000CDC92 /* SymbolGrid */,
 				778C784A2C0A4658000CDC92 /* SymbolGridTests */,
 				778C78542C0A4658000CDC92 /* SymbolGridUITests */,
+				8B5F6EC52C22427000D47611 /* SymbolGridWidgetExtension */,
+				8B21B7372C224F07008A0518 /* Search */,
 			);
 		};
 /* End PBXProject section */
@@ -378,7 +520,6 @@
 				778C78462C0A4657000CDC92 /* Preview Assets.xcassets in Resources */,
 				8BDB8F542C1D436800E39D99 /* Settings.bundle in Resources */,
 				778C78432C0A4657000CDC92 /* Assets.xcassets in Resources */,
-				8B4D0FB42C20C74400F660BF /* SymbolGridGif.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +537,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8B21B7362C224F07008A0518 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8B5F6EC42C22427000D47611 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B5F6ED42C22427200D47611 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -409,7 +565,8 @@
 				8B9C0A582C1FBF8C0071B640 /* Icon.swift in Sources */,
 				778C78862C0A46D4000CDC92 /* SettingsView.swift in Sources */,
 				778C787C2C0A46CA000CDC92 /* FavoritesView.swift in Sources */,
-				778C787E2C0A46CA000CDC92 /* SymbolContextMenu.swift in Sources */,
+				8B21B7462C228100008A0518 /* SymbolContextMenu.swift in Sources */,
+				8B21B7482C229401008A0518 /* Extension+Color.swift in Sources */,
 				8B9C0A5A2C1FBFC30071B640 /* DetailView.swift in Sources */,
 				8B4D0FB22C20BDC400F660BF /* SplashView.swift in Sources */,
 				77CDC3D72C14DA2400BF6E07 /* Extension+Array.swift in Sources */,
@@ -420,10 +577,8 @@
 				778C787B2C0A46CA000CDC92 /* HomeView.swift in Sources */,
 				778C78932C0A4D1F000CDC92 /* Extensions.swift in Sources */,
 				778C78952C0A4D6D000CDC92 /* AppDelegate.swift in Sources */,
-				8B5F6EC12C2133B600D47611 /* SymbolGridLetteringView.swift in Sources */,
 				778C78972C0A5A48000CDC92 /* Commands.swift in Sources */,
-				778C787D2C0A46CA000CDC92 /* Symbol.swift in Sources */,
-				778C787A2C0A46CA000CDC92 /* LoadingView.swift in Sources */,
+				8B21B7442C227E39008A0518 /* Symbol.swift in Sources */,
 				77CDC3D32C14D77200BF6E07 /* Favorite.swift in Sources */,
 				778C70EA2C0CEFA800162DE1 /* ContentView.swift in Sources */,
 				778C789D2C0A5D19000CDC92 /* RemoveFavorite.swift in Sources */,
@@ -451,6 +606,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8B21B7342C224F07008A0518 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B21B73B2C224F07008A0518 /* Search.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8B5F6EC22C22427000D47611 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B21B7492C22A313008A0518 /* System.swift in Sources */,
+				8B5F6ECE2C22427000D47611 /* SymbolGridWidgetBundle.swift in Sources */,
+				8B5F6ED02C22427000D47611 /* SymbolGridWidget.swift in Sources */,
+				8B5F6ED22C22427000D47611 /* AppIntent.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -463,6 +637,16 @@
 			isa = PBXTargetDependency;
 			target = 778C783A2C0A4656000CDC92 /* SymbolGrid */;
 			targetProxy = 778C78562C0A4658000CDC92 /* PBXContainerItemProxy */;
+		};
+		8B21B73E2C224F07008A0518 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8B21B7372C224F07008A0518 /* Search */;
+			targetProxy = 8B21B73D2C224F07008A0518 /* PBXContainerItemProxy */;
+		};
+		8B5F6ED82C22427200D47611 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8B5F6EC52C22427000D47611 /* SymbolGridWidgetExtension */;
+			targetProxy = 8B5F6ED72C22427200D47611 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -604,7 +788,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SymbolGrid/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SymbolGrid;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -647,7 +831,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SymbolGrid/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SymbolGrid;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -746,6 +930,136 @@
 			};
 			name = Release;
 		};
+		8B21B7412C224F07008A0518 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 9;
+				DEVELOPMENT_TEAM = 2MP8QWK7R6;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Search/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Search;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 3.5.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamilyfarm.symbols.Search;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8B21B7422C224F07008A0518 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 9;
+				DEVELOPMENT_TEAM = 2MP8QWK7R6;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Search/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Search;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 3.5.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamilyfarm.symbols.Search;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8B5F6EDB2C22427200D47611 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = SymbolGridWidget/SymbolGridWidget.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 9;
+				DEVELOPMENT_TEAM = 2MP8QWK7R6;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SymbolGridWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SymbolGridWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 3.5.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamilyfarm.symbols.SymbolGridWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		8B5F6EDC2C22427200D47611 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = SymbolGridWidget/SymbolGridWidget.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 9;
+				DEVELOPMENT_TEAM = 2MP8QWK7R6;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SymbolGridWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SymbolGridWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 3.5.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamilyfarm.symbols.SymbolGridWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -781,6 +1095,24 @@
 			buildConfigurations = (
 				778C78662C0A4658000CDC92 /* Debug */,
 				778C78672C0A4658000CDC92 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8B21B7402C224F07008A0518 /* Build configuration list for PBXNativeTarget "Search" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8B21B7412C224F07008A0518 /* Debug */,
+				8B21B7422C224F07008A0518 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8B5F6EDD2C22427200D47611 /* Build configuration list for PBXNativeTarget "SymbolGridWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8B5F6EDB2C22427200D47611 /* Debug */,
+				8B5F6EDC2C22427200D47611 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

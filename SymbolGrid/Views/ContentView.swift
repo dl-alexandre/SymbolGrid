@@ -9,63 +9,60 @@ import SwiftUI
 import SFSymbolKit
 
 struct ContentView: View {
-    @EnvironmentObject private var tabModel: TabModel
-#if os(macOS)
-    @Environment(\.controlActiveState) private var state
-#endif
-    @State private var isAnimating = true
+    
     var body: some View {
         TabView(selection: $tabModel.activeTab) {
             if isAnimating {
-                //SplashView(isAnimating: $isAnimating)
-                PreSplashView2(symbols: system.symbols, renderMode: $selectedSample, fontWeight: $selectedWeight, isAnimating: $isAnimating)
-//                    .transition(.blurReplace)
+                SplashView(symbols: system.symbols, fontWeight: $selectedWeight, isAnimating: $isAnimating)
                     .tag(Tab.home)
-    #if os(macOS)
+#if os(macOS)
                     .background(HideTabBar())
-    #endif
+#endif
             } else {
                 HomeView(symbols: system.symbols).environmentObject(tabModel)
                     .transition(.blurReplace)
                     .tag(Tab.home)
-    #if os(macOS)
+#if os(macOS)
                     .background(HideTabBar())
-    #endif
+#endif
             }
             FavoritesView(renderMode: $selectedSample, fontWeight: $selectedWeight)
                 .environmentObject(tabModel)
                 .tag(Tab.favorites)
         }.edgesIgnoringSafeArea(.all)
 #if os(macOS)
-        .background {
-            GeometryReader {
-                let rect = $0.frame(in: .global)
-                
-                Color.clear
-                    .onChange(of: rect) { _, _ in
-                        tabModel.updateTabPosition()
-                    }
+            .background {
+                GeometryReader {
+                    let rect = $0.frame(in: .global)
+                    
+                    Color.clear
+                        .onChange(of: rect) { _, _ in
+                            tabModel.updateTabPosition()
+                        }
+                }
             }
-        }
-        .onChange(of: state) { oldValue, newValue in
-            if newValue == .key {
-                tabModel.addTabBar()
+            .onChange(of: state) { oldValue, newValue in
+                if newValue == .key {
+                    tabModel.addTabBar()
+                }
             }
-        }
 #endif
 #if os(iOS)
-        .tabViewStyle(.page(indexDisplayMode: .never))
+            .tabViewStyle(.page(indexDisplayMode: .never))
 #else
-        .tabViewStyle(DefaultTabViewStyle())
+            .tabViewStyle(DefaultTabViewStyle())
 #endif
     }
+    @EnvironmentObject private var tabModel: TabModel
+#if os(macOS)
+    @Environment(\.controlActiveState) private var state
+#endif
+    @State private var isAnimating = true
     @State private var selectedSample = RenderModes.monochrome
     @State private var selectedWeight = FontWeights.medium
     @State private var isActive: Bool = true
     @State private var system = System()
 }
-
-
 
 #Preview {
     @Previewable var tabModel = TabModel()

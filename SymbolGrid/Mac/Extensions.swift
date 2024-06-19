@@ -20,6 +20,10 @@ extension NSApplication
     static var buildVersion: String? {
         return Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String
     }
+    
+    static var bundleIDVersion: String? {
+        return Bundle.main.object(forInfoDictionaryKey: "ProductBundleIdentifier") as? String
+    }
 }
 
 extension View {
@@ -34,3 +38,7 @@ extension View {
     }
 }
 #endif
+
+var bundleIDVersion: String? {
+    return Bundle.main.object(forInfoDictionaryKey: "ProductBundleIdentifier") as? String
+}

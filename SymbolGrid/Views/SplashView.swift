@@ -8,7 +8,7 @@
 import SwiftUI
 import SFSymbolKit
 
-struct PreSplashView2: View {
+struct SplashView: View {
     var body: some View {
         let limitedIcons: [Icon] = Array(searchResults.prefix(200)).map { symbolName in
             Icon(id: symbolName)
@@ -21,7 +21,7 @@ struct PreSplashView2: View {
                     LazyVGrid(columns: columns, spacing: spacing) {
                         ForEach(limitedIcons) { icon in
                             Image(systemName: icon.id)
-                                .symbolRenderingMode(renderMode.mode)
+//                                .symbolRenderingMode(renderMode.mode)
                                 .font(.system(size: fontSize, weight: fontWeight.weight))
                                 .symbolEffect(.breathe.byLayer.pulse)
                                 .foregroundStyle(Color.random())
@@ -36,7 +36,7 @@ struct PreSplashView2: View {
                                 .animation(.default, value: isAnimating)
                         }
                     }.offset(x: 0, y: searchText.isEmpty ? 0: (fontSize * 3))
-                }
+                }.edgesIgnoringSafeArea(.all)
             }
         }
     }
@@ -95,23 +95,10 @@ struct PreSplashView2: View {
         }
     }
     
-//    init(
-//        renderMode: Binding<RenderModes>,
-//        fontWeight: Binding<FontWeights>,
-//        symbols: [String],
-//        isAnimating: Binding<Bool>
-//    )
-//    {
-//        self._renderMode = renderMode
-//        self._fontWeight = fontWeight
-//        self.symbols = symbols
-//        self.isAnimating = isAnimating
-//    }
-    
-    @Binding public var renderMode: RenderModes
+//    @Binding public var renderMode: RenderModes
     @Binding public var fontWeight: FontWeights
+    
     @Binding var isAnimating: Bool
-    @State private var selected: Icon?
     
     private var columns: [GridItem] {
         [GridItem(.adaptive(minimum: 1.5 * fontSize))]
@@ -126,82 +113,6 @@ struct PreSplashView2: View {
     @Previewable var tabModel = TabModel()
     @Previewable var system = System()
     @Previewable var fw: FontWeights = .regular
-    @Previewable var rm: RenderModes = .monochrome
     @Previewable var se: SymbolEffects = .bounce
-    PreSplashView2(symbols: system.symbols, renderMode: .constant(rm), fontWeight: .constant(fw), isAnimating: .constant(true)).environmentObject(tabModel)
+    SplashView(symbols: system.symbols, fontWeight: .constant(fw), isAnimating: .constant(true)).environmentObject(tabModel)
 }
-
-extension Color {
-    static func random() -> Color {
-        let red = Double.random(in: 0...1)
-        let green = Double.random(in: 0...1)
-        let blue = Double.random(in: 0...1)
-        return Color(red: red, green: green, blue: blue)
-    }
-}
-
-
-struct SplashView: View {
-    @Binding var isAnimating: Bool
-    var body: some View {
-        GifImageView("SymbolGridGif")
-            .offset(y: 100)
-            .scaledToFill()
-            .onAppear {
-                isAnimating = true
-                DispatchQueue.main.asyncAfter(deadline: .now() + 13.4) {
-                    withAnimation {
-                        isAnimating = false
-                    }
-                }
-            }
-            .animation(.default, value: isAnimating)
-    }
-}
-
-#Preview {
-    SplashView(isAnimating: .constant(true))
-}
-
-import WebKit
-import SFSymbolKit
-
-#if os(iOS)
-struct GifImageView: UIViewRepresentable {
-    private let name: String
-    init(_ name: String) {
-        self.name = name
-    }
-    func makeUIView(context: Context) -> WKWebView {
-        let webview = WKWebView()
-        let url = Bundle.main.url(forResource: name, withExtension: "gif")!
-        let data = try! Data(contentsOf: url)
-        webview.load(data, mimeType: "image/gif", characterEncodingName: "UTF-8", baseURL: url.deletingLastPathComponent())
-        return webview
-    }
-    
-    func updateUIView(_ uiView: WKWebView, context: Context) {
-        uiView.reload()
-    }
-}
-#else
-struct GifImageView: NSViewRepresentable {
-    private let name: String
-    
-    init(_ name: String) {
-        self.name = name
-    }
-    
-    func makeNSView(context: Context) -> WKWebView {
-        let webview = WKWebView()
-        let url = Bundle.main.url(forResource: name, withExtension: "gif")!
-        let data = try! Data(contentsOf: url)
-        webview.load(data, mimeType: "image/gif", characterEncodingName: "UTF-8", baseURL: url.deletingLastPathComponent())
-        return webview
-    }
-    
-    func updateNSView(_ nsView: WKWebView, context: Context) {
-        nsView.reload()
-    }
-}
-#endif

@@ -19,3 +19,4 @@ extension Array where Element: Codable {
         self = result
     }
 }
+

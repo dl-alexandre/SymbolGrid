@@ -74,7 +74,7 @@ struct SymbolCommands: Commands {
     @AppStorage("favorites") private var favorites: String = "[]"
     @AppStorage("showingSearch") var showingSearch = false
     @AppStorage("searchText") var searchText = ""
-    @AppStorage("icon") var icon = ""
+//    @AppStorage("systemName") var systemName = ""
     @AppStorage("fontSize") var fontSize = 50.0
 //    @AppStorage("tab") var selectedTab = 0
 //    @EnvironmentObject private var tabModel: TabModel

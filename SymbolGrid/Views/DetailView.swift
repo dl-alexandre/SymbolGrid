@@ -9,39 +9,19 @@ import SwiftUI
 import SFSymbolKit
 
 struct DetailView: View {
-    var icon: Icon
-    var animation: Namespace.ID
-    @State var color: Color
-    @State private var selectedScale = ImageScales.medium
-    @State private var selectedWeight = FontWeights.regular
-    @State private var isDragging = false
-    @State private var offset = CGSize.zero
-    @State private var accumulatedOffset = CGSize.zero
-    @State var shadow: Color = .clear.opacity(0.5)
-    @State var fontSize = 200.0
-    @State private var linearValue: Double = log10(200)
-    @Environment(\.presentationMode) var presentationMode
-    var exponentialValue: Double {
-        get {
-            pow(10, linearValue)
-        }
-        set {
-            linearValue = log10(newValue)
-            fontSize = newValue
-        }
-    }
+    @State var location: CGPoint = CGPoint(x: UIScreen.main.bounds.midX, y: 150)
     
     var body: some View {
         let dragGesture = DragGesture()
-            .onChanged { value in offset = value.translation
+            .onChanged { value in
+                self.location = value.location
             }
             .onEnded { _ in
                 withAnimation {
-                    accumulatedOffset = offset
-                    offset = accumulatedOffset
                     isDragging = false
                 }
             }
+        
         let pressGesture = LongPressGesture()
             .onEnded { value in
                 withAnimation {
@@ -58,8 +38,7 @@ struct DetailView: View {
                     .imageScale(selectedScale.scale)
                     .foregroundStyle(color.gradient)
                     .scaleEffect(isDragging ? 1.5 : 1)
-                    .offset(offset)
-                    .offset(y: 100)
+                    .position(location)
                     .gesture(combined)
                     .shadow(color: shadow, radius: 3, x: offset.width, y: offset.height - 10)
                     .frame(maxWidth: .infinity, minHeight: 50, maxHeight: .infinity, alignment: .top)
@@ -67,7 +46,6 @@ struct DetailView: View {
 #if os(iOS)
                     .navigationTransition(.zoom(sourceID: icon.id, in: animation))
 #endif
-                
                 VStack {
                     Spacer()
                     ScrollView {
@@ -129,11 +107,35 @@ struct DetailView: View {
             }
         }
     }
+    @Environment(\.presentationMode) private var presentationMode
+    var icon: Icon
+    var animation: Namespace.ID
+    @State var color: Color = .random()
+    
+    @State private var selectedScale = ImageScales.medium
+    @State private var selectedWeight = FontWeights.regular
+    @State private var accumulatedOffset = CGSize.zero
+    @State private var offset = CGSize.zero
+    @State private var isDragging = false
+    @State private var shadow: Color = .clear.opacity(0.5)
+    @State private var fontSize = 200.0
+    @State private var linearValue: Double = log10(200)
+    
+    
+    var exponentialValue: Double {
+        get {
+            pow(10, linearValue)
+        }
+        set {
+            linearValue = log10(newValue)
+            fontSize = newValue
+        }
+    }
 }
 
 #Preview {
     @Previewable @Namespace var animation
-    DetailView(icon: Icon(id: "plus"), animation: animation, color: .red)
+    DetailView(icon: Icon(id: "plus"), animation: animation)
 }
 
 
