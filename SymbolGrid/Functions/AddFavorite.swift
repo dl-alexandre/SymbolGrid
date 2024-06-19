@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SFSymbolKit
 
 func addFavorite(icons: String...) {
     @AppStorage("favorites") var favorites: String = "[]"
@@ -20,6 +21,8 @@ func addFavorite(icons: String...) {
     var updatedFavorites = favoritesBinding.wrappedValue
     for icon in icons {
         updatedFavorites.append(icon)
+        addIconToIndex(icon, "com.alexandrefamilyfarm.symbols")
     }
     favoritesBinding.wrappedValue = updatedFavorites
 }
+
