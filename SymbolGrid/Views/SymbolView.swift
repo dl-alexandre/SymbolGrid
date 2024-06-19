@@ -92,6 +92,9 @@ struct SymbolView: View {
             }
         }
 #if os(iOS)
+        .onTapGesture(count: 2) {
+            showingSearch.toggle()
+        }
         .navigationBarTitleDisplayMode(.inline)
 #endif
 //#if os(macOS)
@@ -109,6 +112,7 @@ struct SymbolView: View {
         
     }
     @AppStorage("fontSize") var fontSize = 50.0
+    @AppStorage("showingSearch") var showingSearch = true
     @AppStorage("symbol_arabic") private var arabicSetting = false
     @AppStorage("symbol_bengali") private var bengaliSetting = false //bn
     @AppStorage("symbol_burmese") private var burmeseSetting = false

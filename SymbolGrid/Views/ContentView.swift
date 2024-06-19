@@ -9,27 +9,28 @@ import SwiftUI
 import SFSymbolKit
 
 struct ContentView: View {
-    
     var body: some View {
-        TabView(selection: $tabModel.activeTab) {
-            if isAnimating {
-                SplashView(symbols: system.symbols, fontWeight: $selectedWeight, isAnimating: $isAnimating)
-                    .tag(Tab.home)
+        ZStack {
+            TabView(selection: $tabModel.activeTab) {
+                if isAnimating {
+                    SplashView(symbols: system.symbols, fontWeight: $selectedWeight, isAnimating: $isAnimating)
+                        .tag(Tab.home)
 #if os(macOS)
-                    .background(HideTabBar())
+                        .background(HideTabBar())
 #endif
-            } else {
-                HomeView(symbols: system.symbols).environmentObject(tabModel)
-                    .transition(.blurReplace)
-                    .tag(Tab.home)
+                } else {
+                    HomeView(symbols: system.symbols).environmentObject(tabModel)
+                        .transition(.blurReplace)
+                        .tag(Tab.home)
 #if os(macOS)
-                    .background(HideTabBar())
+                        .background(HideTabBar())
 #endif
+                }
+                FavoritesView(renderMode: $selectedSample, fontWeight: $selectedWeight)
+                    .environmentObject(tabModel)
+                    .tag(Tab.favorites)
             }
-            FavoritesView(renderMode: $selectedSample, fontWeight: $selectedWeight)
-                .environmentObject(tabModel)
-                .tag(Tab.favorites)
-        }.edgesIgnoringSafeArea(.all)
+            .edgesIgnoringSafeArea(.all)
 #if os(macOS)
             .background {
                 GeometryReader {
@@ -52,6 +53,20 @@ struct ContentView: View {
 #else
             .tabViewStyle(DefaultTabViewStyle())
 #endif
+            if showingSearch {
+                searchBar(text: $searchText, focus: $searchField, showingSearch: $showingSearch)
+#if os(iOS)
+                    .keyboardAdaptive()
+                    .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)) { _ in
+                        searchField = nil
+                        showingSearch = false
+                    }
+                    .onTapGesture(count: 3) {
+                        searchText = ""
+                    }
+#endif
+            }
+        }
     }
     @EnvironmentObject private var tabModel: TabModel
 #if os(macOS)
@@ -62,6 +77,10 @@ struct ContentView: View {
     @State private var selectedWeight = FontWeights.medium
     @State private var isActive: Bool = true
     @State private var system = System()
+    
+    @AppStorage("showingSearch") var showingSearch = false
+    @AppStorage("searchText") var searchText = ""
+    @FocusState private var searchField: Field?
 }
 
 #Preview {

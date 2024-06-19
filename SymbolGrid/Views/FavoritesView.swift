@@ -110,9 +110,9 @@ struct FavoritesView: View {
                     }
                 
             }
-            if showingSearch {
-                searchBar(text: $searchText, focus: $searchField, showingSearch: $showingSearch)
-            }
+//            if showingSearch {
+//                searchBar(text: $searchText, focus: $searchField, showingSearch: $showingSearch)
+//            }
             if showingTitle {
                 customTitleBar("Favorites")
             }

@@ -28,19 +28,9 @@ func searchBar(text: Binding<String>, focus: FocusState<Field?>.Binding, showing
     VStack {
         Spacer()
         HStack {
-            Capsule()
-                .fill(.ultraThickMaterial)
-                .frame(maxWidth: .infinity, maxHeight: 40, alignment: .bottomLeading)
-                .cornerRadius(20)
-                .shadow(color: .white, radius: 1, x: -2, y: -2)
-                .shadow(color: .gray, radius: 1, x: 2, y: 2)
-                .overlay {
-                    TextField("Search Symbols \(Image(systemName: "magnifyingglass"))", text: text)
-                        .font(.custom("SFProText - Bold", size: 18))
-                        .focused(focus, equals: .searchBar)
-                        .foregroundColor(.primary)
-                        .padding()
-                }
+            TextField("Search Symbols \(Image(systemName: "magnifyingglass"))", text: text)
+                .modifier(SearchBarStyle())
+                .focused(focus, equals: .searchBar)
             if focus.wrappedValue == .searchBar {
                 Button {
                     withAnimation {
@@ -48,11 +38,8 @@ func searchBar(text: Binding<String>, focus: FocusState<Field?>.Binding, showing
                     }
                 } label: {
                     Image(systemName: "delete.backward")
-                        .font(.headline)
-                        .foregroundColor(.black.opacity(0.8))
-                        .shadow(color: .gray, radius: 1, x: 2, y: 2)
-                        .padding(.trailing, 8)
                 }
+                .buttonStyle(SearchButtonStyle(color: .gray))
                 Button {
                     withAnimation {
                         showingSearch.wrappedValue = false
@@ -60,44 +47,16 @@ func searchBar(text: Binding<String>, focus: FocusState<Field?>.Binding, showing
                     }
                 } label: {
                     Image(systemName: "xmark")
-                        .font(.headline)
-                        .foregroundColor(.red.opacity(0.7))
-                        .shadow(color: .red, radius: 1, x: 2, y: 2)
-                        .padding(.trailing, 8)
-                }.buttonBorderShape(.circle)
-            }
-        }.padding()
-    }
-}
-
-#if os(iOS)
-// Add this extension to make the view keyboard adaptive
-extension View {
-    func keyboardAdaptive() -> some View {
-        ModifiedContent(content: self, modifier: KeyboardAdaptive())
-    }
-}
-
-struct KeyboardAdaptive: ViewModifier {
-    @State private var keyboardHeight: CGFloat = 0
-    
-    func body(content: Content) -> some View {
-        content
-            .padding(.bottom, keyboardHeight)
-            .onAppear(perform: subscribeToKeyboardEvents)
-            .onDisappear(perform: unsubscribeFromKeyboardEvents)
-    }
-    
-    private func subscribeToKeyboardEvents() {
-        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { notification in
-            if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
-                keyboardHeight = keyboardFrame.height
+                }
+                .buttonStyle(SearchButtonStyle(color: .red))
             }
         }
-    }
-    
-    private func unsubscribeFromKeyboardEvents() {
-        NotificationCenter.default.removeObserver(self)
+        .padding(2)
     }
 }
-#endif
+
+
+
+
+
+

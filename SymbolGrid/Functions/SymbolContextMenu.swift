@@ -45,9 +45,9 @@ func symbolContextMenu(icon: Icon, selected: Binding<Icon?>, tabModel: TabModel)
         
         Button {
             if favoritesBinding.wrappedValue.contains(icon.id) {
-                removeFavorite(icons: icon.id)
+                removeFavorite(symbols: icon.id)
             } else {
-                addFavorite(icons: icon.id)
+                addFavorite(symbols: icon.id)
             }
         } label: {
             if favoritesBinding.wrappedValue.contains(icon.id) {

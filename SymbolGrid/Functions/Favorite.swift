@@ -21,7 +21,7 @@ func favorite(icon: Icon, font: Font, isCopied: Binding<Bool>, selected: Binding
                 isCopied.wrappedValue.toggle()
             }
 #if os(macOS)
-            NSPasteboard.general.setString(icon, forType: .string)
+            NSPasteboard.general.setString(systemName, forType: .string)
 #else
             UIPasteboard.general .setValue(systemName.description,
                                            forPasteboardType: UTType.plainText .identifier)

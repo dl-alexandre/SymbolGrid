@@ -8,7 +8,7 @@
 import SwiftUI
 import SFSymbolKit
 
-func removeFavorite(icons: String...) {
+func removeFavorite(symbols: String...) {
     @AppStorage("favorites") var favorites: String = "[]"
     
     var favoritesBinding: Binding<[String]> {
@@ -19,9 +19,9 @@ func removeFavorite(icons: String...) {
     }
     
     var updatedFavorites = favoritesBinding.wrappedValue
-    for icon in icons {
-        updatedFavorites.removeAll(where: { $0 == icon })
-        removeIconFromIndex(icon, "com.alexandrefamilyfarm.symbols")
+    for symbol in symbols {
+        updatedFavorites.removeAll(where: { $0 == symbol })
+        removeIconFromIndex(symbol, "com.alexandrefamilyfarm.symbols")
     }
     favoritesBinding.wrappedValue = updatedFavorites
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 import SFSymbolKit
 
-func addFavorite(icons: String...) {
+func addFavorite(symbols: String...) {
     @AppStorage("favorites") var favorites: String = "[]"
     
     var favoritesBinding: Binding<[String]> {
@@ -19,9 +19,9 @@ func addFavorite(icons: String...) {
     }
     
     var updatedFavorites = favoritesBinding.wrappedValue
-    for icon in icons {
-        updatedFavorites.append(icon)
-        addIconToIndex(icon, "com.alexandrefamilyfarm.symbols")
+    for symbol in symbols {
+        updatedFavorites.append(symbol)
+        addIconToIndex(symbol, "com.alexandrefamilyfarm.symbols")
     }
     favoritesBinding.wrappedValue = updatedFavorites
 }

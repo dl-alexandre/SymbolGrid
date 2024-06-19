@@ -19,16 +19,6 @@ struct HomeView: View {
                 iconLabel(icon: systemName)
             }
 #endif
-            if showingSearch {
-                searchBar(text: $searchText, focus: $searchField, showingSearch: $showingSearch)
-#if os(iOS)
-                    .keyboardAdaptive()
-                    .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)) { _ in
-                        searchField = nil
-                        showingSearch = false
-                    }
-#endif
-            }
             if showingWeight {
                 weightPicker()
             }
@@ -37,21 +27,14 @@ struct HomeView: View {
             }
         }
         .edgesIgnoringSafeArea(.all)
-        .onTapGesture(count: 3) {
-            searchText = ""
-        }
     }
-    
-    @AppStorage("showingSearch") var showingSearch = false
     @AppStorage("showingRender") var showingRender = false
     @AppStorage("showingWeight") var showingWeight = false
     @AppStorage("showingCanvas") var showingCanvas = false
     @AppStorage("canvasIcon") var canvasIcon = ""
     @AppStorage("fontSize") var fontSize = 50.0
-    @AppStorage("searchText") var searchText = ""
     @AppStorage("systemName") var systemName = ""
     
-    @FocusState private var searchField: Field?
     @State private var isTapped: Bool = false
     @State private var isLoading: Bool = true
     @State private var needsNewJSON: Bool = false

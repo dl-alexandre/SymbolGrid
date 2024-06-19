@@ -9,12 +9,13 @@ import SwiftUI
 import SFSymbolKit
 
 struct DetailView: View {
-    @State var location: CGPoint = CGPoint(x: UIScreen.main.bounds.midX, y: 150)
-    
     var body: some View {
         let dragGesture = DragGesture()
             .onChanged { value in
                 self.location = value.location
+//                #if os(macOS)
+                self.offset = value.translation
+//                #endif
             }
             .onEnded { _ in
                 withAnimation {
@@ -38,7 +39,12 @@ struct DetailView: View {
                     .imageScale(selectedScale.scale)
                     .foregroundStyle(color.gradient)
                     .scaleEffect(isDragging ? 1.5 : 1)
+#if os(macOS)
+                    .offset(offset)
+#endif
+                
                     .position(location)
+                
                     .gesture(combined)
                     .shadow(color: shadow, radius: 3, x: offset.width, y: offset.height - 10)
                     .frame(maxWidth: .infinity, minHeight: 50, maxHeight: .infinity, alignment: .top)
@@ -46,6 +52,9 @@ struct DetailView: View {
 #if os(iOS)
                     .navigationTransition(.zoom(sourceID: icon.id, in: animation))
 #endif
+                    .onAppear {
+                        print(location)
+                    }
                 VStack {
                     Spacer()
                     ScrollView {
@@ -103,7 +112,11 @@ struct DetailView: View {
                 }
                 .padding(.horizontal)
             }.onTapGesture(count: 2) {
-                offset = CGSize.zero
+#if os(iOS)
+location = CGPoint(x: UIScreen.main.bounds.midX, y: 150)
+#else
+location = CGPoint(x: NSScreen.main?.frame.size.width ?? 0, y: 150)
+#endif
             }
         }
     }
@@ -131,6 +144,13 @@ struct DetailView: View {
             fontSize = newValue
         }
     }
+    
+    
+#if os(iOS)
+@State var location: CGPoint = CGPoint(x: UIScreen.main.bounds.midX, y: 150)
+#else
+@State var location: CGPoint = CGPoint(x: NSScreen.main?.frame.size.width ?? 0, y: -150)
+#endif
 }
 
 #Preview {

@@ -95,7 +95,6 @@ struct SplashView: View {
         }
     }
     
-//    @Binding public var renderMode: RenderModes
     @Binding public var fontWeight: FontWeights
     
     @Binding var isAnimating: Bool

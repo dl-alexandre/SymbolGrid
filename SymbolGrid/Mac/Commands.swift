@@ -34,20 +34,14 @@ struct SymbolCommands: Commands {
                 Label("Larger", systemImage: "plus")
             }.keyboardShortcut("=")
             Section("Favorites") {
-//                Button {
-//                    showFavorites()
-//                } label: {
-//                    Label("View", systemImage: "star.slash")
-//                }.keyboardShortcut("f", modifiers: [])
-//                
                 Button {
-                    if myFavorites.contains(icon) {
-                        removeFavorite(icons: icon)
+                    if myFavorites.contains(systemName) {
+                        removeFavorite(symbols: systemName)
                     } else {
-                        addFavorite(icons: icon)
+                        addFavorite(symbols: systemName)
                     }
                 } label: {
-                    if myFavorites.contains(icon) {
+                    if myFavorites.contains(systemName) {
                         Label("Unfavorite", systemImage: "star.fill")
                     } else {
                         Label("Favorite", systemImage: "star")
@@ -74,22 +68,14 @@ struct SymbolCommands: Commands {
     @AppStorage("favorites") private var favorites: String = "[]"
     @AppStorage("showingSearch") var showingSearch = false
     @AppStorage("searchText") var searchText = ""
-//    @AppStorage("systemName") var systemName = ""
     @AppStorage("fontSize") var fontSize = 50.0
-//    @AppStorage("tab") var selectedTab = 0
-//    @EnvironmentObject private var tabModel: TabModel
+    @AppStorage("systemName") var systemName = ""
     
     func showSearch() { showingSearch.toggle() }
     
     func clearSearch() { showingSearch = false; searchText = "" }
     
     func clearFavorites() { favorites = "[]" }
-    
-//    func showFavorites() { if tabModel.activeTab == .home {
-//        tabModel.activeTab = .favorites
-//    } else {
-//        tabModel.activeTab = .home
-//    } }
     
     var myFavorites: [String] {
         get { Array(jsonString: favorites) ?? [] }
