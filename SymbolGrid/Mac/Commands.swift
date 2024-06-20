@@ -55,11 +55,26 @@ struct SymbolCommands: Commands {
                 }.keyboardShortcut("f", modifiers: [.command, .shift])
             }
         }
-        CommandGroup(replacing: CommandGroupPlacement.appInfo) {
+        CommandGroup(replacing: .appInfo) {
             Button(action: {
                 appDelegate.showAboutPanel()
             }) {
                 Text("About \(NSApplication.appName ?? "SymbolView")")
+            }
+        }
+        
+        CommandGroup(replacing: .help) {
+            Button(action: {
+                appDelegate.showHelpPanel()
+            }) {
+                Text("\(NSApplication.appName ?? "SymbolView") Help")
+            }.keyboardShortcut("/", modifiers: [.command])
+        }
+        CommandGroup(after: .help) {
+            Section {
+                Link("SF Symbols Info", destination: URL(string: "https://developer.apple.com/sf-symbols/")!)
+                Link("Human Interface Guidlines", destination: URL(string: "https://developer.apple.com/design/human-interface-guidelines/sf-symbols")!)
+                Link("Download SF Symbols 6 - beta", destination: URL(string: "https://devimages-cdn.apple.com/design/resources/download/SF-Symbols-6.dmg")!)
             }
         }
     }

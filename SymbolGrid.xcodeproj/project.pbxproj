@@ -40,6 +40,9 @@
 		8B21B7482C229401008A0518 /* Extension+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B21B7472C229401008A0518 /* Extension+Color.swift */; };
 		8B36CCD42C1EA3B900AFB088 /* SymbolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B36CCD32C1EA3B900AFB088 /* SymbolView.swift */; };
 		8B4D0FB22C20BDC400F660BF /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4D0FB12C20BDC400F660BF /* SplashView.swift */; };
+		8B64524A2C24AA8100D49B66 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6452492C24AA7C00D49B66 /* HelpView.swift */; };
+		8B6452502C24BBA600D49B66 /* GridHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B64524F2C24BBA600D49B66 /* GridHelpView.swift */; };
+		8B6452522C24D49500D49B66 /* DetailHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6452512C24D49500D49B66 /* DetailHelpView.swift */; };
 		8B74165B2C2346F6006D8248 /* Extension+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B74165A2C2346F6006D8248 /* Extension+View.swift */; };
 		8B74165D2C234719006D8248 /* KeyboardAdaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B74165C2C234719006D8248 /* KeyboardAdaptive.swift */; };
 		8B74165F2C235C3A006D8248 /* GrayRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B74165E2C235C3A006D8248 /* GrayRectangle.swift */; };
@@ -47,6 +50,8 @@
 		8B7416632C235C61006D8248 /* SearchBarStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7416622C235C61006D8248 /* SearchBarStyle.swift */; };
 		8B9C0A582C1FBF8C0071B640 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9C0A572C1FBF8C0071B640 /* Icon.swift */; };
 		8B9C0A5A2C1FBFC30071B640 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9C0A592C1FBFC30071B640 /* DetailView.swift */; };
+		8BD83BDD2C24D623000A8687 /* FavoritesHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD83BDC2C24D623000A8687 /* FavoritesHelpView.swift */; };
+		8BD83BDF2C24D63B000A8687 /* SearchHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD83BDE2C24D63B000A8687 /* SearchHelpView.swift */; };
 		8BDB8F542C1D436800E39D99 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8BDB8F532C1D436800E39D99 /* Settings.bundle */; };
 /* End PBXBuildFile section */
 
@@ -128,6 +133,9 @@
 		8B4D0FB12C20BDC400F660BF /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		8B5F6EC82C22427000D47611 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = /System/Library/Frameworks/WidgetKit.framework; sourceTree = "<absolute>"; };
 		8B5F6ECA2C22427000D47611 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = /System/Library/Frameworks/SwiftUI.framework; sourceTree = "<absolute>"; };
+		8B6452492C24AA7C00D49B66 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
+		8B64524F2C24BBA600D49B66 /* GridHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridHelpView.swift; sourceTree = "<group>"; };
+		8B6452512C24D49500D49B66 /* DetailHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHelpView.swift; sourceTree = "<group>"; };
 		8B74165A2C2346F6006D8248 /* Extension+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+View.swift"; sourceTree = "<group>"; };
 		8B74165C2C234719006D8248 /* KeyboardAdaptive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAdaptive.swift; sourceTree = "<group>"; };
 		8B74165E2C235C3A006D8248 /* GrayRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrayRectangle.swift; sourceTree = "<group>"; };
@@ -135,6 +143,8 @@
 		8B7416622C235C61006D8248 /* SearchBarStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarStyle.swift; sourceTree = "<group>"; };
 		8B9C0A572C1FBF8C0071B640 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		8B9C0A592C1FBFC30071B640 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		8BD83BDC2C24D623000A8687 /* FavoritesHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesHelpView.swift; sourceTree = "<group>"; };
+		8BD83BDE2C24D63B000A8687 /* SearchHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHelpView.swift; sourceTree = "<group>"; };
 		8BDB8F4F2C1D3E6300E39D99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8BDB8F532C1D436800E39D99 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -282,6 +292,7 @@
 			children = (
 				778C78832C0A46D4000CDC92 /* SettingsViews */,
 				778C78922C0A4D1F000CDC92 /* Extensions.swift */,
+				8B64524E2C24BB9400D49B66 /* HelpView */,
 				778C78962C0A5A48000CDC92 /* Commands.swift */,
 				778C78902C0A4CFC000CDC92 /* AboutView.swift */,
 				778C78942C0A4D6D000CDC92 /* AppDelegate.swift */,
@@ -328,6 +339,18 @@
 				8B5F6ECA2C22427000D47611 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8B64524E2C24BB9400D49B66 /* HelpView */ = {
+			isa = PBXGroup;
+			children = (
+				8BD83BDE2C24D63B000A8687 /* SearchHelpView.swift */,
+				8BD83BDC2C24D623000A8687 /* FavoritesHelpView.swift */,
+				8B6452512C24D49500D49B66 /* DetailHelpView.swift */,
+				8B64524F2C24BBA600D49B66 /* GridHelpView.swift */,
+				8B6452492C24AA7C00D49B66 /* HelpView.swift */,
+			);
+			path = HelpView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -502,6 +525,7 @@
 				778C789F2C0A9532000CDC92 /* Tab.swift in Sources */,
 				8B7416612C235C55006D8248 /* SearchButtonStyle.swift in Sources */,
 				77CDC3CF2C14D5C700BF6E07 /* Focus.swift in Sources */,
+				8B64524A2C24AA8100D49B66 /* HelpView.swift in Sources */,
 				8B9C0A582C1FBF8C0071B640 /* Icon.swift in Sources */,
 				778C78862C0A46D4000CDC92 /* SettingsView.swift in Sources */,
 				778C787C2C0A46CA000CDC92 /* FavoritesView.swift in Sources */,
@@ -513,8 +537,10 @@
 				77CDC3D72C14DA2400BF6E07 /* Extension+Array.swift in Sources */,
 				778C787F2C0A46CA000CDC92 /* System.swift in Sources */,
 				778C78912C0A4CFC000CDC92 /* AboutView.swift in Sources */,
+				8BD83BDD2C24D623000A8687 /* FavoritesHelpView.swift in Sources */,
 				778C78852C0A46D4000CDC92 /* LocalizationSetting.swift in Sources */,
 				77CDC3D52C14D83400BF6E07 /* SearchBar.swift in Sources */,
+				8BD83BDF2C24D63B000A8687 /* SearchHelpView.swift in Sources */,
 				778C787B2C0A46CA000CDC92 /* HomeView.swift in Sources */,
 				778C78932C0A4D1F000CDC92 /* Extensions.swift in Sources */,
 				778C78952C0A4D6D000CDC92 /* AppDelegate.swift in Sources */,
@@ -522,7 +548,9 @@
 				8B21B7442C227E39008A0518 /* Symbol.swift in Sources */,
 				77CDC3D32C14D77200BF6E07 /* Favorite.swift in Sources */,
 				778C70EA2C0CEFA800162DE1 /* ContentView.swift in Sources */,
+				8B6452522C24D49500D49B66 /* DetailHelpView.swift in Sources */,
 				778C789D2C0A5D19000CDC92 /* RemoveFavorite.swift in Sources */,
+				8B6452502C24BBA600D49B66 /* GridHelpView.swift in Sources */,
 				778C783F2C0A4656000CDC92 /* SymbolGridApp.swift in Sources */,
 				8B74165B2C2346F6006D8248 /* Extension+View.swift in Sources */,
 				8B74165F2C235C3A006D8248 /* GrayRectangle.swift in Sources */,

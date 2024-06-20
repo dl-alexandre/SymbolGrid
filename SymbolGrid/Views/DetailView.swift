@@ -42,9 +42,9 @@ struct DetailView: View {
 #if os(macOS)
                     .offset(offset)
 #endif
-                
+#if os(iOS)
                     .position(location)
-                
+#endif
                     .gesture(combined)
                     .shadow(color: shadow, radius: 3, x: offset.width, y: offset.height - 10)
                     .frame(maxWidth: .infinity, minHeight: 50, maxHeight: .infinity, alignment: .top)
