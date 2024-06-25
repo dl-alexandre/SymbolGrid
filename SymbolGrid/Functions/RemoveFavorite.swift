@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Design
 import SFSymbolKit
 
 func removeFavorite(symbols: String...) {

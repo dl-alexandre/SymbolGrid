@@ -38,8 +38,9 @@ on individual [symbols](https://developer.apple.com/sf-symbols/) for a menu of o
         }
     }
 }
-#endif
+
 
 #Preview {
     GridHelpView()
 }
+#endif

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Design
 import SFSymbolKit
 import UniformTypeIdentifiers
 import CoreSpotlight

@@ -19,8 +19,8 @@ struct DetailHelpView: View {
         }.frame(maxWidth: .infinity, alignment: .init(horizontal: .leading, vertical: .top))
     }
 }
-#endif
 
 #Preview {
     DetailHelpView()
 }
+#endif

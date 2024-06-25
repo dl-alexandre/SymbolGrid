@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Design
 
 struct SearchBar: View {
     @FocusState private var searchField: Field?

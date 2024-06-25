@@ -33,8 +33,8 @@ struct SearchHelpView: View {
         }
     }
 }
-#endif
 
 #Preview {
     SearchHelpView()
 }
+#endif

@@ -18,8 +18,8 @@ struct FavoritesHelpView: View {
         }
     }
 }
-#endif
 
 #Preview {
     FavoritesHelpView()
 }
+#endif
