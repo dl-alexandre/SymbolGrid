@@ -68,28 +68,69 @@ struct SymbolView: View {
     @Binding public var renderMode: RenderModes
     @Binding public var fontWeight: FontWeights
     
+    @State private var position = ScrollPosition(edge: .top)
+    
     var body: some View {
         let icons: [Icon] = searchResults.map { symbolName in
             Icon(id: symbolName)
         }
         
-        
-        GeometryReader { geo in
-            ScrollView {
-                LazyVGrid(columns: columns, spacing: spacing) {
-                    ForEach(icons) { icon in
-                        symbol(icon: icon, selected: $selected, tabModel: tabModel, renderMode: $renderMode, fontWeight: $fontWeight)
-                            .matchedTransitionSource(id: icon.id, in: animation)
-                    }
-                }.offset(x: 0, y: searchText.isEmpty ? 0: (fontSize * 3))
-            }
-            .sheet(item: $selected) { icon in
-                DetailView(icon: icon, animation: animation, color: icon.color)
+        ZStack {
+            GeometryReader { geo in
+                ScrollView {
+                    LazyVGrid(columns: columns, spacing: spacing) {
+                        ForEach(icons) { icon in
+                            symbol(icon: icon, selected: $selected, tabModel: tabModel, renderMode: $renderMode, fontWeight: $fontWeight)
+                                .padding(8)
+                                .matchedTransitionSource(id: icon.id, in: animation)
+                        }
+                    }.offset(x: 0, y: searchText.isEmpty ? 0: (fontSize * 3))
+                }
+                .scrollPosition($position)
+//                .inspector(isPresented: .constant(true)) {
+//                    Text("Hello")
+//#if os(macOS)
+//                        .frame(minWidth: geo.size.width * 0.25, minHeight: geo.size.height * 0.50)
+//                    
+//#endif
+//                        .presentationDetents([.medium])
+//                }
+                #if os(iOS)
+                .sheet(item: $selected) { icon in
+                    DetailView(icon: icon, animation: animation, color: icon.color)
 #if os(macOS)
-                    .frame(minWidth: geo.size.width * 0.25, minHeight: geo.size.height * 0.50)
+                        .frame(minWidth: geo.size.width * 0.25, minHeight: geo.size.height * 0.50)
+                        
 #endif
-                    .presentationDetents([.medium])
+                        .presentationDetents([.medium])
+                }
+                #endif
             }
+            if showingTitle {
+//                customTitleBar("Symbols")
+                if let selectedIcon = selected {
+                    customTitleBar("\(selectedIcon.id)")
+                        .padding()
+                        .onTapGesture(count: 1) {
+                            #if os(macOS)
+                            NSPasteboard.general.setString(selectedIcon.id, forType: .string)
+                            print(selectedIcon.id)
+                            #endif
+                        }
+                }
+                
+            }
+            if showingCanvas {
+                
+            }
+        }
+        .onAppear {
+            showingTitle = true
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+//                withAnimation(.easeInOut(duration: 2)) {
+//                    showingTitle = false
+//                }
+//            }
         }
 #if os(iOS)
         .onTapGesture(count: 2) {
@@ -97,18 +138,20 @@ struct SymbolView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
 #endif
-//#if os(macOS)
-//        .toolbar {
-//            ToolbarItem(placement: .automatic) {
-//                Text("\(icon)")
-//                    .padding()
-//                    .onTapGesture(count: 1) {
-//                        NSPasteboard.general.setString(icon, forType: .string)
-//                        print(icon)
-//                    }
-//            }
-//        }
-//#endif
+#if os(macOS)
+        .toolbar {
+            ToolbarItem(placement: .automatic) {
+                if let selectedIcon = selected {
+                    Text("\(selectedIcon.id)")
+                        .padding()
+                        .onTapGesture(count: 1) {
+                            NSPasteboard.general.setString(selectedIcon.id, forType: .string)
+                            print(selectedIcon.id)
+                        }
+                }
+            }
+        }
+#endif
         
     }
     @AppStorage("fontSize") var fontSize = 50.0
@@ -133,6 +176,8 @@ struct SymbolView: View {
     @AppStorage("symbol_telugu") private var teluguSetting = false //te
     @AppStorage("symbol_thai") private var thaiSetting = false
     @AppStorage("symbol_punjabi") private var punjabiSetting = false //pa
+    @AppStorage("showingTitle") var showingTitle = true
+    @AppStorage("showingCanvas") var showingCanvas = true
     @AppStorage("searchText") var searchText = ""
 }
 

@@ -20,6 +20,13 @@ func symbol(icon: Icon, selected: Binding<Icon?>, tabModel: TabModel, renderMode
         .foregroundColor(systemName == icon.id ? icon.color : Color.primary)
         .onTapGesture {
             withAnimation {
+//#if os(macOS)
+//                if selected.wrappedValue == icon {
+//                    selected.wrappedValue = nil
+//                } else {
+//                    selected.wrappedValue = icon
+//                }
+//#else
                 if systemName.isEmpty {
                     systemName = icon.id
                 } else if systemName == icon.id {
@@ -27,6 +34,9 @@ func symbol(icon: Icon, selected: Binding<Icon?>, tabModel: TabModel, renderMode
                 } else {
                     systemName = icon.id
                 }
+//#endif
+                print(icon.id)
+                print(systemName)
             }
         }
         .onDrag {

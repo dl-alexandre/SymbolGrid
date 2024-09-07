@@ -1,5 +1,5 @@
 {
-  "originHash" : "c98de4d30019c358d7d57142310156f1bb7de437ea1d8a2c7438a8f7b7f0e5a6",
+  "originHash" : "ed86cab375e77fc57d7d605d9015be7d9ec2f5f859cede5425e5788e01a002a9",
   "pins" : [
     {
       "identity" : "design",
@@ -7,7 +7,7 @@
       "location" : "https://github.com/dl-alexandre/Design",
       "state" : {
         "branch" : "main",
-        "revision" : "d7b29025cc44870378c8f2e2194e6099f792145e"
+        "revision" : "4616fcb612cbd26140a15ae7b5c7421f6738779b"
       }
     },
     {
@@ -16,7 +16,7 @@
       "location" : "https://github.com/dl-alexandre/SFSymbolKit",
       "state" : {
         "branch" : "main",
-        "revision" : "ed2d2dfd428a6ce303c044bbefeb7b56403c392f"
+        "revision" : "eda4543497114a33b0cd821ad58d9714a7af0d4a"
       }
     }
   ],

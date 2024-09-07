@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C0DAAE32C87B6EC0030966E /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 5C0DAAE22C87B6EC0030966E /* Localizable.xcstrings */; };
+		5C0DAAE52C88DAD50030966E /* TitleBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0DAAE42C88DAD50030966E /* TitleBar.swift */; };
 		775651C02C10E9190013B34B /* SFSymbolKit in Frameworks */ = {isa = PBXBuildFile; productRef = 775651BF2C10E9190013B34B /* SFSymbolKit */; };
 		7783DB8D2C2B606F00F993E3 /* Design in Frameworks */ = {isa = PBXBuildFile; productRef = 7783DB8C2C2B606F00F993E3 /* Design */; };
 		778C70EA2C0CEFA800162DE1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C70E92C0CEFA800162DE1 /* ContentView.swift */; };
@@ -85,6 +87,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5C0DAAE22C87B6EC0030966E /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		5C0DAAE42C88DAD50030966E /* TitleBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleBar.swift; sourceTree = "<group>"; };
 		778C70E92C0CEFA800162DE1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		778C783B2C0A4656000CDC92 /* SymbolGrid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SymbolGrid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		778C783E2C0A4656000CDC92 /* SymbolGridApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolGridApp.swift; sourceTree = "<group>"; };
@@ -201,6 +205,7 @@
 				778C78442C0A4657000CDC92 /* Preview Content */,
 				8BDB8F4F2C1D3E6300E39D99 /* Info.plist */,
 				8BDB8F532C1D436800E39D99 /* Settings.bundle */,
+				5C0DAAE22C87B6EC0030966E /* Localizable.xcstrings */,
 			);
 			path = SymbolGrid;
 			sourceTree = "<group>";
@@ -289,6 +294,7 @@
 				778C789C2C0A5D19000CDC92 /* RemoveFavorite.swift */,
 				77CDC3D22C14D77200BF6E07 /* Favorite.swift */,
 				8B21B7432C227E39008A0518 /* Symbol.swift */,
+				5C0DAAE42C88DAD50030966E /* TitleBar.swift */,
 				8B21B7452C228100008A0518 /* SymbolContextMenu.swift */,
 				77CDC3D42C14D83400BF6E07 /* SearchBar.swift */,
 			);
@@ -437,6 +443,10 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
+				"en-GB",
+				hi,
+				de,
 			);
 			mainGroup = 778C78322C0A4656000CDC92;
 			packageReferences = (
@@ -462,6 +472,7 @@
 			files = (
 				778C78462C0A4657000CDC92 /* Preview Assets.xcassets in Resources */,
 				8BDB8F542C1D436800E39D99 /* Settings.bundle in Resources */,
+				5C0DAAE32C87B6EC0030966E /* Localizable.xcstrings in Resources */,
 				778C78432C0A4657000CDC92 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -503,6 +514,7 @@
 				778C787C2C0A46CA000CDC92 /* FavoritesView.swift in Sources */,
 				8B21B7462C228100008A0518 /* SymbolContextMenu.swift in Sources */,
 				8B9C0A5A2C1FBFC30071B640 /* DetailView.swift in Sources */,
+				5C0DAAE52C88DAD50030966E /* TitleBar.swift in Sources */,
 				8B4D0FB22C20BDC400F660BF /* SplashView.swift in Sources */,
 				778C787F2C0A46CA000CDC92 /* System.swift in Sources */,
 				8BD83BDD2C24D623000A8687 /* FavoritesHelpView.swift in Sources */,
@@ -630,6 +642,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -687,6 +700,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

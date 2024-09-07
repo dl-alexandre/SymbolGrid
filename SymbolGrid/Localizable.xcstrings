@@ -1,0 +1,743 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+
+    },
+    "[ %@ ]  close searchbar" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[ %@ ] cerrar barra de búsqueda"
+          }
+        }
+      }
+    },
+    "[ %@ ] clear search field" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[ %@ ] cerrar campo de búsqueda"
+          }
+        }
+      }
+    },
+    "**Localizations**" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Localizaciones**"
+          }
+        }
+      }
+    },
+    "%@" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
+    },
+    "%@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
+    "%@ Help" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ Ayuda"
+          }
+        }
+      }
+    },
+    "`View` shows current symbol in detail\n\n`Add` saves symbol to your favorites\n\n`weight` allows changing of symbol weight\n`render` allows changing of rendering mode\n`search` toggles the search bar" : {
+      "localizations" : {
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "`View` shows current symbol in detail\n\n`Add` saves symbol to your favourites\n\n`weight` allows changing of symbol weight\n`render` allows changing of rendering mode\n`search` toggles the search bar"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "`Vista` muestra el símbolo actual en detalle\n\n`Agregar` guarda el símbolo en tus favoritos\n\n`espesor` permite cambiar el peso del símbolo\n`render` permite cambiar el modo de renderizado\n`search` activa y desactiva la barra de búsqueda"
+          }
+        }
+      }
+    },
+    "About %@" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Acerca de %@"
+          }
+        }
+      }
+    },
+    "Add" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Agregar"
+          }
+        }
+      }
+    },
+    "Arabic" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A!rabe"
+          }
+        }
+      }
+    },
+    "Bengali" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bengalí"
+          }
+        }
+      }
+    },
+    "Burmese" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Birmano"
+          }
+        }
+      }
+    },
+    "Chinese" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chino"
+          }
+        }
+      }
+    },
+    "Clear" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Borrar"
+          }
+        }
+      }
+    },
+    "Copy" : {
+
+    },
+    "Detail" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detalle"
+          }
+        }
+      }
+    },
+    "Download SF Symbols 6 - beta" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descargar SF Symbols 6 - versión beta"
+          }
+        }
+      }
+    },
+    "Favorite" : {
+      "localizations" : {
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favourite"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorito"
+          }
+        }
+      }
+    },
+    "Favorites" : {
+      "localizations" : {
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favourites"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favoritos"
+          }
+        }
+      }
+    },
+    "Favorites you add show here" : {
+      "localizations" : {
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favourites you add show here"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Los favoritos que agregues se muestran aquí"
+          }
+        }
+      }
+    },
+    "Find your favorite symbols here" : {
+      "localizations" : {
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Find your favorite symbols here"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Encuentra tus símbolos favoritos aquí"
+          }
+        }
+      }
+    },
+    "Font" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tipo de letra"
+          }
+        }
+      }
+    },
+    "Foreground" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Primer plano"
+          }
+        }
+      }
+    },
+    "Grid" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuadrícula"
+          }
+        }
+      }
+    },
+    "Grid Size: %.2f" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tamaño de Cuadrícula: %.2f"
+          }
+        }
+      }
+    },
+    "Gujarati" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gujarati"
+          }
+        }
+      }
+    },
+    "Hebrew" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hebreo"
+          }
+        }
+      }
+    },
+    "Hindi" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hindi"
+          }
+        }
+      }
+    },
+    "Human Interface Guidlines" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pautas de Interfaz Humana"
+          }
+        }
+      }
+    },
+    "Italic" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Itálico"
+          }
+        }
+      }
+    },
+    "Japanese" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Japonés"
+          }
+        }
+      }
+    },
+    "Kannada" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Canarés"
+          }
+        }
+      }
+    },
+    "Khmer" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jemer"
+          }
+        }
+      }
+    },
+    "Korean" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coreano"
+          }
+        }
+      }
+    },
+    "Language" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lenguaje"
+          }
+        }
+      }
+    },
+    "Larger" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Más grande"
+          }
+        }
+      }
+    },
+    "Latin" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latino"
+          }
+        }
+      }
+    },
+    "Malayalam" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Malabar"
+          }
+        }
+      }
+    },
+    "Manipuri" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Manipurí"
+          }
+        }
+      }
+    },
+    "Oriya" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oriya"
+          }
+        }
+      }
+    },
+    "Punjabi" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Punjabi"
+          }
+        }
+      }
+    },
+    "Remove" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar"
+          }
+        }
+      }
+    },
+    "Render" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prestar"
+          }
+        }
+      }
+    },
+    "Render Code" : {
+
+    },
+    "Russian" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rusa"
+          }
+        }
+      }
+    },
+    "Santali" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Santali"
+          }
+        }
+      }
+    },
+    "Scale:" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escala:"
+          }
+        }
+      }
+    },
+    "Search" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buscar"
+          }
+        }
+      }
+    },
+    "Search Symbols %@" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buscar Símbolos %@"
+          }
+        }
+      }
+    },
+    "SF Symbols Info" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Información sobre los Símbolos de SF"
+          }
+        }
+      }
+    },
+    "Shadow: " : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sombra:"
+          }
+        }
+      }
+    },
+    "Show" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mira:"
+          }
+        }
+      }
+    },
+    "Size" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tamaño"
+          }
+        }
+      }
+    },
+    "Size: %.0f" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tamaño: %.0f"
+          }
+        }
+      }
+    },
+    "Smaller" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mas pequeña"
+          }
+        }
+      }
+    },
+    "Style" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estilo"
+          }
+        }
+      }
+    },
+    "Symbol" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Símbolo"
+          }
+        }
+      }
+    },
+    "SymbolGrid's Searchbar activates two buttons when focused." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La barra de búsqueda de SymbolGrid activa dos botones cuando está enfocada."
+          }
+        }
+      }
+    },
+    "Symbols" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Símbolos"
+          }
+        }
+      }
+    },
+    "Telugu" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Télugu"
+          }
+        }
+      }
+    },
+    "Thai" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tailandés"
+          }
+        }
+      }
+    },
+    "To get the most from SymbolGrid:\n`[control]+click` or `right click`\non individual [symbols](https://developer.apple.com/sf-symbols/) for a menu of options" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Para aprovechar al máximo SymbolGrid:\nhaga clic con el botón derecho o mantenga presionada la tecla [control]\nen [símbolos](https://developer.apple.com/sf-symbols/) para ver un menú de opciones"
+          }
+        }
+      }
+    },
+    "Unfavorite" : {
+      "localizations" : {
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unfavourite"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desfavorito"
+          }
+        }
+      }
+    },
+    "View" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vista"
+          }
+        }
+      }
+    },
+    "Viewing a symbol brings up a detail sheet" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Al ver un símbolo aparece una hoja de detalles."
+          }
+        }
+      }
+    },
+    "Weight" : {
+      "comment" : "used Thickness instead of Weight",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Espesor"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वज़न"
+          }
+        }
+      }
+    },
+    "Weight:" : {
+      "comment" : "used Thickness instead of Weight",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Espesor:"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वज़न:"
+          }
+        }
+      }
+    },
+    "where you can apply symbol customizations" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "wo Sie Symbolanpassungen anwenden können"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "donde puedes aplicar personalizaciones de símbolos"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "जहाँ आप सимвल कस्टमाइज़ेशन लागू कर सकते हैं"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

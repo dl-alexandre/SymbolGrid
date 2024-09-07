@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Icon: Identifiable {
+struct Icon: Identifiable, Equatable {
     var id: String
     var color = Color.random()
 }

@@ -15,31 +15,38 @@ enum Tab: String, CaseIterable {
 class TabModel: ObservableObject {
     @Published var activeTab: Tab = .home
     @Published private(set) var isTabBarAdded: Bool = false
+    
     let id: String = UUID().uuidString
+    
+    @AppStorage("favorites") private var favorites: String = "[]"
+    
 #if os(macOS)
+    private var floatingWindow: NSWindow?
+    
     func addTabBar() {
-        guard !isTabBarAdded else { return }
+        guard !isTabBarAdded, favorites != "[]" else { return }
         
         if let applicationWindow = NSApplication.shared.mainWindow {
             let customTabBar = NSHostingView(rootView: FloatingTabBarView().environmentObject(self))
-            let floatingWindow = NSWindow()
-            floatingWindow.styleMask = .borderless
-            floatingWindow.contentView = customTabBar
-            floatingWindow.backgroundColor = .clear
-            floatingWindow.title = id
+            floatingWindow = NSWindow()
+            floatingWindow?.styleMask = .borderless
+            floatingWindow?.contentView = customTabBar
+            floatingWindow?.backgroundColor = .clear
+            floatingWindow?.title = id
             let windowSize = applicationWindow.frame.size
             let windowOrigin = applicationWindow.frame.origin
             
-            floatingWindow.setFrameOrigin(.init(x: windowOrigin.x - 45, y: windowOrigin.y + (windowSize.height - 150) / 2))
+            floatingWindow?.setFrameOrigin(.init(x: windowOrigin.x - 45, y: windowOrigin.y + (windowSize.height - 150) / 2))
             
-            applicationWindow.addChildWindow(floatingWindow, ordered: .above)
+            applicationWindow.addChildWindow(floatingWindow!, ordered: .above)
+            isTabBarAdded = true
         } else {
             print("No Window Found")
         }
     }
     
     func updateTabPosition() {
-        if let floatingWindow = NSApplication.shared.windows.first(where: { $0.title == id }), let applicationWindow = NSApplication.shared.mainWindow {
+        if let floatingWindow = floatingWindow, let applicationWindow = NSApplication.shared.mainWindow {
             let windowSize = applicationWindow.frame.size
             let windowOrigin = applicationWindow.frame.origin
             
@@ -83,8 +90,9 @@ class TabModel: ObservableObject {
             .contentShape(.capsule)
         }
     }
-    #endif
+#endif
 }
+
 
 #if os(macOS)
 struct HideTabBar: NSViewRepresentable {

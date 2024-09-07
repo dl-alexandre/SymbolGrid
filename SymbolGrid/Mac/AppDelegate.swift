@@ -9,6 +9,7 @@
 import SwiftUI
 #if os(macOS)
 import AppKit
+import Design
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     private var aboutBoxWindowController: NSWindowController?

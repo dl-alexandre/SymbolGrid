@@ -10,6 +10,8 @@ import Design
 import SFSymbolKit
 
 struct FavoritesView: View {
+    
+    
     var body: some View {
         let icons: [Icon] = searchResults.map { symbolName in
             Icon(id: symbolName)
@@ -32,88 +34,77 @@ struct FavoritesView: View {
                     }
                 }
             } else {
-                ScrollView {
-                    LazyVGrid(columns: columns, spacing: spacing) {
-                        ForEach(icons) { icon in
-                            favorite(icon: icon, font: dynamicFont, isCopied: $isCopied, selected: $selected, tabModel: tabModel)
-                                .onChange(of: dynamicFont) {
-                                    print(dynamicFont)
-                                }
-                                .environmentObject(tabModel)
-                        }
+                List {
+                    ForEach(icons) { icon in
+                        favorite(icon: icon, font: dynamicFont, isCopied: $isCopied, selected: $selected, tabModel: tabModel)
                         
                     }
                     
-                    .offset(x: 0, y: showingTitle ? fontSize * 3: 20)
-                    Rectangle().frame(height: fontSize * 3).foregroundColor(.clear)
+                }
+                .offset(x: 0, y: showingTitle ? fontSize * 3: 20)
 #if os(iOS)
-                        .navigationBarTitleDisplayMode(.inline)
+                .navigationBarTitleDisplayMode(.inline)
 #endif
-                    
-                        .toolbar {
-                            ToolbarItem(placement: .principal) {
-                                copyNotification(isCopied: $isCopied, icon: $systemName)
-                            }
-                            ToolbarItem(placement: .secondaryAction) {
-                                if tabModel.activeTab == .favorites {
-                                    Menu {
-                                        
-                                        Menu {
-                                            ForEach(SF.allCases, id: \.self) { font in
-                                                Button {
-                                                    selectedFont = font
-                                                } label: {
-                                                    Text(font.name)
-                                                }
-                                            }
+                
+                .toolbar {
+                    ToolbarItem(placement: .principal) {
+                        copyNotification(isCopied: $isCopied, icon: $systemName)
+                    }
+                    ToolbarItem(placement: .secondaryAction) {
+                        if tabModel.activeTab == .favorites {
+                            Menu {
+                                
+                                Menu {
+                                    ForEach(SF.allCases, id: \.self) { font in
+                                        Button {
+                                            selectedFont = font
                                         } label: {
-                                            Text("Font")
+                                            Text(font.name)
                                         }
-                                        Menu {
-                                            ForEach(Style.allCases, id: \.self) { style in
-                                                Button {
-                                                    selectedStyle = style
-                                                } label: {
-                                                    Text(style.name)
-                                                }
-                                            }
-                                        } label: {
-                                            Text("Style")
-                                        }
-                                        Menu {
-                                            ForEach(FontWeights.allCases, id: \.self) { weight in
-                                                Button {
-                                                    selectedWeight = weight
-                                                    
-                                                } label: {
-                                                    Text(weight.name)
-                                                }
-                                            }
-                                        } label: {
-                                            Text("Weight")
-                                        }
-                                        Toggle("Italic", isOn: $italic)
-                                            .disabled(fontWithoutItalics.contains(baseFontName))
-                                    } label: {
-                                        Label("\(FontName)", systemImage: "abc")
-                                            .padding()
                                     }
+                                } label: {
+                                    Text("Font")
                                 }
+                                Menu {
+                                    ForEach(Style.allCases, id: \.self) { style in
+                                        Button {
+                                            selectedStyle = style
+                                        } label: {
+                                            Text(style.name)
+                                        }
+                                    }
+                                } label: {
+                                    Text("Style")
+                                }
+                                Menu {
+                                    ForEach(FontWeights.allCases, id: \.self) { weight in
+                                        Button {
+                                            selectedWeight = weight
+                                            
+                                        } label: {
+                                            Text(weight.name)
+                                        }
+                                    }
+                                } label: {
+                                    Text("Weight")
+                                }
+                                Toggle("Italic", isOn: $italic)
+                                    .disabled(fontWithoutItalics.contains(baseFontName))
+                            } label: {
+                                Label("\(FontName)", systemImage: "abc")
+                                    .padding()
                             }
                         }
-                    
-                }.padding()
-                
-                
-                    .sheet(item: $selected) { icon in
-                        DetailView(icon: icon, animation: animation, color: icon.color)
-                            .presentationDetents([.medium])
                     }
-                
+                }
+                .sheet(item: $selected) { icon in
+                    DetailView(icon: icon, animation: animation, color: icon.color)
+                        .presentationDetents([.medium])
+                }
             }
-//            if showingSearch {
-//                searchBar(text: $searchText, focus: $searchField, showingSearch: $showingSearch)
-//            }
+            if showingSearch {
+                searchBar(text: $searchText, focus: $searchField, showingSearch: $showingSearch)
+            }
             if showingTitle {
                 customTitleBar("Favorites")
             }
@@ -133,34 +124,7 @@ struct FavoritesView: View {
         .edgesIgnoringSafeArea(.all)
     }
     
-    @ViewBuilder
-    func customTitleBar(_ label: String) -> some View {
-        VStack {
-            Capsule()
-                .fill(.ultraThinMaterial)
-                .frame(maxWidth: .infinity, maxHeight: 40, alignment: .trailing)
-                .shadow(color: .white, radius: 1, x: -2, y: -2)
-                .shadow(color: .gray, radius: 1, x: 2, y: 2)
-                .overlay {
-                    Text(label)
-                        .font(.largeTitle)
-                        .foregroundColor(.gray)
-                        .bold()
-                        .padding()
-                    
-                }
-                .defaultScrollAnchor(.trailing)
-                .frame(maxWidth: .infinity, alignment: .trailing)
-                .padding()
-                .onTapGesture(count: 1) {
-                    withAnimation(.spring()) {
-                        showingTitle = true
-                    }
-                }
-        }
-        .frame(maxHeight: .infinity, alignment: .top)
-        .offset(y: fontSize + 20)
-    }
+    
     
     @EnvironmentObject private var tabModel: TabModel
     @AppStorage("symbol_arabic") private var arabicSetting = false
@@ -264,6 +228,3 @@ struct FavoritesView: View {
         fontSize * 0.1
     }
 }
-
-
-

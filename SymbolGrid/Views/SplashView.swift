@@ -21,6 +21,7 @@ struct SplashView: View {
                     LazyVGrid(columns: columns, spacing: spacing) {
                         ForEach(limitedIcons) { icon in
                             Image(systemName: icon.id)
+                                .padding(8)
 //                                .symbolRenderingMode(renderMode.mode)
                                 .font(.system(size: fontSize, weight: fontWeight.weight))
                                 .symbolEffect(.breathe.byLayer.pulse)

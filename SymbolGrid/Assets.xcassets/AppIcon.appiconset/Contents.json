@@ -7,9 +7,27 @@
       "size" : "1024x1024"
     },
     {
-      "filename" : "SymbolGridIcon 1.png",
-      "idiom" : "ios-marketing",
-      "scale" : "1x",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "SymbolGridLogoDark.png",
+      "idiom" : "universal",
+      "platform" : "ios",
+      "size" : "1024x1024"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "tinted"
+        }
+      ],
+      "filename" : "SymbolGridLogoTinted.png",
+      "idiom" : "universal",
+      "platform" : "ios",
       "size" : "1024x1024"
     },
     {
@@ -43,10 +61,16 @@
       "size" : "128x128"
     },
     {
-      "filename" : "SymbolGridIcon 4.png",
+      "filename" : "SymbolGridIcon 5.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "128x128"
+    },
+    {
+      "filename" : "SymbolGridIcon 4.png",
+      "idiom" : "mac",
+      "scale" : "1x",
+      "size" : "256x256"
     },
     {
       "filename" : "SymbolGridIcon 3.png",
@@ -55,7 +79,7 @@
       "size" : "256x256"
     },
     {
-      "filename" : "SymbolGridIcon 5.png",
+      "filename" : "SymbolGridIcon 11.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "512x512"

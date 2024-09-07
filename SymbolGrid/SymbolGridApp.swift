@@ -12,7 +12,6 @@ import SFSymbolKit
 struct SymbolGridApp: App {
     
     init() {
-        FontRegister.load()
         registerDefaultsFromSettingsBundle()
     }
     
