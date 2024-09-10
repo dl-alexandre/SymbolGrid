@@ -35,6 +35,7 @@ struct DetailView: View {
         GeometryReader { geo in
             ZStack {
                 Image(systemName: icon.id)
+                    .textSelection(.enabled)
                     .font(.system(size: fontSize, weight: selectedWeight.weight))
                     .imageScale(selectedScale.scale)
                     .foregroundStyle(color.gradient)

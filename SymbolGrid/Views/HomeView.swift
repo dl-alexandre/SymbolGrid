@@ -20,22 +20,24 @@ struct HomeView: View {
                 iconLabel(icon: systemName)
             }
 #endif
-            if showingWeight {
-                weightPicker()
-            }
-            if showingRender {
-                renderingPicker()
-            }
+//            if showingWeight {
+//                weightPicker(selectedWeight: $selectedWeight)
+//            }
+//            if showingRender {
+//                renderingPicker()
+//            }
         }
         .edgesIgnoringSafeArea(.all)
     }
-    @AppStorage("showingRender") var showingRender = false
-    @AppStorage("showingWeight") var showingWeight = false
+//    @AppStorage("showingRender") var showingRender = false
+//    @AppStorage("showingWeight") var showingWeight = false
     @AppStorage("showingCanvas") var showingCanvas = false
     @AppStorage("canvasIcon") var canvasIcon = ""
     @AppStorage("fontSize") var fontSize = 50.0
     @AppStorage("systemName") var systemName = ""
-    
+
+    @FocusState public var isSearchFieldFocused: Bool
+
     @State private var isTapped: Bool = false
     @State private var isLoading: Bool = true
     @State private var needsNewJSON: Bool = false
@@ -45,71 +47,7 @@ struct HomeView: View {
     @State private var tapLocation: CGPoint = .zero
     
     var symbols: [String]
-    
-    @ViewBuilder
-    func renderingPicker() -> some View {
-        VStack {
-            Spacer()
-            Spacer()
-            Spacer()
-            Picker("", selection: $selectedSample) {
-                ForEach(RenderModes.allCases, id: \.self) { sample in
-                    Capsule()
-                        .overlay {
-                            Text(sample.name)
-                                .font(.headline)
-                        }
-                        .tag(sample)
-                }
-            }
-            .frame(maxWidth: .infinity, maxHeight: 40, alignment: .trailing)
-            .background(.secondary)
-            .cornerRadius(9)
-            .pickerStyle(SegmentedPickerStyle())
-            Spacer()
-        }
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-                withAnimation {
-                    showingRender = false
-                }
-            }
-        }
-    }
-    
-    @ViewBuilder
-    func weightPicker() -> some View {
-        VStack {
-            Spacer()
-            Spacer()
-            Picker("", selection: $selectedWeight) {
-                ForEach(FontWeights.allCases, id: \.self) { weight in
-                    Text(weight.name)
-                        .font(.title)
-                        .fontWeight(weight.weight)
-                        .tag(weight)
-                }
-            }
-            .frame(maxWidth: .infinity, maxHeight: 120, alignment: .trailing)
-            .foregroundColor(.primary)
-            .background(.quaternary)
-            .cornerRadius(9)
-#if os(iOS)
-            .pickerStyle(WheelPickerStyle())
-#else
-            .pickerStyle(SegmentedPickerStyle())
-#endif
-            Spacer()
-        }
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-                withAnimation {
-                    showingWeight = false
-                }
-            }
-        }
-    }
-    
+
     @ViewBuilder
     func iconLabel(icon: String) -> some View {
         VStack {
@@ -172,5 +110,6 @@ struct HomeView: View {
     @Previewable var system = System()
     @Previewable var fw: FontWeights = .regular
     @Previewable var rm: RenderModes = .monochrome
-    HomeView(symbols: System().symbols).environmentObject(tabModel)
+    @Previewable @FocusState var fs: Bool
+    HomeView(isSearchFieldFocused: _fs, symbols: System().symbols).environmentObject(tabModel)
 }

@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		5C0DAAE32C87B6EC0030966E /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 5C0DAAE22C87B6EC0030966E /* Localizable.xcstrings */; };
 		5C0DAAE52C88DAD50030966E /* TitleBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0DAAE42C88DAD50030966E /* TitleBar.swift */; };
+		5CB253EE2C90E9D6006744C2 /* MenuSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB253ED2C90E9D6006744C2 /* MenuSheet.swift */; };
+		5CB253F02C90EBDF006744C2 /* weightPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB253EF2C90EBDF006744C2 /* weightPicker.swift */; };
+		5CB253F22C90ED61006744C2 /* renderPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB253F12C90ED61006744C2 /* renderPicker.swift */; };
 		775651C02C10E9190013B34B /* SFSymbolKit in Frameworks */ = {isa = PBXBuildFile; productRef = 775651BF2C10E9190013B34B /* SFSymbolKit */; };
 		7783DB8D2C2B606F00F993E3 /* Design in Frameworks */ = {isa = PBXBuildFile; productRef = 7783DB8C2C2B606F00F993E3 /* Design */; };
 		778C70EA2C0CEFA800162DE1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C70E92C0CEFA800162DE1 /* ContentView.swift */; };
@@ -89,6 +92,9 @@
 /* Begin PBXFileReference section */
 		5C0DAAE22C87B6EC0030966E /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		5C0DAAE42C88DAD50030966E /* TitleBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleBar.swift; sourceTree = "<group>"; };
+		5CB253ED2C90E9D6006744C2 /* MenuSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSheet.swift; sourceTree = "<group>"; };
+		5CB253EF2C90EBDF006744C2 /* weightPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weightPicker.swift; sourceTree = "<group>"; };
+		5CB253F12C90ED61006744C2 /* renderPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = renderPicker.swift; sourceTree = "<group>"; };
 		778C70E92C0CEFA800162DE1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		778C783B2C0A4656000CDC92 /* SymbolGrid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SymbolGrid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		778C783E2C0A4656000CDC92 /* SymbolGridApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolGridApp.swift; sourceTree = "<group>"; };
@@ -239,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				778C70E92C0CEFA800162DE1 /* ContentView.swift */,
+				5CB253ED2C90E9D6006744C2 /* MenuSheet.swift */,
 				8B4D0FB12C20BDC400F660BF /* SplashView.swift */,
 				778C78742C0A46CA000CDC92 /* HomeView.swift */,
 				8B36CCD32C1EA3B900AFB088 /* SymbolView.swift */,
@@ -290,6 +297,8 @@
 		778C78992C0A5CE2000CDC92 /* Functions */ = {
 			isa = PBXGroup;
 			children = (
+				5CB253F12C90ED61006744C2 /* renderPicker.swift */,
+				5CB253EF2C90EBDF006744C2 /* weightPicker.swift */,
 				778C789A2C0A5CFA000CDC92 /* AddFavorite.swift */,
 				778C789C2C0A5D19000CDC92 /* RemoveFavorite.swift */,
 				77CDC3D22C14D77200BF6E07 /* Favorite.swift */,
@@ -510,8 +519,10 @@
 				77CDC3CF2C14D5C700BF6E07 /* Focus.swift in Sources */,
 				8B64524A2C24AA8100D49B66 /* HelpView.swift in Sources */,
 				8B9C0A582C1FBF8C0071B640 /* Icon.swift in Sources */,
+				5CB253EE2C90E9D6006744C2 /* MenuSheet.swift in Sources */,
 				778C78862C0A46D4000CDC92 /* SettingsView.swift in Sources */,
 				778C787C2C0A46CA000CDC92 /* FavoritesView.swift in Sources */,
+				5CB253F22C90ED61006744C2 /* renderPicker.swift in Sources */,
 				8B21B7462C228100008A0518 /* SymbolContextMenu.swift in Sources */,
 				8B9C0A5A2C1FBFC30071B640 /* DetailView.swift in Sources */,
 				5C0DAAE52C88DAD50030966E /* TitleBar.swift in Sources */,
@@ -529,6 +540,7 @@
 				778C70EA2C0CEFA800162DE1 /* ContentView.swift in Sources */,
 				8B6452522C24D49500D49B66 /* DetailHelpView.swift in Sources */,
 				778C789D2C0A5D19000CDC92 /* RemoveFavorite.swift in Sources */,
+				5CB253F02C90EBDF006744C2 /* weightPicker.swift in Sources */,
 				8B6452502C24BBA600D49B66 /* GridHelpView.swift in Sources */,
 				778C783F2C0A4656000CDC92 /* SymbolGridApp.swift in Sources */,
 				778C78842C0A46D4000CDC92 /* FontSizeSetting.swift in Sources */,
@@ -713,7 +725,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = SymbolGrid/SymbolGrid.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"SymbolGrid/Preview Content\"";
 				DEVELOPMENT_TEAM = 2MP8QWK7R6;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -756,7 +768,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = SymbolGrid/SymbolGrid.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"SymbolGrid/Preview Content\"";
 				DEVELOPMENT_TEAM = 2MP8QWK7R6;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -889,7 +901,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = 2MP8QWK7R6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Search/Info.plist;
@@ -902,7 +914,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 3.5.0;
+				MARKETING_VERSION = 3.5.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamilyfarm.symbols.Search;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -920,7 +932,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = 2MP8QWK7R6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Search/Info.plist;
@@ -933,7 +945,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 3.5.0;
+				MARKETING_VERSION = 3.5.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamilyfarm.symbols.Search;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;

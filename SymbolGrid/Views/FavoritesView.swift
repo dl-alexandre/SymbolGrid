@@ -50,52 +50,6 @@ struct FavoritesView: View {
                     ToolbarItem(placement: .principal) {
                         copyNotification(isCopied: $isCopied, icon: $systemName)
                     }
-//                    ToolbarItem(placement: .secondaryAction) {
-//                        if tabModel.activeTab == .favorites {
-//                            Menu {
-//                                
-//                                Menu {
-//                                    ForEach(SF.allCases, id: \.self) { font in
-//                                        Button {
-//                                            selectedFont = font
-//                                        } label: {
-//                                            Text(font.name)
-//                                        }
-//                                    }
-//                                } label: {
-//                                    Text("Font")
-//                                }
-//                                Menu {
-//                                    ForEach(Style.allCases, id: \.self) { style in
-//                                        Button {
-//                                            selectedStyle = style
-//                                        } label: {
-//                                            Text(style.name)
-//                                        }
-//                                    }
-//                                } label: {
-//                                    Text("Style")
-//                                }
-//                                Menu {
-//                                    ForEach(FontWeights.allCases, id: \.self) { weight in
-//                                        Button {
-//                                            selectedWeight = weight
-//                                            
-//                                        } label: {
-//                                            Text(weight.name)
-//                                        }
-//                                    }
-//                                } label: {
-//                                    Text("Weight")
-//                                }
-//                                Toggle("Italic", isOn: $italic)
-//                                    .disabled(fontWithoutItalics.contains(baseFontName))
-//                            } label: {
-//                                Label("\(FontName)", systemImage: "abc")
-//                                    .padding()
-//                            }
-//                        }
-//                    }
                 }
                 .sheet(item: $selected) { icon in
                     DetailView(icon: icon, animation: animation, color: icon.color)
@@ -103,7 +57,7 @@ struct FavoritesView: View {
                 }
             }
             if showingSearch {
-                searchBar(text: $searchText, focus: $searchField, showingSearch: $showingSearch)
+                searchBar(text: $searchText, focus: $searchField, isSearchFieldFocused: $isSearchFieldFocused, showingSearch: $showingSearch)
             }
             if showingTitle {
                 customTitleBar("Favorites")
@@ -154,6 +108,7 @@ struct FavoritesView: View {
     @AppStorage("fontSize") var fontSize = 50.0
     @AppStorage("systemName") var systemName = ""
     @FocusState private var searchField: Field?
+    @FocusState private var isSearchFieldFocused: Bool
     @Namespace var animation
     @Binding public var renderMode: RenderModes
     @Binding public var fontWeight: FontWeights
@@ -199,24 +154,6 @@ struct FavoritesView: View {
             return true // Include the key if none of the above conditions are met and searchText is empty
         }
     }
-    
-//    let fontWithoutItalics = [
-//        "SFCompactRounded",
-//        "SFCompactDisplay"
-//    ]
-    
-//    var baseFontName: String {
-//        "SF\(selectedFont)\(selectedStyle)"
-//    }
-    
-//    var FontName: String {
-//        let FontName = "\(baseFontName)-\(selectedWeight)"
-//        return italic ? "\(FontName)Italic" : FontName
-//    }
-    
-//    var dynamicFont: Font {
-//        return .custom(FontName, size: fontSize/2)
-//    }
     
     private var columns: [GridItem] {
         [GridItem(.flexible())]

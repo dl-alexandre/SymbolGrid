@@ -64,12 +64,16 @@ struct SymbolView: View {
     
     @Namespace var animation
     @State private var selected: Icon?
-    
+    @State private var detailIcon: Icon?
+
     @Binding public var renderMode: RenderModes
     @Binding public var fontWeight: FontWeights
-    
+    @FocusState public var isSearchFieldFocused: Bool
+
     @State private var position = ScrollPosition(edge: .top)
-    
+
+    @State private var showSheet = false
+
     var body: some View {
         let icons: [Icon] = searchResults.map { symbolName in
             Icon(id: symbolName)
@@ -80,34 +84,37 @@ struct SymbolView: View {
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: spacing) {
                         ForEach(icons) { icon in
-                            symbol(icon: icon, selected: $selected, tabModel: tabModel, renderMode: $renderMode, fontWeight: $fontWeight)
+                            symbol(icon: icon, selected: $selected, tabModel: tabModel, renderMode: $renderMode, fontWeight: $fontWeight, showSheet: $showSheet)
                                 .padding(8)
                                 .matchedTransitionSource(id: icon.id, in: animation)
+                                .onTapGesture {
+                                    selected  = icon
+                                    showSheet = true
+                                }
                         }
                     }.offset(x: 0, y: searchText.isEmpty ? 0: (fontSize * 3))
                 }
                 .scrollPosition($position)
-//                .inspector(isPresented: .constant(true)) {
-//                    Text("Hello")
-//#if os(macOS)
-//                        .frame(minWidth: geo.size.width * 0.25, minHeight: geo.size.height * 0.50)
-//                    
-//#endif
-//                        .presentationDetents([.medium])
-//                }
+
                 #if os(iOS)
-                .sheet(item: $selected) { icon in
-                    DetailView(icon: icon, animation: animation, color: icon.color)
+                .sheet(isPresented: $showSheet) {
+                    if let selectedIcon = selected {
+                        MenuSheet(icon: selectedIcon, detailIcon: $detailIcon, selectedWeight: $fontWeight, selectedSample: $renderMode)
+                            .presentationBackgroundInteraction(.enabled)
 #if os(macOS)
-                        .frame(minWidth: geo.size.width * 0.25, minHeight: geo.size.height * 0.50)
-                        
+                            .frame(minWidth: geo.size.width * 0.25, minHeight: geo.size.height * 0.50)
+
 #endif
-                        .presentationDetents([.medium])
+                            .presentationDetents([.height(geo.size.height / 4), .medium])
+                            .sheet(item: $detailIcon) { icon in
+                                DetailView(icon: icon, animation: animation, color: icon.color)
+                                    .presentationDetents([.medium])
+                            }
+                    }
                 }
                 #endif
             }
             if showingTitle {
-//                customTitleBar("Symbols")
                 if let selectedIcon = selected {
                     customTitleBar("\(selectedIcon.id)")
                         .padding()
@@ -118,9 +125,6 @@ struct SymbolView: View {
                             #endif
                         }
                 }
-                
-            }
-            if showingCanvas {
                 
             }
         }

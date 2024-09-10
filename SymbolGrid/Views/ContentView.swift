@@ -54,7 +54,10 @@ struct ContentView: View {
             .tabViewStyle(DefaultTabViewStyle())
 #endif
             if showingSearch {
-                searchBar(text: $searchText, focus: $searchField, showingSearch: $showingSearch)
+                searchBar(text: $searchText, focus: $searchField, isSearchFieldFocused: $isSearchFieldFocused, showingSearch: $showingSearch)
+                    .onAppear {
+                        $isSearchFieldFocused.wrappedValue = true
+                    }
 #if os(iOS)
                     .keyboardAdaptive()
                     .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)) { _ in
@@ -80,6 +83,7 @@ struct ContentView: View {
     
     @AppStorage("showingSearch") var showingSearch = false
     @AppStorage("searchText") var searchText = ""
+    @FocusState private var isSearchFieldFocused: Bool
     @FocusState private var searchField: Field?
 }
 
