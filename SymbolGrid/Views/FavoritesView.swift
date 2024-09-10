@@ -36,7 +36,7 @@ struct FavoritesView: View {
             } else {
                 List {
                     ForEach(icons) { icon in
-                        favorite(icon: icon, font: dynamicFont, isCopied: $isCopied, selected: $selected, tabModel: tabModel)
+                        favorite(icon: icon, /*font: dynamicFont,*/ isCopied: $isCopied, selected: $selected, tabModel: tabModel)
                         
                     }
                     
@@ -50,52 +50,52 @@ struct FavoritesView: View {
                     ToolbarItem(placement: .principal) {
                         copyNotification(isCopied: $isCopied, icon: $systemName)
                     }
-                    ToolbarItem(placement: .secondaryAction) {
-                        if tabModel.activeTab == .favorites {
-                            Menu {
-                                
-                                Menu {
-                                    ForEach(SF.allCases, id: \.self) { font in
-                                        Button {
-                                            selectedFont = font
-                                        } label: {
-                                            Text(font.name)
-                                        }
-                                    }
-                                } label: {
-                                    Text("Font")
-                                }
-                                Menu {
-                                    ForEach(Style.allCases, id: \.self) { style in
-                                        Button {
-                                            selectedStyle = style
-                                        } label: {
-                                            Text(style.name)
-                                        }
-                                    }
-                                } label: {
-                                    Text("Style")
-                                }
-                                Menu {
-                                    ForEach(FontWeights.allCases, id: \.self) { weight in
-                                        Button {
-                                            selectedWeight = weight
-                                            
-                                        } label: {
-                                            Text(weight.name)
-                                        }
-                                    }
-                                } label: {
-                                    Text("Weight")
-                                }
-                                Toggle("Italic", isOn: $italic)
-                                    .disabled(fontWithoutItalics.contains(baseFontName))
-                            } label: {
-                                Label("\(FontName)", systemImage: "abc")
-                                    .padding()
-                            }
-                        }
-                    }
+//                    ToolbarItem(placement: .secondaryAction) {
+//                        if tabModel.activeTab == .favorites {
+//                            Menu {
+//                                
+//                                Menu {
+//                                    ForEach(SF.allCases, id: \.self) { font in
+//                                        Button {
+//                                            selectedFont = font
+//                                        } label: {
+//                                            Text(font.name)
+//                                        }
+//                                    }
+//                                } label: {
+//                                    Text("Font")
+//                                }
+//                                Menu {
+//                                    ForEach(Style.allCases, id: \.self) { style in
+//                                        Button {
+//                                            selectedStyle = style
+//                                        } label: {
+//                                            Text(style.name)
+//                                        }
+//                                    }
+//                                } label: {
+//                                    Text("Style")
+//                                }
+//                                Menu {
+//                                    ForEach(FontWeights.allCases, id: \.self) { weight in
+//                                        Button {
+//                                            selectedWeight = weight
+//                                            
+//                                        } label: {
+//                                            Text(weight.name)
+//                                        }
+//                                    }
+//                                } label: {
+//                                    Text("Weight")
+//                                }
+//                                Toggle("Italic", isOn: $italic)
+//                                    .disabled(fontWithoutItalics.contains(baseFontName))
+//                            } label: {
+//                                Label("\(FontName)", systemImage: "abc")
+//                                    .padding()
+//                            }
+//                        }
+//                    }
                 }
                 .sheet(item: $selected) { icon in
                     DetailView(icon: icon, animation: animation, color: icon.color)
@@ -159,8 +159,6 @@ struct FavoritesView: View {
     @Binding public var fontWeight: FontWeights
     @State private var selected: Icon?
     @State private var selectedFontWeight = FontWeights.medium
-    @State private var selectedFont: SF = .pro
-    @State private var selectedStyle: Style = .text
     @State private var selectedWeight: FontWeights = .regular
     @State private var italic = false
     @State private var isCopied = false
@@ -202,23 +200,23 @@ struct FavoritesView: View {
         }
     }
     
-    let fontWithoutItalics = [
-        "SFCompactRounded",
-        "SFCompactDisplay"
-    ]
+//    let fontWithoutItalics = [
+//        "SFCompactRounded",
+//        "SFCompactDisplay"
+//    ]
     
-    var baseFontName: String {
-        "SF\(selectedFont)\(selectedStyle)"
-    }
+//    var baseFontName: String {
+//        "SF\(selectedFont)\(selectedStyle)"
+//    }
     
-    var FontName: String {
-        let FontName = "\(baseFontName)-\(selectedWeight)"
-        return italic ? "\(FontName)Italic" : FontName
-    }
+//    var FontName: String {
+//        let FontName = "\(baseFontName)-\(selectedWeight)"
+//        return italic ? "\(FontName)Italic" : FontName
+//    }
     
-    var dynamicFont: Font {
-        return .custom(FontName, size: fontSize/2)
-    }
+//    var dynamicFont: Font {
+//        return .custom(FontName, size: fontSize/2)
+//    }
     
     private var columns: [GridItem] {
         [GridItem(.flexible())]

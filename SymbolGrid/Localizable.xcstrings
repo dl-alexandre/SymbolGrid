@@ -244,6 +244,7 @@
       }
     },
     "Font" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -324,6 +325,7 @@
       }
     },
     "Italic" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -463,9 +465,6 @@
         }
       }
     },
-    "Render Code" : {
-
-    },
     "Russian" : {
       "localizations" : {
         "es" : {
@@ -577,6 +576,7 @@
       }
     },
     "Style" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {

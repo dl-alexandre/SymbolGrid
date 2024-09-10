@@ -105,29 +105,29 @@ struct DetailView: View {
                                 }
 #endif
                             }
-                            Button {
-                                let hex = icon.color.description.trimmingCharacters(in: CharacterSet(charactersIn: "#"))
-                                let scanner = Scanner(string: hex)
-                                var rgbValue: UInt64 = 0
-                                scanner.scanHexInt64(&rgbValue)
-                                
-                                print(
-"""
-                Image(systemName: "\(icon.id)")
-                    .font(.system(size: \(fontSize), weight: .\(selectedWeight.name)))
-                    .imageScale(.\(selectedScale.scale))
-                    .foregroundStyle(Color(#colorLiteral(
-                                            red: \(Double((rgbValue & 0xFF0000) >> 16)) / 255.0, 
-                                            green: \(Double((rgbValue & 0x00FF00) >> 8)) / 255.0, 
-                                            blue: \(Double(rgbValue & 0x0000FF)) / 255.0, 
-                                            alpha: \(Double((rgbValue & 0xFF000000) >> 24)) / 255.0)))
-                    .shadow(color: Color(\(shadow)), radius: 3, x: \(offset.width), y: \(offset.height) - 10)
-
-"""
-                                )
-                            } label: {
-                                Text("Render Code").bold()
-                            }.buttonStyle(BorderedProminentButtonStyle()).padding()
+//                            Button {
+//                                let hex = icon.color.description.trimmingCharacters(in: CharacterSet(charactersIn: "#"))
+//                                let scanner = Scanner(string: hex)
+//                                var rgbValue: UInt64 = 0
+//                                scanner.scanHexInt64(&rgbValue)
+//                                
+//                                print(
+//"""
+//                Image(systemName: "\(icon.id)")
+//                    .font(.system(size: \(fontSize), weight: .\(selectedWeight.name)))
+//                    .imageScale(.\(selectedScale.scale))
+//                    .foregroundStyle(Color(#colorLiteral(
+//                                            red: \(Double((rgbValue & 0xFF0000) >> 16)) / 255.0, 
+//                                            green: \(Double((rgbValue & 0x00FF00) >> 8)) / 255.0, 
+//                                            blue: \(Double(rgbValue & 0x0000FF)) / 255.0, 
+//                                            alpha: \(Double((rgbValue & 0xFF000000) >> 24)) / 255.0)))
+//                    .shadow(color: Color(\(shadow)), radius: 3, x: \(offset.width), y: \(offset.height) - 10)
+//
+//"""
+//                                )
+//                            } label: {
+//                                Text("Render Code").bold()
+//                            }.buttonStyle(BorderedProminentButtonStyle()).padding()
                         }
                     }
                     .frame(maxWidth: geo.size.width, maxHeight: geo.size.height/3, alignment: .bottom)
