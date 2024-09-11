@@ -10,13 +10,13 @@ import SFSymbolKit
 
 @main
 struct SymbolGridApp: App {
-    
+
     init() {
         registerDefaultsFromSettingsBundle()
     }
-    
+
     @StateObject private var tabModel: TabModel = .init()
-    
+
     var body: some Scene {
         WindowGroup {
             ContentView().environmentObject(tabModel)
@@ -48,5 +48,5 @@ func registerDefaultsFromSettingsBundle() {
             }
         }
     }
-    
+
 }

@@ -15,17 +15,17 @@ enum Tab: String, CaseIterable {
 class TabModel: ObservableObject {
     @Published var activeTab: Tab = .home
     @Published private(set) var isTabBarAdded: Bool = false
-    
+
     let id: String = UUID().uuidString
-    
+
     @AppStorage("favorites") private var favorites: String = "[]"
-    
+
 #if os(macOS)
     private var floatingWindow: NSWindow?
-    
+
     func addTabBar() {
         guard !isTabBarAdded, favorites != "[]" else { return }
-        
+
         if let applicationWindow = NSApplication.shared.mainWindow {
             let customTabBar = NSHostingView(rootView: FloatingTabBarView().environmentObject(self))
             floatingWindow = NSWindow()
@@ -35,25 +35,36 @@ class TabModel: ObservableObject {
             floatingWindow?.title = id
             let windowSize = applicationWindow.frame.size
             let windowOrigin = applicationWindow.frame.origin
-            
-            floatingWindow?.setFrameOrigin(.init(x: windowOrigin.x - 45, y: windowOrigin.y + (windowSize.height - 150) / 2))
-            
+
+            floatingWindow?.setFrameOrigin(
+                .init(
+                    x: windowOrigin.x - 45,
+                    y: windowOrigin.y + (windowSize.height - 150) / 2
+                )
+            )
+
             applicationWindow.addChildWindow(floatingWindow!, ordered: .above)
             isTabBarAdded = true
         } else {
             print("No Window Found")
         }
     }
-    
+
     func updateTabPosition() {
-        if let floatingWindow = floatingWindow, let applicationWindow = NSApplication.shared.mainWindow {
+        if let floatingWindow = floatingWindow,
+            let applicationWindow = NSApplication.shared.mainWindow {
             let windowSize = applicationWindow.frame.size
             let windowOrigin = applicationWindow.frame.origin
-            
-            floatingWindow.setFrameOrigin(.init(x: windowOrigin.x - 50, y: windowOrigin.y + (windowSize.height - 90) / 2))
+
+            floatingWindow.setFrameOrigin(
+                .init(
+                    x: windowOrigin.x - 50,
+                    y: windowOrigin.y + (windowSize.height - 90) / 2
+                )
+            )
         }
     }
-    
+
     fileprivate struct FloatingTabBarView: View {
         @EnvironmentObject private var tabModel: TabModel
         @Environment(\.colorScheme) private var colorScheme
@@ -67,7 +78,11 @@ class TabModel: ObservableObject {
                     } label: {
                         Image(systemName: tab.rawValue)
                             .font(.title3)
-                            .foregroundStyle(tabModel.activeTab == tab ? (colorScheme == .dark ? .black : .white) : .primary)
+                            .foregroundStyle(
+                                tabModel.activeTab == tab ? (
+                                    colorScheme == .dark ? .black : .white
+                                ) : .primary
+                            )
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                             .background {
                                 if tabModel.activeTab == tab {
@@ -93,24 +108,21 @@ class TabModel: ObservableObject {
 #endif
 }
 
-
 #if os(macOS)
 struct HideTabBar: NSViewRepresentable {
     func makeNSView(context: Context) -> NSView {
         return .init()
     }
-    
+
     func updateNSView(
         _ nsView: NSView, context: Context) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.06) {
-            if let tabView = nsView.superview?.superview?.superview as? NSTabView {
-                tabView.tabViewType = .noTabsNoBorder
-                tabView.tabViewBorderType = .none
-                tabView.tabPosition = .none
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.06) {
+                if let tabView = nsView.superview?.superview?.superview as? NSTabView {
+                    tabView.tabViewType = .noTabsNoBorder
+                    tabView.tabViewBorderType = .none
+                    tabView.tabPosition = .none
+                }
             }
         }
-    }
 }
 #endif
-
-

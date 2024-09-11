@@ -9,11 +9,12 @@ import SwiftUI
 
 struct SettingsView: View {
     var body: some View {
+//        LocalizationSetting()
         TabView {
             LocalizationSetting().tabItem { Label("Language", systemImage: "character") }
             FontSizeSetting().tabItem { Label("Size", systemImage: "textformat.size")}
         }.padding()
-            .frame(width: 200, height: 500)
+            .frame(minWidth: 200, minHeight: 500)
     }
 }
 

@@ -17,7 +17,7 @@ struct MenuSheet: View {
     @AppStorage("showingWeight") var showingWeight = true
     @AppStorage("fontSize") var fontSize = 50.0
     @AppStorage("searchText") var searchText = ""
-    
+
     var favoritesBinding: Binding<[String]> {
         Binding(
             get: { Array(jsonString: favorites) ?? [] },
@@ -31,32 +31,32 @@ struct MenuSheet: View {
     @Binding var selectedSample: RenderModes
     var tabModel = TabModel()
     @FocusState private var isSearchFieldFocused: Bool
-
+#if os(macOS)
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+#endif
+    @State var showDetail = false
     var body: some View {
-        Section {
+
+        VStack {
             HStack {
                 Button {
+#if os(iOS)
                     UIPasteboard.general .setValue(icon.id.description,
                                                    forPasteboardType: UTType.plainText .identifier)
+#else
+                    let pasteboard = NSPasteboard.general
+                    pasteboard.declareTypes([.string], owner: nil)
+                    pasteboard.setString(icon.id.description, forType: .string)
+#endif
                 } label: {
                     Label("", systemImage: "doc.on.doc")
                 }
                 .buttonStyle(BorderlessButtonStyle())
                 Button {
                     detailIcon = icon
+                    showDetail.toggle()
                 } label: {
                     Label("\(icon.id)", systemImage: "\(icon.id)")
-                }
-                if favoritesBinding.wrappedValue.isEmpty {
-                    Button {
-                        if tabModel.activeTab == .home {
-                            tabModel.activeTab = .favorites
-                        } else {
-                            tabModel.activeTab = .home
-                        }
-                    } label: {
-                        Label("Show", systemImage: "line.horizontal.star.fill.line.horizontal")
-                    }
                 }
                 Button {
                     if favoritesBinding.wrappedValue.contains(icon.id) {
@@ -71,30 +71,42 @@ struct MenuSheet: View {
                         Label("", systemImage: "star")
                     }
                 }
-                //.font(.subheadline)
                 .buttonStyle(BorderlessButtonStyle())
             }.buttonStyle(BorderedProminentButtonStyle())
+
             Stepper(value: $fontSize, in: 9...200, step: 5) {
                 Text("Size")
             }.padding(.horizontal)
-                .onChange(of: fontSize) { oldValue, newValue in
+                .onChange(of: fontSize) { _, newValue in
                     fontSize = min(max(newValue, 9), 200)
                 }
-        }.font(.title)
-        weightPicker(selectedWeight: $selectedWeight)
-        renderingPicker(selectedSample: $selectedSample)
-        Button {
-            searchText = icon.id
-            showingSearch = true
-            dismiss()
-            $isSearchFieldFocused.wrappedValue = true
-        } label: {
-            Label("Search", systemImage: "magnifyingglass")
+            weightPicker(selectedWeight: $selectedWeight)
+            renderingPicker(selectedSample: $selectedSample)
+            Button {
+                searchText = icon.id
+                showingSearch = true
+#if os(iOS)
+                dismiss()
+#endif
+                $isSearchFieldFocused.wrappedValue = true
+            } label: {
+                Label("Search", systemImage: "magnifyingglass")
+            }
         }
-
+#if os(macOS)
+        .inspector(isPresented: $showDetail) {
+            DetailView(icon: icon)
+                .inspectorColumnWidth(min: 300, ideal: 500, max: 1000)
+        }
+#endif
     }
 }
 
 #Preview {
-    MenuSheet(icon: Icon(id: "square", color: Color.random()), detailIcon: .constant(Icon(id: "square", color: Color.random())), selectedWeight: .constant(FontWeights.regular), selectedSample: .constant(RenderModes.monochrome))
+    MenuSheet(
+        icon: Icon(id: "square", color: Color.random()),
+        detailIcon: .constant(Icon(id: "square", color: Color.random())),
+        selectedWeight: .constant(FontWeights.regular),
+        selectedSample: .constant(RenderModes.monochrome)
+    )
 }

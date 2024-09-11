@@ -17,7 +17,7 @@ struct SearchHelpView: View {
                 Image(.searchBarDismiss)
             }
             .padding(10)
-            
+
             Text("SymbolGrid's Searchbar activates two buttons when focused.")
             Divider()
             Group {

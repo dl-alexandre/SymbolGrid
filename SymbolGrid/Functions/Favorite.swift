@@ -9,12 +9,16 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 @ViewBuilder
-func favorite(icon: Icon, /*font: Font,*/ isCopied: Binding<Bool>, selected: Binding<Icon?>, tabModel: TabModel) -> some View {
+func favorite(
+    icon: Icon,
+    isCopied: Binding<Bool>,
+    selected: Binding<Icon?>,
+    tabModel: TabModel
+) -> some View {
     @AppStorage("systemName") var systemName = ""
     @AppStorage("fontSize") var fontSize = 50.0
-    
+
     Text("\(Image(systemName: "\(icon.id)")) \(icon.id)").lineLimit(1)
-//        .font(font)
         .foregroundColor(systemName == icon.id ? Color.secondary : Color.primary)
         .onTapGesture(count: 2) {
             withAnimation(.spring()) {
@@ -29,12 +33,16 @@ func favorite(icon: Icon, /*font: Font,*/ isCopied: Binding<Bool>, selected: Bin
         }
         .onDrag {
 #if os(macOS)
-            let provider = NSItemProvider(object: (Image(systemName: icon.id).asNSImage() ?? Image(systemName: "plus").asNSImage()!) as NSImage)
+            let provider = NSItemProvider(
+                object: (
+                    Image(systemName: icon.id).asNSImage() ?? Image(systemName: "plus").asNSImage()!
+                ) as NSImage
+            )
 #else
             let provider = NSItemProvider(object: (UIImage(systemName: icon.id) ?? UIImage(systemName: "plus")!))
 #endif
             return provider
-            
+
         }
         .contextMenu {
             symbolContextMenu(icon: icon, selected: selected, tabModel: tabModel)

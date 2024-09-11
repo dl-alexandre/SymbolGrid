@@ -11,5 +11,3 @@ struct Icon: Identifiable, Equatable {
     var id: String
     var color = Color.random()
 }
-
-

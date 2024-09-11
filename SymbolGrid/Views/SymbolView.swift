@@ -10,9 +10,11 @@ import SFSymbolKit
 
 struct SymbolView: View {
     @EnvironmentObject private var tabModel: TabModel
-    
+#if os(macOS)
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+#endif
     var symbols: [String]
-    
+
     var searchResults: [String] {
         return symbols.filter { key in
             if !arabicSetting && key.hasSuffix(".ar") { return false }
@@ -35,33 +37,31 @@ struct SymbolView: View {
             if !teluguSetting && key.hasSuffix(".te") { return false }
             if !thaiSetting && key.hasSuffix(".th") { return false }
             if !punjabiSetting && key.hasSuffix(".pa") { return false }
-            
+
             // Apply search text filter if searchText is not empty
             if !searchText.isEmpty { return key.contains(searchText.lowercased()) }
             return true // Include the key if none of the above conditions are met and searchText is empty
         }
     }
-    
-    
+
     init(
         renderMode: Binding<RenderModes>,
         fontWeight: Binding<FontWeights>,
         symbols: [String]
-    )
-    {
+    ) {
         self._renderMode = renderMode
         self._fontWeight = fontWeight
         self.symbols = symbols
     }
-    
+
     private var columns: [GridItem] {
         [GridItem(.adaptive(minimum: 1.5 * fontSize))]
     }
-    
+
     private var spacing: CGFloat {
         fontSize * 0.1
     }
-    
+
     @Namespace var animation
     @State private var selected: Icon?
     @State private var detailIcon: Icon?
@@ -78,63 +78,81 @@ struct SymbolView: View {
         let icons: [Icon] = searchResults.map { symbolName in
             Icon(id: symbolName)
         }
-        
+
         ZStack {
             GeometryReader { geo in
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: spacing) {
                         ForEach(icons) { icon in
-                            symbol(icon: icon, selected: $selected, tabModel: tabModel, renderMode: $renderMode, fontWeight: $fontWeight, showSheet: $showSheet)
+                            symbol(
+                                icon: icon,
+                                selected: $selected,
+                                tabModel: tabModel,
+                                renderMode: $renderMode,
+                                fontWeight: $fontWeight
+                            )
                                 .padding(8)
                                 .matchedTransitionSource(id: icon.id, in: animation)
                                 .onTapGesture {
                                     selected  = icon
+
+#if os(iOS)
                                     showSheet = true
+#else
+                                    appDelegate.showMenuPanel(
+                                        icon: icon,
+                                        detailIcon: $detailIcon,
+                                        selectedWeight: $fontWeight,
+                                        selectedSample: $renderMode
+                                    )
+#endif
                                 }
                         }
                     }.offset(x: 0, y: searchText.isEmpty ? 0: (fontSize * 3))
                 }
                 .scrollPosition($position)
-
-                #if os(iOS)
+#if os(iOS)
                 .sheet(isPresented: $showSheet) {
                     if let selectedIcon = selected {
-                        MenuSheet(icon: selectedIcon, detailIcon: $detailIcon, selectedWeight: $fontWeight, selectedSample: $renderMode)
+                        MenuSheet(
+                            icon: selectedIcon,
+                            detailIcon: $detailIcon,
+                            selectedWeight: $fontWeight,
+                            selectedSample: $renderMode
+                        )
                             .presentationBackgroundInteraction(.enabled)
-#if os(macOS)
-                            .frame(minWidth: geo.size.width * 0.25, minHeight: geo.size.height * 0.50)
-
-#endif
                             .presentationDetents([.height(geo.size.height / 4), .medium])
                             .sheet(item: $detailIcon) { icon in
                                 DetailView(icon: icon, animation: animation, color: icon.color)
                                     .presentationDetents([.medium])
                             }
                     }
+
                 }
-                #endif
+#endif
+
             }
             if showingTitle {
                 if let selectedIcon = selected {
                     customTitleBar("\(selectedIcon.id)")
                         .padding()
                         .onTapGesture(count: 1) {
-                            #if os(macOS)
+#if os(macOS)
                             NSPasteboard.general.setString(selectedIcon.id, forType: .string)
                             print(selectedIcon.id)
-                            #endif
+#endif
                         }
                 }
-                
+
             }
         }
         .onAppear {
             showingTitle = true
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-//                withAnimation(.easeInOut(duration: 2)) {
-//                    showingTitle = false
-//                }
-//            }
+            //            DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+            //                withAnimation(.easeInOut(duration: 2)) {
+            //                    showingTitle = false
+            //                }
+            //            }
         }
 #if os(iOS)
         .onTapGesture(count: 2) {
@@ -156,40 +174,45 @@ struct SymbolView: View {
             }
         }
 #endif
-        
+
     }
+
     @AppStorage("fontSize") var fontSize = 50.0
     @AppStorage("showingSearch") var showingSearch = true
     @AppStorage("symbol_arabic") private var arabicSetting = false
-    @AppStorage("symbol_bengali") private var bengaliSetting = false //bn
+    @AppStorage("symbol_bengali") private var bengaliSetting = false // bn
     @AppStorage("symbol_burmese") private var burmeseSetting = false
     @AppStorage("symbol_chinese") private var chineseSetting = false
-    @AppStorage("symbol_gujarati") private var gujaratiSetting = false //gu
+    @AppStorage("symbol_gujarati") private var gujaratiSetting = false // gu
     @AppStorage("symbol_hebrew") private var hebrewSetting = false
     @AppStorage("symbol_hindi") private var hindiSetting = false
     @AppStorage("symbol_japanese") private var japaneseSetting = false
-    @AppStorage("symbol_kannada") private var kannadaSetting = false //kn
+    @AppStorage("symbol_kannada") private var kannadaSetting = false // kn
     @AppStorage("symbol_khmer") private var khmerSetting = false
     @AppStorage("symbol_korean") private var koreanSetting = false
-    @AppStorage("symbol_latin") private var latinSetting = false //el
-    @AppStorage("symbol_malayalam") private var malayalamSetting = false //ml
-    @AppStorage("symbol_manipuri") private var manipuriSetting = false //mni
-    @AppStorage("symbol_oriya") private var oriyaSetting = false //or
-    @AppStorage("symbol_russian") private var russianSetting = false //ru
-    @AppStorage("symbol_santali") private var santaliSetting = false //sat
-    @AppStorage("symbol_telugu") private var teluguSetting = false //te
+    @AppStorage("symbol_latin") private var latinSetting = false // el
+    @AppStorage("symbol_malayalam") private var malayalamSetting = false // ml
+    @AppStorage("symbol_manipuri") private var manipuriSetting = false // mni
+    @AppStorage("symbol_oriya") private var oriyaSetting = false // or
+    @AppStorage("symbol_russian") private var russianSetting = false // ru
+    @AppStorage("symbol_santali") private var santaliSetting = false // sat
+    @AppStorage("symbol_telugu") private var teluguSetting = false // te
     @AppStorage("symbol_thai") private var thaiSetting = false
-    @AppStorage("symbol_punjabi") private var punjabiSetting = false //pa
+    @AppStorage("symbol_punjabi") private var punjabiSetting = false // pa
     @AppStorage("showingTitle") var showingTitle = true
     @AppStorage("showingCanvas") var showingCanvas = true
     @AppStorage("searchText") var searchText = ""
 }
 
-
 #Preview {
     @Previewable var tabModel = TabModel()
     @Previewable var system = System()
-    @Previewable var fw: FontWeights = .regular
-    @Previewable var rm: RenderModes = .monochrome
-    SymbolView(renderMode: .constant(rm), fontWeight: .constant(fw), symbols: system.symbols).environmentObject(tabModel)
+    @Previewable var fontWeight: FontWeights = .regular
+    @Previewable var renderMode: RenderModes = .monochrome
+    SymbolView(
+        renderMode: .constant(renderMode),
+        fontWeight: .constant(fontWeight),
+        symbols: system.symbols
+    )
+        .environmentObject(tabModel)
 }

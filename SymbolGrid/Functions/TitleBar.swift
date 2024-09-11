@@ -11,7 +11,7 @@ import SwiftUI
 func customTitleBar(_ label: String) -> some View {
     @AppStorage("fontSize") var fontSize = 50.0
     @AppStorage("showingTitle") var showingTitle = true
-    
+
     VStack {
         Capsule()
             .fill(.ultraThinMaterial)
@@ -24,7 +24,7 @@ func customTitleBar(_ label: String) -> some View {
                     .foregroundColor(.gray)
                     .bold()
                     .padding()
-                
+
             }
             .defaultScrollAnchor(.trailing)
             .frame(maxWidth: .infinity, alignment: .trailing)

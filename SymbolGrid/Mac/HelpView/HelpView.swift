@@ -24,7 +24,3 @@ struct HelpView: View {
     HelpView()
 }
 #endif
-
-
-
-

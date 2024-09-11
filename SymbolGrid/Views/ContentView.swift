@@ -19,7 +19,9 @@ struct ContentView: View {
                         .background(HideTabBar())
 #endif
                 } else {
-                    HomeView(symbols: system.symbols).environmentObject(tabModel)
+                    HomeView(
+                        symbols: system.symbols
+                    ).environmentObject(tabModel)
                         .transition(.blurReplace)
                         .tag(Tab.home)
 #if os(macOS)
@@ -35,14 +37,14 @@ struct ContentView: View {
             .background {
                 GeometryReader {
                     let rect = $0.frame(in: .global)
-                    
+
                     Color.clear
                         .onChange(of: rect) { _, _ in
                             tabModel.updateTabPosition()
                         }
                 }
             }
-            .onChange(of: state) { oldValue, newValue in
+            .onChange(of: state) { _, newValue in
                 if newValue == .key {
                     tabModel.addTabBar()
                 }
@@ -54,19 +56,28 @@ struct ContentView: View {
             .tabViewStyle(DefaultTabViewStyle())
 #endif
             if showingSearch {
-                searchBar(text: $searchText, focus: $searchField, isSearchFieldFocused: $isSearchFieldFocused, showingSearch: $showingSearch)
-                    .onAppear {
-                        $isSearchFieldFocused.wrappedValue = true
-                    }
+                searchBar(
+                    text: $searchText,
+                    focus: $searchField,
+                    isSearchFieldFocused: $isSearchFieldFocused,
+                    showingSearch: $showingSearch
+                )
+                .onAppear {
+                    $isSearchFieldFocused.wrappedValue = true
+                }
 #if os(iOS)
-                    .keyboardAdaptive()
-                    .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)) { _ in
-                        searchField = nil
-                        showingSearch = false
-                    }
-                    .onTapGesture(count: 3) {
-                        searchText = ""
-                    }
+                .keyboardAdaptive()
+                .onReceive(
+                    NotificationCenter.default.publisher(
+                        for: UIResponder.keyboardWillHideNotification
+                    )
+                ) { _ in
+                    searchField = nil
+                    showingSearch = false
+                }
+                .onTapGesture(count: 3) {
+                    searchText = ""
+                }
 #endif
             }
         }
@@ -80,7 +91,7 @@ struct ContentView: View {
     @State private var selectedWeight = FontWeights.medium
     @State private var isActive: Bool = true
     @State private var system = System()
-    
+
     @AppStorage("showingSearch") var showingSearch = false
     @AppStorage("searchText") var searchText = ""
     @FocusState private var isSearchFieldFocused: Bool

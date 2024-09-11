@@ -92,6 +92,7 @@
 /* Begin PBXFileReference section */
 		5C0DAAE22C87B6EC0030966E /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		5C0DAAE42C88DAD50030966E /* TitleBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleBar.swift; sourceTree = "<group>"; };
+		5C7255532C91668400A838DB /* Search.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Search.entitlements; sourceTree = "<group>"; };
 		5CB253ED2C90E9D6006744C2 /* MenuSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSheet.swift; sourceTree = "<group>"; };
 		5CB253EF2C90EBDF006744C2 /* weightPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weightPicker.swift; sourceTree = "<group>"; };
 		5CB253F12C90ED61006744C2 /* renderPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = renderPicker.swift; sourceTree = "<group>"; };
@@ -313,6 +314,7 @@
 		8B21B7392C224F07008A0518 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				5C7255532C91668400A838DB /* Search.entitlements */,
 				8B21B73A2C224F07008A0518 /* Search.swift */,
 				8B21B73C2C224F07008A0518 /* Info.plist */,
 			);
@@ -725,7 +727,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = SymbolGrid/SymbolGrid.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SymbolGrid/Preview Content\"";
 				DEVELOPMENT_TEAM = 2MP8QWK7R6;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -745,7 +747,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 3.5.0;
+				MARKETING_VERSION = 3.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamilyfarm.symbols;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -768,7 +770,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = SymbolGrid/SymbolGrid.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SymbolGrid/Preview Content\"";
 				DEVELOPMENT_TEAM = 2MP8QWK7R6;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -788,7 +790,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 3.5.0;
+				MARKETING_VERSION = 3.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamilyfarm.symbols;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -900,8 +902,9 @@
 		8B21B7412C224F07008A0518 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Search/Search.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2MP8QWK7R6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Search/Info.plist;
@@ -914,7 +917,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 3.5.2;
+				MARKETING_VERSION = 3.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamilyfarm.symbols.Search;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -931,8 +934,9 @@
 		8B21B7422C224F07008A0518 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Search/Search.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2MP8QWK7R6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Search/Info.plist;
@@ -945,7 +949,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 3.5.2;
+				MARKETING_VERSION = 3.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamilyfarm.symbols.Search;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;

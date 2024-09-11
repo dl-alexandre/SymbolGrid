@@ -20,17 +20,17 @@ struct HomeView: View {
                 iconLabel(icon: systemName)
             }
 #endif
-//            if showingWeight {
-//                weightPicker(selectedWeight: $selectedWeight)
-//            }
-//            if showingRender {
-//                renderingPicker()
-//            }
+            //            if showingWeight {
+            //                weightPicker(selectedWeight: $selectedWeight)
+            //            }
+            //            if showingRender {
+            //                renderingPicker()
+            //            }
         }
         .edgesIgnoringSafeArea(.all)
     }
-//    @AppStorage("showingRender") var showingRender = false
-//    @AppStorage("showingWeight") var showingWeight = false
+    //    @AppStorage("showingRender") var showingRender = false
+    //    @AppStorage("showingWeight") var showingWeight = false
     @AppStorage("showingCanvas") var showingCanvas = false
     @AppStorage("canvasIcon") var canvasIcon = ""
     @AppStorage("fontSize") var fontSize = 50.0
@@ -45,7 +45,7 @@ struct HomeView: View {
     @State private var selectedWeight = FontWeights.medium
     @State private var isCopied = false
     @State private var tapLocation: CGPoint = .zero
-    
+
     var symbols: [String]
 
     @ViewBuilder
@@ -81,7 +81,7 @@ struct HomeView: View {
         }.frame(maxHeight: .infinity, alignment: .top)
             .offset(y: fontSize + 20)
     }
-    
+
     @ViewBuilder
     func symbolCanvas(icon: String) -> some View {
         GeometryReader { geo in
@@ -108,8 +108,6 @@ struct HomeView: View {
 #Preview {
     @Previewable var tabModel = TabModel()
     @Previewable var system = System()
-    @Previewable var fw: FontWeights = .regular
-    @Previewable var rm: RenderModes = .monochrome
-    @Previewable @FocusState var fs: Bool
-    HomeView(isSearchFieldFocused: _fs, symbols: System().symbols).environmentObject(tabModel)
+    @Previewable @FocusState var focusState: Bool
+    HomeView(isSearchFieldFocused: _focusState, symbols: System().symbols).environmentObject(tabModel)
 }
