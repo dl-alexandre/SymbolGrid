@@ -56,8 +56,17 @@ struct DetailView: View {
                 VStack {
                     Spacer()
                     ScrollView {
-                        Text("\(icon.id)").font(.title)
-
+                        ZStack {
+                            Text("\(icon.id)").font(.title)
+                            HStack {
+                                Spacer()
+                                Button {
+                                    presentationMode.wrappedValue.dismiss()
+                                } label: {
+                                    Image(systemName: "xmark").foregroundColor(.red)
+                                }
+                            }
+                        }
                         VStack {
                             HStack {
                                 Text("Scale:")
@@ -98,6 +107,7 @@ struct DetailView: View {
                                 ColorPicker("Foreground", selection: $color)
                                 ColorPicker("Shadow: ", selection: $shadow)
                             }
+
 /*
                             Button {
                                 let hex = icon.color.description.trimmingCharacters(in: CharacterSet(charactersIn: "#"))
@@ -170,7 +180,7 @@ Image(systemName: "\(icon.id)")
     }
 
 #if os(iOS)
-    @State var location: CGPoint = CGPoint(x: UIScreen.main.bounds.midX, y: 150)
+    @State var location: CGPoint = CGPoint(x: UIScreen.main.bounds.midX / 2, y: 150)
 #else
     @State var location: CGPoint = CGPoint(x: NSScreen.main?.frame.size.width ?? 0, y: -150)
 #endif

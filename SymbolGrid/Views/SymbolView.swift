@@ -80,33 +80,33 @@ struct SymbolView: View {
         }
 
         ZStack {
-            GeometryReader { geo in
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: spacing) {
                         ForEach(icons) { icon in
-                            symbol(
-                                icon: icon,
-                                selected: $selected,
-                                tabModel: tabModel,
-                                renderMode: $renderMode,
-                                fontWeight: $fontWeight
-                            )
+                            Button {
+                                selected  = icon
+#if os(iOS)
+                                showSheet = true
+#else
+                                appDelegate.showMenuPanel(
+                                    icon: icon,
+                                    detailIcon: $detailIcon,
+                                    selectedWeight: $fontWeight,
+                                    selectedSample: $renderMode
+                                )
+#endif
+                            } label: {
+                                symbol(
+                                    icon: icon,
+                                    selected: $selected,
+                                    tabModel: tabModel,
+                                    renderMode: $renderMode,
+                                    fontWeight: $fontWeight
+                                )
                                 .padding(8)
                                 .matchedTransitionSource(id: icon.id, in: animation)
-                                .onTapGesture {
-                                    selected  = icon
-
-#if os(iOS)
-                                    showSheet = true
-#else
-                                    appDelegate.showMenuPanel(
-                                        icon: icon,
-                                        detailIcon: $detailIcon,
-                                        selectedWeight: $fontWeight,
-                                        selectedSample: $renderMode
-                                    )
-#endif
-                                }
+                                .hoverEffect(.highlight)
+                            }.buttonStyle(BorderlessButtonStyle())
                         }
                     }.offset(x: 0, y: searchText.isEmpty ? 0: (fontSize * 3))
                 }
@@ -121,17 +121,16 @@ struct SymbolView: View {
                             selectedSample: $renderMode
                         )
                             .presentationBackgroundInteraction(.enabled)
-                            .presentationDetents([.height(geo.size.height / 4), .medium])
+                            .presentationDetents([.large])
                             .sheet(item: $detailIcon) { icon in
                                 DetailView(icon: icon, animation: animation, color: icon.color)
-                                    .presentationDetents([.medium])
+                                    .presentationDetents([.large])
                             }
                     }
 
                 }
 #endif
 
-            }
             if showingTitle {
                 if let selectedIcon = selected {
                     customTitleBar("\(selectedIcon.id)")

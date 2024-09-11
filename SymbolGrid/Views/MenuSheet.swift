@@ -26,6 +26,7 @@ struct MenuSheet: View {
     }
 
     var icon: Icon
+    @Environment(\.presentationMode) private var presentationMode
     @Binding var detailIcon: Icon?
     @Binding var selectedWeight: FontWeights
     @Binding var selectedSample: RenderModes
@@ -72,6 +73,11 @@ struct MenuSheet: View {
                     }
                 }
                 .buttonStyle(BorderlessButtonStyle())
+                Button {
+                    presentationMode.wrappedValue.dismiss()
+                } label: {
+                    Image(systemName: "xmark").foregroundColor(.red)
+                }.buttonStyle(BorderlessButtonStyle())
             }.buttonStyle(BorderedProminentButtonStyle())
 
             Stepper(value: $fontSize, in: 9...200, step: 5) {

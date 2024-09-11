@@ -35,11 +35,17 @@ func favorite(
 #if os(macOS)
             let provider = NSItemProvider(
                 object: (
-                    Image(systemName: icon.id).asNSImage() ?? Image(systemName: "plus").asNSImage()!
+                    Image(
+                        systemName: icon.id
+                    ).asNSImage() ?? Image(systemName: "plus").asNSImage()!
                 ) as NSImage
             )
 #else
-            let provider = NSItemProvider(object: (UIImage(systemName: icon.id) ?? UIImage(systemName: "plus")!))
+            let provider = NSItemProvider(
+                object: (
+                    UIImage(systemName: icon.id) ?? UIImage(systemName: "plus")!
+                )
+            )
 #endif
             return provider
 

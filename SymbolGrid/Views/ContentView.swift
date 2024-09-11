@@ -24,6 +24,9 @@ struct ContentView: View {
                     ).environmentObject(tabModel)
                         .transition(.blurReplace)
                         .tag(Tab.home)
+                        .tabItem {
+                            Text("Home")
+                        }
 #if os(macOS)
                         .background(HideTabBar())
 #endif
@@ -31,6 +34,9 @@ struct ContentView: View {
                 FavoritesView(renderMode: $selectedSample, fontWeight: $selectedWeight)
                     .environmentObject(tabModel)
                     .tag(Tab.favorites)
+                    .tabItem {
+                        Text("Favorites")
+                    }
             }
             .edgesIgnoringSafeArea(.all)
 #if os(macOS)
@@ -51,7 +57,7 @@ struct ContentView: View {
             }
 #endif
 #if os(iOS)
-            .tabViewStyle(.page(indexDisplayMode: .never))
+         //   .tabViewStyle(.page(indexDisplayMode: .never))
 #else
             .tabViewStyle(DefaultTabViewStyle())
 #endif

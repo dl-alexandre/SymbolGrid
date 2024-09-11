@@ -727,7 +727,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = SymbolGrid/SymbolGrid.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_ASSET_PATHS = "\"SymbolGrid/Preview Content\"";
 				DEVELOPMENT_TEAM = 2MP8QWK7R6;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -770,7 +770,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = SymbolGrid/SymbolGrid.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_ASSET_PATHS = "\"SymbolGrid/Preview Content\"";
 				DEVELOPMENT_TEAM = 2MP8QWK7R6;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -904,8 +904,9 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Search/Search.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = 2MP8QWK7R6;
+				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Search/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Search;
@@ -936,8 +937,9 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Search/Search.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = 2MP8QWK7R6;
+				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Search/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Search;

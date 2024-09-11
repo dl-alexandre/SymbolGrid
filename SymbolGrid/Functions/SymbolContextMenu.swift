@@ -57,16 +57,20 @@ private func favoritingSymbol(
         }
     }
 }
-
 private func copySymbol(_ icon: Icon) -> Button<Label<Text, Image>> {
     return Button {
+#if os(iOS)
         UIPasteboard.general .setValue(icon.id.description,
                                        forPasteboardType: UTType.plainText .identifier)
+#else
+        let pasteboard = NSPasteboard.general
+        pasteboard.declareTypes([.string], owner: nil)
+        pasteboard.setString(icon.id.description, forType: .string)
+#endif
     } label: {
         Label("Copy", systemImage: "doc.on.doc")
     }
 }
-
 @ViewBuilder
 func symbolContextMenu(
     icon: Icon,
@@ -96,8 +100,8 @@ func symbolContextMenu(
     }
 #endif
     favoritingSymbol(favoritesBinding, tabModel, icon)
-#if os(iOS)
     copySymbol(icon)
+#if os(iOS)
     Section("Size") {
         Stepper(value: $fontSize, in: 9...200, step: 5) {
             EmptyView()

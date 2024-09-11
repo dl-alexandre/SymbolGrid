@@ -20,17 +20,10 @@ struct HomeView: View {
                 iconLabel(icon: systemName)
             }
 #endif
-            //            if showingWeight {
-            //                weightPicker(selectedWeight: $selectedWeight)
-            //            }
-            //            if showingRender {
-            //                renderingPicker()
-            //            }
         }
         .edgesIgnoringSafeArea(.all)
     }
-    //    @AppStorage("showingRender") var showingRender = false
-    //    @AppStorage("showingWeight") var showingWeight = false
+
     @AppStorage("showingCanvas") var showingCanvas = false
     @AppStorage("canvasIcon") var canvasIcon = ""
     @AppStorage("fontSize") var fontSize = 50.0
@@ -42,7 +35,7 @@ struct HomeView: View {
     @State private var isLoading: Bool = true
     @State private var needsNewJSON: Bool = false
     @State private var selectedSample = RenderModes.monochrome
-    @State private var selectedWeight = FontWeights.medium
+    @State private var selectedWeight = FontWeights.regular
     @State private var isCopied = false
     @State private var tapLocation: CGPoint = .zero
 
