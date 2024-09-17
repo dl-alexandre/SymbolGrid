@@ -11,10 +11,10 @@ import SFSymbolKit
 struct ContentView: View {
     var body: some View {
         ZStack {
-            TabView(selection: $tabModel.activeTab) {
+//            TabView(selection: $tabModel.activeTab) {
                 if isAnimating {
                     SplashView(symbols: system.symbols, fontWeight: $selectedWeight, isAnimating: $isAnimating)
-                        .tag(Tab.home)
+//                        .tag(Tab.home)
 #if os(macOS)
                         .background(HideTabBar())
 #endif
@@ -22,17 +22,17 @@ struct ContentView: View {
                     HomeView(
                         symbols: system.symbols
                     ).environmentObject(tabModel)
-                        .transition(.blurReplace)
-                        .tag(Tab.home)
+//                        .transition(.blurReplace)
+//                        .tag(Tab.home)
 #if os(macOS)
                         .background(HideTabBar())
 #endif
                 }
-                FavoritesView(renderMode: $selectedSample, fontWeight: $selectedWeight)
-                    .environmentObject(tabModel)
-                    .tag(Tab.favorites)
-            }
-            .edgesIgnoringSafeArea(.all)
+//                FavoritesView(renderMode: $selectedSample, fontWeight: $selectedWeight)
+//                    .environmentObject(tabModel)
+//                    .tag(Tab.favorites)
+//            }
+//            .edgesIgnoringSafeArea(.all)
 #if os(macOS)
             .background {
                 GeometryReader {
@@ -50,11 +50,11 @@ struct ContentView: View {
                 }
             }
 #endif
-#if os(iOS)
-            .tabViewStyle(.page(indexDisplayMode: .never))
-#else
-            .tabViewStyle(DefaultTabViewStyle())
-#endif
+//#if os(iOS)
+//            .tabViewStyle(.page(indexDisplayMode: .never))
+//#else
+//            .tabViewStyle(DefaultTabViewStyle())
+//#endif
             if showingSearch {
                 searchBar(
                     text: $searchText,
@@ -80,8 +80,11 @@ struct ContentView: View {
                 }
 #endif
             }
+
         }
+
     }
+
     @EnvironmentObject private var tabModel: TabModel
 #if os(macOS)
     @Environment(\.controlActiveState) private var state

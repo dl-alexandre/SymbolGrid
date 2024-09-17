@@ -29,6 +29,7 @@ struct MenuSheet: View {
     @Binding var detailIcon: Icon?
     @Binding var selectedWeight: FontWeights
     @Binding var selectedSample: RenderModes
+    @Binding var showInspector: Bool
     var tabModel = TabModel()
     @FocusState private var isSearchFieldFocused: Bool
 #if os(macOS)
@@ -67,31 +68,19 @@ struct MenuSheet: View {
                 } label: {
                     if favoritesBinding.wrappedValue.contains(icon.id) {
                         Label("", systemImage: "star.fill")
+                            .foregroundStyle(.yellow)
                     } else {
                         Label("", systemImage: "star")
                     }
                 }
                 .buttonStyle(BorderlessButtonStyle())
-            }.buttonStyle(BorderedProminentButtonStyle())
-
-            Stepper(value: $fontSize, in: 9...200, step: 5) {
-                Text("Size")
-            }.padding(.horizontal)
-                .onChange(of: fontSize) { _, newValue in
-                    fontSize = min(max(newValue, 9), 200)
+                Button {
+                    showInspector.toggle()
+                } label: {
+                    Label("", systemImage: "sparkles")
                 }
-            weightPicker(selectedWeight: $selectedWeight)
-            renderingPicker(selectedSample: $selectedSample)
-            Button {
-                searchText = icon.id
-                showingSearch = true
-#if os(iOS)
-                dismiss()
-#endif
-                $isSearchFieldFocused.wrappedValue = true
-            } label: {
-                Label("Search", systemImage: "magnifyingglass")
-            }
+                .buttonStyle(BorderlessButtonStyle())
+            }.buttonStyle(BorderedProminentButtonStyle())
         }
 #if os(macOS)
         .inspector(isPresented: $showDetail) {
@@ -107,6 +96,7 @@ struct MenuSheet: View {
         icon: Icon(id: "square", color: Color.random()),
         detailIcon: .constant(Icon(id: "square", color: Color.random())),
         selectedWeight: .constant(FontWeights.regular),
-        selectedSample: .constant(RenderModes.monochrome)
+        selectedSample: .constant(RenderModes.monochrome),
+        showInspector: .constant(false)
     )
 }

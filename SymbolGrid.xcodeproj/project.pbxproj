@@ -12,6 +12,8 @@
 		5CB253EE2C90E9D6006744C2 /* MenuSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB253ED2C90E9D6006744C2 /* MenuSheet.swift */; };
 		5CB253F02C90EBDF006744C2 /* weightPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB253EF2C90EBDF006744C2 /* weightPicker.swift */; };
 		5CB253F22C90ED61006744C2 /* renderPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB253F12C90ED61006744C2 /* renderPicker.swift */; };
+		5CFAA2EC2C95FFFA00C0F7E9 /* WeightPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFAA2EB2C95FFFA00C0F7E9 /* WeightPickerView.swift */; };
+		5CFAA2EE2C96525400C0F7E9 /* FavoritesDrop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFAA2ED2C96525400C0F7E9 /* FavoritesDrop.swift */; };
 		775651C02C10E9190013B34B /* SFSymbolKit in Frameworks */ = {isa = PBXBuildFile; productRef = 775651BF2C10E9190013B34B /* SFSymbolKit */; };
 		7783DB8D2C2B606F00F993E3 /* Design in Frameworks */ = {isa = PBXBuildFile; productRef = 7783DB8C2C2B606F00F993E3 /* Design */; };
 		778C70EA2C0CEFA800162DE1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C70E92C0CEFA800162DE1 /* ContentView.swift */; };
@@ -96,6 +98,8 @@
 		5CB253ED2C90E9D6006744C2 /* MenuSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSheet.swift; sourceTree = "<group>"; };
 		5CB253EF2C90EBDF006744C2 /* weightPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weightPicker.swift; sourceTree = "<group>"; };
 		5CB253F12C90ED61006744C2 /* renderPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = renderPicker.swift; sourceTree = "<group>"; };
+		5CFAA2EB2C95FFFA00C0F7E9 /* WeightPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightPickerView.swift; sourceTree = "<group>"; };
+		5CFAA2ED2C96525400C0F7E9 /* FavoritesDrop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesDrop.swift; sourceTree = "<group>"; };
 		778C70E92C0CEFA800162DE1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		778C783B2C0A4656000CDC92 /* SymbolGrid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SymbolGrid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		778C783E2C0A4656000CDC92 /* SymbolGridApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolGridApp.swift; sourceTree = "<group>"; };
@@ -246,7 +250,9 @@
 			isa = PBXGroup;
 			children = (
 				778C70E92C0CEFA800162DE1 /* ContentView.swift */,
+				5CFAA2ED2C96525400C0F7E9 /* FavoritesDrop.swift */,
 				5CB253ED2C90E9D6006744C2 /* MenuSheet.swift */,
+				5CFAA2EB2C95FFFA00C0F7E9 /* WeightPickerView.swift */,
 				8B4D0FB12C20BDC400F660BF /* SplashView.swift */,
 				778C78742C0A46CA000CDC92 /* HomeView.swift */,
 				8B36CCD32C1EA3B900AFB088 /* SymbolView.swift */,
@@ -534,7 +540,9 @@
 				778C78852C0A46D4000CDC92 /* LocalizationSetting.swift in Sources */,
 				77CDC3D52C14D83400BF6E07 /* SearchBar.swift in Sources */,
 				8BD83BDF2C24D63B000A8687 /* SearchHelpView.swift in Sources */,
+				5CFAA2EC2C95FFFA00C0F7E9 /* WeightPickerView.swift in Sources */,
 				778C787B2C0A46CA000CDC92 /* HomeView.swift in Sources */,
+				5CFAA2EE2C96525400C0F7E9 /* FavoritesDrop.swift in Sources */,
 				778C78952C0A4D6D000CDC92 /* AppDelegate.swift in Sources */,
 				778C78972C0A5A48000CDC92 /* Commands.swift in Sources */,
 				8B21B7442C227E39008A0518 /* Symbol.swift in Sources */,
@@ -906,6 +914,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2MP8QWK7R6;
+				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Search/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Search;
@@ -938,6 +947,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2MP8QWK7R6;
+				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Search/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Search;

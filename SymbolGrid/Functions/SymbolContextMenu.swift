@@ -60,8 +60,16 @@ private func favoritingSymbol(
 
 private func copySymbol(_ icon: Icon) -> Button<Label<Text, Image>> {
     return Button {
-        UIPasteboard.general .setValue(icon.id.description,
-                                       forPasteboardType: UTType.plainText .identifier)
+#if os(iOS)
+        UIPasteboard.general .setValue(
+            icon.id.description,
+            forPasteboardType: UTType.plainText .identifier
+        )
+#else
+            let pasteboard = NSPasteboard.general
+            pasteboard.declareTypes([.string], owner: nil)
+            pasteboard.setString(icon.id.description, forType: .string)
+#endif
     } label: {
         Label("Copy", systemImage: "doc.on.doc")
     }
@@ -75,8 +83,6 @@ func symbolContextMenu(
 ) -> some View {
     @AppStorage("favorites") var favorites: String = "[]"
     @AppStorage("showingSearch") var showingSearch = true
-    @AppStorage("showingRender") var showingRender = true
-    @AppStorage("showingWeight") var showingWeight = true
     @AppStorage("fontSize") var fontSize = 50.0
 
     var favoritesBinding: Binding<[String]> {
@@ -98,25 +104,6 @@ func symbolContextMenu(
     favoritingSymbol(favoritesBinding, tabModel, icon)
 #if os(iOS)
     copySymbol(icon)
-    Section("Size") {
-        Stepper(value: $fontSize, in: 9...200, step: 5) {
-            EmptyView()
-        }
-        .onChange(of: fontSize) { _, newValue in
-            fontSize = min(max(newValue, 9), 200)
-        }
-    }
-
-    Button {
-        showingWeight.toggle()
-    } label: {
-        Label("Weight", systemImage: "arrowtriangle.left.and.line.vertical.and.arrowtriangle.right.fill")
-    }
-    Button {
-        showingRender.toggle()
-    } label: {
-        Label("Render", systemImage: "paintbrush")
-    }
     Button {
         showingSearch.toggle()
     } label: {

@@ -15,26 +15,28 @@ struct HomeView: View {
     var body: some View {
         ZStack {
             SymbolView(renderMode: $selectedSample, fontWeight: $selectedWeight, symbols: symbols)
+
+
 #if os(iOS)
-            if !systemName.isEmpty {
-                iconLabel(icon: systemName)
+            VStack {
+                if !systemName.isEmpty {
+                    iconLabel(icon: systemName)
+                }
+                if showWeightPicker {
+                    WeightPickerView(selectedWeight: $selectedWeight, selectedSample: $selectedSample)
+                        .padding(.top)
+                }
             }
 #endif
-            //            if showingWeight {
-            //                weightPicker(selectedWeight: $selectedWeight)
-            //            }
-            //            if showingRender {
-            //                renderingPicker()
-            //            }
+
         }
         .edgesIgnoringSafeArea(.all)
     }
-    //    @AppStorage("showingRender") var showingRender = false
-    //    @AppStorage("showingWeight") var showingWeight = false
     @AppStorage("showingCanvas") var showingCanvas = false
     @AppStorage("canvasIcon") var canvasIcon = ""
     @AppStorage("fontSize") var fontSize = 50.0
     @AppStorage("systemName") var systemName = ""
+    @AppStorage("showWeightPicker") var showWeightPicker = false
 
     @FocusState public var isSearchFieldFocused: Bool
 

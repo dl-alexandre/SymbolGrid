@@ -255,6 +255,9 @@
         }
       }
     },
+    "Font Weight" : {
+
+    },
     "Foreground" : {
       "localizations" : {
         "es" : {
@@ -457,6 +460,7 @@
       }
     },
     "Render" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -597,6 +601,12 @@
         }
       }
     },
+    "Symbol Rendering" : {
+
+    },
+    "Symbol Size" : {
+
+    },
     "SymbolGrid's Searchbar activates two buttons when focused." : {
       "localizations" : {
         "es" : {
@@ -685,6 +695,7 @@
     },
     "Weight" : {
       "comment" : "used Thickness instead of Weight",
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {

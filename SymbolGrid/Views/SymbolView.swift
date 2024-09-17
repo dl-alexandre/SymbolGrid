@@ -6,7 +6,9 @@
 //
 
 import SwiftUI
+import Design
 import SFSymbolKit
+import UniformTypeIdentifiers
 
 struct SymbolView: View {
     @EnvironmentObject private var tabModel: TabModel
@@ -65,13 +67,20 @@ struct SymbolView: View {
     @Namespace var animation
     @State private var selected: Icon?
     @State private var detailIcon: Icon?
+    @State private var isCopied = false
 
     @Binding public var renderMode: RenderModes
     @Binding public var fontWeight: FontWeights
+    @AppStorage("isDragging") var isDragging = false
+    @AppStorage("showWeightPicker") var showWeightPicker = false
     @FocusState public var isSearchFieldFocused: Bool
-
+    @Environment(\.verticalSizeClass) var verticalSizeClass
     @State private var position = ScrollPosition(edge: .top)
 
+    @State private var selectedSample = RenderModes.monochrome
+    @State private var selectedWeight = FontWeights.medium
+    @AppStorage("showInspector") var showInspector = false
+    @AppStorage("systemName") var systemName = ""
     @State private var showSheet = false
 
     var body: some View {
@@ -84,18 +93,11 @@ struct SymbolView: View {
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: spacing) {
                         ForEach(icons) { icon in
-                            symbol(
-                                icon: icon,
-                                selected: $selected,
-                                tabModel: tabModel,
-                                renderMode: $renderMode,
-                                fontWeight: $fontWeight
-                            )
-                                .padding(8)
-                                .matchedTransitionSource(id: icon.id, in: animation)
-                                .onTapGesture {
-                                    selected  = icon
-
+                            Button {
+                                if selected?.id == icon.id {
+                                    showSheet.toggle()
+                                } else {
+                                    selected = icon
 #if os(iOS)
                                     showSheet = true
 #else
@@ -107,8 +109,47 @@ struct SymbolView: View {
                                     )
 #endif
                                 }
+                            } label: {
+                                symbol(
+                                    icon: icon,
+                                    renderMode: $renderMode,
+                                    fontWeight: $fontWeight
+                                )
+                                .padding(8)
+                                .matchedTransitionSource(id: icon.id, in: animation)
+                                .foregroundStyle((selected?.id == icon.id) ? icon.color : .primary)
+                                .draggable(icon)
+                                .onDrag {
+                                    self.isDragging = true
+                                    return NSItemProvider(object: icon.id as NSString)
+                                }
+                                .onDrag {
+//                                    self.isDragging = true
+#if os(macOS)
+                                    let provider = NSItemProvider(
+                                        object: (
+                                            Image(systemName: icon.id).asNSImage() ?? Image(systemName: "plus").asNSImage()!
+                                        ) as NSImage
+                                    )
+#else
+                                    let provider = NSItemProvider(object: (UIImage(systemName: icon.id) ?? UIImage(systemName: "plus")!))
+#endif
+                                    return provider
+
+                                }
+                                .background(DragOutsideView(isDragging: $isDragging))
+                            }
                         }
                     }.offset(x: 0, y: searchText.isEmpty ? 0: (fontSize * 3))
+                }
+                .inspector(isPresented: $showInspector) {
+                    FavoritesView(renderMode: $selectedSample, fontWeight: $selectedWeight)
+                        .inspectorColumnWidth(225)
+                }
+                .refreshable {
+                    withAnimation {
+                        showWeightPicker.toggle()
+                    }
                 }
                 .scrollPosition($position)
 #if os(iOS)
@@ -118,48 +159,29 @@ struct SymbolView: View {
                             icon: selectedIcon,
                             detailIcon: $detailIcon,
                             selectedWeight: $fontWeight,
-                            selectedSample: $renderMode
+                            selectedSample: $renderMode,
+                            showInspector: $showInspector
                         )
                             .presentationBackgroundInteraction(.enabled)
                             .presentationDetents([.height(geo.size.height / 4), .medium])
+//                            .presentationCompactAdaptation(horizontal: .sheet, vertical: .automatic)
                             .sheet(item: $detailIcon) { icon in
                                 DetailView(icon: icon, animation: animation, color: icon.color)
                                     .presentationDetents([.medium])
                             }
                     }
-
                 }
 #endif
 
             }
-            if showingTitle {
-                if let selectedIcon = selected {
-                    customTitleBar("\(selectedIcon.id)")
-                        .padding()
-                        .onTapGesture(count: 1) {
-#if os(macOS)
-                            NSPasteboard.general.setString(selectedIcon.id, forType: .string)
-                            print(selectedIcon.id)
-#endif
-                        }
-                }
-
-            }
-        }
-        .onAppear {
-            showingTitle = true
-            //            DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-            //                withAnimation(.easeInOut(duration: 2)) {
-            //                    showingTitle = false
-            //                }
-            //            }
+//            if isDragging {
+//                FavoritesDrop(droppedIcon: $selected, isTargeted: <#Bool#>)
+//            }
         }
 #if os(iOS)
-        .onTapGesture(count: 2) {
-            showingSearch.toggle()
-        }
         .navigationBarTitleDisplayMode(.inline)
 #endif
+
 #if os(macOS)
         .toolbar {
             ToolbarItem(placement: .automatic) {
@@ -215,4 +237,38 @@ struct SymbolView: View {
         symbols: system.symbols
     )
         .environmentObject(tabModel)
+}
+
+struct DragOutsideView: UIViewRepresentable {
+    @Binding var isDragging: Bool
+
+    func makeUIView(context: Context) -> UIView {
+        let view = UIView()
+        let dragInteraction = UIDragInteraction(delegate: context.coordinator)
+        view.addInteraction(dragInteraction)
+        return view
+    }
+
+    func updateUIView(_ uiView: UIView, context: Context) {}
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(isDragging: $isDragging)
+    }
+
+    class Coordinator: NSObject, UIDragInteractionDelegate {
+        @Binding var isDragging: Bool
+
+        init(isDragging: Binding<Bool>) {
+            _isDragging = isDragging
+        }
+
+        func dragInteraction(_ interaction: UIDragInteraction, itemsForBeginning session: UIDragSession) -> [UIDragItem] {
+            if isDragging {
+                let image = UIImage(systemName: "star") ?? UIImage()
+                let provider = NSItemProvider(object: image)
+                return [UIDragItem(itemProvider: provider)]
+            }
+            return []
+        }
+    }
 }
