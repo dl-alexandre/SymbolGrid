@@ -136,7 +136,7 @@ struct SymbolView: View {
 //                    FavoritesDrop()
 //                        .opacity(isDragging ? 1 : 0)
 //                }
-                .dropDestination(for: String.self) { items, location in
+                .dropDestination(for: String.self) { items, _ in
                     if let item = items.first {
                         removeFavorite(symbols: item)
                         print("\(item) removed from favorites")
@@ -151,8 +151,7 @@ struct SymbolView: View {
                 }
                 .inspector(isPresented: $showInspector) {
                     FavoritesView(renderMode: $selectedSample, fontWeight: $selectedWeight)
-//                        .inspectorColumnWidth(225)
-                        .dropDestination(for: String.self) { items, location in
+                        .dropDestination(for: String.self) { items, _ in
                             if let item = items.first {
                                 draggedText = item
                                 print("\(draggedText) added to favorites")
@@ -185,9 +184,6 @@ struct SymbolView: View {
 #endif
             }
         }
-//#if os(iOS)
-//        .navigationBarTitleDisplayMode(.inline)
-//#endif
 
 #if os(macOS)
         .toolbar {

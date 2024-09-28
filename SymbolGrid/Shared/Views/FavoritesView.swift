@@ -32,8 +32,7 @@ struct FavoritesView: View {
                         favorite(
                             icon: icon,
                             isCopied: $isCopied,
-                            selected: $selected//,
-//                            tabModel: tabModel
+                            selected: $selected
                         )
                         .draggable("\(icon.id)") {
                             Image(systemName: "\(icon.id)")

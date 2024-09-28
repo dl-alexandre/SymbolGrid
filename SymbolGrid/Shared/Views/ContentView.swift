@@ -13,7 +13,11 @@ struct ContentView: View {
         ZStack {
 //            TabView(selection: $tabModel.activeTab) {
                 if isAnimating {
-                    SplashView(symbols: system.symbols, fontWeight: $selectedWeight, isAnimating: $isAnimating)
+                    SplashView(
+                        symbols: system.symbols,
+                        fontWeight: $selectedWeight,
+                        isAnimating: $isAnimating
+                    )
 //                        .tag(Tab.home)
 #if os(macOS)
                         .background(HideTabBar())

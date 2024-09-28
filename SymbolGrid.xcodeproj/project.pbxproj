@@ -87,7 +87,7 @@
 		5CD9FE1A2CA7700E00248FDF /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				Shared/Info.plist,
 			);
 			target = 778C783A2C0A4656000CDC92 /* SymbolGrid */;
 		};
@@ -543,12 +543,12 @@
 				CODE_SIGN_ENTITLEMENTS = SymbolGrid/SymbolGrid.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"SymbolGrid/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"SymbolGrid/Shared/Preview Content\"";
 				DEVELOPMENT_TEAM = 2MP8QWK7R6;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SymbolGrid/Info.plist;
+				INFOPLIST_FILE = SymbolGrid/Shared/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SymbolGrid;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -586,12 +586,12 @@
 				CODE_SIGN_ENTITLEMENTS = SymbolGrid/SymbolGrid.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"SymbolGrid/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"SymbolGrid/Shared/Preview Content\"";
 				DEVELOPMENT_TEAM = 2MP8QWK7R6;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SymbolGrid/Info.plist;
+				INFOPLIST_FILE = SymbolGrid/Shared/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SymbolGrid;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

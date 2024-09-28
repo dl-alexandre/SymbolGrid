@@ -10,7 +10,6 @@ import UniformTypeIdentifiers
 
 private func favoritingSymbol(
     _ favoritesBinding: Binding<[String]>,
-//    _ tabModel: TabModel,
     _ icon: Icon
 ) -> Section<
     Text,
@@ -78,8 +77,7 @@ private func copySymbol(_ icon: Icon) -> Button<Label<Text, Image>> {
 @ViewBuilder
 func symbolContextMenu(
     icon: Icon,
-    selected: Binding<Icon?>//,
-//    tabModel: TabModel
+    selected: Binding<Icon?>
 ) -> some View {
     @AppStorage("favorites") var favorites: String = "[]"
     @AppStorage("showingSearch") var showingSearch = true

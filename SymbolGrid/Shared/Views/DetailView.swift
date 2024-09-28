@@ -48,10 +48,24 @@ func configureColor(showForeground: Bool, icon: Icon) -> String {
             colorConfig = """
 
         .foregroundStyle(Color(#colorLiteral(
-                                    red: \(String(format: "%.1f", Double((rgbValue & 0xFF0000) >> 16))) / 255.0,
-                                    green: \(String(format: "%.1f", Double((rgbValue & 0x00FF00) >> 8))) / 255.0,
-                                    blue: \(String(format: "%.1f", Double(rgbValue & 0x0000FF))) / 255.0,
-                                    alpha: \(String(format: "%.1f", Double((rgbValue & 0xFF000000) >> 24))) / 255.0)))
+                                    red: \(String(
+        format: "%.1f",
+        Double((rgbValue & 0xFF0000) >> 16)
+        )) / 255.0,
+                                    green: \(String(
+        format: "%.1f",
+        Double((rgbValue & 0x00FF00) >> 8)
+        )) / 255.0,
+                                    blue: \(String(
+        format: "%.1f",
+        Double(
+        rgbValue & 0x0000FF
+        )
+        )) / 255.0,
+                                    alpha: \(String(
+        format: "%.1f",
+        Double((rgbValue & 0xFF000000) >> 24)
+        )) / 255.0)))
         """
         }
     }
@@ -280,13 +294,17 @@ struct DetailView: View {
                                 }
                             }
                             Button {
-                                print(formatSwiftCode(code + scaleConfig + fontConfig + colorConfig + shadowConfig)!)
+                                print(
+                                    formatSwiftCode(
+                                        code + scaleConfig + fontConfig + colorConfig + shadowConfig
+                                    )!
+                                )
                             } label: {
                                 Image(systemName: "doc.on.doc").bold()
                             }.padding(4)
                         }
                     }
-                    .frame(/*maxWidth: geo.size.width,*/ maxHeight: geo.size.height/3, alignment: .bottomLeading)
+                    .frame(maxHeight: geo.size.height/3, alignment: .bottomLeading)
                 }
                 .padding(.horizontal)
             }.onTapGesture(count: 2) {
@@ -352,7 +370,14 @@ struct DetailView: View {
 #Preview {
     @Previewable @Namespace var animation
 #if os(iOS)
-    DetailView(icon: Icon(id: "square.and.arrow.up.on.square.fill", color: .random(), uiColor: .black), animation: animation)
+    DetailView(
+        icon: Icon(
+            id: "square.and.arrow.up.on.square.fill",
+            color: .random(),
+            uiColor: .black
+        ),
+        animation: animation
+    )
 #else
     DetailView(icon: Icon(id: "plus", color: .random(), uiColor: .black))
 #endif
@@ -370,6 +395,12 @@ extension Color {
         let blue = components[2]
         let alpha = components[3]
 
-        return String(format: "Color(red: %.2f, green: %.2f, blue: %.2f, opacity: %.2f)", red, green, blue, alpha)
+        return String(
+            format: "Color(red: %.2f, green: %.2f, blue: %.2f, opacity: %.2f)",
+            red,
+            green,
+            blue,
+            alpha
+        )
     }
 }

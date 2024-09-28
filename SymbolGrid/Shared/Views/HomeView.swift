@@ -89,7 +89,11 @@ struct HomeView: View {
             VStack {
                 Rectangle()
                     .fill(.ultraThickMaterial)
-                    .frame(maxWidth: geo.size.width / 4, maxHeight: geo.size.height / 4, alignment: .topLeading)
+                    .frame(
+                        maxWidth: geo.size.width / 4,
+                        maxHeight: geo.size.height / 4,
+                        alignment: .topLeading
+                    )
                     .border(.ultraThinMaterial, width: 10)
                     .cornerRadius(20)
                     .overlay {

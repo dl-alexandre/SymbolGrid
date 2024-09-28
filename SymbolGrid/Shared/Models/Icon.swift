@@ -40,7 +40,10 @@ struct Icon: Identifiable, Equatable, Transferable, Codable, Hashable {
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
-        let colorData = try NSKeyedArchiver.archivedData(withRootObject: uiColor!, requiringSecureCoding: false)
+        let colorData = try NSKeyedArchiver.archivedData(
+            withRootObject: uiColor!,
+            requiringSecureCoding: false
+        )
         try container.encode(colorData, forKey: .color)
     }
 
@@ -89,7 +92,10 @@ struct Icon: Identifiable, Equatable, Transferable, Codable {
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
-        let colorData = try NSKeyedArchiver.archivedData(withRootObject: uiColor!, requiringSecureCoding: false)
+        let colorData = try NSKeyedArchiver.archivedData(
+            withRootObject: uiColor!,
+            requiringSecureCoding: false
+        )
         try container.encode(colorData, forKey: .color)
     }
 

@@ -8,11 +8,9 @@ Welcome to my open source app! It is ready for contributors for [Hacktoberfest](
 # Getting Started
 
 ![Static Badge](https://img.shields.io/badge/status-active-brightgreen)
-![GitHub last commit (branch)](https://img.shields.io/github/last-commit/dl-alexandre/SymbolGrid/dev?logo=github)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/dl-alexandre/SymbolGrid/main?logo=github)
 ![GitHub contributors](https://img.shields.io/github/contributors/dl-alexandre/SymbolGrid)
 [![first-timers-only](https://img.shields.io/badge/first--timers--only-friendly-blue.svg)](https://www.firsttimersonly.com/)
-[![Unit Tests](https://github.com/dl-alexandre/SymbolGrid/actions/workflows/unit-tests.yml/badge.svg?event=push)](https://github.com/dl-alexandre/SymbolGrid/actions/workflows/unit-tests.yml)
-[![Deploy DocC Documentation](https://github.com/dl-alexandre/SymbolGrid/actions/workflows/docc.yml/badge.svg?branch=dev)](https://github.com/dl-alexandre/SymbolGrid/actions/workflows/docc.yml)
 
 * Read the [Code of Conduct](https://github.com/dl-alexandre/SymbolGrid/blob/main/CODE_OF_CONDUCT.md)
 * Read the [CONTRIBUTING.md](https://github.com/dl-alexandre/SymbolGrid/blob/main/CONTRIBUTING.md) guidelines
