@@ -47,8 +47,8 @@ struct SymbolView: View {
     }
 
     init(
-        renderMode: Binding<RenderModes>,
-        fontWeight: Binding<FontWeights>,
+        renderMode: Binding<SymbolRenderingModes>,
+        fontWeight: Binding<Weight>,
         symbols: [String]
     ) {
         self._renderMode = renderMode
@@ -69,16 +69,16 @@ struct SymbolView: View {
     @State private var detailIcon: Icon?
     @State private var isCopied = false
 
-    @Binding public var renderMode: RenderModes
-    @Binding public var fontWeight: FontWeights
+    @Binding public var renderMode: SymbolRenderingModes
+    @Binding public var fontWeight: Weight
     @AppStorage("isDragging") var isDragging = false
     @AppStorage("showWeightPicker") var showWeightPicker = false
     @FocusState public var isSearchFieldFocused: Bool
     @Environment(\.verticalSizeClass) var verticalSizeClass
 //    @State private var position = ScrollPosition(edge: .top)
 
-    @State private var selectedSample = RenderModes.monochrome
-    @State private var selectedWeight = FontWeights.medium
+    @State private var selectedSample = SymbolRenderingModes.monochrome
+    @State private var selectedWeight = Weight.medium
     @AppStorage("showInspector") var showInspector = false
     @AppStorage("systemName") var systemName = ""
     @State private var showSheet = false
@@ -232,8 +232,8 @@ struct SymbolView: View {
 #Preview {
     @Previewable var tabModel = TabModel()
     @Previewable var system = System()
-    @Previewable var fontWeight: FontWeights = .regular
-    @Previewable var renderMode: RenderModes = .monochrome
+    @Previewable var fontWeight: Weight = .regular
+    @Previewable var renderMode: SymbolRenderingModes = .monochrome
     SymbolView(
         renderMode: .constant(renderMode),
         fontWeight: .constant(fontWeight),

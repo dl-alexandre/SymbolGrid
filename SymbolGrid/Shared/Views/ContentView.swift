@@ -94,8 +94,8 @@ struct ContentView: View {
     @Environment(\.controlActiveState) private var state
 #endif
     @State private var isAnimating = true
-    @State private var selectedSample = RenderModes.monochrome
-    @State private var selectedWeight = FontWeights.medium
+    @State private var selectedSample = SymbolRenderingModes.monochrome
+    @State private var selectedWeight = Weight.medium
     @State private var isActive: Bool = true
     @State private var system = System()
 

@@ -94,7 +94,7 @@ struct SplashView: View {
         }
     }
 
-    @Binding public var fontWeight: FontWeights
+    @Binding public var fontWeight: Weight
 
     @Binding var isAnimating: Bool
 
@@ -110,7 +110,7 @@ struct SplashView: View {
 #Preview {
     @Previewable var tabModel = TabModel()
     @Previewable var system = System()
-    @Previewable var fontWeight: FontWeights = .regular
+    @Previewable var fontWeight: Weight = .regular
     SplashView(
         symbols: system.symbols,
         fontWeight: .constant(

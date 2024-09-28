@@ -42,8 +42,8 @@ struct HomeView: View {
     @State private var isTapped: Bool = false
     @State private var isLoading: Bool = true
     @State private var needsNewJSON: Bool = false
-    @State private var selectedSample = RenderModes.monochrome
-    @State private var selectedWeight = FontWeights.medium
+    @State private var selectedSample = SymbolRenderingModes.monochrome
+    @State private var selectedWeight = Weight.medium
     @State private var isCopied = false
     @State private var tapLocation: CGPoint = .zero
 

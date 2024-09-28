@@ -9,10 +9,10 @@ import SwiftUI
 import SFSymbolKit
 
 @ViewBuilder
-func renderingPicker(selectedSample: Binding<RenderModes>) -> some View {
+func renderingPicker(selectedSample: Binding<SymbolRenderingModes>) -> some View {
     VStack {
             Picker("", selection: selectedSample) {
-                ForEach(RenderModes.allCases, id: \.self) { sample in
+                ForEach(SymbolRenderingModes.allCases, id: \.self) { sample in
                     Capsule()
                         .overlay {
                             Text(sample.name)

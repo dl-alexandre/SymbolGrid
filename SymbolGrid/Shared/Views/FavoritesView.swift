@@ -131,11 +131,11 @@ struct FavoritesView: View {
     @FocusState private var searchField: Field?
     @FocusState private var isSearchFieldFocused: Bool
     @Namespace var animation
-    @Binding public var renderMode: RenderModes
-    @Binding public var fontWeight: FontWeights
+    @Binding public var renderMode: SymbolRenderingModes
+    @Binding public var fontWeight: Weight
     @State private var selected: Icon?
-    @State private var selectedFontWeight = FontWeights.medium
-    @State private var selectedWeight: FontWeights = .regular
+    @State private var selectedFontWeight = Weight.medium
+    @State private var selectedWeight: Weight = .regular
     @State private var italic = false
     @State private var isCopied = false
 

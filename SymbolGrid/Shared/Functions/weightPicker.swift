@@ -9,10 +9,10 @@ import SwiftUI
 import SFSymbolKit
 
 @ViewBuilder
-func weightPicker(selectedWeight: Binding<FontWeights>) -> some View {
+func weightPicker(selectedWeight: Binding<Weight>) -> some View {
         VStack {
             Picker("", selection: selectedWeight) {
-                ForEach(FontWeights.allCases, id: \.self) { weight in
+                ForEach(Weight.allCases, id: \.self) { weight in
                     Text(weight.name)
                         .font(.title)
                         .fontWeight(weight.weight)

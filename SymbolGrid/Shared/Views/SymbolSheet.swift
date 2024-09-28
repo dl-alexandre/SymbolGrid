@@ -27,8 +27,8 @@ struct SymbolSheet: View {
 
     var icon: Icon
     @Binding var detailIcon: Icon?
-    @Binding var selectedWeight: FontWeights
-    @Binding var selectedSample: RenderModes
+    @Binding var selectedWeight: Weight
+    @Binding var selectedSample: SymbolRenderingModes
     @Binding var showInspector: Bool
     var tabModel = TabModel()
     @FocusState private var isSearchFieldFocused: Bool
@@ -95,8 +95,8 @@ struct SymbolSheet: View {
     SymbolSheet(
         icon: Icon(id: "square", color: Color.random(), uiColor: UIColor.black),
         detailIcon: .constant(Icon(id: "square", color: Color.random(), uiColor: UIColor.black)),
-        selectedWeight: .constant(FontWeights.regular),
-        selectedSample: .constant(RenderModes.monochrome),
+        selectedWeight: .constant(Weight.regular),
+        selectedSample: .constant(SymbolRenderingModes.monochrome),
         showInspector: .constant(false)
     )
 }

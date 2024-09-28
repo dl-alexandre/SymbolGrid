@@ -11,8 +11,8 @@ import SFSymbolKit
 @ViewBuilder
 func symbol(
     icon: Icon,
-    renderMode: Binding<RenderModes>,
-    fontWeight: Binding<FontWeights>
+    renderMode: Binding<SymbolRenderingModes>,
+    fontWeight: Binding<Weight>
 ) -> some View {
     @AppStorage("fontSize") var fontSize = 50.0
     @State var isHovered = false

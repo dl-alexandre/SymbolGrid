@@ -196,7 +196,7 @@ struct DetailView: View {
                                         Text("Scale:").font(.caption)
                                     }.buttonStyle(BorderedProminentButtonStyle())
                                     Picker("", selection: $selectedScale) {
-                                        ForEach(ImageScales.allCases, id: \.self) { scale in
+                                        ForEach(Scale.allCases, id: \.self) { scale in
                                             Capsule()
                                                 .overlay {
                                                     Text(scale.name)
@@ -221,7 +221,7 @@ struct DetailView: View {
                                         Text("Weight:").font(.caption)
                                     }.buttonStyle(BorderedProminentButtonStyle())
                                     Picker("", selection: $selectedWeight) {
-                                        ForEach(FontWeights.allCases, id: \.self) { weight in
+                                        ForEach(Weight.allCases, id: \.self) { weight in
                                             Capsule()
                                                 .overlay {
                                                     Text(weight.name)
@@ -329,8 +329,8 @@ struct DetailView: View {
     @State var showForeground: Bool = false
     @State var color: Color = .random()
     @State var showAlert = false
-    @State private var selectedScale = ImageScales.medium
-    @State private var selectedWeight = FontWeights.regular
+    @State private var selectedScale = Scale.medium
+    @State private var selectedWeight = Weight.regular
     @State private var accumulatedOffset = CGSize.zero
     @State private var offset = CGSize.zero
     @State private var isDragging = false

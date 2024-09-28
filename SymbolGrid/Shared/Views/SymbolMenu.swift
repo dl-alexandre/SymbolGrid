@@ -13,8 +13,8 @@ struct SymbolMenu: View {
     @AppStorage("showingSearch") var showingSearch = true
     @AppStorage("searchText") var searchText = ""
     @AppStorage("showWeightPicker") var showWeightPicker = false
-    @Binding var selectedWeight: FontWeights
-    @Binding var selectedSample: RenderModes
+    @Binding var selectedWeight: Weight
+    @Binding var selectedSample: SymbolRenderingModes
     @Environment(\.verticalSizeClass) var verticalSizeClass
 
     @FocusState private var isSearchFieldFocused: Bool
@@ -112,10 +112,10 @@ struct SymbolMenu: View {
 }
 
 @ViewBuilder
-func renderPicker2(selectedSample: Binding<RenderModes>) -> some View {
+func renderPicker2(selectedSample: Binding<SymbolRenderingModes>) -> some View {
     VStack {
         Picker("", selection: selectedSample) {
-            ForEach(RenderModes.allCases, id: \.self) { sample in
+            ForEach(SymbolRenderingModes.allCases, id: \.self) { sample in
                 let image = Image(
                     systemName: "textformat.abc.dottedunderline")
                     .symbolRenderingMode(sample.mode)
