@@ -61,7 +61,7 @@ Please choose an appropriate issue for your skill level
 </a>
 
 Made with [contrib.rocks](https://contrib.rocks).
-
+<!--
 ## Star History
 
 <a href="https://star-history.com/#dl-alexandre/SymbolGrid&Date">
@@ -72,6 +72,6 @@ Made with [contrib.rocks](https://contrib.rocks).
   </picture>
 </a>
 
-
+--!>
 # License
 This project is licensed under [Apache 2.0](https://github.com/dl-alexandre/SymbolGrid/blob/main/LICENSE).
