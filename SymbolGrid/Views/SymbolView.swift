@@ -6,7 +6,9 @@
 //
 
 import SwiftUI
+import Design
 import SFSymbolKit
+import UniformTypeIdentifiers
 
 struct SymbolView: View {
     @EnvironmentObject private var tabModel: TabModel
@@ -65,37 +67,37 @@ struct SymbolView: View {
     @Namespace var animation
     @State private var selected: Icon?
     @State private var detailIcon: Icon?
+    @State private var isCopied = false
 
     @Binding public var renderMode: RenderModes
     @Binding public var fontWeight: FontWeights
+    @AppStorage("isDragging") var isDragging = false
+    @AppStorage("showWeightPicker") var showWeightPicker = false
     @FocusState public var isSearchFieldFocused: Bool
+    @Environment(\.verticalSizeClass) var verticalSizeClass
+//    @State private var position = ScrollPosition(edge: .top)
 
-    @State private var position = ScrollPosition(edge: .top)
-
+    @State private var selectedSample = RenderModes.monochrome
+    @State private var selectedWeight = FontWeights.medium
+    @AppStorage("showInspector") var showInspector = false
+    @AppStorage("systemName") var systemName = ""
     @State private var showSheet = false
 
     var body: some View {
         let icons: [Icon] = searchResults.map { symbolName in
-            Icon(id: symbolName)
+            Icon(id: symbolName, color: .random(), uiColor: .black)
         }
 
         ZStack {
             GeometryReader { geo in
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: spacing) {
-                        ForEach(icons) { icon in
-                            symbol(
-                                icon: icon,
-                                selected: $selected,
-                                tabModel: tabModel,
-                                renderMode: $renderMode,
-                                fontWeight: $fontWeight
-                            )
-                                .padding(8)
-                                .matchedTransitionSource(id: icon.id, in: animation)
-                                .onTapGesture {
-                                    selected  = icon
-
+                        ForEach(icons, id: \.id) { icon in
+                            Button {
+                                if selected?.id == icon.id {
+                                    showSheet.toggle()
+                                } else {
+                                    selected = icon
 #if os(iOS)
                                     showSheet = true
 #else
@@ -107,18 +109,70 @@ struct SymbolView: View {
                                     )
 #endif
                                 }
+                            } label: {
+                                symbol(
+                                    icon: icon,
+                                    renderMode: $renderMode,
+                                    fontWeight: $fontWeight
+                                )
+                                .padding(8)
+                                .matchedTransitionSource(id: icon.id, in: animation)
+                                .contentShape(.dragPreview, RoundedRectangle(cornerRadius: 7))
+                                .foregroundStyle((selected?.id == icon.id) ? icon.color : .primary)
+//                                .draggable("\(icon.id)") {
+//                                    Image(systemName: "\(icon.id)")
+//                                }
+//                                .draggable(Image(systemName: icon.id)) {
+//                                    Image(systemName: "\(icon.id)")
+//                                }
+                                .draggable(Image(systemName: icon.id)) {
+                                    Text("\(icon.id)")
+                                }
+                            }
                         }
                     }.offset(x: 0, y: searchText.isEmpty ? 0: (fontSize * 3))
                 }
-                .scrollPosition($position)
+//                .overlay {
+//                    FavoritesDrop()
+//                        .opacity(isDragging ? 1 : 0)
+//                }
+                .dropDestination(for: String.self) { items, location in
+                    if let item = items.first {
+                        removeFavorite(symbols: item)
+                        print("\(item) removed from favorites")
+                        return true
+                    }
+                    return false
+                }
+                .refreshable {
+                    withAnimation {
+                        showWeightPicker.toggle()
+                    }
+                }
+                .inspector(isPresented: $showInspector) {
+                    FavoritesView(renderMode: $selectedSample, fontWeight: $selectedWeight)
+//                        .inspectorColumnWidth(225)
+                        .dropDestination(for: String.self) { items, location in
+                            if let item = items.first {
+                                draggedText = item
+                                print("\(draggedText) added to favorites")
+                                addFavorite(symbols: draggedText)
+                                return true
+                            }
+                            return false
+                        }
+                }
+
+//                .scrollPosition($position)
 #if os(iOS)
                 .sheet(isPresented: $showSheet) {
                     if let selectedIcon = selected {
-                        MenuSheet(
+                        SymbolSheet(
                             icon: selectedIcon,
                             detailIcon: $detailIcon,
                             selectedWeight: $fontWeight,
-                            selectedSample: $renderMode
+                            selectedSample: $renderMode,
+                            showInspector: $showInspector
                         )
                             .presentationBackgroundInteraction(.enabled)
                             .presentationDetents([.height(geo.size.height / 4), .medium])
@@ -127,39 +181,14 @@ struct SymbolView: View {
                                     .presentationDetents([.medium])
                             }
                     }
-
                 }
 #endif
-
-            }
-            if showingTitle {
-                if let selectedIcon = selected {
-                    customTitleBar("\(selectedIcon.id)")
-                        .padding()
-                        .onTapGesture(count: 1) {
-#if os(macOS)
-                            NSPasteboard.general.setString(selectedIcon.id, forType: .string)
-                            print(selectedIcon.id)
-#endif
-                        }
-                }
-
             }
         }
-        .onAppear {
-            showingTitle = true
-            //            DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-            //                withAnimation(.easeInOut(duration: 2)) {
-            //                    showingTitle = false
-            //                }
-            //            }
-        }
-#if os(iOS)
-        .onTapGesture(count: 2) {
-            showingSearch.toggle()
-        }
-        .navigationBarTitleDisplayMode(.inline)
-#endif
+//#if os(iOS)
+//        .navigationBarTitleDisplayMode(.inline)
+//#endif
+
 #if os(macOS)
         .toolbar {
             ToolbarItem(placement: .automatic) {
@@ -176,7 +205,7 @@ struct SymbolView: View {
 #endif
 
     }
-
+    @State var draggedText = ""
     @AppStorage("fontSize") var fontSize = 50.0
     @AppStorage("showingSearch") var showingSearch = true
     @AppStorage("symbol_arabic") private var arabicSetting = false

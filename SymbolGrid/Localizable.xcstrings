@@ -4,6 +4,9 @@
     "" : {
 
     },
+    " %.0f" : {
+
+    },
     "[ %@ ]  close searchbar" : {
       "localizations" : {
         "es" : {
@@ -59,6 +62,9 @@
           }
         }
       }
+    },
+    "%@ added to favorites" : {
+
     },
     "%@ Help" : {
       "extractionState" : "stale",
@@ -156,6 +162,12 @@
           }
         }
       }
+    },
+    "Color" : {
+
+    },
+    "Color: " : {
+
     },
     "Copy" : {
 
@@ -255,7 +267,11 @@
         }
       }
     },
+    "Font Weight" : {
+
+    },
     "Foreground" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -457,6 +473,7 @@
       }
     },
     "Render" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -485,6 +502,9 @@
           }
         }
       }
+    },
+    "Scale" : {
+
     },
     "Scale:" : {
       "localizations" : {
@@ -526,6 +546,9 @@
         }
       }
     },
+    "Shadow" : {
+
+    },
     "Shadow: " : {
       "localizations" : {
         "es" : {
@@ -556,7 +579,11 @@
         }
       }
     },
+    "Size:" : {
+
+    },
     "Size: %.0f" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -596,6 +623,12 @@
           }
         }
       }
+    },
+    "Symbol Rendering" : {
+
+    },
+    "Symbol Size" : {
+
     },
     "SymbolGrid's Searchbar activates two buttons when focused." : {
       "localizations" : {

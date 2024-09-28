@@ -10,7 +10,7 @@ import UniformTypeIdentifiers
 
 private func favoritingSymbol(
     _ favoritesBinding: Binding<[String]>,
-    _ tabModel: TabModel,
+//    _ tabModel: TabModel,
     _ icon: Icon
 ) -> Section<
     Text,
@@ -32,11 +32,11 @@ private func favoritingSymbol(
     return Section("Favorites") {
         if favoritesBinding.wrappedValue.isEmpty {
             Button {
-                if tabModel.activeTab == .home {
-                    tabModel.activeTab = .favorites
-                } else {
-                    tabModel.activeTab = .home
-                }
+//                if tabModel.activeTab == .home {
+//                    tabModel.activeTab = .favorites
+//                } else {
+//                    tabModel.activeTab = .home
+//                }
             } label: {
                 Label("Show", systemImage: "line.horizontal.star.fill.line.horizontal")
             }
@@ -60,8 +60,16 @@ private func favoritingSymbol(
 
 private func copySymbol(_ icon: Icon) -> Button<Label<Text, Image>> {
     return Button {
-        UIPasteboard.general .setValue(icon.id.description,
-                                       forPasteboardType: UTType.plainText .identifier)
+#if os(iOS)
+        UIPasteboard.general .setValue(
+            icon.id.description,
+            forPasteboardType: UTType.plainText .identifier
+        )
+#else
+            let pasteboard = NSPasteboard.general
+            pasteboard.declareTypes([.string], owner: nil)
+            pasteboard.setString(icon.id.description, forType: .string)
+#endif
     } label: {
         Label("Copy", systemImage: "doc.on.doc")
     }
@@ -70,13 +78,11 @@ private func copySymbol(_ icon: Icon) -> Button<Label<Text, Image>> {
 @ViewBuilder
 func symbolContextMenu(
     icon: Icon,
-    selected: Binding<Icon?>,
-    tabModel: TabModel
+    selected: Binding<Icon?>//,
+//    tabModel: TabModel
 ) -> some View {
     @AppStorage("favorites") var favorites: String = "[]"
     @AppStorage("showingSearch") var showingSearch = true
-    @AppStorage("showingRender") var showingRender = true
-    @AppStorage("showingWeight") var showingWeight = true
     @AppStorage("fontSize") var fontSize = 50.0
 
     var favoritesBinding: Binding<[String]> {
@@ -95,28 +101,9 @@ func symbolContextMenu(
         }
     }
 #endif
-    favoritingSymbol(favoritesBinding, tabModel, icon)
+    favoritingSymbol(favoritesBinding/*, tabModel*/, icon)
 #if os(iOS)
     copySymbol(icon)
-    Section("Size") {
-        Stepper(value: $fontSize, in: 9...200, step: 5) {
-            EmptyView()
-        }
-        .onChange(of: fontSize) { _, newValue in
-            fontSize = min(max(newValue, 9), 200)
-        }
-    }
-
-    Button {
-        showingWeight.toggle()
-    } label: {
-        Label("Weight", systemImage: "arrowtriangle.left.and.line.vertical.and.arrowtriangle.right.fill")
-    }
-    Button {
-        showingRender.toggle()
-    } label: {
-        Label("Render", systemImage: "paintbrush")
-    }
     Button {
         showingSearch.toggle()
     } label: {

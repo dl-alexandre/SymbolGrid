@@ -11,7 +11,7 @@ import SFSymbolKit
 struct SplashView: View {
     var body: some View {
         let limitedIcons: [Icon] = Array(searchResults.prefix(200)).map { symbolName in
-            Icon(id: symbolName)
+            Icon(id: symbolName, color: .random(), uiColor: .black)
         }
 
         ZStack {
@@ -23,6 +23,7 @@ struct SplashView: View {
                             .padding(8)
                             .font(.system(size: fontSize, weight: fontWeight.weight))
                             .symbolEffect(.breathe.byLayer.pulse)
+//                            .symbolEffect(.scale)
                             .foregroundStyle(Color.random())
                             .onAppear {
                                 isAnimating = true

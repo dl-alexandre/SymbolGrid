@@ -1,0 +1,8 @@
+//
+//  UnitTests.xcconfig
+//  SymbolGrid
+//
+//  Created by Dalton Alexandre on 9/27/24.
+//
+
+PRODUCT_BUNDLE_IDENTIFIER = $(PRODUCT_BUNDLE_IDENTIFIER)Tests
