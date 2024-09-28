@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="SymbolGrid/Assets.xcassets/AppIcon.appiconset/SymbolGridIcon 4.png" alt="Ignite logo" width="256" height="256" />
+    <img src="SymbolGrid/Shared/Assets.xcassets/AppIcon.appiconset/SymbolGridIcon 4.png" alt="Ignite logo" width="256" height="256" />
 </p>
 
 # SymbolGrid
