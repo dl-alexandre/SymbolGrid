@@ -10,7 +10,6 @@ import SFSymbolKit
 
 @main
 struct SymbolGridApp: App {
-
     init() {
         registerDefaultsFromSettingsBundle()
     }
@@ -19,7 +18,8 @@ struct SymbolGridApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView().environmentObject(tabModel)
+            ContentView()
+                .environmentObject(tabModel)
         }
 #if os(macOS)
         .windowStyle(HiddenTitleBarWindowStyle())

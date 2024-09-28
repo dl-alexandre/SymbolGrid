@@ -10,10 +10,9 @@ import Design
 import SFSymbolKit
 
 struct FavoritesView: View {
-
     var body: some View {
         let icons: [Icon] = searchResults.map { symbolName in
-            Icon(id: symbolName)
+            Icon(id: symbolName, color: .random(), uiColor: .black)
         }
 
         ZStack {
@@ -23,11 +22,6 @@ struct FavoritesView: View {
                 } description: {
                     Text("Find your favorite symbols here")
                     Button {
-                        if tabModel.activeTab == .home {
-                            tabModel.activeTab = .favorites
-                        } else {
-                            tabModel.activeTab = .home
-                        }
                     } label: {
                         Label("Show", systemImage: "line.horizontal.star.fill.line.horizontal")
                     }
@@ -38,18 +32,23 @@ struct FavoritesView: View {
                         favorite(
                             icon: icon,
                             isCopied: $isCopied,
-                            selected: $selected,
-                            tabModel: tabModel
+                            selected: $selected//,
+//                            tabModel: tabModel
                         )
-
+                        .draggable("\(icon.id)") {
+                            Image(systemName: "\(icon.id)")
+                        }
                     }
-
                 }
-                .offset(x: 0, y: showingTitle ? fontSize * 3: 20)
-#if os(iOS)
-                .navigationBarTitleDisplayMode(.inline)
-#endif
-
+//                .dropDestination(for: String.self) { items, location in
+//                    if let item = items.first {
+//                        draggedText = item
+//                        print("\(draggedText) added to favorites")
+//                        addFavorite(symbols: draggedText)
+//                        return true
+//                    }
+//                    return false
+//                }
                 .toolbar {
                     ToolbarItem(placement: .principal) {
                         copyNotification(isCopied: $isCopied, icon: $systemName)
@@ -74,25 +73,35 @@ struct FavoritesView: View {
                     showingSearch: $showingSearch
                 )
             }
-            if showingTitle {
-                customTitleBar("Favorites")
-            }
+//            if showingTitle {
+//                customTitleBar("Favorites")
+//            }
         }
+        .hoverEffect(.highlight)
         .onAppear {
             for item in icons {
                 addIconToIndex(item.id, "com.alexandrefamilyfarm.symbols")
             }
 
-            showingTitle = true
-            DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-                withAnimation(.easeInOut(duration: 2)) {
-                    showingTitle = false
-                }
-            }
+//            showingTitle = true
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+//                withAnimation(.easeInOut(duration: 2)) {
+//                    showingTitle = false
+//                }
+//            }
         }
         .edgesIgnoringSafeArea(.all)
+//        .dropDestination(for: String.self) { items, location in
+//            if let item = items.first {
+//                draggedText = item
+//                print("\(draggedText) added to favorites")
+//                addFavorite(symbols: draggedText)
+//                return true
+//            }
+//            return false
+//        }
     }
-
+    @State private var draggedText = ""
     @EnvironmentObject private var tabModel: TabModel
     @AppStorage("symbol_arabic") private var arabicSetting = false
     @AppStorage("symbol_bengali") private var bengaliSetting = false // bn
@@ -116,7 +125,7 @@ struct FavoritesView: View {
     @AppStorage("symbol_punjabi") private var punjabiSetting = false // pa
     @AppStorage("favorites") private var favorites: String = "[]"
     @AppStorage("showingSearch") var showingSearch = false
-    @AppStorage("showingTitle") var showingTitle = true
+//    @AppStorage("showingTitle") var showingTitle = true
     @AppStorage("searchText") var searchText = ""
     @AppStorage("fontSize") var fontSize = 50.0
     @AppStorage("systemName") var systemName = ""

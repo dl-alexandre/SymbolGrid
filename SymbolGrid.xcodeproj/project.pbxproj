@@ -3,54 +3,26 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5C0DAAE32C87B6EC0030966E /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 5C0DAAE22C87B6EC0030966E /* Localizable.xcstrings */; };
-		5C0DAAE52C88DAD50030966E /* TitleBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0DAAE42C88DAD50030966E /* TitleBar.swift */; };
-		5CB253EE2C90E9D6006744C2 /* MenuSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB253ED2C90E9D6006744C2 /* MenuSheet.swift */; };
-		5CB253F02C90EBDF006744C2 /* weightPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB253EF2C90EBDF006744C2 /* weightPicker.swift */; };
-		5CB253F22C90ED61006744C2 /* renderPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB253F12C90ED61006744C2 /* renderPicker.swift */; };
-		5CFAA2EC2C95FFFA00C0F7E9 /* WeightPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFAA2EB2C95FFFA00C0F7E9 /* WeightPickerView.swift */; };
-		5CFAA2EE2C96525400C0F7E9 /* FavoritesDrop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFAA2ED2C96525400C0F7E9 /* FavoritesDrop.swift */; };
+		5CB51FCB2C9C8457006DA426 /* Splash in Frameworks */ = {isa = PBXBuildFile; productRef = 5CB51FCA2C9C8457006DA426 /* Splash */; };
+		5CB51FCD2C9C8457006DA426 /* SplashHTMLGen in Frameworks */ = {isa = PBXBuildFile; productRef = 5CB51FCC2C9C8457006DA426 /* SplashHTMLGen */; };
+		5CB51FCF2C9C8457006DA426 /* SplashImageGen in Frameworks */ = {isa = PBXBuildFile; productRef = 5CB51FCE2C9C8457006DA426 /* SplashImageGen */; };
+		5CB51FD12C9C8457006DA426 /* SplashMarkdown in Frameworks */ = {isa = PBXBuildFile; productRef = 5CB51FD02C9C8457006DA426 /* SplashMarkdown */; };
+		5CB51FD32C9C8457006DA426 /* SplashTokenizer in Frameworks */ = {isa = PBXBuildFile; productRef = 5CB51FD22C9C8457006DA426 /* SplashTokenizer */; };
+		5CB51FD92C9D2A81006DA426 /* SwiftFormat in Frameworks */ = {isa = PBXBuildFile; productRef = 5CB51FD82C9D2A81006DA426 /* SwiftFormat */; };
+		5CB51FDB2C9D2A81006DA426 /* swift-format in Frameworks */ = {isa = PBXBuildFile; productRef = 5CB51FDA2C9D2A81006DA426 /* swift-format */; };
+		5CD9FE1E2CA7751800248FDF /* Contributing.md in Resources */ = {isa = PBXBuildFile; fileRef = 5CD9FE1D2CA7751800248FDF /* Contributing.md */; };
+		5CD9FE202CA778A200248FDF /* SymbolGrid.xcconfig.template in Resources */ = {isa = PBXBuildFile; fileRef = 5CD9FE1F2CA778A200248FDF /* SymbolGrid.xcconfig.template */; };
+		5CD9FE222CA7794000248FDF /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 5CD9FE212CA7794000248FDF /* README.md */; };
+		5CD9FE242CA77C0B00248FDF /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 5CD9FE232CA77C0B00248FDF /* LICENSE */; };
+		5CD9FE262CA77C4B00248FDF /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 5CD9FE252CA77C4B00248FDF /* .gitignore */; };
+		5CD9FE282CA77C9D00248FDF /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 5CD9FE272CA77C9D00248FDF /* .swiftlint.yml */; };
 		775651C02C10E9190013B34B /* SFSymbolKit in Frameworks */ = {isa = PBXBuildFile; productRef = 775651BF2C10E9190013B34B /* SFSymbolKit */; };
 		7783DB8D2C2B606F00F993E3 /* Design in Frameworks */ = {isa = PBXBuildFile; productRef = 7783DB8C2C2B606F00F993E3 /* Design */; };
-		778C70EA2C0CEFA800162DE1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C70E92C0CEFA800162DE1 /* ContentView.swift */; };
-		778C783F2C0A4656000CDC92 /* SymbolGridApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C783E2C0A4656000CDC92 /* SymbolGridApp.swift */; };
-		778C78432C0A4657000CDC92 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 778C78422C0A4657000CDC92 /* Assets.xcassets */; };
-		778C78462C0A4657000CDC92 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 778C78452C0A4657000CDC92 /* Preview Assets.xcassets */; };
-		778C78502C0A4658000CDC92 /* SymbolGridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C784F2C0A4658000CDC92 /* SymbolGridTests.swift */; };
-		778C785A2C0A4658000CDC92 /* SymbolGridUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C78592C0A4658000CDC92 /* SymbolGridUITests.swift */; };
-		778C785C2C0A4658000CDC92 /* SymbolGridUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C785B2C0A4658000CDC92 /* SymbolGridUITestsLaunchTests.swift */; };
-		778C787B2C0A46CA000CDC92 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C78742C0A46CA000CDC92 /* HomeView.swift */; };
-		778C787C2C0A46CA000CDC92 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C78752C0A46CA000CDC92 /* FavoritesView.swift */; };
-		778C787F2C0A46CA000CDC92 /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C78782C0A46CA000CDC92 /* System.swift */; };
-		778C78842C0A46D4000CDC92 /* FontSizeSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C78802C0A46D4000CDC92 /* FontSizeSetting.swift */; };
-		778C78852C0A46D4000CDC92 /* LocalizationSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C78812C0A46D4000CDC92 /* LocalizationSetting.swift */; };
-		778C78862C0A46D4000CDC92 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C78822C0A46D4000CDC92 /* SettingsView.swift */; };
-		778C78952C0A4D6D000CDC92 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C78942C0A4D6D000CDC92 /* AppDelegate.swift */; };
-		778C78972C0A5A48000CDC92 /* Commands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C78962C0A5A48000CDC92 /* Commands.swift */; };
-		778C789B2C0A5CFA000CDC92 /* AddFavorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C789A2C0A5CFA000CDC92 /* AddFavorite.swift */; };
-		778C789D2C0A5D19000CDC92 /* RemoveFavorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C789C2C0A5D19000CDC92 /* RemoveFavorite.swift */; };
-		778C789F2C0A9532000CDC92 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C789E2C0A9532000CDC92 /* Tab.swift */; };
-		77CDC3CF2C14D5C700BF6E07 /* Focus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CDC3CE2C14D5C700BF6E07 /* Focus.swift */; };
-		77CDC3D32C14D77200BF6E07 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CDC3D22C14D77200BF6E07 /* Favorite.swift */; };
-		77CDC3D52C14D83400BF6E07 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CDC3D42C14D83400BF6E07 /* SearchBar.swift */; };
-		8B21B73B2C224F07008A0518 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B21B73A2C224F07008A0518 /* Search.swift */; };
 		8B21B73F2C224F07008A0518 /* Search.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 8B21B7382C224F07008A0518 /* Search.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		8B21B7442C227E39008A0518 /* Symbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B21B7432C227E39008A0518 /* Symbol.swift */; };
-		8B21B7462C228100008A0518 /* SymbolContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B21B7452C228100008A0518 /* SymbolContextMenu.swift */; };
-		8B36CCD42C1EA3B900AFB088 /* SymbolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B36CCD32C1EA3B900AFB088 /* SymbolView.swift */; };
-		8B4D0FB22C20BDC400F660BF /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4D0FB12C20BDC400F660BF /* SplashView.swift */; };
-		8B64524A2C24AA8100D49B66 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6452492C24AA7C00D49B66 /* HelpView.swift */; };
-		8B6452502C24BBA600D49B66 /* GridHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B64524F2C24BBA600D49B66 /* GridHelpView.swift */; };
-		8B6452522C24D49500D49B66 /* DetailHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6452512C24D49500D49B66 /* DetailHelpView.swift */; };
-		8B9C0A582C1FBF8C0071B640 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9C0A572C1FBF8C0071B640 /* Icon.swift */; };
-		8B9C0A5A2C1FBFC30071B640 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9C0A592C1FBFC30071B640 /* DetailView.swift */; };
-		8BD83BDD2C24D623000A8687 /* FavoritesHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD83BDC2C24D623000A8687 /* FavoritesHelpView.swift */; };
-		8BD83BDF2C24D63B000A8687 /* SearchHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD83BDE2C24D63B000A8687 /* SearchHelpView.swift */; };
-		8BDB8F542C1D436800E39D99 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8BDB8F532C1D436800E39D99 /* Settings.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,65 +64,56 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		5C0DAAE22C87B6EC0030966E /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
-		5C0DAAE42C88DAD50030966E /* TitleBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleBar.swift; sourceTree = "<group>"; };
-		5C7255532C91668400A838DB /* Search.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Search.entitlements; sourceTree = "<group>"; };
-		5CB253ED2C90E9D6006744C2 /* MenuSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSheet.swift; sourceTree = "<group>"; };
-		5CB253EF2C90EBDF006744C2 /* weightPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weightPicker.swift; sourceTree = "<group>"; };
-		5CB253F12C90ED61006744C2 /* renderPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = renderPicker.swift; sourceTree = "<group>"; };
-		5CFAA2EB2C95FFFA00C0F7E9 /* WeightPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightPickerView.swift; sourceTree = "<group>"; };
-		5CFAA2ED2C96525400C0F7E9 /* FavoritesDrop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesDrop.swift; sourceTree = "<group>"; };
-		778C70E92C0CEFA800162DE1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		5CD9FE1D2CA7751800248FDF /* Contributing.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Contributing.md; sourceTree = "<group>"; };
+		5CD9FE1F2CA778A200248FDF /* SymbolGrid.xcconfig.template */ = {isa = PBXFileReference; lastKnownFileType = text; path = SymbolGrid.xcconfig.template; sourceTree = "<group>"; };
+		5CD9FE212CA7794000248FDF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		5CD9FE232CA77C0B00248FDF /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		5CD9FE252CA77C4B00248FDF /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		5CD9FE272CA77C9D00248FDF /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		778C783B2C0A4656000CDC92 /* SymbolGrid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SymbolGrid.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		778C783E2C0A4656000CDC92 /* SymbolGridApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolGridApp.swift; sourceTree = "<group>"; };
-		778C78422C0A4657000CDC92 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		778C78452C0A4657000CDC92 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		778C784B2C0A4658000CDC92 /* SymbolGridTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SymbolGridTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		778C784F2C0A4658000CDC92 /* SymbolGridTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolGridTests.swift; sourceTree = "<group>"; };
 		778C78552C0A4658000CDC92 /* SymbolGridUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SymbolGridUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		778C78592C0A4658000CDC92 /* SymbolGridUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolGridUITests.swift; sourceTree = "<group>"; };
-		778C785B2C0A4658000CDC92 /* SymbolGridUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolGridUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		778C78742C0A46CA000CDC92 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		778C78752C0A46CA000CDC92 /* FavoritesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
-		778C78782C0A46CA000CDC92 /* System.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
-		778C78802C0A46D4000CDC92 /* FontSizeSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontSizeSetting.swift; sourceTree = "<group>"; };
-		778C78812C0A46D4000CDC92 /* LocalizationSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationSetting.swift; sourceTree = "<group>"; };
-		778C78822C0A46D4000CDC92 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		778C78942C0A4D6D000CDC92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		778C78962C0A5A48000CDC92 /* Commands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commands.swift; sourceTree = "<group>"; };
-		778C789A2C0A5CFA000CDC92 /* AddFavorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFavorite.swift; sourceTree = "<group>"; };
-		778C789C2C0A5D19000CDC92 /* RemoveFavorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveFavorite.swift; sourceTree = "<group>"; };
-		778C789E2C0A9532000CDC92 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
-		77CDC3CE2C14D5C700BF6E07 /* Focus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Focus.swift; sourceTree = "<group>"; };
-		77CDC3D22C14D77200BF6E07 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
-		77CDC3D42C14D83400BF6E07 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
-		77DDEDDB2C0D5794002E71F9 /* SymbolGrid.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SymbolGrid.entitlements; sourceTree = "<group>"; };
 		8B21B7382C224F07008A0518 /* Search.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Search.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		8B21B73A2C224F07008A0518 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
-		8B21B73C2C224F07008A0518 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8B21B7432C227E39008A0518 /* Symbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbol.swift; sourceTree = "<group>"; };
-		8B21B7452C228100008A0518 /* SymbolContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolContextMenu.swift; sourceTree = "<group>"; };
-		8B36CCD32C1EA3B900AFB088 /* SymbolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolView.swift; sourceTree = "<group>"; };
-		8B4D0FB12C20BDC400F660BF /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
-		8B5F6EC82C22427000D47611 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = /System/Library/Frameworks/WidgetKit.framework; sourceTree = "<absolute>"; };
-		8B5F6ECA2C22427000D47611 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = /System/Library/Frameworks/SwiftUI.framework; sourceTree = "<absolute>"; };
-		8B6452492C24AA7C00D49B66 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
-		8B64524F2C24BBA600D49B66 /* GridHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridHelpView.swift; sourceTree = "<group>"; };
-		8B6452512C24D49500D49B66 /* DetailHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHelpView.swift; sourceTree = "<group>"; };
-		8B9C0A572C1FBF8C0071B640 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
-		8B9C0A592C1FBFC30071B640 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
-		8BD83BDC2C24D623000A8687 /* FavoritesHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesHelpView.swift; sourceTree = "<group>"; };
-		8BD83BDE2C24D63B000A8687 /* SearchHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHelpView.swift; sourceTree = "<group>"; };
-		8BDB8F4F2C1D3E6300E39D99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8BDB8F532C1D436800E39D99 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		5CD9FDBD2CA76E0700248FDF /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Search.swift,
+			);
+			target = 8B21B7372C224F07008A0518 /* Search */;
+		};
+		5CD9FE1A2CA7700E00248FDF /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 778C783A2C0A4656000CDC92 /* SymbolGrid */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		5CD9FDB12CA76E0100248FDF /* SymbolGridTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SymbolGridTests; sourceTree = "<group>"; };
+		5CD9FDB52CA76E0500248FDF /* SymbolGridUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SymbolGridUITests; sourceTree = "<group>"; };
+		5CD9FDBB2CA76E0600248FDF /* SymbolGridSearch */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (5CD9FDBD2CA76E0700248FDF /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = SymbolGridSearch; sourceTree = "<group>"; };
+		5CD9FDEC2CA76F9300248FDF /* SymbolGrid */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (5CD9FE1A2CA7700E00248FDF /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = SymbolGrid; sourceTree = "<group>"; };
+		5CD9FE2B2CA77E9500248FDF /* Configurations */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Configurations; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		778C78382C0A4656000CDC92 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CB51FCF2C9C8457006DA426 /* SplashImageGen in Frameworks */,
+				5CB51FD92C9D2A81006DA426 /* SwiftFormat in Frameworks */,
+				5CB51FCB2C9C8457006DA426 /* Splash in Frameworks */,
 				7783DB8D2C2B606F00F993E3 /* Design in Frameworks */,
+				5CB51FD32C9C8457006DA426 /* SplashTokenizer in Frameworks */,
+				5CB51FDB2C9D2A81006DA426 /* swift-format in Frameworks */,
+				5CB51FD12C9C8457006DA426 /* SplashMarkdown in Frameworks */,
+				5CB51FCD2C9C8457006DA426 /* SplashHTMLGen in Frameworks */,
 				775651C02C10E9190013B34B /* SFSymbolKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -182,11 +145,17 @@
 		778C78322C0A4656000CDC92 = {
 			isa = PBXGroup;
 			children = (
-				778C783D2C0A4656000CDC92 /* SymbolGrid */,
-				778C784E2C0A4658000CDC92 /* SymbolGridTests */,
-				778C78582C0A4658000CDC92 /* SymbolGridUITests */,
-				8B21B7392C224F07008A0518 /* Search */,
-				8B5F6EC72C22427000D47611 /* Frameworks */,
+				5CD9FE2B2CA77E9500248FDF /* Configurations */,
+				5CD9FE212CA7794000248FDF /* README.md */,
+				5CD9FE252CA77C4B00248FDF /* .gitignore */,
+				5CD9FE272CA77C9D00248FDF /* .swiftlint.yml */,
+				5CD9FE232CA77C0B00248FDF /* LICENSE */,
+				5CD9FE1F2CA778A200248FDF /* SymbolGrid.xcconfig.template */,
+				5CD9FE1D2CA7751800248FDF /* Contributing.md */,
+				5CD9FDEC2CA76F9300248FDF /* SymbolGrid */,
+				5CD9FDB12CA76E0100248FDF /* SymbolGridTests */,
+				5CD9FDB52CA76E0500248FDF /* SymbolGridUITests */,
+				5CD9FDBB2CA76E0600248FDF /* SymbolGridSearch */,
 				778C783C2C0A4656000CDC92 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -200,152 +169,6 @@
 				8B21B7382C224F07008A0518 /* Search.appex */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		778C783D2C0A4656000CDC92 /* SymbolGrid */ = {
-			isa = PBXGroup;
-			children = (
-				77DDEDDB2C0D5794002E71F9 /* SymbolGrid.entitlements */,
-				778C783E2C0A4656000CDC92 /* SymbolGridApp.swift */,
-				778C788F2C0A4CEA000CDC92 /* Mac */,
-				778C788C2C0A4C0C000CDC92 /* Admin */,
-				778C78992C0A5CE2000CDC92 /* Functions */,
-				778C78982C0A5CD9000CDC92 /* Models */,
-				778C78682C0A4689000CDC92 /* Views */,
-				778C78422C0A4657000CDC92 /* Assets.xcassets */,
-				778C78442C0A4657000CDC92 /* Preview Content */,
-				8BDB8F4F2C1D3E6300E39D99 /* Info.plist */,
-				8BDB8F532C1D436800E39D99 /* Settings.bundle */,
-				5C0DAAE22C87B6EC0030966E /* Localizable.xcstrings */,
-			);
-			path = SymbolGrid;
-			sourceTree = "<group>";
-		};
-		778C78442C0A4657000CDC92 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				778C78452C0A4657000CDC92 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		778C784E2C0A4658000CDC92 /* SymbolGridTests */ = {
-			isa = PBXGroup;
-			children = (
-				778C784F2C0A4658000CDC92 /* SymbolGridTests.swift */,
-			);
-			path = SymbolGridTests;
-			sourceTree = "<group>";
-		};
-		778C78582C0A4658000CDC92 /* SymbolGridUITests */ = {
-			isa = PBXGroup;
-			children = (
-				778C78592C0A4658000CDC92 /* SymbolGridUITests.swift */,
-				778C785B2C0A4658000CDC92 /* SymbolGridUITestsLaunchTests.swift */,
-			);
-			path = SymbolGridUITests;
-			sourceTree = "<group>";
-		};
-		778C78682C0A4689000CDC92 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				778C70E92C0CEFA800162DE1 /* ContentView.swift */,
-				5CFAA2ED2C96525400C0F7E9 /* FavoritesDrop.swift */,
-				5CB253ED2C90E9D6006744C2 /* MenuSheet.swift */,
-				5CFAA2EB2C95FFFA00C0F7E9 /* WeightPickerView.swift */,
-				8B4D0FB12C20BDC400F660BF /* SplashView.swift */,
-				778C78742C0A46CA000CDC92 /* HomeView.swift */,
-				8B36CCD32C1EA3B900AFB088 /* SymbolView.swift */,
-				8B9C0A592C1FBFC30071B640 /* DetailView.swift */,
-				778C78752C0A46CA000CDC92 /* FavoritesView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		778C78832C0A46D4000CDC92 /* SettingsViews */ = {
-			isa = PBXGroup;
-			children = (
-				778C78822C0A46D4000CDC92 /* SettingsView.swift */,
-				778C78802C0A46D4000CDC92 /* FontSizeSetting.swift */,
-				778C78812C0A46D4000CDC92 /* LocalizationSetting.swift */,
-			);
-			path = SettingsViews;
-			sourceTree = "<group>";
-		};
-		778C788C2C0A4C0C000CDC92 /* Admin */ = {
-			isa = PBXGroup;
-			children = (
-				77CDC3CE2C14D5C700BF6E07 /* Focus.swift */,
-			);
-			path = Admin;
-			sourceTree = "<group>";
-		};
-		778C788F2C0A4CEA000CDC92 /* Mac */ = {
-			isa = PBXGroup;
-			children = (
-				778C78832C0A46D4000CDC92 /* SettingsViews */,
-				8B64524E2C24BB9400D49B66 /* HelpView */,
-				778C78962C0A5A48000CDC92 /* Commands.swift */,
-				778C78942C0A4D6D000CDC92 /* AppDelegate.swift */,
-				778C789E2C0A9532000CDC92 /* Tab.swift */,
-			);
-			path = Mac;
-			sourceTree = "<group>";
-		};
-		778C78982C0A5CD9000CDC92 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				8B9C0A572C1FBF8C0071B640 /* Icon.swift */,
-				778C78782C0A46CA000CDC92 /* System.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		778C78992C0A5CE2000CDC92 /* Functions */ = {
-			isa = PBXGroup;
-			children = (
-				5CB253F12C90ED61006744C2 /* renderPicker.swift */,
-				5CB253EF2C90EBDF006744C2 /* weightPicker.swift */,
-				778C789A2C0A5CFA000CDC92 /* AddFavorite.swift */,
-				778C789C2C0A5D19000CDC92 /* RemoveFavorite.swift */,
-				77CDC3D22C14D77200BF6E07 /* Favorite.swift */,
-				8B21B7432C227E39008A0518 /* Symbol.swift */,
-				5C0DAAE42C88DAD50030966E /* TitleBar.swift */,
-				8B21B7452C228100008A0518 /* SymbolContextMenu.swift */,
-				77CDC3D42C14D83400BF6E07 /* SearchBar.swift */,
-			);
-			path = Functions;
-			sourceTree = "<group>";
-		};
-		8B21B7392C224F07008A0518 /* Search */ = {
-			isa = PBXGroup;
-			children = (
-				5C7255532C91668400A838DB /* Search.entitlements */,
-				8B21B73A2C224F07008A0518 /* Search.swift */,
-				8B21B73C2C224F07008A0518 /* Info.plist */,
-			);
-			path = Search;
-			sourceTree = "<group>";
-		};
-		8B5F6EC72C22427000D47611 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				8B5F6EC82C22427000D47611 /* WidgetKit.framework */,
-				8B5F6ECA2C22427000D47611 /* SwiftUI.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		8B64524E2C24BB9400D49B66 /* HelpView */ = {
-			isa = PBXGroup;
-			children = (
-				8BD83BDE2C24D63B000A8687 /* SearchHelpView.swift */,
-				8BD83BDC2C24D623000A8687 /* FavoritesHelpView.swift */,
-				8B6452512C24D49500D49B66 /* DetailHelpView.swift */,
-				8B64524F2C24BBA600D49B66 /* GridHelpView.swift */,
-				8B6452492C24AA7C00D49B66 /* HelpView.swift */,
-			);
-			path = HelpView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -365,10 +188,21 @@
 			dependencies = (
 				8B21B73E2C224F07008A0518 /* PBXTargetDependency */,
 			);
+			fileSystemSynchronizedGroups = (
+				5CD9FDEC2CA76F9300248FDF /* SymbolGrid */,
+				5CD9FE2B2CA77E9500248FDF /* Configurations */,
+			);
 			name = SymbolGrid;
 			packageProductDependencies = (
 				775651BF2C10E9190013B34B /* SFSymbolKit */,
 				7783DB8C2C2B606F00F993E3 /* Design */,
+				5CB51FCA2C9C8457006DA426 /* Splash */,
+				5CB51FCC2C9C8457006DA426 /* SplashHTMLGen */,
+				5CB51FCE2C9C8457006DA426 /* SplashImageGen */,
+				5CB51FD02C9C8457006DA426 /* SplashMarkdown */,
+				5CB51FD22C9C8457006DA426 /* SplashTokenizer */,
+				5CB51FD82C9D2A81006DA426 /* SwiftFormat */,
+				5CB51FDA2C9D2A81006DA426 /* swift-format */,
 			);
 			productName = SymbolGrid;
 			productReference = 778C783B2C0A4656000CDC92 /* SymbolGrid.app */;
@@ -387,6 +221,9 @@
 			dependencies = (
 				778C784D2C0A4658000CDC92 /* PBXTargetDependency */,
 			);
+			fileSystemSynchronizedGroups = (
+				5CD9FDB12CA76E0100248FDF /* SymbolGridTests */,
+			);
 			name = SymbolGridTests;
 			productName = SymbolGridTests;
 			productReference = 778C784B2C0A4658000CDC92 /* SymbolGridTests.xctest */;
@@ -404,6 +241,9 @@
 			);
 			dependencies = (
 				778C78572C0A4658000CDC92 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				5CD9FDB52CA76E0500248FDF /* SymbolGridUITests */,
 			);
 			name = SymbolGridUITests;
 			productName = SymbolGridUITests;
@@ -469,6 +309,8 @@
 			packageReferences = (
 				775651BE2C10E9190013B34B /* XCRemoteSwiftPackageReference "SFSymbolKit" */,
 				77D2BD4A2C2B59720020B42B /* XCRemoteSwiftPackageReference "Design" */,
+				5CB51FC92C9C8457006DA426 /* XCRemoteSwiftPackageReference "Splash" */,
+				5CB51FD72C9D2A81006DA426 /* XCRemoteSwiftPackageReference "swift-format" */,
 			);
 			productRefGroup = 778C783C2C0A4656000CDC92 /* Products */;
 			projectDirPath = "";
@@ -487,10 +329,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				778C78462C0A4657000CDC92 /* Preview Assets.xcassets in Resources */,
-				8BDB8F542C1D436800E39D99 /* Settings.bundle in Resources */,
-				5C0DAAE32C87B6EC0030966E /* Localizable.xcstrings in Resources */,
-				778C78432C0A4657000CDC92 /* Assets.xcassets in Resources */,
+				5CD9FE282CA77C9D00248FDF /* .swiftlint.yml in Resources */,
+				5CD9FE1E2CA7751800248FDF /* Contributing.md in Resources */,
+				5CD9FE242CA77C0B00248FDF /* LICENSE in Resources */,
+				5CD9FE202CA778A200248FDF /* SymbolGrid.xcconfig.template in Resources */,
+				5CD9FE262CA77C4B00248FDF /* .gitignore in Resources */,
+				5CD9FE222CA7794000248FDF /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -522,39 +366,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				778C789B2C0A5CFA000CDC92 /* AddFavorite.swift in Sources */,
-				778C789F2C0A9532000CDC92 /* Tab.swift in Sources */,
-				77CDC3CF2C14D5C700BF6E07 /* Focus.swift in Sources */,
-				8B64524A2C24AA8100D49B66 /* HelpView.swift in Sources */,
-				8B9C0A582C1FBF8C0071B640 /* Icon.swift in Sources */,
-				5CB253EE2C90E9D6006744C2 /* MenuSheet.swift in Sources */,
-				778C78862C0A46D4000CDC92 /* SettingsView.swift in Sources */,
-				778C787C2C0A46CA000CDC92 /* FavoritesView.swift in Sources */,
-				5CB253F22C90ED61006744C2 /* renderPicker.swift in Sources */,
-				8B21B7462C228100008A0518 /* SymbolContextMenu.swift in Sources */,
-				8B9C0A5A2C1FBFC30071B640 /* DetailView.swift in Sources */,
-				5C0DAAE52C88DAD50030966E /* TitleBar.swift in Sources */,
-				8B4D0FB22C20BDC400F660BF /* SplashView.swift in Sources */,
-				778C787F2C0A46CA000CDC92 /* System.swift in Sources */,
-				8BD83BDD2C24D623000A8687 /* FavoritesHelpView.swift in Sources */,
-				778C78852C0A46D4000CDC92 /* LocalizationSetting.swift in Sources */,
-				77CDC3D52C14D83400BF6E07 /* SearchBar.swift in Sources */,
-				8BD83BDF2C24D63B000A8687 /* SearchHelpView.swift in Sources */,
-				5CFAA2EC2C95FFFA00C0F7E9 /* WeightPickerView.swift in Sources */,
-				778C787B2C0A46CA000CDC92 /* HomeView.swift in Sources */,
-				5CFAA2EE2C96525400C0F7E9 /* FavoritesDrop.swift in Sources */,
-				778C78952C0A4D6D000CDC92 /* AppDelegate.swift in Sources */,
-				778C78972C0A5A48000CDC92 /* Commands.swift in Sources */,
-				8B21B7442C227E39008A0518 /* Symbol.swift in Sources */,
-				77CDC3D32C14D77200BF6E07 /* Favorite.swift in Sources */,
-				778C70EA2C0CEFA800162DE1 /* ContentView.swift in Sources */,
-				8B6452522C24D49500D49B66 /* DetailHelpView.swift in Sources */,
-				778C789D2C0A5D19000CDC92 /* RemoveFavorite.swift in Sources */,
-				5CB253F02C90EBDF006744C2 /* weightPicker.swift in Sources */,
-				8B6452502C24BBA600D49B66 /* GridHelpView.swift in Sources */,
-				778C783F2C0A4656000CDC92 /* SymbolGridApp.swift in Sources */,
-				778C78842C0A46D4000CDC92 /* FontSizeSetting.swift in Sources */,
-				8B36CCD42C1EA3B900AFB088 /* SymbolView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -562,7 +373,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				778C78502C0A4658000CDC92 /* SymbolGridTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -570,8 +380,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				778C785C2C0A4658000CDC92 /* SymbolGridUITestsLaunchTests.swift in Sources */,
-				778C785A2C0A4658000CDC92 /* SymbolGridUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -579,7 +387,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B21B73B2C224F07008A0518 /* Search.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -824,7 +631,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamiyfarm.SymbolGridTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamilyfarm.SymbolGridTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -848,7 +655,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamiyfarm.SymbolGridTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamilyfarm.SymbolGridTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -871,7 +678,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamiyfarm.SymbolGridUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamilyfarm.SymbolGridUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -894,7 +701,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamiyfarm.SymbolGridUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamilyfarm.SymbolGridUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -910,13 +717,13 @@
 		8B21B7412C224F07008A0518 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = Search/Search.entitlements;
+				CODE_SIGN_ENTITLEMENTS = SymbolGridSearch/Search.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2MP8QWK7R6;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Search/Info.plist;
+				INFOPLIST_FILE = SymbolGridSearch/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Search;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
@@ -943,13 +750,13 @@
 		8B21B7422C224F07008A0518 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = Search/Search.entitlements;
+				CODE_SIGN_ENTITLEMENTS = SymbolGridSearch/Search.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2MP8QWK7R6;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Search/Info.plist;
+				INFOPLIST_FILE = SymbolGridSearch/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Search;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
@@ -1024,6 +831,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5CB51FC92C9C8457006DA426 /* XCRemoteSwiftPackageReference "Splash" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JohnSundell/Splash";
+			requirement = {
+				kind = revision;
+				revision = 2e3f17c2d09689c8bf175c4a84ff7f2ad3353301;
+			};
+		};
+		5CB51FD72C9D2A81006DA426 /* XCRemoteSwiftPackageReference "swift-format" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/swiftlang/swift-format";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 600.0.0;
+			};
+		};
 		775651BE2C10E9190013B34B /* XCRemoteSwiftPackageReference "SFSymbolKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/dl-alexandre/SFSymbolKit";
@@ -1043,6 +866,41 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5CB51FCA2C9C8457006DA426 /* Splash */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5CB51FC92C9C8457006DA426 /* XCRemoteSwiftPackageReference "Splash" */;
+			productName = Splash;
+		};
+		5CB51FCC2C9C8457006DA426 /* SplashHTMLGen */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5CB51FC92C9C8457006DA426 /* XCRemoteSwiftPackageReference "Splash" */;
+			productName = SplashHTMLGen;
+		};
+		5CB51FCE2C9C8457006DA426 /* SplashImageGen */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5CB51FC92C9C8457006DA426 /* XCRemoteSwiftPackageReference "Splash" */;
+			productName = SplashImageGen;
+		};
+		5CB51FD02C9C8457006DA426 /* SplashMarkdown */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5CB51FC92C9C8457006DA426 /* XCRemoteSwiftPackageReference "Splash" */;
+			productName = SplashMarkdown;
+		};
+		5CB51FD22C9C8457006DA426 /* SplashTokenizer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5CB51FC92C9C8457006DA426 /* XCRemoteSwiftPackageReference "Splash" */;
+			productName = SplashTokenizer;
+		};
+		5CB51FD82C9D2A81006DA426 /* SwiftFormat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5CB51FD72C9D2A81006DA426 /* XCRemoteSwiftPackageReference "swift-format" */;
+			productName = SwiftFormat;
+		};
+		5CB51FDA2C9D2A81006DA426 /* swift-format */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5CB51FD72C9D2A81006DA426 /* XCRemoteSwiftPackageReference "swift-format" */;
+			productName = "swift-format";
+		};
 		775651BF2C10E9190013B34B /* SFSymbolKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 775651BE2C10E9190013B34B /* XCRemoteSwiftPackageReference "SFSymbolKit" */;

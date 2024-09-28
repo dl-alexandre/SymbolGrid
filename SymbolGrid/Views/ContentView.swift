@@ -50,11 +50,11 @@ struct ContentView: View {
                 }
             }
 #endif
-//#if os(iOS)
+// #if os(iOS)
 //            .tabViewStyle(.page(indexDisplayMode: .never))
-//#else
+// #else
 //            .tabViewStyle(DefaultTabViewStyle())
-//#endif
+// #endif
             if showingSearch {
                 searchBar(
                     text: $searchText,

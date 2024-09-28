@@ -1,5 +1,5 @@
 {
-  "originHash" : "ed86cab375e77fc57d7d605d9015be7d9ec2f5f859cede5425e5788e01a002a9",
+  "originHash" : "4129e1e109ab1caf61980b899ec3ef4b53e8cfe1ad6f416873be712e6e948b8b",
   "pins" : [
     {
       "identity" : "design",
@@ -7,7 +7,7 @@
       "location" : "https://github.com/dl-alexandre/Design",
       "state" : {
         "branch" : "main",
-        "revision" : "4616fcb612cbd26140a15ae7b5c7421f6738779b"
+        "revision" : "8babf51109ac905fc7b7e051cebb71ccfd88b481"
       }
     },
     {
@@ -16,7 +16,60 @@
       "location" : "https://github.com/dl-alexandre/SFSymbolKit",
       "state" : {
         "branch" : "main",
-        "revision" : "eda4543497114a33b0cd821ad58d9714a7af0d4a"
+        "revision" : "3eae81bc48904d273a8ae92b1adfa9357213bc3c"
+      }
+    },
+    {
+      "identity" : "splash",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/JohnSundell/Splash",
+      "state" : {
+        "revision" : "2e3f17c2d09689c8bf175c4a84ff7f2ad3353301"
+      }
+    },
+    {
+      "identity" : "swift-argument-parser",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-argument-parser.git",
+      "state" : {
+        "revision" : "41982a3656a71c768319979febd796c6fd111d5c",
+        "version" : "1.5.0"
+      }
+    },
+    {
+      "identity" : "swift-cmark",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-cmark.git",
+      "state" : {
+        "revision" : "3ccff77b2dc5b96b77db3da0d68d28068593fa53",
+        "version" : "0.5.0"
+      }
+    },
+    {
+      "identity" : "swift-format",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/swiftlang/swift-format",
+      "state" : {
+        "revision" : "65f9da9aad84adb7e2028eb32ca95164aa590e3b",
+        "version" : "600.0.0"
+      }
+    },
+    {
+      "identity" : "swift-markdown",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-markdown.git",
+      "state" : {
+        "revision" : "8f79cb175981458a0a27e76cb42fee8e17b1a993",
+        "version" : "0.5.0"
+      }
+    },
+    {
+      "identity" : "swift-syntax",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/swiftlang/swift-syntax.git",
+      "state" : {
+        "revision" : "0687f71944021d616d34d922343dcef086855920",
+        "version" : "600.0.1"
       }
     }
   ],

@@ -12,8 +12,8 @@ import UniformTypeIdentifiers
 func favorite(
     icon: Icon,
     isCopied: Binding<Bool>,
-    selected: Binding<Icon?>,
-    tabModel: TabModel
+    selected: Binding<Icon?>//,
+//    tabModel: TabModel
 ) -> some View {
     @AppStorage("systemName") var systemName = ""
     @AppStorage("fontSize") var fontSize = 50.0
@@ -45,7 +45,7 @@ func favorite(
 
         }
         .contextMenu {
-            symbolContextMenu(icon: icon, selected: selected, tabModel: tabModel)
+            symbolContextMenu(icon: icon, selected: selected/*, tabModel: tabModel*/)
         } preview: {
             Group {
                 Image(systemName: icon.id)

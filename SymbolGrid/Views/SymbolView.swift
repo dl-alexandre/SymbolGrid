@@ -75,7 +75,7 @@ struct SymbolView: View {
     @AppStorage("showWeightPicker") var showWeightPicker = false
     @FocusState public var isSearchFieldFocused: Bool
     @Environment(\.verticalSizeClass) var verticalSizeClass
-    @State private var position = ScrollPosition(edge: .top)
+//    @State private var position = ScrollPosition(edge: .top)
 
     @State private var selectedSample = RenderModes.monochrome
     @State private var selectedWeight = FontWeights.medium
@@ -85,14 +85,14 @@ struct SymbolView: View {
 
     var body: some View {
         let icons: [Icon] = searchResults.map { symbolName in
-            Icon(id: symbolName)
+            Icon(id: symbolName, color: .random(), uiColor: .black)
         }
 
         ZStack {
             GeometryReader { geo in
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: spacing) {
-                        ForEach(icons) { icon in
+                        ForEach(icons, id: \.id) { icon in
                             Button {
                                 if selected?.id == icon.id {
                                     showSheet.toggle()
@@ -117,45 +117,57 @@ struct SymbolView: View {
                                 )
                                 .padding(8)
                                 .matchedTransitionSource(id: icon.id, in: animation)
+                                .contentShape(.dragPreview, RoundedRectangle(cornerRadius: 7))
                                 .foregroundStyle((selected?.id == icon.id) ? icon.color : .primary)
-                                .draggable(icon)
-                                .onDrag {
-                                    self.isDragging = true
-                                    return NSItemProvider(object: icon.id as NSString)
+//                                .draggable("\(icon.id)") {
+//                                    Image(systemName: "\(icon.id)")
+//                                }
+//                                .draggable(Image(systemName: icon.id)) {
+//                                    Image(systemName: "\(icon.id)")
+//                                }
+                                .draggable(Image(systemName: icon.id)) {
+                                    Text("\(icon.id)")
                                 }
-                                .onDrag {
-//                                    self.isDragging = true
-#if os(macOS)
-                                    let provider = NSItemProvider(
-                                        object: (
-                                            Image(systemName: icon.id).asNSImage() ?? Image(systemName: "plus").asNSImage()!
-                                        ) as NSImage
-                                    )
-#else
-                                    let provider = NSItemProvider(object: (UIImage(systemName: icon.id) ?? UIImage(systemName: "plus")!))
-#endif
-                                    return provider
-
-                                }
-                                .background(DragOutsideView(isDragging: $isDragging))
                             }
                         }
                     }.offset(x: 0, y: searchText.isEmpty ? 0: (fontSize * 3))
                 }
-                .inspector(isPresented: $showInspector) {
-                    FavoritesView(renderMode: $selectedSample, fontWeight: $selectedWeight)
-                        .inspectorColumnWidth(225)
+//                .overlay {
+//                    FavoritesDrop()
+//                        .opacity(isDragging ? 1 : 0)
+//                }
+                .dropDestination(for: String.self) { items, location in
+                    if let item = items.first {
+                        removeFavorite(symbols: item)
+                        print("\(item) removed from favorites")
+                        return true
+                    }
+                    return false
                 }
                 .refreshable {
                     withAnimation {
                         showWeightPicker.toggle()
                     }
                 }
-                .scrollPosition($position)
+                .inspector(isPresented: $showInspector) {
+                    FavoritesView(renderMode: $selectedSample, fontWeight: $selectedWeight)
+//                        .inspectorColumnWidth(225)
+                        .dropDestination(for: String.self) { items, location in
+                            if let item = items.first {
+                                draggedText = item
+                                print("\(draggedText) added to favorites")
+                                addFavorite(symbols: draggedText)
+                                return true
+                            }
+                            return false
+                        }
+                }
+
+//                .scrollPosition($position)
 #if os(iOS)
                 .sheet(isPresented: $showSheet) {
                     if let selectedIcon = selected {
-                        MenuSheet(
+                        SymbolSheet(
                             icon: selectedIcon,
                             detailIcon: $detailIcon,
                             selectedWeight: $fontWeight,
@@ -164,7 +176,6 @@ struct SymbolView: View {
                         )
                             .presentationBackgroundInteraction(.enabled)
                             .presentationDetents([.height(geo.size.height / 4), .medium])
-//                            .presentationCompactAdaptation(horizontal: .sheet, vertical: .automatic)
                             .sheet(item: $detailIcon) { icon in
                                 DetailView(icon: icon, animation: animation, color: icon.color)
                                     .presentationDetents([.medium])
@@ -172,15 +183,11 @@ struct SymbolView: View {
                     }
                 }
 #endif
-
             }
-//            if isDragging {
-//                FavoritesDrop(droppedIcon: $selected, isTargeted: <#Bool#>)
-//            }
         }
-#if os(iOS)
-        .navigationBarTitleDisplayMode(.inline)
-#endif
+//#if os(iOS)
+//        .navigationBarTitleDisplayMode(.inline)
+//#endif
 
 #if os(macOS)
         .toolbar {
@@ -198,7 +205,7 @@ struct SymbolView: View {
 #endif
 
     }
-
+    @State var draggedText = ""
     @AppStorage("fontSize") var fontSize = 50.0
     @AppStorage("showingSearch") var showingSearch = true
     @AppStorage("symbol_arabic") private var arabicSetting = false
@@ -237,38 +244,4 @@ struct SymbolView: View {
         symbols: system.symbols
     )
         .environmentObject(tabModel)
-}
-
-struct DragOutsideView: UIViewRepresentable {
-    @Binding var isDragging: Bool
-
-    func makeUIView(context: Context) -> UIView {
-        let view = UIView()
-        let dragInteraction = UIDragInteraction(delegate: context.coordinator)
-        view.addInteraction(dragInteraction)
-        return view
-    }
-
-    func updateUIView(_ uiView: UIView, context: Context) {}
-
-    func makeCoordinator() -> Coordinator {
-        Coordinator(isDragging: $isDragging)
-    }
-
-    class Coordinator: NSObject, UIDragInteractionDelegate {
-        @Binding var isDragging: Bool
-
-        init(isDragging: Binding<Bool>) {
-            _isDragging = isDragging
-        }
-
-        func dragInteraction(_ interaction: UIDragInteraction, itemsForBeginning session: UIDragSession) -> [UIDragItem] {
-            if isDragging {
-                let image = UIImage(systemName: "star") ?? UIImage()
-                let provider = NSItemProvider(object: image)
-                return [UIDragItem(itemProvider: provider)]
-            }
-            return []
-        }
-    }
 }

@@ -4,6 +4,9 @@
     "" : {
 
     },
+    " %.0f" : {
+
+    },
     "[ %@ ]  close searchbar" : {
       "localizations" : {
         "es" : {
@@ -59,6 +62,9 @@
           }
         }
       }
+    },
+    "%@ added to favorites" : {
+
     },
     "%@ Help" : {
       "extractionState" : "stale",
@@ -156,6 +162,12 @@
           }
         }
       }
+    },
+    "Color" : {
+
+    },
+    "Color: " : {
+
     },
     "Copy" : {
 
@@ -259,6 +271,7 @@
 
     },
     "Foreground" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -490,6 +503,9 @@
         }
       }
     },
+    "Scale" : {
+
+    },
     "Scale:" : {
       "localizations" : {
         "es" : {
@@ -530,6 +546,9 @@
         }
       }
     },
+    "Shadow" : {
+
+    },
     "Shadow: " : {
       "localizations" : {
         "es" : {
@@ -560,7 +579,11 @@
         }
       }
     },
+    "Size:" : {
+
+    },
     "Size: %.0f" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -695,7 +718,6 @@
     },
     "Weight" : {
       "comment" : "used Thickness instead of Weight",
-      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {

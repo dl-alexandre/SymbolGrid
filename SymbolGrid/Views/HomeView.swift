@@ -16,14 +16,13 @@ struct HomeView: View {
         ZStack {
             SymbolView(renderMode: $selectedSample, fontWeight: $selectedWeight, symbols: symbols)
 
-
 #if os(iOS)
             VStack {
                 if !systemName.isEmpty {
                     iconLabel(icon: systemName)
                 }
                 if showWeightPicker {
-                    WeightPickerView(selectedWeight: $selectedWeight, selectedSample: $selectedSample)
+                    SymbolMenu(selectedWeight: $selectedWeight, selectedSample: $selectedSample)
                         .padding(.top)
                 }
             }

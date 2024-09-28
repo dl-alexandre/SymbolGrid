@@ -30,4 +30,3 @@ func symbol(
         }
         .previewLayout(.sizeThatFits)
 }
-
