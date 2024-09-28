@@ -43,11 +43,16 @@ Image(systemName: "plus")
     )
 
     var body: some View {
+#if os(iOS)
         HighlightedTextView(attributedText: highlighter.highlight(code))
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+#else
+        EmptyView()
+#endif
     }
 }
 
+#if os(iOS)
 struct HighlightedTextView: UIViewRepresentable {
     var attributedText: NSAttributedString
 
@@ -62,6 +67,7 @@ struct HighlightedTextView: UIViewRepresentable {
         uiView.attributedText = attributedText
     }
 }
+#endif
 
 #Preview {
     let code: String = """

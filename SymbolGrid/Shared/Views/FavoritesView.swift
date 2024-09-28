@@ -76,7 +76,9 @@ struct FavoritesView: View {
 //                customTitleBar("Favorites")
 //            }
         }
+#if os(iOS)
         .hoverEffect(.highlight)
+#endif
         .onAppear {
             for item in icons {
                 addIconToIndex(item.id, "com.alexandrefamilyfarm.symbols")

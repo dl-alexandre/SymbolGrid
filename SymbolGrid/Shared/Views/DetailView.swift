@@ -7,7 +7,7 @@
 
 import SwiftUI
 import SFSymbolKit
-import SwiftFormat
+//import SwiftFormat
 
 func configureShadow(showShadow: Bool, icon: Icon, shadow: Color, offset: CGSize) -> String {
     var shadowConfig = ""
@@ -133,7 +133,7 @@ struct DetailView: View {
         let combined = pressGesture.sequenced(before: dragGesture)
         GeometryReader { geo in
             ZStack {
-                Image(systemName: icon.id)
+                let image = Image(systemName: icon.id)
                     .textSelection(.enabled)
                     .font(.system(size: fontSize, weight: selectedWeight.weight))
                     .imageScale(selectedScale.scale)
@@ -143,9 +143,13 @@ struct DetailView: View {
                     .gesture(combined)
                     .shadow(color: shadow, radius: 3, x: offset.width, y: offset.height - 10)
                     .frame(maxWidth: .infinity, minHeight: 50, maxHeight: .infinity, alignment: .top)
+
 #if os(iOS)
-                    .navigationTransition(.zoom(sourceID: icon.id, in: animation))
+                image.navigationTransition(.zoom(sourceID: icon.id, in: animation))
+#else
+                image
 #endif
+
                 VStack {
                     let code = "Image(systemName: \"\(icon.id)\")"
                     let scaleConfig = configureScale(
@@ -172,9 +176,7 @@ struct DetailView: View {
                         Spacer()
                         ScrollView(.horizontal) {
                             CodeText(
-                                code: formatSwiftCode(
-                                    code + scaleConfig + fontConfig + colorConfig + shadowConfig
-                                )!
+                                code: code + scaleConfig + fontConfig + colorConfig + shadowConfig
                             )
                         }
                         .scrollIndicators(.hidden)
@@ -294,11 +296,11 @@ struct DetailView: View {
                                 }
                             }
                             Button {
-                                print(
-                                    formatSwiftCode(
-                                        code + scaleConfig + fontConfig + colorConfig + shadowConfig
-                                    )!
-                                )
+//                                print(
+//                                    formatSwiftCode(
+//                                        code + scaleConfig + fontConfig + colorConfig + shadowConfig
+//                                    )!
+//                                )
                             } label: {
                                 Image(systemName: "doc.on.doc").bold()
                             }.padding(4)
@@ -338,17 +340,17 @@ struct DetailView: View {
     @State private var fontSize = 200.0
     @State private var linearValue: Double = log10(200)
 
-    func formatSwiftCode(_ code: String) -> String? {
-        let formatter = SwiftFormatter(configuration: Configuration())
-        var formattedCode = ""
-        do {
-            try formatter.format(source: code, assumingFileURL: nil, selection: .infinite, to: &formattedCode)
-            return formattedCode
-        } catch {
-            print("Failed to format code: \(error)")
-            return nil
-        }
-    }
+//    func formatSwiftCode(_ code: String) -> String? {
+//        let formatter = SwiftFormatter(configuration: Configuration())
+//        var formattedCode = ""
+//        do {
+//            try formatter.format(source: code, assumingFileURL: nil, selection: .infinite, to: &formattedCode)
+//            return formattedCode
+//        } catch {
+//            print("Failed to format code: \(error)")
+//            return nil
+//        }
+//    }
 
     var exponentialValue: Double {
         get {

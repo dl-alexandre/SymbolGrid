@@ -38,21 +38,21 @@ struct ContentView: View {
 //            }
 //            .edgesIgnoringSafeArea(.all)
 #if os(macOS)
-            .background {
-                GeometryReader {
-                    let rect = $0.frame(in: .global)
-
-                    Color.clear
-                        .onChange(of: rect) { _, _ in
-                            tabModel.updateTabPosition()
-                        }
-                }
-            }
-            .onChange(of: state) { _, newValue in
-                if newValue == .key {
-                    tabModel.addTabBar()
-                }
-            }
+//            .background {
+//                GeometryReader {
+//                    let rect = $0.frame(in: .global)
+//
+//                    Color.clear
+//                        .onChange(of: rect) { _, _ in
+//                            tabModel.updateTabPosition()
+//                        }
+//                }
+//            }
+//            .onChange(of: state) { _, newValue in
+//                if newValue == .key {
+//                    tabModel.addTabBar()
+//                }
+//            }
 #endif
 // #if os(iOS)
 //            .tabViewStyle(.page(indexDisplayMode: .never))

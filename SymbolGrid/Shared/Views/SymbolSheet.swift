@@ -91,6 +91,7 @@ struct SymbolSheet: View {
     }
 }
 
+#if os(iOS)
 #Preview {
     SymbolSheet(
         icon: Icon(id: "square", color: Color.random(), uiColor: UIColor.black),
@@ -100,3 +101,4 @@ struct SymbolSheet: View {
         showInspector: .constant(false)
     )
 }
+#endif

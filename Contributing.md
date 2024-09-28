@@ -4,7 +4,7 @@ This document contains the rules and guidelines that developers are expected to 
 * All contributions must NOT add any SwiftLint warnings or errors. There is a GitHub action setup for any PRs to `dev`, and Xcode will show any warnings/errors.
 
 # About the Project
-This project began as a need for viewing [SF Symbols](https://developer.apple.com/sf-symbols) on iOS which later adopted macOS eventually supporting visionOS. It was made public in early 2024 with an additional focus on [Hacktoberfest](https://hacktoberfest.com/). Major frameworks include SwiftUI, AppStorage, [Splash](https://github.com/JohnSundell/Splash) for code highlighting, [Swift-Format](https://github.com/swiftlang/swift-format) for code reshaping, [Design](https://github.com/dl-alexandre/design) by Dalton for theming, and [SFSymbolKit](https://github.com/dl-alexandre/sfsymbolkit) by Dalton for additional Logic.
+This project began as a need for viewing [SF Symbols](https://developer.apple.com/sf-symbols) on iOS which later adopted macOS eventually supporting visionOS. It was made public in early 2024 with an additional focus on [Hacktoberfest](https://hacktoberfest.com/). Major frameworks include SwiftUI, AppStorage, [Splash](https://github.com/JohnSundell/Splash) for code highlighting, [Design](https://github.com/dl-alexandre/design) by Dalton for theming, and [SFSymbolKit](https://github.com/dl-alexandre/sfsymbolkit) by Dalton for additional Logic.
 
 ### Project Status
 This app is [deployed](https://apple.co/3k3bbuW) on the Apple App Store, available for iOS 18.0 or later, [Dalton Alexandre](https://github.com/dl-alexandre) (the maintainer) will upload the completed project as iOS version 3.0 to the App Store after Hacktoberfest.

@@ -1,5 +1,5 @@
 {
-  "originHash" : "4129e1e109ab1caf61980b899ec3ef4b53e8cfe1ad6f416873be712e6e948b8b",
+  "originHash" : "5ef84671773759191e98ad1d219876b2fad6e56f800c8c8674a4f90c28faab0b",
   "pins" : [
     {
       "identity" : "design",
@@ -16,7 +16,7 @@
       "location" : "https://github.com/dl-alexandre/SFSymbolKit",
       "state" : {
         "branch" : "main",
-        "revision" : "08a74ca1f5271d232d4c5a47140db48f4ac208a9"
+        "revision" : "ad369fcfec3e41fc13f3cae567a9117488a35af1"
       }
     },
     {
@@ -25,51 +25,6 @@
       "location" : "https://github.com/JohnSundell/Splash",
       "state" : {
         "revision" : "2e3f17c2d09689c8bf175c4a84ff7f2ad3353301"
-      }
-    },
-    {
-      "identity" : "swift-argument-parser",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-argument-parser.git",
-      "state" : {
-        "revision" : "41982a3656a71c768319979febd796c6fd111d5c",
-        "version" : "1.5.0"
-      }
-    },
-    {
-      "identity" : "swift-cmark",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-cmark.git",
-      "state" : {
-        "revision" : "3ccff77b2dc5b96b77db3da0d68d28068593fa53",
-        "version" : "0.5.0"
-      }
-    },
-    {
-      "identity" : "swift-format",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/swiftlang/swift-format",
-      "state" : {
-        "revision" : "65f9da9aad84adb7e2028eb32ca95164aa590e3b",
-        "version" : "600.0.0"
-      }
-    },
-    {
-      "identity" : "swift-markdown",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-markdown.git",
-      "state" : {
-        "revision" : "8f79cb175981458a0a27e76cb42fee8e17b1a993",
-        "version" : "0.5.0"
-      }
-    },
-    {
-      "identity" : "swift-syntax",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/swiftlang/swift-syntax.git",
-      "state" : {
-        "revision" : "0687f71944021d616d34d922343dcef086855920",
-        "version" : "600.0.1"
       }
     }
   ],

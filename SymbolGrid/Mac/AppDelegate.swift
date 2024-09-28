@@ -49,8 +49,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func showMenuPanel(
         icon: Icon,
         detailIcon: Binding<Icon?>,
-        selectedWeight: Binding<FontWeights>,
-        selectedSample: Binding<RenderModes>
+        selectedWeight: Binding<Weight>,
+        selectedSample: Binding<SymbolRenderingModes>,
+        showInspector: Binding<Bool>
     ) {
         if menuWindowController == nil {
             let styleMask: NSWindow.StyleMask = [
@@ -63,11 +64,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             window.title = icon.id
             //            window.title = "\(NSApplication.appName ?? "SymbolView") Help"
             window.contentView = NSHostingView(
-                rootView: MenuSheet(
+                rootView: SymbolSheet(
                     icon: icon,
                     detailIcon: detailIcon,
                     selectedWeight: selectedWeight,
-                    selectedSample: selectedSample
+                    selectedSample: selectedSample,
+                    showInspector: showInspector
                 )
             )
             menuWindowController = NSWindowController(window: window)

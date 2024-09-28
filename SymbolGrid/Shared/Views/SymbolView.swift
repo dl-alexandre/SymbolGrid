@@ -105,7 +105,8 @@ struct SymbolView: View {
                                         icon: icon,
                                         detailIcon: $detailIcon,
                                         selectedWeight: $fontWeight,
-                                        selectedSample: $renderMode
+                                        selectedSample: $renderMode,
+                                        showInspector: $showInspector
                                     )
 #endif
                                 }

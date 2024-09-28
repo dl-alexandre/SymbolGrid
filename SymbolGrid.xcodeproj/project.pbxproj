@@ -12,8 +12,6 @@
 		5CB51FCF2C9C8457006DA426 /* SplashImageGen in Frameworks */ = {isa = PBXBuildFile; productRef = 5CB51FCE2C9C8457006DA426 /* SplashImageGen */; };
 		5CB51FD12C9C8457006DA426 /* SplashMarkdown in Frameworks */ = {isa = PBXBuildFile; productRef = 5CB51FD02C9C8457006DA426 /* SplashMarkdown */; };
 		5CB51FD32C9C8457006DA426 /* SplashTokenizer in Frameworks */ = {isa = PBXBuildFile; productRef = 5CB51FD22C9C8457006DA426 /* SplashTokenizer */; };
-		5CB51FD92C9D2A81006DA426 /* SwiftFormat in Frameworks */ = {isa = PBXBuildFile; productRef = 5CB51FD82C9D2A81006DA426 /* SwiftFormat */; };
-		5CB51FDB2C9D2A81006DA426 /* swift-format in Frameworks */ = {isa = PBXBuildFile; productRef = 5CB51FDA2C9D2A81006DA426 /* swift-format */; };
 		5CD9FE1E2CA7751800248FDF /* Contributing.md in Resources */ = {isa = PBXBuildFile; fileRef = 5CD9FE1D2CA7751800248FDF /* Contributing.md */; };
 		5CD9FE202CA778A200248FDF /* SymbolGrid.xcconfig.template in Resources */ = {isa = PBXBuildFile; fileRef = 5CD9FE1F2CA778A200248FDF /* SymbolGrid.xcconfig.template */; };
 		5CD9FE222CA7794000248FDF /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 5CD9FE212CA7794000248FDF /* README.md */; };
@@ -107,11 +105,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5CB51FCF2C9C8457006DA426 /* SplashImageGen in Frameworks */,
-				5CB51FD92C9D2A81006DA426 /* SwiftFormat in Frameworks */,
 				5CB51FCB2C9C8457006DA426 /* Splash in Frameworks */,
 				7783DB8D2C2B606F00F993E3 /* Design in Frameworks */,
 				5CB51FD32C9C8457006DA426 /* SplashTokenizer in Frameworks */,
-				5CB51FDB2C9D2A81006DA426 /* swift-format in Frameworks */,
 				5CB51FD12C9C8457006DA426 /* SplashMarkdown in Frameworks */,
 				5CB51FCD2C9C8457006DA426 /* SplashHTMLGen in Frameworks */,
 				775651C02C10E9190013B34B /* SFSymbolKit in Frameworks */,
@@ -201,8 +197,6 @@
 				5CB51FCE2C9C8457006DA426 /* SplashImageGen */,
 				5CB51FD02C9C8457006DA426 /* SplashMarkdown */,
 				5CB51FD22C9C8457006DA426 /* SplashTokenizer */,
-				5CB51FD82C9D2A81006DA426 /* SwiftFormat */,
-				5CB51FDA2C9D2A81006DA426 /* swift-format */,
 			);
 			productName = SymbolGrid;
 			productReference = 778C783B2C0A4656000CDC92 /* SymbolGrid.app */;
@@ -310,7 +304,6 @@
 				775651BE2C10E9190013B34B /* XCRemoteSwiftPackageReference "SFSymbolKit" */,
 				77D2BD4A2C2B59720020B42B /* XCRemoteSwiftPackageReference "Design" */,
 				5CB51FC92C9C8457006DA426 /* XCRemoteSwiftPackageReference "Splash" */,
-				5CB51FD72C9D2A81006DA426 /* XCRemoteSwiftPackageReference "swift-format" */,
 			);
 			productRefGroup = 778C783C2C0A4656000CDC92 /* Products */;
 			projectDirPath = "";
@@ -839,14 +832,6 @@
 				revision = 2e3f17c2d09689c8bf175c4a84ff7f2ad3353301;
 			};
 		};
-		5CB51FD72C9D2A81006DA426 /* XCRemoteSwiftPackageReference "swift-format" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/swiftlang/swift-format";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 600.0.0;
-			};
-		};
 		775651BE2C10E9190013B34B /* XCRemoteSwiftPackageReference "SFSymbolKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/dl-alexandre/SFSymbolKit";
@@ -890,16 +875,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5CB51FC92C9C8457006DA426 /* XCRemoteSwiftPackageReference "Splash" */;
 			productName = SplashTokenizer;
-		};
-		5CB51FD82C9D2A81006DA426 /* SwiftFormat */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5CB51FD72C9D2A81006DA426 /* XCRemoteSwiftPackageReference "swift-format" */;
-			productName = SwiftFormat;
-		};
-		5CB51FDA2C9D2A81006DA426 /* swift-format */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5CB51FD72C9D2A81006DA426 /* XCRemoteSwiftPackageReference "swift-format" */;
-			productName = "swift-format";
 		};
 		775651BF2C10E9190013B34B /* SFSymbolKit */ = {
 			isa = XCSwiftPackageProductDependency;
