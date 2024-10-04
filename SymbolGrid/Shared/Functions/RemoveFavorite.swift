@@ -6,23 +6,33 @@
 //
 
 import SwiftUI
+import SwiftData
 import Design
 import SFSymbolKit
 
-func removeFavorite(symbols: String...) {
-    @AppStorage("favorites") var favorites: String = "[]"
-
-    var favoritesBinding: Binding<[String]> {
-        Binding(
-            get: { Array(jsonString: favorites) ?? [] },
-            set: { favorites = $0.jsonString() ?? "[]" }
-        )
+func deleteFavorite(glyph: Favorite, modelContext: ModelContext) {
+    withAnimation {
+//        for index in offsets {
+            modelContext.delete(glyph)
+//        }
     }
-
-    var updatedFavorites = favoritesBinding.wrappedValue
-    for symbol in symbols {
-        updatedFavorites.removeAll(where: { $0 == symbol })
-        removeIconFromIndex(symbol, "com.alexandrefamilyfarm.symbols")
-    }
-    favoritesBinding.wrappedValue = updatedFavorites
 }
+
+//
+//func removeFavorite(symbols: String...) {
+////    @AppStorage("favorites") var favorites: String = "[]"
+//    @State var sys = System()
+//    var favoritesBinding: Binding<[String]> {
+//        Binding(
+//            get: { Array(jsonString: sys.favorites) ?? [] },
+//            set: { sys.favorites = $0.jsonString() ?? "[]" }
+//        )
+//    }
+//
+//    var updatedFavorites = favoritesBinding.wrappedValue
+//    for symbol in symbols {
+//        updatedFavorites.removeAll(where: { $0 == symbol })
+//        removeIconFromIndex(symbol, "com.alexandrefamilyfarm.symbols")
+//    }
+//    favoritesBinding.wrappedValue = updatedFavorites
+//}

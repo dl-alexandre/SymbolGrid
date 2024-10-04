@@ -10,6 +10,7 @@ import UniformTypeIdentifiers
 
 private func favoritingSymbol(
     _ favoritesBinding: Binding<[String]>,
+    _ showInspector: Binding<Bool>,
     _ icon: Icon
 ) -> Section<
     Text,
@@ -27,25 +28,21 @@ private func favoritingSymbol(
         >>
     )>,
     EmptyView
-> {
+> { @State var system = System()
     return Section("Favorites") {
         if favoritesBinding.wrappedValue.isEmpty {
             Button {
-//                if tabModel.activeTab == .home {
-//                    tabModel.activeTab = .favorites
-//                } else {
-//                    tabModel.activeTab = .home
-//                }
+                showInspector.wrappedValue = true
             } label: {
-                Label("Show", systemImage: "line.horizontal.star.fill.line.horizontal")
+                Label("Show", systemImage: "sparkles.rectangle.stack")
             }
         }
 
         Button {
             if favoritesBinding.wrappedValue.contains(icon.id) {
-                removeFavorite(symbols: icon.id)
+//                removeFavorite(symbols: icon.id)
             } else {
-                addFavorite(symbols: icon.id)
+//                addFavorite(symbols: icon.id)
             }
         } label: {
             if favoritesBinding.wrappedValue.contains(icon.id) {
@@ -55,19 +52,21 @@ private func favoritingSymbol(
             }
         }
     }
+
+
 }
 
-private func copySymbol(_ icon: Icon) -> Button<Label<Text, Image>> {
+private func copySymbol(_ icon: String) -> Button<Label<Text, Image>> {
     return Button {
 #if os(iOS)
         UIPasteboard.general .setValue(
-            icon.id.description,
+            icon.description,
             forPasteboardType: UTType.plainText .identifier
         )
 #else
             let pasteboard = NSPasteboard.general
             pasteboard.declareTypes([.string], owner: nil)
-            pasteboard.setString(icon.id.description, forType: .string)
+            pasteboard.setString(icon.description, forType: .string)
 #endif
     } label: {
         Label("Copy", systemImage: "doc.on.doc")
@@ -76,34 +75,61 @@ private func copySymbol(_ icon: Icon) -> Button<Label<Text, Image>> {
 
 @ViewBuilder
 func symbolContextMenu(
-    icon: Icon,
-    selected: Binding<Icon?>
+    icon: String,
+    selected: Binding<String?>,
+    showingSearch: Binding<Bool>
 ) -> some View {
-    @AppStorage("favorites") var favorites: String = "[]"
-    @AppStorage("showingSearch") var showingSearch = true
-    @AppStorage("fontSize") var fontSize = 50.0
 
-    var favoritesBinding: Binding<[String]> {
-        Binding(
-            get: { Array(jsonString: favorites) ?? [] },
-            set: { favorites = $0.jsonString() ?? "[]" }
-        )
-    }
+//    var favoritesBinding: Binding<[String]> {
+//        Binding(
+//            get: { Array(jsonString: sys.favorites) ?? [] },
+//            set: { sys.favorites = $0.jsonString() ?? "[]" }
+//        )
+//    }
+
+    @State var vmo = ViewModel()
+    @State var sys = System()
 
 #if os(iOS)
     Section("Symbol") {
         Button {
             selected.wrappedValue = icon
+//            vmo.showDetail()
         } label: {
             Label("View", systemImage: "drop.halffull")
         }
     }
 #endif
-    favoritingSymbol(favoritesBinding/*, tabModel*/, icon)
+//    Section("Favorites") {
+//        if favoritesBinding.wrappedValue.isEmpty {
+//            Button {
+//                vmo.showingFavorites = true
+//            } label: {
+//                Label("Show", systemImage: "sparkles.rectangle.stack")
+//            }
+//        }
+
+//        Button {
+//            if favoritesBinding.wrappedValue.contains(icon.id) {
+//                removeFavorite(symbols: icon.id)
+//            } else {
+//                addFavorite(symbols: icon.id)
+//
+//            }
+//        } label: {
+//            if favoritesBinding.wrappedValue.contains(icon.id) {
+//                Label("Remove", systemImage: "star.fill")
+//            } else {
+//                Label("Add", systemImage: "star")
+//            }
+//        }
+//    }
+//    favoritingSymbol(favoritesBinding, $vmo.showingFavorites, icon)
 #if os(iOS)
     copySymbol(icon)
     Button {
-        showingSearch.toggle()
+        sys.searchText =  icon
+        showingSearch.wrappedValue = true
     } label: {
         Label("Search", systemImage: "magnifyingglass")
     }

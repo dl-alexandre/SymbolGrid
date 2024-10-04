@@ -148,6 +148,16 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
+			<string>Marathi</string>
+			<key>Key</key>
+			<string>symbol_marathi</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
 			<string>Oriya</string>
 			<key>Key</key>
 			<string>symbol_oriya</string>
@@ -171,6 +181,26 @@
 			<string>Santali</string>
 			<key>Key</key>
 			<string>symbol_santali</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Sinhala</string>
+			<key>Key</key>
+			<string>symbol_sinhala</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Tamil</string>
+			<key>Key</key>
+			<string>symbol_tamil</string>
 			<key>DefaultValue</key>
 			<false/>
 		</dict>

@@ -63,9 +63,6 @@
         }
       }
     },
-    "%@ added to favorites" : {
-
-    },
     "%@ Help" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -172,6 +169,9 @@
     "Copy" : {
 
     },
+    "Delete" : {
+
+    },
     "Detail" : {
       "localizations" : {
         "es" : {
@@ -183,6 +183,7 @@
       }
     },
     "Download SF Symbols 6 - beta" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -442,6 +443,12 @@
         }
       }
     },
+    "Marathi" : {
+
+    },
+    "No Favorites" : {
+
+    },
     "Oriya" : {
       "localizations" : {
         "es" : {
@@ -526,7 +533,11 @@
         }
       }
     },
+    "Search Symbols" : {
+
+    },
     "Search Symbols %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -568,6 +579,9 @@
           }
         }
       }
+    },
+    "Sinhala" : {
+
     },
     "Size" : {
       "localizations" : {
@@ -649,6 +663,9 @@
           }
         }
       }
+    },
+    "Tamil" : {
+
     },
     "Telugu" : {
       "localizations" : {

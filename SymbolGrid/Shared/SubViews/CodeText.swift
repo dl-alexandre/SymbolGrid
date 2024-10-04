@@ -31,7 +31,6 @@ Image(systemName: "plus")
     x: 0.0,
     y: 0.0 - 10)
 """
-
     let highlighter = SyntaxHighlighter(
         format: AttributedStringOutputFormat(
             theme: .sundellsColors(
@@ -41,14 +40,10 @@ Image(systemName: "plus")
             )
         )
     )
-
+    
     var body: some View {
-#if os(iOS)
         HighlightedTextView(attributedText: highlighter.highlight(code))
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-#else
-        EmptyView()
-#endif
     }
 }
 
@@ -67,6 +62,26 @@ struct HighlightedTextView: UIViewRepresentable {
         uiView.attributedText = attributedText
     }
 }
+#else
+import SwiftUI
+
+struct HighlightedTextView: NSViewRepresentable {
+    var attributedText: NSAttributedString
+
+    func makeNSView(context: Context) -> NSTextField {
+        let textField = NSTextField()
+        textField.isEditable = false
+        textField.isBordered = false
+        textField.backgroundColor = .clear
+        textField.attributedStringValue = attributedText
+        return textField
+    }
+
+    func updateNSView(_ nsView: NSTextField, context: Context) {
+        nsView.attributedStringValue = attributedText
+    }
+}
+
 #endif
 
 #Preview {

@@ -6,42 +6,49 @@
 //
 
 import SwiftUI
+import SwiftData
 #if os(macOS)
 struct SymbolCommands: Commands {
     var body: some Commands {
         SidebarCommands()
         CommandMenu("Symbols") {
             Button {
-                showSearch()
+                system.showSearch()
             } label: {
                 Label("Search", systemImage: "magnifyingglass")
             }.keyboardShortcut("s")
             Button {
-                clearSearch()
+                system.clearSearch()
             } label: {
                 Label("Clear", systemImage: "delete.left")
             }.keyboardShortcut(.escape, modifiers: [])
 
             Button {
-                fontSize = max(9, fontSize - 5)
+                system.fontSize = max(9, system.fontSize - 5)
             } label: {
                 Label("Smaller", systemImage: "minus")
             }.keyboardShortcut("-")
 
             Button {
-                fontSize = min(2000, fontSize + 10)
+                system.fontSize = min(2000, system.fontSize + 10)
             } label: {
                 Label("Larger", systemImage: "plus")
             }.keyboardShortcut("=")
             Section("Favorites") {
                 Button {
-                    if myFavorites.contains(systemName) {
-                        removeFavorite(symbols: systemName)
+                    system.showInspector.toggle()
+                } label: {
+                    Label("Show", systemImage: "sparkle")
+                }.keyboardShortcut("f", modifiers: [])
+
+                Button {
+                    if system.myFavorites.contains(system.systemName) {
+                        removeFavorite(symbols: system.systemName)
                     } else {
-                        addFavorite(symbols: systemName)
+                        addFavorite(symbols: system.systemName)
                     }
                 } label: {
-                    if myFavorites.contains(systemName) {
+                    if system.myFavorites.contains(system.systemName) {
                         Label("Unfavorite", systemImage: "star.fill")
                     } else {
                         Label("Favorite", systemImage: "star")
@@ -49,7 +56,7 @@ struct SymbolCommands: Commands {
                 }.keyboardShortcut("f")
 
                 Button {
-                    clearFavorites()
+                    system.clearFavorites()
                 } label: {
                     Label("Clear", systemImage: "star.slash")
                 }.keyboardShortcut("f", modifiers: [.command, .shift])
@@ -74,30 +81,29 @@ struct SymbolCommands: Commands {
         CommandGroup(after: .help) {
             Section {
                 Link("SF Symbols Info", destination: URL(string: "https://developer.apple.com/sf-symbols/")!)
-                // swiftlint:disable line_length
-                Link("Human Interface Guidlines", destination: URL(string: "https://developer.apple.com/design/human-interface-guidelines/sf-symbols")!)
-                Link("Download SF Symbols 6 - beta", destination: URL(string: "https://devimages-cdn.apple.com/design/resources/download/SF-Symbols-6.dmg")!)
-                // swiftlint:enable line_length
+                Link(
+                    "Human Interface Guidlines",
+                    destination: URL(
+                        string: "https://developer.apple.com/design/human-interface-guidelines/sf-symbols"
+                    )!
+                )
+                Link(
+                    "Download SF Symbols 6",
+                    destination: URL(
+                        string: "https://devimages-cdn.apple.com/design/resources/download/SF-Symbols-6.dmg"
+                    )!
+                )
             }
         }
     }
 
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    @AppStorage("favorites") private var favorites: String = "[]"
-    @AppStorage("showingSearch") var showingSearch = false
-    @AppStorage("searchText") var searchText = ""
-    @AppStorage("fontSize") var fontSize = 50.0
-    @AppStorage("systemName") var systemName = ""
-
-    func showSearch() { showingSearch.toggle() }
-
-    func clearSearch() { showingSearch = false; searchText = "" }
-
-    func clearFavorites() { favorites = "[]" }
+    @Environment(\.modelContext) private var moc
+    @State private var system = System()
 
     var myFavorites: [String] {
-        get { Array(jsonString: favorites) ?? [] }
-        set { favorites = newValue.jsonString() ?? "[]" }
+        get { Array(jsonString: system.favorites) ?? [] }
+        set { system.favorites = newValue.jsonString() ?? "[]" }
     }
 }
 #endif

@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
+import UniformTypeIdentifiers
 import SFSymbolKit
-//import SwiftFormat
+import Design
 
-func configureShadow(showShadow: Bool, icon: Icon, shadow: Color, offset: CGSize) -> String {
+func configureShadow(showShadow: Bool, shadow: Color, offset: CGSize) -> String {
     var shadowConfig = ""
 
     let hex = shadow.description.trimmingCharacters(in: CharacterSet(charactersIn: "#"))
@@ -36,10 +37,10 @@ func configureShadow(showShadow: Bool, icon: Icon, shadow: Color, offset: CGSize
     return shadowConfig
 }
 
-func configureColor(showForeground: Bool, icon: Icon) -> String {
+func configureColor(showForeground: Bool, color: Color) -> String {
     var colorConfig = ""
 
-    let hex = icon.color.description.trimmingCharacters(in: CharacterSet(charactersIn: "#"))
+    let hex = color.description.trimmingCharacters(in: CharacterSet(charactersIn: "#"))
     let scanner = Scanner(string: hex)
     var rgbValue: UInt64 = 0
     if scanner.scanHexInt64(&rgbValue) {
@@ -114,44 +115,46 @@ func configureScale(showScale: Bool, selectedScale: Image.Scale) -> String {
 
 struct DetailView: View {
     var body: some View {
-        let dragGesture = DragGesture()
-            .onChanged { value in
-                self.location = value.location
-                self.offset = value.translation
-            }
-            .onEnded { _ in
-                withAnimation {
-                    isDragging = false
-                }
-            }
-        let pressGesture = LongPressGesture()
-            .onEnded { _ in
-                withAnimation {
-                    isDragging = true
-                }
-            }
-        let combined = pressGesture.sequenced(before: dragGesture)
+//        let dragGesture = DragGesture()
+//            .onChanged { value in
+//                self.location = value.location
+//                self.offset = value.translation
+//            }
+//            .onEnded { _ in
+//                withAnimation {
+//                    isDragging = false
+//                }
+//            }
+//        let pressGesture = LongPressGesture()
+//            .onEnded { _ in
+//                withAnimation {
+//                    isDragging = true
+//                }
+//            }
+//        let combined = pressGesture.sequenced(before: dragGesture)
         GeometryReader { geo in
             ZStack {
-                let image = Image(systemName: icon.id)
-                    .textSelection(.enabled)
-                    .font(.system(size: fontSize, weight: selectedWeight.weight))
+                let image = Image(systemName: icon)
+//                    .textSelection(.enabled)
+                    .font(.system(size: glyphSize, weight: selectedWeight.weight))
                     .imageScale(selectedScale.scale)
-                    .foregroundStyle(color.gradient)
-                    .scaleEffect(isDragging ? 1.5 : 1)
-                    .position(location)
-                    .gesture(combined)
-                    .shadow(color: shadow, radius: 3, x: offset.width, y: offset.height - 10)
+                    .foregroundStyle(showForeground ? color.gradient : Color.black.gradient)
+//                    .scaleEffect(isDragging ? 1.5 : 1)
+
+//                    .gesture(combined)
+                    .shadow(color: showShadow ? shadow : . clear, radius: 3, x: offset.width, y: offset.height - 10)
                     .frame(maxWidth: .infinity, minHeight: 50, maxHeight: .infinity, alignment: .top)
 
 #if os(iOS)
-                image.navigationTransition(.zoom(sourceID: icon.id, in: animation))
+                image
+                    .position(location)
+//                    .navigationTransition(.zoom(sourceID: icon, in: animation))
 #else
                 image
 #endif
 
                 VStack {
-                    let code = "Image(systemName: \"\(icon.id)\")"
+                    let code = "Image(systemName: \"\(icon)\")"
                     let scaleConfig = configureScale(
                         showScale: showScale,
                         selectedScale: selectedScale.scale
@@ -159,16 +162,15 @@ struct DetailView: View {
                     let fontConfig = configureFont(
                         showSize: showSize,
                         showWeight: showWeight,
-                        fontSize: fontSize,
+                        fontSize: glyphSize,
                         selectedWeight: selectedWeight.name
                     )
                     let colorConfig = configureColor(
                         showForeground: showForeground,
-                        icon: icon
+                        color: color
                     )
                     let shadowConfig = configureShadow(
                         showShadow: showShadow,
-                        icon: icon,
                         shadow: shadow,
                         offset: offset
                     )
@@ -184,7 +186,7 @@ struct DetailView: View {
                     }.rotationEffect(Angle(degrees: 180.0))
                     ScrollView {
                         ScrollView(.horizontal) {
-                            Text("\(icon.id)")
+                            Text("\(icon)")
                                 .font(.title)
                                 .multilineTextAlignment(.leading)
                                 .fixedSize(horizontal: false, vertical: true)
@@ -247,12 +249,12 @@ struct DetailView: View {
                                     } label: {
                                         Text("Size:")
                                     }.buttonStyle(BorderedProminentButtonStyle())
-                                    Text(" \(fontSize, specifier: "%.0f")")
+                                    Text(" \(glyphSize, specifier: "%.0f")")
                                     Slider(value: Binding(
                                         get: { self.linearValue },
                                         set: { newValue in
                                             self.linearValue = newValue
-                                            self.fontSize = pow(10, newValue)
+                                            self.glyphSize = pow(10, newValue)
                                         }
                                     ), in: log10(9)...log10(300))
                                 } else {
@@ -295,15 +297,38 @@ struct DetailView: View {
                                     }.padding(4)
                                 }
                             }
-                            Button {
-//                                print(
-//                                    formatSwiftCode(
-//                                        code + scaleConfig + fontConfig + colorConfig + shadowConfig
-//                                    )!
-//                                )
-                            } label: {
-                                Image(systemName: "doc.on.doc").bold()
-                            }.padding(4)
+                            HStack {
+                                Button {
+                                    let text = code + scaleConfig + fontConfig + colorConfig + shadowConfig
+                                    withAnimation(.spring()) {
+                                        vmo.copy()
+                                    }
+                                    //                                print(text)
+#if os(macOS)
+                                    NSPasteboard.general.setString(text, forType: .string)
+#else
+                                    UIPasteboard.general .setValue(
+                                        text.description,
+                                        forPasteboardType: UTType.plainText .identifier
+                                    )
+#endif
+                                } label: {
+                                    Image(systemName: "doc.on.doc")
+                                        .padding()
+                                }
+                                Button {
+                                    withAnimation {
+                                        showingDetail = false
+                                    }
+                                } label: {
+                                    Image(systemName: "xmark")
+                                        .padding()
+                                        .foregroundStyle(.red)
+                                }
+                            }
+                            .font(.system(size: fontSize))
+                            .padding(4)
+                            copyNotification(isCopied: $vmo.isCopied, icon: $vmo.systemName)
                         }
                     }
                     .frame(maxHeight: geo.size.height/3, alignment: .bottomLeading)
@@ -311,7 +336,7 @@ struct DetailView: View {
                 .padding(.horizontal)
             }.onTapGesture(count: 2) {
 #if os(iOS)
-                location = CGPoint(x: UIScreen.main.bounds.midX, y: 150)
+                location = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
 #else
                 location = CGPoint(x: NSScreen.main?.frame.size.width ?? 0, y: 150)
 #endif
@@ -320,10 +345,14 @@ struct DetailView: View {
     }
 
     @Environment(\.presentationMode) private var presentationMode
-    var icon: Icon
-#if os(iOS)
-    var animation: Namespace.ID
-#endif
+    var icon: String
+    @Binding var fontSize: Double
+    @Binding var showingDetail: Bool
+
+//#if os(iOS)
+//    var animation: Namespace.ID
+//#endif
+    @State var vmo = ViewModel()
     @State var showShadow: Bool = false
     @State var showSize: Bool = false
     @State var showScale: Bool = false
@@ -337,20 +366,8 @@ struct DetailView: View {
     @State private var offset = CGSize.zero
     @State private var isDragging = false
     @State private var shadow: Color = .gray.opacity(0.5)
-    @State private var fontSize = 200.0
+    @State private var glyphSize = 200.0
     @State private var linearValue: Double = log10(200)
-
-//    func formatSwiftCode(_ code: String) -> String? {
-//        let formatter = SwiftFormatter(configuration: Configuration())
-//        var formattedCode = ""
-//        do {
-//            try formatter.format(source: code, assumingFileURL: nil, selection: .infinite, to: &formattedCode)
-//            return formattedCode
-//        } catch {
-//            print("Failed to format code: \(error)")
-//            return nil
-//        }
-//    }
 
     var exponentialValue: Double {
         get {
@@ -358,12 +375,12 @@ struct DetailView: View {
         }
         set {
             linearValue = log10(newValue)
-            fontSize = newValue
+            glyphSize = newValue
         }
     }
 
 #if os(iOS)
-    @State var location: CGPoint = CGPoint(x: UIScreen.main.bounds.midX, y: 150)
+    @State var location: CGPoint = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
 #else
     @State var location: CGPoint = CGPoint(x: NSScreen.main?.frame.size.width ?? 0, y: -150)
 #endif
@@ -373,12 +390,10 @@ struct DetailView: View {
     @Previewable @Namespace var animation
 #if os(iOS)
     DetailView(
-        icon: Icon(
-            id: "square.and.arrow.up.on.square.fill",
-            color: .random(),
-            uiColor: .black
-        ),
-        animation: animation
+        icon: "square.and.arrow.up.on.square.fill",
+        fontSize: .constant(50.0),
+        showingDetail: .constant(true)
+//        animation: animation
     )
 #else
     DetailView(icon: Icon(id: "plus", color: .random(), uiColor: .black))

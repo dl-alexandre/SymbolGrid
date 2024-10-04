@@ -6,20 +6,26 @@
 //
 
 import SwiftUI
+import SwiftData
 import SFSymbolKit
 
 @main
 struct SymbolGridApp: App {
     init() {
         registerDefaultsFromSettingsBundle()
+#if os(iOS)
+        let appearance = UINavigationBar.appearance()
+        appearance.setBackgroundImage(UIImage(), for: .default)
+        appearance.shadowImage = UIImage()
+        appearance.isTranslucent = true
+#endif
     }
-
-    @StateObject private var tabModel: TabModel = .init()
 
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(tabModel)
+                .modelContainer(sharedModelContainer)
+
         }
 #if os(macOS)
         .windowStyle(HiddenTitleBarWindowStyle())
@@ -33,6 +39,20 @@ struct SymbolGridApp: App {
         }
 #endif
     }
+
+    var sharedModelContainer: ModelContainer = {
+        let schema = Schema([
+            Favorite.self
+        ])
+        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+
+        do {
+            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+        } catch {
+
+            fatalError("Could not create ModelContainer: \(error)")
+        }
+    }()
 }
 
 func registerDefaultsFromSettingsBundle() {

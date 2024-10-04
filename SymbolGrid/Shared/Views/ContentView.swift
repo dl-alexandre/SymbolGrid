@@ -1,111 +1,67 @@
 //
 //  ContentView.swift
-//  SymbolGrid
+//  SymbolView
 //
-//  Created by Dalton Alexandre on 6/2/24.
+//  Created by Dalton Alexandre on 5/24/24.
 //
 
 import SwiftUI
+import Design
 import SFSymbolKit
+import UniformTypeIdentifiers
+import CoreSpotlight
 
 struct ContentView: View {
+    @State private var fontSize = 50.0
+    @State private var selectedWeight: Weight = .regular
+    @State private var selectedSample: SymbolRenderingModes = .monochrome
+    @State private var showingSymbolMenu = false
+    @State private var showingSearch = false
+    @State private var showingFavorites = false
+    @State private var isAnimating = true
+
     var body: some View {
-        ZStack {
-//            TabView(selection: $tabModel.activeTab) {
-                if isAnimating {
-                    SplashView(
-                        symbols: system.symbols,
-                        fontWeight: $selectedWeight,
-                        isAnimating: $isAnimating
-                    )
-//                        .tag(Tab.home)
+        if isAnimating {
+            SplashView(
+                fontSize: $fontSize,
+                selectedWeight: $selectedWeight,
+                isAnimating: $isAnimating
+            )
 #if os(macOS)
-                        .background(HideTabBar())
+            .background(HideTabBar())
 #endif
-                } else {
-                    HomeView(
-                        symbols: system.symbols
-                    ).environmentObject(tabModel)
-//                        .transition(.blurReplace)
-//                        .tag(Tab.home)
-#if os(macOS)
-                        .background(HideTabBar())
-#endif
-                }
-//                FavoritesView(renderMode: $selectedSample, fontWeight: $selectedWeight)
-//                    .environmentObject(tabModel)
-//                    .tag(Tab.favorites)
-//            }
-//            .edgesIgnoringSafeArea(.all)
-#if os(macOS)
-//            .background {
-//                GeometryReader {
-//                    let rect = $0.frame(in: .global)
-//
-//                    Color.clear
-//                        .onChange(of: rect) { _, _ in
-//                            tabModel.updateTabPosition()
-//                        }
-//                }
-//            }
-//            .onChange(of: state) { _, newValue in
-//                if newValue == .key {
-//                    tabModel.addTabBar()
-//                }
-//            }
-#endif
-// #if os(iOS)
-//            .tabViewStyle(.page(indexDisplayMode: .never))
-// #else
-//            .tabViewStyle(DefaultTabViewStyle())
-// #endif
-            if showingSearch {
-                searchBar(
-                    text: $searchText,
-                    focus: $searchField,
-                    isSearchFieldFocused: $isSearchFieldFocused,
-                    showingSearch: $showingSearch
+        } else {
+            ZStack {
+                SymbolView(
+                    fontSize: $fontSize,
+                    selectedWeight: $selectedWeight,
+                    selectedSample: $selectedSample,
+                    showingSymbolMenu: $showingSymbolMenu,
+                    showingSearch: $showingSearch,
+                    showingFavorites: $showingFavorites
                 )
-                .onAppear {
-                    $isSearchFieldFocused.wrappedValue = true
-                }
 #if os(iOS)
-                .keyboardAdaptive()
-                .onReceive(
-                    NotificationCenter.default.publisher(
-                        for: UIResponder.keyboardWillHideNotification
+                if showingSymbolMenu {
+                    SymbolMenu(
+                        fontSize: $fontSize,
+                        selectedWeight: $selectedWeight,
+                        selectedSample: $selectedSample,
+                        showingSymbolMenu: $showingSymbolMenu,
+                        showingSearch: $showingSearch,
+                        showingFavorites: $showingFavorites
                     )
-                ) { _ in
-                    searchField = nil
-                    showingSearch = false
-                }
-                .onTapGesture(count: 3) {
-                    searchText = ""
+                    .padding(.top)
                 }
 #endif
             }
-
-        }
-
-    }
-
-    @EnvironmentObject private var tabModel: TabModel
+            .edgesIgnoringSafeArea(.all)
 #if os(macOS)
-    @Environment(\.controlActiveState) private var state
+            .background(HideTabBar())
 #endif
-    @State private var isAnimating = true
-    @State private var selectedSample = SymbolRenderingModes.monochrome
-    @State private var selectedWeight = Weight.medium
-    @State private var isActive: Bool = true
-    @State private var system = System()
-
-    @AppStorage("showingSearch") var showingSearch = false
-    @AppStorage("searchText") var searchText = ""
-    @FocusState private var isSearchFieldFocused: Bool
-    @FocusState private var searchField: Field?
+        }
+    }
 }
 
 #Preview {
-    @Previewable var tabModel = TabModel()
-    ContentView().environmentObject(tabModel)
+    ContentView()
 }

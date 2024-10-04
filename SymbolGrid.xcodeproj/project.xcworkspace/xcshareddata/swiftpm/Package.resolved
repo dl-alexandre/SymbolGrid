@@ -7,7 +7,7 @@
       "location" : "https://github.com/dl-alexandre/Design",
       "state" : {
         "branch" : "main",
-        "revision" : "8babf51109ac905fc7b7e051cebb71ccfd88b481"
+        "revision" : "2b5f51ee37c8a47357dbf6b613abc4c055931865"
       }
     },
     {
@@ -16,7 +16,7 @@
       "location" : "https://github.com/dl-alexandre/SFSymbolKit",
       "state" : {
         "branch" : "main",
-        "revision" : "ad369fcfec3e41fc13f3cae567a9117488a35af1"
+        "revision" : "2f3f10a9cba3d85bd22a5e619567cc06ddb29e94"
       }
     },
     {
@@ -24,7 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/JohnSundell/Splash",
       "state" : {
-        "revision" : "2e3f17c2d09689c8bf175c4a84ff7f2ad3353301"
+        "revision" : "7f4df436eb78fe64fe2c32c58006e9949fa28ad8",
+        "version" : "0.16.0"
       }
     }
   ],

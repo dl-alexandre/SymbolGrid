@@ -59,10 +59,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 .titled,
                 .resizable
             ]
-            let window = NSWindow()
+            let window = NSWindow(
+                contentRect: NSRect(x: 0, y: 0, width: 400, height: 300),
+                styleMask: styleMask,
+                backing: .buffered,
+                defer: false)
             window.styleMask = styleMask
             window.title = icon.id
-            //            window.title = "\(NSApplication.appName ?? "SymbolView") Help"
             window.contentView = NSHostingView(
                 rootView: SymbolSheet(
                     icon: icon,
@@ -83,7 +86,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             let window = NSWindow()
             window.styleMask = styleMask
             window.title = icon.id
-            //            window.title = "\(NSApplication.appName ?? "SymbolView") Help"
             window.contentView = NSHostingView(rootView: DetailView(icon: icon, color: icon.color))
             detailWindowController = NSWindowController(window: window)
         }

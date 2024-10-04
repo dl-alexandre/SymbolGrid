@@ -8,34 +8,86 @@
 import SwiftUI
 import Design
 import SFSymbolKit
+import SwiftData
 
 struct FavoritesView: View {
+    @Environment(\.modelContext) private var moc
+    @State private var sys = System()
+    @State private var vmo = ViewModel()
+    @Query var favorites: [Favorite]
+    @Binding var fontSize: Double
+    @Binding var showingSearch: Bool
+
+    var favoritesSuggestions: [String] {
+        return favorites.map { $0.glyph }.filter { key in
+
+            if !sys.arabicSetting && key.hasSuffix(".ar") { return false }
+            if !sys.bengaliSetting && key.hasSuffix(".bn") { return false }
+            if !sys.burmeseSetting && key.hasSuffix(".my") { return false }
+            if !sys.chineseSetting && key.hasSuffix(".zh") { return false }
+            if !sys.gujaratiSetting && key.hasSuffix(".gu") { return false }
+            if !sys.hebrewSetting && key.hasSuffix(".he") { return false }
+            if !sys.hindiSetting && key.hasSuffix(".hi") { return false }
+            if !sys.japaneseSetting && key.hasSuffix(".ja") { return false }
+            if !sys.kannadaSetting && key.hasSuffix(".kn") { return false }
+            if !sys.khmerSetting && key.hasSuffix(".km") { return false }
+            if !sys.koreanSetting && key.hasSuffix(".ko") { return false }
+            if !sys.latinSetting && key.hasSuffix(".el") { return false }
+            if !sys.malayalamSetting && key.hasSuffix(".ml") { return false }
+            if !sys.manipuriSetting && key.hasSuffix(".mni") { return false }
+            if !sys.marathiSetting && key.hasSuffix(".mr") { return false }
+            if !sys.oriyaSetting && key.hasSuffix(".or") { return false }
+            if !sys.russianSetting && key.hasSuffix(".ru") { return false }
+            if !sys.santaliSetting && key.hasSuffix(".sat") { return false }
+            if !sys.sinhalaSetting && key.hasSuffix(".si") { return false }
+            if !sys.tamilSetting && key.hasSuffix(".ta") { return false }
+            if !sys.teluguSetting && key.hasSuffix(".te") { return false }
+            if !sys.thaiSetting && key.hasSuffix(".th") { return false }
+            if !sys.punjabiSetting && key.hasSuffix(".pa") { return false }
+
+            // Apply search text filter if searchText is not empty
+            if !sys.searchText.isEmpty { return key.contains(sys.searchText.lowercased()) }
+            return true // Include the key if none of the above conditions are met and searchText is empty
+        }
+    }
+
     var body: some View {
-        let icons: [Icon] = searchResults.map { symbolName in
-            Icon(id: symbolName, color: .random(), uiColor: .black)
+        let icons: [String] = favoritesSuggestions.map { symbolName in
+//            Icon(id: symbolName, color: .random(), uiColor: .black)
+            symbolName
         }
 
         ZStack {
-            if myFavorites.isEmpty {
+            if favorites.isEmpty {
                 ContentUnavailableView {
-                    Label("Favorites", systemImage: "star.slash")
+                    Label("No Favorites", systemImage: "star.slash")
                 } description: {
                     Text("Find your favorite symbols here")
                     Button {
+                        vmo.showFavorites()
                     } label: {
                         Label("Show", systemImage: "line.horizontal.star.fill.line.horizontal")
                     }
                 }
             } else {
                 List {
-                    ForEach(icons) { icon in
+                    ForEach(favorites, id: \.glyph) { fav in
                         favorite(
-                            icon: icon,
-                            isCopied: $isCopied,
-                            selected: $selected
+                            icon: fav.glyph,
+                            selected: $selected,
+                            showingSearch: $showingSearch
                         )
-                        .draggable("\(icon.id)") {
-                            Image(systemName: "\(icon.id)")
+                        .draggable("\(fav.glyph)") {
+                            Image(systemName: "\(fav.glyph)")
+                        }
+                        .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                            Button(role: .destructive) {
+                                deleteFavorite(glyph: fav, modelContext: moc)
+//                                removeFavorite(symbols: ("\(fav.glyph)"))
+                                removeIconFromIndex(fav.glyph, "com.alexandrefamilyfarm.symbols")
+                            } label: {
+                                Label("Delete", systemImage: "trash")
+                            }
                         }
                     }
                 }
@@ -50,28 +102,32 @@ struct FavoritesView: View {
 //                }
                 .toolbar {
                     ToolbarItem(placement: .principal) {
-                        copyNotification(isCopied: $isCopied, icon: $systemName)
+                        copyNotification(isCopied: $isCopied, icon: $vmo.systemName)
                     }
                 }
 #if os(iOS)
-                .sheet(item: $selected) { icon in
-                    DetailView(
-                        icon: icon,
-                        animation: animation,
-                        color: icon.color
-                    )
-                    .presentationDetents([.medium])
+                .sheet(isPresented: $vmo.showingDetail) {
+                    if let selected = vmo.selected {
+                        DetailView(
+                            icon: selected,
+                            fontSize: $fontSize,
+                            showingDetail: $vmo.showingDetail,
+//                            animation: animation,
+                            color: Color.random()
+                        )
+                        .presentationDetents([.medium])
+                    }
                 }
 #endif
             }
-            if showingSearch {
-                searchBar(
-                    text: $searchText,
-                    focus: $searchField,
-                    isSearchFieldFocused: $isSearchFieldFocused,
-                    showingSearch: $showingSearch
-                )
-            }
+//            if showingSearch {
+//                searchBar(
+//                    text: $searchText,
+//                    focus: $searchField,
+//                    isSearchFieldFocused: $isSearchFieldFocused,
+//                    showingSearch: $showingSearch
+//                )
+//            }
 //            if showingTitle {
 //                customTitleBar("Favorites")
 //            }
@@ -81,7 +137,7 @@ struct FavoritesView: View {
 #endif
         .onAppear {
             for item in icons {
-                addIconToIndex(item.id, "com.alexandrefamilyfarm.symbols")
+                addIconToIndex(item, "com.alexandrefamilyfarm.symbols")
             }
 
 //            showingTitle = true
@@ -103,84 +159,54 @@ struct FavoritesView: View {
 //        }
     }
     @State private var draggedText = ""
-    @EnvironmentObject private var tabModel: TabModel
-    @AppStorage("symbol_arabic") private var arabicSetting = false
-    @AppStorage("symbol_bengali") private var bengaliSetting = false // bn
-    @AppStorage("symbol_burmese") private var burmeseSetting = false
-    @AppStorage("symbol_chinese") private var chineseSetting = false
-    @AppStorage("symbol_gujarati") private var gujaratiSetting = false // gu
-    @AppStorage("symbol_hebrew") private var hebrewSetting = false
-    @AppStorage("symbol_hindi") private var hindiSetting = false
-    @AppStorage("symbol_japanese") private var japaneseSetting = false
-    @AppStorage("symbol_kannada") private var kannadaSetting = false // kn
-    @AppStorage("symbol_khmer") private var khmerSetting = false
-    @AppStorage("symbol_korean") private var koreanSetting = false
-    @AppStorage("symbol_latin") private var latinSetting = false // el
-    @AppStorage("symbol_malayalam") private var malayalamSetting = false // ml
-    @AppStorage("symbol_manipuri") private var manipuriSetting = false // mni
-    @AppStorage("symbol_oriya") private var oriyaSetting = false // or
-    @AppStorage("symbol_russian") private var russianSetting = false // ru
-    @AppStorage("symbol_santali") private var santaliSetting = false // sat
-    @AppStorage("symbol_telugu") private var teluguSetting = false // te
-    @AppStorage("symbol_thai") private var thaiSetting = false
-    @AppStorage("symbol_punjabi") private var punjabiSetting = false // pa
-    @AppStorage("favorites") private var favorites: String = "[]"
-    @AppStorage("showingSearch") var showingSearch = false
-//    @AppStorage("showingTitle") var showingTitle = true
-    @AppStorage("searchText") var searchText = ""
-    @AppStorage("fontSize") var fontSize = 50.0
-    @AppStorage("systemName") var systemName = ""
-    @FocusState private var searchField: Field?
-    @FocusState private var isSearchFieldFocused: Bool
     @Namespace var animation
-    @Binding public var renderMode: SymbolRenderingModes
-    @Binding public var fontWeight: Weight
-    @State private var selected: Icon?
-    @State private var selectedFontWeight = Weight.medium
-    @State private var selectedWeight: Weight = .regular
+    @State private var selected: String?
     @State private var italic = false
     @State private var isCopied = false
 
-    var myFavorites: [String] {
-        get { Array(jsonString: favorites) ?? [] }
-        set { favorites = newValue.jsonString() ?? "[]" }
-    }
-
-    var searchResults: [String] {
-        return myFavorites.filter { key in
-
-            if !arabicSetting && key.hasSuffix(".ar") { return false }
-            if !bengaliSetting && key.hasSuffix(".bn") { return false }
-            if !burmeseSetting && key.hasSuffix(".my") { return false }
-            if !chineseSetting && key.hasSuffix(".zh") { return false }
-            if !gujaratiSetting && key.hasSuffix(".gu") { return false }
-            if !hebrewSetting && key.hasSuffix(".he") { return false }
-            if !hindiSetting && key.hasSuffix(".hi") { return false }
-            if !japaneseSetting && key.hasSuffix(".ja") { return false }
-            if !kannadaSetting && key.hasSuffix(".kn") { return false }
-            if !khmerSetting && key.hasSuffix(".km") { return false }
-            if !koreanSetting && key.hasSuffix(".ko") { return false }
-            if !latinSetting && key.hasSuffix(".el") { return false }
-            if !malayalamSetting && key.hasSuffix(".ml") { return false }
-            if !manipuriSetting && key.hasSuffix(".mni") { return false }
-            if !oriyaSetting && key.hasSuffix(".or") { return false }
-            if !russianSetting && key.hasSuffix(".ru") { return false }
-            if !santaliSetting && key.hasSuffix(".sat") { return false }
-            if !teluguSetting && key.hasSuffix(".te") { return false }
-            if !thaiSetting && key.hasSuffix(".th") { return false }
-            if !punjabiSetting && key.hasSuffix(".pa") { return false }
-
-            // Apply search text filter if searchText is not empty
-            if !searchText.isEmpty { return key.contains(searchText.lowercased()) }
-            return true // Include the key if none of the above conditions are met and searchText is empty
-        }
-    }
-
-    private var columns: [GridItem] {
-        [GridItem(.flexible())]
-    }
-
-    private var spacing: CGFloat {
-        fontSize * 0.1
-    }
+//    var myFavorites: [String] {
+//        get { Array(jsonString: favorites) ?? [] }
+//        set { favorites = newValue.jsonString() ?? "[]" }
+//    }
+//
+//    var searchResults: [String] {
+//        return myFavorites.filter { key in
+//
+//            if !arabicSetting && key.hasSuffix(".ar") { return false }
+//            if !bengaliSetting && key.hasSuffix(".bn") { return false }
+//            if !burmeseSetting && key.hasSuffix(".my") { return false }
+//            if !chineseSetting && key.hasSuffix(".zh") { return false }
+//            if !gujaratiSetting && key.hasSuffix(".gu") { return false }
+//            if !hebrewSetting && key.hasSuffix(".he") { return false }
+//            if !hindiSetting && key.hasSuffix(".hi") { return false }
+//            if !japaneseSetting && key.hasSuffix(".ja") { return false }
+//            if !kannadaSetting && key.hasSuffix(".kn") { return false }
+//            if !khmerSetting && key.hasSuffix(".km") { return false }
+//            if !koreanSetting && key.hasSuffix(".ko") { return false }
+//            if !latinSetting && key.hasSuffix(".el") { return false }
+//            if !malayalamSetting && key.hasSuffix(".ml") { return false }
+//            if !manipuriSetting && key.hasSuffix(".mni") { return false }
+//            if !marathiSetting && key.hasSuffix(".mr") { return false }
+//            if !oriyaSetting && key.hasSuffix(".or") { return false }
+//            if !russianSetting && key.hasSuffix(".ru") { return false }
+//            if !santaliSetting && key.hasSuffix(".sat") { return false }
+//            if !sinhalaSetting && key.hasSuffix(".si") { return false }
+//            if !tamilSetting && key.hasSuffix(".ta") { return false }
+//            if !teluguSetting && key.hasSuffix(".te") { return false }
+//            if !thaiSetting && key.hasSuffix(".th") { return false }
+//            if !punjabiSetting && key.hasSuffix(".pa") { return false }
+//
+//            // Apply search text filter if searchText is not empty
+//            if !searchText.isEmpty { return key.contains(searchText.lowercased()) }
+//            return true // Include the key if none of the above conditions are met and searchText is empty
+//        }
+//    }
+//
+//    private var columns: [GridItem] {
+//        [GridItem(.flexible())]
+//    }
+//
+//    private var spacing: CGFloat {
+//        fontSize * 0.1
+//    }
 }

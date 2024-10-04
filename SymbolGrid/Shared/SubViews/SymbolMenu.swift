@@ -6,18 +6,21 @@
 //
 
 import SwiftUI
+import SwiftData
 import SFSymbolKit
 
 struct SymbolMenu: View {
-    @AppStorage("fontSize") var fontSize = 50.0
-    @AppStorage("showingSearch") var showingSearch = true
-    @AppStorage("searchText") var searchText = ""
-    @AppStorage("showWeightPicker") var showWeightPicker = false
+    @Environment(\.verticalSizeClass) var verticalSizeClass
+    @Environment(\.modelContext) private var moc
+    @Query var favorites: [Favorite]
+    @Binding var fontSize: Double
     @Binding var selectedWeight: Weight
     @Binding var selectedSample: SymbolRenderingModes
-    @Environment(\.verticalSizeClass) var verticalSizeClass
-
-    @FocusState private var isSearchFieldFocused: Bool
+    @Binding var showingSymbolMenu: Bool
+    @Binding var showingSearch: Bool
+    @Binding var showingFavorites: Bool
+    @State private var vmo = ViewModel()
+    @State private var sys = System()
 
     var body: some View {
         GeometryReader { geo in
@@ -32,8 +35,7 @@ struct SymbolMenu: View {
                             HStack {
                                 Button {
                                     showingSearch = true
-                                    $isSearchFieldFocused.wrappedValue = true
-                                    showWeightPicker = false
+                                    showingSymbolMenu = false
                                 } label: {
                                     Label("", systemImage: "magnifyingglass")
                                 }
@@ -44,9 +46,18 @@ struct SymbolMenu: View {
                                 .onChange(of: fontSize) { _, newValue in
                                     fontSize = min(max(newValue, 9), 200)
                                 }
+                                if !favorites.isEmpty {
+                                    Button {
+                                        showingFavorites.toggle()
+                                    } label: {
+                                        Image(systemName: "sparkles.rectangle.stack")
+                                            .symbolRenderingMode(.palette)
+                                            .foregroundStyle(.yellow, .black)
+                                    }
+                                }
                                 Button {
                                     withAnimation {
-                                        showWeightPicker = false
+                                        showingSymbolMenu = false
                                     }
                                 } label: {
                                     Image(systemName: "xmark")
@@ -67,8 +78,8 @@ struct SymbolMenu: View {
                             HStack {
                                 Button {
                                     showingSearch = true
-                                    $isSearchFieldFocused.wrappedValue = true
-                                    showWeightPicker = false
+//                                    $isSearchFieldFocused.wrappedValue = true
+                                    showingSymbolMenu = false
                                 } label: {
                                     Label("", systemImage: "magnifyingglass")
                                 }
@@ -80,9 +91,18 @@ struct SymbolMenu: View {
                                 }
                                 weightPicker(selectedWeight: $selectedWeight)
                                 renderPicker2(selectedSample: $selectedSample)
+                                if !favorites.isEmpty {
+                                    Button {
+                                        showingFavorites.toggle()
+                                    } label: {
+                                        Image(systemName: "sparkles.rectangle.stack")
+                                            .symbolRenderingMode(.palette)
+                                            .foregroundStyle(.yellow, .black)
+                                    }
+                                }
                                 Button {
                                     withAnimation {
-                                        showWeightPicker = false
+                                        showingSymbolMenu = false
                                     }
                                 } label: {
                                     Image(systemName: "xmark")
@@ -97,18 +117,25 @@ struct SymbolMenu: View {
                 .padding(geo.size.width / 60)
         }
         .onAppear {
-            showWeightPicker = true
-            DispatchQueue.main.asyncAfter(deadline: .now() + 15) {
-                withAnimation(.easeInOut(duration: 2)) {
-                    showWeightPicker = false
-                }
-            }
+            showingSymbolMenu = true
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 15) {
+//                withAnimation(.easeInOut(duration: 2)) {
+//                    showSymbolMenu = false
+//                }
+//            }
         }
     }
 }
 
 #Preview {
-    SymbolMenu(selectedWeight: .constant(.regular), selectedSample: .constant(.monochrome))
+    SymbolMenu(
+        fontSize: .constant(50.0),
+        selectedWeight: .constant(.regular),
+        selectedSample: .constant(.monochrome),
+        showingSymbolMenu: .constant(false),
+        showingSearch: .constant(false),
+        showingFavorites: .constant(false)
+    )
 }
 
 @ViewBuilder

@@ -10,16 +10,17 @@ import SFSymbolKit
 
 @ViewBuilder
 func symbol(
-    icon: Icon,
+    icon: String,
+    fontSize: Binding<Double>,
     renderMode: Binding<SymbolRenderingModes>,
     fontWeight: Binding<Weight>
 ) -> some View {
-    @AppStorage("fontSize") var fontSize = 50.0
     @State var isHovered = false
+    @State var system = ViewModel()
 
-    Image(systemName: icon.id)
+    Image(systemName: icon)
         .symbolRenderingMode(renderMode.wrappedValue.mode)
-        .font(.system(size: fontSize, weight: fontWeight.wrappedValue.weight))
+        .font(.system(size: fontSize.wrappedValue, weight: fontWeight.wrappedValue.weight))
         .animation(.linear, value: 0.5)
         .opacity(isHovered ? 0.5 : 1.0)
 #if os(iOS)

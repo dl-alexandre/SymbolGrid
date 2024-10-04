@@ -8,181 +8,198 @@
 import SwiftUI
 import Design
 import SFSymbolKit
+import SwiftData
 import UniformTypeIdentifiers
 
 struct SymbolView: View {
-    @EnvironmentObject private var tabModel: TabModel
 #if os(macOS)
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 #endif
-    var symbols: [String]
 
-    var searchResults: [String] {
-        return symbols.filter { key in
-            if !arabicSetting && key.hasSuffix(".ar") { return false }
-            if !bengaliSetting && key.hasSuffix(".bn") { return false }
-            if !burmeseSetting && key.hasSuffix(".my") { return false }
-            if !chineseSetting && key.hasSuffix(".zh") { return false }
-            if !gujaratiSetting && key.hasSuffix(".gu") { return false }
-            if !hebrewSetting && key.hasSuffix(".he") { return false }
-            if !hindiSetting && key.hasSuffix(".hi") { return false }
-            if !japaneseSetting && key.hasSuffix(".ja") { return false }
-            if !kannadaSetting && key.hasSuffix(".kn") { return false }
-            if !khmerSetting && key.hasSuffix(".km") { return false }
-            if !koreanSetting && key.hasSuffix(".ko") { return false }
-            if !latinSetting && key.hasSuffix(".el") { return false }
-            if !malayalamSetting && key.hasSuffix(".ml") { return false }
-            if !manipuriSetting && key.hasSuffix(".mni") { return false }
-            if !oriyaSetting && key.hasSuffix(".or") { return false }
-            if !russianSetting && key.hasSuffix(".ru") { return false }
-            if !santaliSetting && key.hasSuffix(".sat") { return false }
-            if !teluguSetting && key.hasSuffix(".te") { return false }
-            if !thaiSetting && key.hasSuffix(".th") { return false }
-            if !punjabiSetting && key.hasSuffix(".pa") { return false }
+    @Namespace var animation
+    @Binding var fontSize: Double
+    @Binding var selectedWeight: Weight
+    @Binding var selectedSample: SymbolRenderingModes
+    @Binding var showingSymbolMenu: Bool
+    @Binding var showingSearch: Bool
+    @Binding var showingFavorites: Bool
+    @Environment(\.verticalSizeClass) var verticalSizeClass
+    @Environment(\.modelContext) var moc
+    @State private var sys = System()
+    @State private var vmo = ViewModel()
+    @Query var favorites: [Favorite]
+
+    var favoritesSuggestions: [String] {
+        return favorites.map { $0.glyph }.filter { key in
+
+            if !sys.arabicSetting && key.hasSuffix(".ar") { return false }
+            if !sys.bengaliSetting && key.hasSuffix(".bn") { return false }
+            if !sys.burmeseSetting && key.hasSuffix(".my") { return false }
+            if !sys.chineseSetting && key.hasSuffix(".zh") { return false }
+            if !sys.gujaratiSetting && key.hasSuffix(".gu") { return false }
+            if !sys.hebrewSetting && key.hasSuffix(".he") { return false }
+            if !sys.hindiSetting && key.hasSuffix(".hi") { return false }
+            if !sys.japaneseSetting && key.hasSuffix(".ja") { return false }
+            if !sys.kannadaSetting && key.hasSuffix(".kn") { return false }
+            if !sys.khmerSetting && key.hasSuffix(".km") { return false }
+            if !sys.koreanSetting && key.hasSuffix(".ko") { return false }
+            if !sys.latinSetting && key.hasSuffix(".el") { return false }
+            if !sys.malayalamSetting && key.hasSuffix(".ml") { return false }
+            if !sys.manipuriSetting && key.hasSuffix(".mni") { return false }
+            if !sys.marathiSetting && key.hasSuffix(".mr") { return false }
+            if !sys.oriyaSetting && key.hasSuffix(".or") { return false }
+            if !sys.russianSetting && key.hasSuffix(".ru") { return false }
+            if !sys.santaliSetting && key.hasSuffix(".sat") { return false }
+            if !sys.sinhalaSetting && key.hasSuffix(".si") { return false }
+            if !sys.tamilSetting && key.hasSuffix(".ta") { return false }
+            if !sys.teluguSetting && key.hasSuffix(".te") { return false }
+            if !sys.thaiSetting && key.hasSuffix(".th") { return false }
+            if !sys.punjabiSetting && key.hasSuffix(".pa") { return false }
 
             // Apply search text filter if searchText is not empty
-            if !searchText.isEmpty { return key.contains(searchText.lowercased()) }
+            if !sys.searchText.isEmpty { return key.contains(sys.searchText.lowercased()) }
             return true // Include the key if none of the above conditions are met and searchText is empty
         }
     }
 
-    init(
-        renderMode: Binding<SymbolRenderingModes>,
-        fontWeight: Binding<Weight>,
-        symbols: [String]
-    ) {
-        self._renderMode = renderMode
-        self._fontWeight = fontWeight
-        self.symbols = symbols
-    }
-
-    private var columns: [GridItem] {
-        [GridItem(.adaptive(minimum: 1.5 * fontSize))]
-    }
-
-    private var spacing: CGFloat {
-        fontSize * 0.1
-    }
-
-    @Namespace var animation
-    @State private var selected: Icon?
-    @State private var detailIcon: Icon?
-    @State private var isCopied = false
-
-    @Binding public var renderMode: SymbolRenderingModes
-    @Binding public var fontWeight: Weight
-    @AppStorage("isDragging") var isDragging = false
-    @AppStorage("showWeightPicker") var showWeightPicker = false
-    @FocusState public var isSearchFieldFocused: Bool
-    @Environment(\.verticalSizeClass) var verticalSizeClass
-//    @State private var position = ScrollPosition(edge: .top)
-
-    @State private var selectedSample = SymbolRenderingModes.monochrome
-    @State private var selectedWeight = Weight.medium
-    @AppStorage("showInspector") var showInspector = false
-    @AppStorage("systemName") var systemName = ""
-    @State private var showSheet = false
-
     var body: some View {
-        let icons: [Icon] = searchResults.map { symbolName in
-            Icon(id: symbolName, color: .random(), uiColor: .black)
+        let icons: [String] = sys.searchResults.map { symbolName in
+             symbolName
+        }
+
+        let suggestions: [String] = favoritesSuggestions.map { symbolName in
+            symbolName
         }
 
         ZStack {
             GeometryReader { geo in
-                ScrollView {
-                    LazyVGrid(columns: columns, spacing: spacing) {
-                        ForEach(icons, id: \.id) { icon in
-                            Button {
-                                if selected?.id == icon.id {
-                                    showSheet.toggle()
-                                } else {
-                                    selected = icon
-#if os(iOS)
-                                    showSheet = true
-#else
-                                    appDelegate.showMenuPanel(
-                                        icon: icon,
-                                        detailIcon: $detailIcon,
-                                        selectedWeight: $fontWeight,
-                                        selectedSample: $renderMode,
-                                        showInspector: $showInspector
-                                    )
-#endif
-                                }
-                            } label: {
-                                symbol(
-                                    icon: icon,
-                                    renderMode: $renderMode,
-                                    fontWeight: $fontWeight
-                                )
-                                .padding(8)
-                                .matchedTransitionSource(id: icon.id, in: animation)
-                                .contentShape(.dragPreview, RoundedRectangle(cornerRadius: 7))
-                                .foregroundStyle((selected?.id == icon.id) ? icon.color : .primary)
-//                                .draggable("\(icon.id)") {
-//                                    Image(systemName: "\(icon.id)")
-//                                }
-//                                .draggable(Image(systemName: icon.id)) {
-//                                    Image(systemName: "\(icon.id)")
-//                                }
-                                .draggable(Image(systemName: icon.id)) {
-                                    Text("\(icon.id)")
-                                }
-                            }
-                        }
-                    }.offset(x: 0, y: searchText.isEmpty ? 0: (fontSize * 3))
-                }
-//                .overlay {
-//                    FavoritesDrop()
-//                        .opacity(isDragging ? 1 : 0)
-//                }
-                .dropDestination(for: String.self) { items, _ in
-                    if let item = items.first {
-                        removeFavorite(symbols: item)
-                        print("\(item) removed from favorites")
-                        return true
-                    }
-                    return false
-                }
-                .refreshable {
-                    withAnimation {
-                        showWeightPicker.toggle()
-                    }
-                }
-                .inspector(isPresented: $showInspector) {
-                    FavoritesView(renderMode: $selectedSample, fontWeight: $selectedWeight)
-                        .dropDestination(for: String.self) { items, _ in
-                            if let item = items.first {
-                                draggedText = item
-                                print("\(draggedText) added to favorites")
-                                addFavorite(symbols: draggedText)
-                                return true
-                            }
-                            return false
-                        }
-                }
+                let minColumnWidth = 1.5 * fontSize
+                let numberOfColumns = max(1, Int(geo.size.width / minColumnWidth))
+                let columns = Array(
+                    repeating: GridItem(
+                        .adaptive(minimum: minColumnWidth)
+                    ),
+                    count: numberOfColumns
+                )
 
-//                .scrollPosition($position)
+                NavigationView {
+                    ScrollViewReader { proxy in
+                        ScrollView {
+                            LazyVGrid(columns: columns, spacing: vmo.spacing) {
+                                ForEach(icons, id: \.self) { icon in
+                                    Button {
+                                        if vmo.selected == icon {
+                                            vmo.showSheet()
+                                        } else {
+                                            vmo.selected = icon
 #if os(iOS)
-                .sheet(isPresented: $showSheet) {
-                    if let selectedIcon = selected {
+                                            vmo.showingSheet = true
+#else
+                                            appDelegate.showMenuPanel(
+                                                icon: icon,
+                                                detailIcon: $detailIcon,
+                                                selectedWeight: $fontWeight,
+                                                selectedSample: $renderMode,
+                                                showInspector: $showInspector
+                                            )
+#endif
+                                        }
+                                    } label: {
+                                        symbol(
+                                            icon: icon, fontSize: $fontSize,
+                                            renderMode: $selectedSample,
+                                            fontWeight: $selectedWeight
+                                        )
+                                        .padding(8)
+//                                        .matchedTransitionSource(id: icon, in: animation)
+                                        .contentShape(.dragPreview, RoundedRectangle(cornerRadius: 7))
+                                        .foregroundStyle((vmo.selected == icon) ? Color.random() : .primary)
+                                        .draggable(Image(systemName: icon)) {
+                                            Text("\(icon)")
+                                        }
+                                    }.buttonStyle(BorderlessButtonStyle())
+                                }
+                            }
+                        }
+                        .onAppear {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                if icons.count > numberOfColumns {
+                                    proxy.scrollTo(icons[numberOfColumns + 1], anchor: .top)
+                                }
+                            }
+                        }
+                    }
+                    .searchable(
+                        text: $sys.searchText,
+                        isPresented: $showingSearch,
+                        prompt: Text("Search Symbols")
+                    )
+                    .searchSuggestions {
+                        if !suggestions.isEmpty {
+                            ForEach(suggestions, id: \.self) { suggestion in
+                                Button {
+                                    sys.searchText = suggestion
+                                } label: {
+                                    Label(suggestion, systemImage: suggestion)
+                                }
+                            }
+                        }
+                    }
+                }
+//                .dropDestination(for: String.self) { items, _ in
+//                    if let item = items.first {
+////                        removeFavorite(symbols: item)
+//
+//                        deleteFavorite(glyph: , modelContext: moc)
+//                        print("\(item) removed from favorites")
+//                        return true
+//                    }
+//                    return false
+//                }
+                .refreshable {
+//                    withAnimation {
+                    showingSymbolMenu.toggle()
+                        print("refreshed")
+//                    }
+                }
+#if os(iOS)
+                .sheet(isPresented: $vmo.showingSheet) {
+                    if let selectedIcon = vmo.selected {
                         SymbolSheet(
                             icon: selectedIcon,
-                            detailIcon: $detailIcon,
-                            selectedWeight: $fontWeight,
-                            selectedSample: $renderMode,
-                            showInspector: $showInspector
+                            detailIcon: $vmo.detailIcon,
+                            fontSize: $fontSize,
+                            selectedWeight: $selectedWeight,
+                            selectedSample: $selectedSample,
+                            showingSearch: $showingSearch
                         )
                             .presentationBackgroundInteraction(.enabled)
-                            .presentationDetents([.height(geo.size.height / 4), .medium])
-                            .sheet(item: $detailIcon) { icon in
-                                DetailView(icon: icon, animation: animation, color: icon.color)
+                            .presentationDetents(
+                                showingSearch ? [.medium] : [.height(geo.size.height / 4), .medium]
+                            )
+                            .sheet(isPresented: $vmo.showingDetail) {
+                                DetailView(
+                                    icon: selectedIcon,
+                                    fontSize: $fontSize,
+                                    showingDetail: $vmo.showingDetail
+                                )
                                     .presentationDetents([.medium])
                             }
                     }
                 }
 #endif
+                .inspector(isPresented: $showingFavorites) {
+                    FavoritesView(fontSize: $fontSize, showingSearch: $showingSearch)
+//                    .dropDestination(for: String.self) { items, _ in
+//                        if let item = items.first {
+//                            draggedText = item
+//                            print("\(draggedText) added to favorites")
+//                            addFavorite(glyph: <#T##Icon#>: draggedText)
+//                            return true
+//                        }
+//                        return false
+//                    }
+                }
             }
         }
 
@@ -200,45 +217,17 @@ struct SymbolView: View {
             }
         }
 #endif
-
     }
     @State var draggedText = ""
-    @AppStorage("fontSize") var fontSize = 50.0
-    @AppStorage("showingSearch") var showingSearch = true
-    @AppStorage("symbol_arabic") private var arabicSetting = false
-    @AppStorage("symbol_bengali") private var bengaliSetting = false // bn
-    @AppStorage("symbol_burmese") private var burmeseSetting = false
-    @AppStorage("symbol_chinese") private var chineseSetting = false
-    @AppStorage("symbol_gujarati") private var gujaratiSetting = false // gu
-    @AppStorage("symbol_hebrew") private var hebrewSetting = false
-    @AppStorage("symbol_hindi") private var hindiSetting = false
-    @AppStorage("symbol_japanese") private var japaneseSetting = false
-    @AppStorage("symbol_kannada") private var kannadaSetting = false // kn
-    @AppStorage("symbol_khmer") private var khmerSetting = false
-    @AppStorage("symbol_korean") private var koreanSetting = false
-    @AppStorage("symbol_latin") private var latinSetting = false // el
-    @AppStorage("symbol_malayalam") private var malayalamSetting = false // ml
-    @AppStorage("symbol_manipuri") private var manipuriSetting = false // mni
-    @AppStorage("symbol_oriya") private var oriyaSetting = false // or
-    @AppStorage("symbol_russian") private var russianSetting = false // ru
-    @AppStorage("symbol_santali") private var santaliSetting = false // sat
-    @AppStorage("symbol_telugu") private var teluguSetting = false // te
-    @AppStorage("symbol_thai") private var thaiSetting = false
-    @AppStorage("symbol_punjabi") private var punjabiSetting = false // pa
-    @AppStorage("showingTitle") var showingTitle = true
-    @AppStorage("showingCanvas") var showingCanvas = true
-    @AppStorage("searchText") var searchText = ""
 }
 
 #Preview {
-    @Previewable var tabModel = TabModel()
-    @Previewable var system = System()
-    @Previewable var fontWeight: Weight = .regular
-    @Previewable var renderMode: SymbolRenderingModes = .monochrome
     SymbolView(
-        renderMode: .constant(renderMode),
-        fontWeight: .constant(fontWeight),
-        symbols: system.symbols
+        fontSize: .constant(50.0),
+        selectedWeight: .constant(.regular),
+        selectedSample: .constant(.monochrome),
+        showingSymbolMenu: .constant(false),
+        showingSearch: .constant(false),
+        showingFavorites: .constant(false)
     )
-        .environmentObject(tabModel)
 }

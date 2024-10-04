@@ -6,27 +6,27 @@
 //
 
 import SwiftUI
+import SwiftData
 import UniformTypeIdentifiers
 
 @ViewBuilder
 func favorite(
-    icon: Icon,
-    isCopied: Binding<Bool>,
-    selected: Binding<Icon?>
+    icon: String,
+    selected: Binding<String?>,
+    showingSearch: Binding<Bool>
 ) -> some View {
-    @AppStorage("systemName") var systemName = ""
-    @AppStorage("fontSize") var fontSize = 50.0
+    @State var vmo = ViewModel()
 
-    Text("\(Image(systemName: "\(icon.id)")) \(icon.id)").lineLimit(1)
-        .foregroundColor(systemName == icon.id ? Color.secondary : Color.primary)
+    Text("\(Image(systemName: "\(icon)")) \(icon)").lineLimit(1)
+        .foregroundColor(vmo.systemName == icon ? Color.secondary : Color.primary)
         .onTapGesture(count: 2) {
             withAnimation(.spring()) {
-                isCopied.wrappedValue.toggle()
+                vmo.copy()
             }
 #if os(macOS)
             NSPasteboard.general.setString(systemName, forType: .string)
 #else
-            UIPasteboard.general .setValue(systemName.description,
+            UIPasteboard.general .setValue(vmo.systemName.description,
                                            forPasteboardType: UTType.plainText .identifier)
 #endif
         }
@@ -39,20 +39,20 @@ func favorite(
             )
 #else
             let provider = NSItemProvider(
-                object: (UIImage(systemName: icon.id) ?? UIImage(systemName: "plus")!)
+                object: (UIImage(systemName: icon) ?? UIImage(systemName: "plus")!)
             )
 #endif
             return provider
 
         }
         .contextMenu {
-            symbolContextMenu(icon: icon, selected: selected/*, tabModel: tabModel*/)
+            symbolContextMenu(icon: icon, selected: selected, showingSearch: showingSearch)
         } preview: {
             Group {
-                Image(systemName: icon.id)
-                    .font(.system(size: fontSize * 3))
+                Image(systemName: icon)
+                    .font(.system(size: vmo.fontSize * 3))
                     .foregroundColor(.primary)
-                Text(icon.id)
+                Text(icon)
             }.padding()
         }
 }
