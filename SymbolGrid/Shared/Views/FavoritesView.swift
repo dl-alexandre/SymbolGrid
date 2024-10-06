@@ -17,43 +17,11 @@ struct FavoritesView: View {
     @Query var favorites: [Favorite]
     @Binding var fontSize: Double
     @Binding var showingSearch: Bool
-
-    var favoritesSuggestions: [String] {
-        return favorites.map { $0.glyph }.filter { key in
-
-            if !sys.arabicSetting && key.hasSuffix(".ar") { return false }
-            if !sys.bengaliSetting && key.hasSuffix(".bn") { return false }
-            if !sys.burmeseSetting && key.hasSuffix(".my") { return false }
-            if !sys.chineseSetting && key.hasSuffix(".zh") { return false }
-            if !sys.gujaratiSetting && key.hasSuffix(".gu") { return false }
-            if !sys.hebrewSetting && key.hasSuffix(".he") { return false }
-            if !sys.hindiSetting && key.hasSuffix(".hi") { return false }
-            if !sys.japaneseSetting && key.hasSuffix(".ja") { return false }
-            if !sys.kannadaSetting && key.hasSuffix(".kn") { return false }
-            if !sys.khmerSetting && key.hasSuffix(".km") { return false }
-            if !sys.koreanSetting && key.hasSuffix(".ko") { return false }
-            if !sys.latinSetting && key.hasSuffix(".el") { return false }
-            if !sys.malayalamSetting && key.hasSuffix(".ml") { return false }
-            if !sys.manipuriSetting && key.hasSuffix(".mni") { return false }
-            if !sys.marathiSetting && key.hasSuffix(".mr") { return false }
-            if !sys.oriyaSetting && key.hasSuffix(".or") { return false }
-            if !sys.russianSetting && key.hasSuffix(".ru") { return false }
-            if !sys.santaliSetting && key.hasSuffix(".sat") { return false }
-            if !sys.sinhalaSetting && key.hasSuffix(".si") { return false }
-            if !sys.tamilSetting && key.hasSuffix(".ta") { return false }
-            if !sys.teluguSetting && key.hasSuffix(".te") { return false }
-            if !sys.thaiSetting && key.hasSuffix(".th") { return false }
-            if !sys.punjabiSetting && key.hasSuffix(".pa") { return false }
-
-            // Apply search text filter if searchText is not empty
-            if !sys.searchText.isEmpty { return key.contains(sys.searchText.lowercased()) }
-            return true // Include the key if none of the above conditions are met and searchText is empty
-        }
-    }
+    @Binding var searchText: String
+    var favoriteSuggestions: [String]
 
     var body: some View {
-        let icons: [String] = favoritesSuggestions.map { symbolName in
-//            Icon(id: symbolName, color: .random(), uiColor: .black)
+        let icons: [String] = favoriteSuggestions.map { symbolName in
             symbolName
         }
 
@@ -74,7 +42,9 @@ struct FavoritesView: View {
                     ForEach(favorites, id: \.glyph) { fav in
                         favorite(
                             icon: fav.glyph,
+                            fontSize: fontSize,
                             selected: $selected,
+                            searchText: $searchText,
                             showingSearch: $showingSearch
                         )
                         .draggable("\(fav.glyph)") {
@@ -84,7 +54,7 @@ struct FavoritesView: View {
                             Button(role: .destructive) {
                                 deleteFavorite(glyph: fav, modelContext: moc)
 //                                removeFavorite(symbols: ("\(fav.glyph)"))
-                                removeIconFromIndex(fav.glyph, "com.alexandrefamilyfarm.symbols")
+                                removeIndex(fav.glyph, "com.alexandrefamilyfarm.symbols")
                             } label: {
                                 Label("Delete", systemImage: "trash")
                             }
@@ -120,24 +90,13 @@ struct FavoritesView: View {
                 }
 #endif
             }
-//            if showingSearch {
-//                searchBar(
-//                    text: $searchText,
-//                    focus: $searchField,
-//                    isSearchFieldFocused: $isSearchFieldFocused,
-//                    showingSearch: $showingSearch
-//                )
-//            }
-//            if showingTitle {
-//                customTitleBar("Favorites")
-//            }
         }
 #if os(iOS)
         .hoverEffect(.highlight)
 #endif
         .onAppear {
             for item in icons {
-                addIconToIndex(item, "com.alexandrefamilyfarm.symbols")
+                addIndex(item, "com.alexandrefamilyfarm.symbols")
             }
 
 //            showingTitle = true

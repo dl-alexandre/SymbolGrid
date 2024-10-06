@@ -7,7 +7,7 @@
       "location" : "https://github.com/dl-alexandre/Design",
       "state" : {
         "branch" : "main",
-        "revision" : "2b5f51ee37c8a47357dbf6b613abc4c055931865"
+        "revision" : "270903776cf9347fc693fcc712e308989fae1fd5"
       }
     },
     {
@@ -16,7 +16,7 @@
       "location" : "https://github.com/dl-alexandre/SFSymbolKit",
       "state" : {
         "branch" : "main",
-        "revision" : "2f3f10a9cba3d85bd22a5e619567cc06ddb29e94"
+        "revision" : "cbfa1a5e9eb185243a50b332bc5d54905a0a3801"
       }
     },
     {

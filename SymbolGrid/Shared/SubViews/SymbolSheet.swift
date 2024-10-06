@@ -22,9 +22,11 @@ struct SymbolSheet: View {
 
     @Binding var detailIcon: String?
     @Binding var fontSize: Double
+    @Binding var searchText: String
     @Binding var selectedWeight: Weight
     @Binding var selectedSample: SymbolRenderingModes
     @Binding var showingSearch: Bool
+    var favoriteSuggestions: [String]
 #if os(macOS)
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 #endif
@@ -82,7 +84,6 @@ struct SymbolSheet: View {
                         Image(systemName: "sparkles").padding()
                     }
                 }
-
             }
             .buttonStyle(PlainButtonStyle())
             .font(.system(size: fontSize))
@@ -116,7 +117,12 @@ struct SymbolSheet: View {
         }
 #endif
         .inspector(isPresented: $vmo.showingFavorites) {
-            FavoritesView(fontSize: $fontSize, showingSearch: $showingSearch)
+            FavoritesView(
+                fontSize: $fontSize,
+                showingSearch: $showingSearch,
+                searchText: $searchText,
+                favoriteSuggestions: favoriteSuggestions
+            )
         }
     }
 }
@@ -127,9 +133,11 @@ struct SymbolSheet: View {
         icon: "square",
         detailIcon: .constant("square"),
         fontSize: .constant(50.0),
+        searchText: .constant(""),
         selectedWeight: .constant(Weight.regular),
         selectedSample: .constant(SymbolRenderingModes.monochrome),
-        showingSearch: .constant(false)
+        showingSearch: .constant(false),
+        favoriteSuggestions: [""]
     )
 }
 #endif

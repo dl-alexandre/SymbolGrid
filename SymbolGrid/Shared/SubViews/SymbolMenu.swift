@@ -11,6 +11,7 @@ import SFSymbolKit
 
 struct SymbolMenu: View {
     @Environment(\.verticalSizeClass) var verticalSizeClass
+    @Environment(\.colorScheme) var colorScheme
     @Environment(\.modelContext) private var moc
     @Query var favorites: [Favorite]
     @Binding var fontSize: Double
@@ -26,9 +27,23 @@ struct SymbolMenu: View {
         GeometryReader { geo in
             RoundedRectangle(cornerRadius: 9)
                 .fill(.ultraThinMaterial)
-                .frame(maxWidth: .infinity, maxHeight: geo.size.height / 4, alignment: .trailing)
-                .shadow(color: .white.opacity(0.2), radius: 1, x: -2, y: -2)
-                .shadow(color: .gray, radius: 1, x: 2, y: 2)
+                .frame(
+                    maxWidth: .infinity,
+                    maxHeight: geo.size.height / 4,
+                    alignment: .trailing
+                )
+                .shadow(
+                    color: colorScheme == .dark ? .black : .white.opacity(0.2),
+                    radius: 1,
+                    x: -2,
+                    y: -2
+                )
+                .shadow(
+                    color: .gray,
+                    radius: 1,
+                    x: 2,
+                    y: 2
+                )
                 .overlay {
                     VStack {
                         if verticalSizeClass == .regular {
@@ -78,7 +93,6 @@ struct SymbolMenu: View {
                             HStack {
                                 Button {
                                     showingSearch = true
-//                                    $isSearchFieldFocused.wrappedValue = true
                                     showingSymbolMenu = false
                                 } label: {
                                     Label("", systemImage: "magnifyingglass")
@@ -97,7 +111,7 @@ struct SymbolMenu: View {
                                     } label: {
                                         Image(systemName: "sparkles.rectangle.stack")
                                             .symbolRenderingMode(.palette)
-                                            .foregroundStyle(.yellow, .black)
+                                            .foregroundStyle(.yellow, colorScheme == .dark ? .black : .white)
                                     }
                                 }
                                 Button {
@@ -139,7 +153,9 @@ struct SymbolMenu: View {
 }
 
 @ViewBuilder
-func renderPicker2(selectedSample: Binding<SymbolRenderingModes>) -> some View {
+func renderPicker2(
+    selectedSample: Binding<SymbolRenderingModes>
+) -> some View {
     VStack {
         Picker("", selection: selectedSample) {
             ForEach(SymbolRenderingModes.allCases, id: \.self) { sample in

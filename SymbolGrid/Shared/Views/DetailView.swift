@@ -10,145 +10,26 @@ import UniformTypeIdentifiers
 import SFSymbolKit
 import Design
 
-func configureShadow(showShadow: Bool, shadow: Color, offset: CGSize) -> String {
-    var shadowConfig = ""
-
-    let hex = shadow.description.trimmingCharacters(in: CharacterSet(charactersIn: "#"))
-    let scanner = Scanner(string: hex)
-    var rgbValue: UInt64 = 0
-    if scanner.scanHexInt64(&rgbValue) {
-
-        if showShadow {
-            shadowConfig = """
-
-        .shadow(
-            color: Color(#colorLiteral(
-                red: \(String(format: "%.1f", Double((rgbValue & 0xFF0000) >> 16))) / 255.0,
-                green: \(String(format: "%.1f", Double((rgbValue & 0x00FF00) >> 8))) / 255.0,
-                blue: \(String(format: "%.1f", Double(rgbValue & 0x0000FF))) / 255.0,
-                alpha: \(String(format: "%.1f", Double((rgbValue & 0xFF000000) >> 24))) / 255.0)),
-            radius: 3,
-            x: \(String(format: "%.0f", offset.width)),
-            y: \(String(format: "%.0f", offset.height)) - 10)
-        """
-        }
-    }
-
-    return shadowConfig
-}
-
-func configureColor(showForeground: Bool, color: Color) -> String {
-    var colorConfig = ""
-
-    let hex = color.description.trimmingCharacters(in: CharacterSet(charactersIn: "#"))
-    let scanner = Scanner(string: hex)
-    var rgbValue: UInt64 = 0
-    if scanner.scanHexInt64(&rgbValue) {
-
-        if showForeground {
-            colorConfig = """
-
-        .foregroundStyle(Color(#colorLiteral(
-                                    red: \(String(
-        format: "%.1f",
-        Double((rgbValue & 0xFF0000) >> 16)
-        )) / 255.0,
-                                    green: \(String(
-        format: "%.1f",
-        Double((rgbValue & 0x00FF00) >> 8)
-        )) / 255.0,
-                                    blue: \(String(
-        format: "%.1f",
-        Double(
-        rgbValue & 0x0000FF
-        )
-        )) / 255.0,
-                                    alpha: \(String(
-        format: "%.1f",
-        Double((rgbValue & 0xFF000000) >> 24)
-        )) / 255.0)))
-        """
-        }
-    }
-
-    return colorConfig
-}
-
-func configureFont(showSize: Bool, showWeight: Bool, fontSize: CGFloat, selectedWeight: String) -> String {
-    var fontConfig = ""
-
-    if showSize && showWeight {
-        fontConfig = """
-
-        .font(.system(
-            size: \(String(format: "%.0f", fontSize)),
-            weight: .\(selectedWeight)))
-        """
-    } else if showWeight {
-        fontConfig = """
-
-        .font(.system(
-            weight: .\(selectedWeight)))
-        """
-    } else if showSize {
-        fontConfig = """
-
-        .font(.system(
-            size: \(String(format: "%.0f", fontSize)))
-        """
-    }
-
-    return fontConfig
-}
-
-func configureScale(showScale: Bool, selectedScale: Image.Scale) -> String {
-    var scaleConfig = ""
-
-    if showScale {
-        scaleConfig = """
-
-        .imageScale(.\(selectedScale))
-        """
-    }
-    return scaleConfig
-}
-
 struct DetailView: View {
     var body: some View {
-//        let dragGesture = DragGesture()
-//            .onChanged { value in
-//                self.location = value.location
-//                self.offset = value.translation
-//            }
-//            .onEnded { _ in
-//                withAnimation {
-//                    isDragging = false
-//                }
-//            }
-//        let pressGesture = LongPressGesture()
-//            .onEnded { _ in
-//                withAnimation {
-//                    isDragging = true
-//                }
-//            }
-//        let combined = pressGesture.sequenced(before: dragGesture)
         GeometryReader { geo in
             ZStack {
                 let image = Image(systemName: icon)
-//                    .textSelection(.enabled)
                     .font(.system(size: glyphSize, weight: selectedWeight.weight))
                     .imageScale(selectedScale.scale)
                     .foregroundStyle(showForeground ? color.gradient : Color.black.gradient)
-//                    .scaleEffect(isDragging ? 1.5 : 1)
-
-//                    .gesture(combined)
-                    .shadow(color: showShadow ? shadow : . clear, radius: 3, x: offset.width, y: offset.height - 10)
+                    .shadow(
+                        color: showShadow ? shadow : . clear,
+                        radius: 3,
+                        x: offset.width,
+                        y: offset.height - 10
+                    )
                     .frame(maxWidth: .infinity, minHeight: 50, maxHeight: .infinity, alignment: .top)
 
 #if os(iOS)
                 image
                     .position(location)
-//                    .navigationTransition(.zoom(sourceID: icon, in: animation))
+                //                    .navigationTransition(.zoom(sourceID: icon, in: animation))
 #else
                 image
 #endif
@@ -349,9 +230,6 @@ struct DetailView: View {
     @Binding var fontSize: Double
     @Binding var showingDetail: Bool
 
-//#if os(iOS)
-//    var animation: Namespace.ID
-//#endif
     @State var vmo = ViewModel()
     @State var showShadow: Bool = false
     @State var showSize: Bool = false
@@ -393,31 +271,8 @@ struct DetailView: View {
         icon: "square.and.arrow.up.on.square.fill",
         fontSize: .constant(50.0),
         showingDetail: .constant(true)
-//        animation: animation
     )
 #else
     DetailView(icon: Icon(id: "plus", color: .random(), uiColor: .black))
 #endif
-}
-
-extension Color {
-    func description() -> String {
-#if os(iOS)
-        let components = UIColor(self).cgColor.components ?? [0, 0, 0, 0]
-#else
-        let components = NSColor(self).cgColor.components ?? [0, 0, 0, 0]
-#endif
-        let red = components[0]
-        let green = components[1]
-        let blue = components[2]
-        let alpha = components[3]
-
-        return String(
-            format: "Color(red: %.2f, green: %.2f, blue: %.2f, opacity: %.2f)",
-            red,
-            green,
-            blue,
-            alpha
-        )
-    }
 }

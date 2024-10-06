@@ -15,9 +15,10 @@ struct SplashView: View {
     @Binding var fontSize: Double
     @Binding var selectedWeight: Weight
     @Binding var isAnimating: Bool
-    
+    var searchResults: [String]
+
     var body: some View {
-        let limitedIcons: [String] = Array(system.searchResults.prefix(200)).map { symbolName in
+        let limitedIcons: [String] = Array(searchResults.prefix(200)).map { symbolName in
             symbolName
         }
         GeometryReader { geo in
@@ -34,7 +35,7 @@ struct SplashView: View {
                 NavigationView {
                     ScrollViewReader { proxy in
                         ScrollView {
-                            LazyVGrid(columns: columns, spacing: vmo.spacing) {
+                            LazyVGrid(columns: columns, spacing: fontSize * 0.1) {
                                 ForEach(limitedIcons, id: \.self) { icon in
                                     Image(systemName: icon)
                                         .padding(8)
@@ -86,6 +87,7 @@ struct SplashView: View {
     SplashView(
         fontSize: .constant(50.0),
         selectedWeight: .constant(.regular),
-        isAnimating: .constant(true)
+        isAnimating: .constant(true),
+        searchResults: [""]
     )
 }

@@ -12,7 +12,9 @@ import UniformTypeIdentifiers
 @ViewBuilder
 func favorite(
     icon: String,
+    fontSize: Double,
     selected: Binding<String?>,
+    searchText: Binding<String>,
     showingSearch: Binding<Bool>
 ) -> some View {
     @State var vmo = ViewModel()
@@ -46,11 +48,16 @@ func favorite(
 
         }
         .contextMenu {
-            symbolContextMenu(icon: icon, selected: selected, showingSearch: showingSearch)
+            symbolContextMenu(
+                icon: icon,
+                selected: selected,
+                searchText: searchText,
+                showingSearch: showingSearch
+            )
         } preview: {
             Group {
                 Image(systemName: icon)
-                    .font(.system(size: vmo.fontSize * 3))
+                    .font(.system(size: fontSize * 3))
                     .foregroundColor(.primary)
                 Text(icon)
             }.padding()

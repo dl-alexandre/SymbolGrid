@@ -52,8 +52,6 @@ private func favoritingSymbol(
             }
         }
     }
-
-
 }
 
 private func copySymbol(_ icon: String) -> Button<Label<Text, Image>> {
@@ -77,6 +75,7 @@ private func copySymbol(_ icon: String) -> Button<Label<Text, Image>> {
 func symbolContextMenu(
     icon: String,
     selected: Binding<String?>,
+    searchText: Binding<String>,
     showingSearch: Binding<Bool>
 ) -> some View {
 
@@ -128,7 +127,7 @@ func symbolContextMenu(
 #if os(iOS)
     copySymbol(icon)
     Button {
-        sys.searchText =  icon
+        searchText.wrappedValue =  icon
         showingSearch.wrappedValue = true
     } label: {
         Label("Search", systemImage: "magnifyingglass")
