@@ -14,6 +14,7 @@ func favorite(
     icon: String,
     fontSize: Double,
     selected: Binding<String?>,
+    showingDetail: Binding<Bool>,
     searchText: Binding<String>,
     showingSearch: Binding<Bool>
 ) -> some View {
@@ -52,6 +53,7 @@ func favorite(
                 icon: icon,
                 selected: selected,
                 searchText: searchText,
+                showingDetail: showingDetail,
                 showingSearch: showingSearch
             )
         } preview: {

@@ -14,7 +14,7 @@ struct DetailView: View {
     var body: some View {
         GeometryReader { geo in
             ZStack {
-                let image = Image(systemName: icon)
+                let image = Image(systemName: icon.name)
                     .font(.system(size: glyphSize, weight: selectedWeight.weight))
                     .imageScale(selectedScale.scale)
                     .foregroundStyle(showForeground ? color.gradient : Color.black.gradient)
@@ -226,7 +226,7 @@ struct DetailView: View {
     }
 
     @Environment(\.presentationMode) private var presentationMode
-    var icon: String
+    var icon: Symbol
     @Binding var fontSize: Double
     @Binding var showingDetail: Bool
 
@@ -268,7 +268,7 @@ struct DetailView: View {
     @Previewable @Namespace var animation
 #if os(iOS)
     DetailView(
-        icon: "square.and.arrow.up.on.square.fill",
+        icon: Symbol(name: "plus", categories: [.math]),
         fontSize: .constant(50.0),
         showingDetail: .constant(true)
     )

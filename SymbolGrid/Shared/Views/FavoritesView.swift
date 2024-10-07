@@ -16,12 +16,14 @@ struct FavoritesView: View {
     @State private var vmo = ViewModel()
     @Query var favorites: [Favorite]
     @Binding var fontSize: Double
+    @Binding var showingDetail: Bool
     @Binding var showingSearch: Bool
     @Binding var searchText: String
-    var favoriteSuggestions: [String]
+    var favoriteSuggestions: [Symbol]
+    @State private var hasIndexedSymbols: Bool = false
 
     var body: some View {
-        let icons: [String] = favoriteSuggestions.map { symbolName in
+        let icons: [Symbol] = favoriteSuggestions.map { symbolName in
             symbolName
         }
 
@@ -44,6 +46,7 @@ struct FavoritesView: View {
                             icon: fav.glyph,
                             fontSize: fontSize,
                             selected: $selected,
+                            showingDetail: $showingDetail,
                             searchText: $searchText,
                             showingSearch: $showingSearch
                         )
@@ -95,15 +98,11 @@ struct FavoritesView: View {
         .hoverEffect(.highlight)
 #endif
         .onAppear {
-            for item in icons {
-                addIndex(item, "com.alexandrefamilyfarm.symbols")
-            }
-
-//            showingTitle = true
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-//                withAnimation(.easeInOut(duration: 2)) {
-//                    showingTitle = false
-//                }
+//            if !hasIndexedSymbols {
+                for item in icons {
+                    addIndex(item.name, "com.alexandrefamilyfarm.symbols")
+                }
+//                hasIndexedSymbols = true
 //            }
         }
         .edgesIgnoringSafeArea(.all)

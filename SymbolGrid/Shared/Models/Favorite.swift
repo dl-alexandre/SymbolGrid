@@ -9,12 +9,22 @@ import SwiftUI
 import SwiftData
 
 @Model
-final class Favorite {
-var glyph: String = ""
- var timeStamp: Date = Date.now
+final class Favorite: Hashable, Equatable {
+    var glyph: String = ""
+    var timeStamp: Date = Date.now
 
     init(glyph: String = "", timeStamp: Date) {
         self.glyph = glyph
         self.timeStamp = timeStamp
+    }
+
+    // Hashable conformance
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(glyph)
+    }
+
+    // Equatable conformance
+    static func == (lhs: Favorite, rhs: Favorite) -> Bool {
+        return lhs.glyph == rhs.glyph
     }
 }

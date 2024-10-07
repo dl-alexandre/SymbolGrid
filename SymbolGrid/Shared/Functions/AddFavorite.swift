@@ -9,7 +9,9 @@ import SwiftUI
 import SwiftData
 import SFSymbolKit
 
-func addFavorite(glyph: String, modelContext: ModelContext) {
+func addFavorite(glyph: String, modelContext: ModelContext, favorites: [Favorite]) {
             let newItem = Favorite(glyph: glyph, timeStamp: Date())
-            modelContext.insert(newItem)
+    if !favorites.contains(newItem) {
+        modelContext.insert(newItem)
+    }
 }

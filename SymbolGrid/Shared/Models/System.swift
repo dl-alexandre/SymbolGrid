@@ -10,7 +10,8 @@ import Observation
 import SwiftUI
 
 @Observable class System {
-    var symbols: [String] = convertSymbolsAsArrayOfStrings()
+    var sYmbols: [String] = convertSymbolsAsArrayOfStrings()
+    var symbols: [Symbol] = convertSymbols()
 
     var arabicSetting = false
     var bengaliSetting = false // bn
@@ -58,9 +59,9 @@ import SwiftUI
 
     var systemName = ""
 
-    var selected: String?
+    var selected: Symbol?
 
-    var detailIcon: String?
+    var detailIcon: Symbol?
 
     var isCopied = false
 

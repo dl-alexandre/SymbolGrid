@@ -21,8 +21,11 @@ struct ContentView: View {
     @State private var selectedSample: SymbolRenderingModes = .monochrome
     @State private var showingSymbolMenu = false
     @State private var showingSearch = false
+    @State private var showingDetail = false
     @State private var showingFavorites = false
     @State private var searchText = ""
+    @State private var searchScope: SymbolCategory = .all
+    @State private var searchTokens: [SearchToken] = []
     @State private var isAnimating = true
 
 
@@ -36,6 +39,10 @@ struct ContentView: View {
             )
 #if os(macOS)
             .background(HideTabBar())
+
+            .task {
+                handleSearch()
+            }
 #endif
         } else {
             ZStack {
@@ -44,11 +51,15 @@ struct ContentView: View {
                     selectedWeight: $selectedWeight,
                     selectedSample: $selectedSample,
                     showingSymbolMenu: $showingSymbolMenu,
+                    showingDetail: $showingDetail,
                     showingSearch: $showingSearch,
                     showingFavorites: $showingFavorites,
                     searchText: $searchText,
+                    searchScope: $searchScope,
+                    searchTokens: $searchTokens,
                     searchResults: searchResults,
-                    favoriteSuggestions: favoriteSuggestions
+                    favoriteSuggestions: favoriteSuggestions,
+                    handleSearch: handleSearch
                 )
 #if os(iOS)
                 if showingSymbolMenu {
@@ -71,18 +82,60 @@ struct ContentView: View {
         }
     }
 
-    var searchResults: [String] {
+    @State private var filteredSymbols: [Symbol] = []
+    @State private var filteredFavoriteSuggestions: [Symbol] = []
+
+    var searchResults: [Symbol] {
         return filterResults(sys.symbols)
     }
 
-    var favoriteSuggestions: [String] {
-        return filterResults(favorites.map { $0.glyph })
+    var favoriteSuggestions: [Symbol] {
+        return filterResults(filteredFavoriteSuggestions)
     }
 
-    func filterResults(_ list: [String]) -> [String] {
+    func filterResults(_ list: [Symbol]) -> [Symbol] {
         return list.filter { key in
-            return applyFilters(to: key) && containsSearchText(key)
+            let matchesScope: Bool
+            switch searchScope {
+            case .multicolor:
+                matchesScope = key.categories.contains(.multicolor)
+            case .variablecolor:
+                matchesScope = key.categories.contains(.variablecolor)
+            default:
+                matchesScope = true
+            }
+            return matchesScope && applyFilters(to: key.name) && containsSearchText(key.name)
         }
+    }
+
+    public func handleSearch() {
+        // Split searchText into tokens
+        let keywords = searchText.split(separator: " ").map { String($0) }
+        searchTokens = keywords.map { SearchToken(text: $0) }
+
+        // Clear the current search text
+        searchText = ""
+
+        // Filter search results based on tokens
+        filteredSymbols = sys.symbols
+        for token in searchTokens {
+            filteredSymbols = filteredSymbols.filter { symbol in
+                containsSearchText(token.text)
+            }
+        }
+
+        // Filter favorite suggestions based on tokens
+        let favoriteSymbols = favorites.map { favorite in
+            Symbol(name: favorite.glyph, categories: [])
+        }
+        
+        filteredFavoriteSuggestions = filteredSymbols
+        for token in searchTokens {
+            filteredFavoriteSuggestions = filteredFavoriteSuggestions.filter { symbol in
+                containsSearchText(token.text)
+            }
+        }
+
     }
 
     func containsSearchText(_ key: String) -> Bool {

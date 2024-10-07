@@ -76,6 +76,7 @@ func symbolContextMenu(
     icon: String,
     selected: Binding<String?>,
     searchText: Binding<String>,
+    showingDetail: Binding<Bool>,
     showingSearch: Binding<Bool>
 ) -> some View {
 
@@ -94,6 +95,7 @@ func symbolContextMenu(
         Button {
             selected.wrappedValue = icon
 //            vmo.showDetail()
+            showingDetail.wrappedValue = true
         } label: {
             Label("View", systemImage: "drop.halffull")
         }

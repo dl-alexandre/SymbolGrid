@@ -16,17 +16,18 @@ struct SymbolSheet: View {
     @State private var vmo = ViewModel()
     @State private var sys = System()
 
-    var icon: String
+    var icon: Symbol
     @Environment(\.modelContext) private var moc
     @Query private var favorites: [Favorite]
 
-    @Binding var detailIcon: String?
+    @Binding var detailIcon: Symbol?
     @Binding var fontSize: Double
     @Binding var searchText: String
     @Binding var selectedWeight: Weight
     @Binding var selectedSample: SymbolRenderingModes
+    @Binding var showingDetail: Bool
     @Binding var showingSearch: Bool
-    var favoriteSuggestions: [String]
+    var favoriteSuggestions: [Symbol]
 #if os(macOS)
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 #endif
@@ -37,7 +38,7 @@ struct SymbolSheet: View {
                 vmo.detailIcon = icon
                 vmo.showDetail()
             } label: {
-                Label("\(icon)", systemImage: "\(icon)")
+                Label("\(icon.name)", systemImage: "\(icon.name)")
             }
             .buttonStyle(BorderedProminentButtonStyle())
             HStack {
@@ -46,7 +47,7 @@ struct SymbolSheet: View {
                         vmo.copy()
                     }
 #if os(iOS)
-                    UIPasteboard.general .setValue(icon.description,
+                    UIPasteboard.general .setValue(icon.name,
                                                    forPasteboardType: UTType.plainText .identifier)
 #else
                     let pasteboard = NSPasteboard.general
@@ -57,18 +58,16 @@ struct SymbolSheet: View {
                     Image(systemName: "doc.on.doc").padding()
                 }
                 Button {
-                    if favorites.contains(where: { $0.glyph == icon }) {
-                        let favoriteToDelete = favorites.first(where: { $0.glyph == icon })
-//                        removeFavorite(symbols: icon.id)
+                    if favorites.contains(where: { $0.glyph == icon.name }) {
+                        let favoriteToDelete = favorites.first(where: { $0.glyph == icon.name })
                         if let favorite = favoriteToDelete {
                             deleteFavorite(glyph: favorite, modelContext: moc)
                         }
                     } else {
-//                        addFavorite(symbols: icon.id)
-                        addFavorite(glyph: icon, modelContext: moc)
+                        addFavorite(glyph: icon.name, modelContext: moc, favorites: favorites)
                     }
                 } label: {
-                    if favorites.contains(where: { $0.glyph == icon }) {
+                    if favorites.contains(where: { $0.glyph == icon.name }) {
                         Label("", systemImage: "star.fill").padding()
                             .foregroundStyle(.yellow)
                     } else {
@@ -119,6 +118,7 @@ struct SymbolSheet: View {
         .inspector(isPresented: $vmo.showingFavorites) {
             FavoritesView(
                 fontSize: $fontSize,
+                showingDetail: $showingDetail,
                 showingSearch: $showingSearch,
                 searchText: $searchText,
                 favoriteSuggestions: favoriteSuggestions
@@ -130,14 +130,15 @@ struct SymbolSheet: View {
 #if os(iOS)
 #Preview {
     SymbolSheet(
-        icon: "square",
-        detailIcon: .constant("square"),
+        icon: Symbol(name: "plus", categories: [.math]),
+        detailIcon: .constant(Symbol(name: "plus", categories: [.math])),
         fontSize: .constant(50.0),
         searchText: .constant(""),
         selectedWeight: .constant(Weight.regular),
         selectedSample: .constant(SymbolRenderingModes.monochrome),
+        showingDetail: .constant(false),
         showingSearch: .constant(false),
-        favoriteSuggestions: [""]
+        favoriteSuggestions: [Symbol(name: "plus", categories: [.math]),]
     )
 }
 #endif
