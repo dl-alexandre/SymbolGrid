@@ -16,12 +16,11 @@ struct SymbolMenu: View {
     @Query var favorites: [Favorite]
     @Binding var fontSize: Double
     @Binding var selectedWeight: Weight
-    @Binding var selectedSample: SymbolRenderingModes
+    @Binding var selectedMode: SymbolRenderingModes
     @Binding var showingSymbolMenu: Bool
     @Binding var showingSearch: Bool
     @Binding var showingFavorites: Bool
     @State private var vmo = ViewModel()
-    @State private var sys = System()
 
     var body: some View {
         GeometryReader { geo in
@@ -33,13 +32,13 @@ struct SymbolMenu: View {
                     alignment: .trailing
                 )
                 .shadow(
-                    color: colorScheme == .dark ? .black : .white.opacity(0.2),
+                    color: colorScheme == .dark ? .gray : .white.opacity(0.2),
                     radius: 1,
                     x: -2,
                     y: -2
                 )
                 .shadow(
-                    color: .gray,
+                    color: colorScheme == .dark ? .gray : .white.opacity(0.2),
                     radius: 1,
                     x: 2,
                     y: 2
@@ -67,7 +66,7 @@ struct SymbolMenu: View {
                                     } label: {
                                         Image(systemName: "sparkles.rectangle.stack")
                                             .symbolRenderingMode(.palette)
-                                            .foregroundStyle(.yellow, .black)
+                                            .foregroundStyle(.yellow, colorScheme == .dark ? .white : .black)
                                     }
                                 }
                                 Button {
@@ -82,11 +81,29 @@ struct SymbolMenu: View {
                             HStack {
                                 VStack {
                                     Text("Symbol Rendering").font(.caption2)
-                                    renderPicker2(selectedSample: $selectedSample)
+                                    SymbolRenderingModes.picker(mode: $selectedMode)
+                                        .frame(maxWidth: .infinity, maxHeight: 80, alignment: .trailing)
+                                        .foregroundColor(.primary)
+                                        .background(.quaternary)
+                                        .cornerRadius(9)
+#if os(iOS)
+                                        .pickerStyle(WheelPickerStyle())
+#else
+                                        .pickerStyle(SegmentedPickerStyle())
+#endif
                                 }
                                 VStack {
                                     Text("Font Weight").font(.caption2)
-                                    weightPicker(selectedWeight: $selectedWeight)
+                                    Weight.picker(weight: $selectedWeight)
+                                        .frame(maxWidth: .infinity, maxHeight: 80, alignment: .trailing)
+                                        .foregroundColor(.primary)
+                                        .background(.quaternary)
+                                        .cornerRadius(9)
+#if os(iOS)
+                                        .pickerStyle(WheelPickerStyle())
+#else
+                                        .pickerStyle(SegmentedPickerStyle())
+#endif
                                 }
                             }.padding(.top)
                         } else {
@@ -103,15 +120,33 @@ struct SymbolMenu: View {
                                 .onChange(of: fontSize) { _, newValue in
                                     fontSize = min(max(newValue, 9), 200)
                                 }
-                                weightPicker(selectedWeight: $selectedWeight)
-                                renderPicker2(selectedSample: $selectedSample)
+                                Weight.picker(weight: $selectedWeight)
+                                    .frame(maxWidth: .infinity, maxHeight: 80, alignment: .trailing)
+                                    .foregroundColor(.primary)
+                                    .background(.quaternary)
+                                    .cornerRadius(9)
+#if os(iOS)
+                                    .pickerStyle(WheelPickerStyle())
+#else
+                                    .pickerStyle(SegmentedPickerStyle())
+#endif
+                                SymbolRenderingModes.picker(mode: $selectedMode)
+                                    .frame(maxWidth: .infinity, maxHeight: 80, alignment: .trailing)
+                                    .foregroundColor(.primary)
+                                    .background(.quaternary)
+                                    .cornerRadius(9)
+#if os(iOS)
+                                    .pickerStyle(WheelPickerStyle())
+#else
+                                    .pickerStyle(SegmentedPickerStyle())
+#endif
                                 if !favorites.isEmpty {
                                     Button {
                                         showingFavorites.toggle()
                                     } label: {
                                         Image(systemName: "sparkles.rectangle.stack")
                                             .symbolRenderingMode(.palette)
-                                            .foregroundStyle(.yellow, colorScheme == .dark ? .black : .white)
+                                            .foregroundStyle(.yellow, colorScheme == .dark ? .white : .black)
                                     }
                                 }
                                 Button {
@@ -145,36 +180,9 @@ struct SymbolMenu: View {
     SymbolMenu(
         fontSize: .constant(50.0),
         selectedWeight: .constant(.regular),
-        selectedSample: .constant(.monochrome),
+        selectedMode: .constant(.monochrome),
         showingSymbolMenu: .constant(false),
         showingSearch: .constant(false),
         showingFavorites: .constant(false)
     )
-}
-
-@ViewBuilder
-func renderPicker2(
-    selectedSample: Binding<SymbolRenderingModes>
-) -> some View {
-    VStack {
-        Picker("", selection: selectedSample) {
-            ForEach(SymbolRenderingModes.allCases, id: \.self) { sample in
-                let image = Image(
-                    systemName: "textformat.abc.dottedunderline")
-                    .symbolRenderingMode(sample.mode)
-                Text("\(image) \(sample.name)")
-                    .font(.headline)
-                    .tag(sample)
-            }
-        }
-        .frame(maxWidth: .infinity, maxHeight: 80, alignment: .trailing)
-        .foregroundColor(.primary)
-        .background(.quaternary)
-        .cornerRadius(9)
-#if os(iOS)
-        .pickerStyle(WheelPickerStyle())
-#else
-        .pickerStyle(SegmentedPickerStyle())
-#endif
-    }
 }

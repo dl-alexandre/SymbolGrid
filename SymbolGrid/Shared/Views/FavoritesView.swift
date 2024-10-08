@@ -9,24 +9,19 @@ import SwiftUI
 import Design
 import SFSymbolKit
 import SwiftData
+import UniformTypeIdentifiers
 
 struct FavoritesView: View {
     @Environment(\.modelContext) private var moc
-    @State private var sys = System()
     @State private var vmo = ViewModel()
     @Query var favorites: [Favorite]
     @Binding var fontSize: Double
     @Binding var showingDetail: Bool
     @Binding var showingSearch: Bool
     @Binding var searchText: String
-    var favoriteSuggestions: [Symbol]
     @State private var hasIndexedSymbols: Bool = false
 
     var body: some View {
-        let icons: [Symbol] = favoriteSuggestions.map { symbolName in
-            symbolName
-        }
-
         ZStack {
             if favorites.isEmpty {
                 ContentUnavailableView {
@@ -41,23 +36,83 @@ struct FavoritesView: View {
                 }
             } else {
                 List {
-                    ForEach(favorites, id: \.glyph) { fav in
-                        favorite(
-                            icon: fav.glyph,
-                            fontSize: fontSize,
-                            selected: $selected,
-                            showingDetail: $showingDetail,
-                            searchText: $searchText,
-                            showingSearch: $showingSearch
-                        )
-                        .draggable("\(fav.glyph)") {
-                            Image(systemName: "\(fav.glyph)")
+                    ForEach(favorites, id: \.glyph) { favorite in
+                        Label(favorite.glyph, systemImage: favorite.glyph)
+                            .foregroundColor(
+                                vmo.systemName == favorite.glyph ? Color.secondary : Color.primary
+                            )
+                        .onTapGesture(count: 2) {
+                            withAnimation(.spring()) {
+                                vmo.copy()
+                            }
+#if os(macOS)
+                            NSPasteboard.general.setString(systemName, forType: .string)
+#else
+                            UIPasteboard.general .setValue(vmo.systemName.description,
+                                                           forPasteboardType: UTType.plainText .identifier)
+#endif
+                        }
+                        .onDrag {
+#if os(macOS)
+                            let provider = NSItemProvider(
+                                object: (
+                                    Image(systemName: icon.id)
+                                        .asNSImage() ?? Image(systemName: "plus")
+                                        .asNSImage()!
+                                ) as NSImage
+                            )
+#else
+                            let provider = NSItemProvider(
+                                object: (UIImage(systemName: favorite.glyph) ?? UIImage(systemName: "plus")!)
+                            )
+#endif
+                            return provider
+                        }
+                        .contextMenu {
+                            Section("Symbol") {
+                                Button {
+#warning("Maybe doesn't work")
+                                    vmo.selected = Symbol(name: favorite.glyph, categories: [])
+                                    //            vmo.showDetail()
+                                    showingDetail = true
+                                } label: {
+                                    Label("View", systemImage: "drop.halffull")
+                                }
+                            }
+                            Button {
+#if os(iOS)
+                                UIPasteboard.general .setValue(
+                                    favorite.glyph.description,
+                                    forPasteboardType: UTType.plainText .identifier
+                                )
+#else
+                                let pasteboard = NSPasteboard.general
+                                pasteboard.declareTypes([.string], owner: nil)
+                                pasteboard.setString(icon.description, forType: .string)
+#endif
+                            } label: {
+                                Label("Copy", systemImage: "doc.on.doc")
+                            }
+                            Button {
+                                searchText =  favorite.glyph
+                                showingSearch = true
+                            } label: {
+                                Label("Search", systemImage: "magnifyingglass")
+                            }
+                        } preview: {
+                            Group {
+                                Image(systemName: favorite.glyph)
+                                    .foregroundColor(.primary)
+                                Text(favorite.glyph)
+                            }.padding()
+                        }
+                        .draggable("\(favorite.glyph)") {
+                            Image(systemName: "\(favorite.glyph)")
                         }
                         .swipeActions(edge: .leading, allowsFullSwipe: true) {
                             Button(role: .destructive) {
-                                deleteFavorite(glyph: fav, modelContext: moc)
-//                                removeFavorite(symbols: ("\(fav.glyph)"))
-                                removeIndex(fav.glyph, "com.alexandrefamilyfarm.symbols")
+                                deleteFavorite(glyph: favorite, modelContext: moc)
+                                removeIndex(favorite.glyph, "com.alexandrefamilyfarm.symbols")
                             } label: {
                                 Label("Delete", systemImage: "trash")
                             }
@@ -75,7 +130,7 @@ struct FavoritesView: View {
 //                }
                 .toolbar {
                     ToolbarItem(placement: .principal) {
-                        copyNotification(isCopied: $isCopied, icon: $vmo.systemName)
+                        copyNotification(isCopied: $vmo.isCopied, icon: $vmo.systemName)
                     }
                 }
 #if os(iOS)
@@ -84,9 +139,7 @@ struct FavoritesView: View {
                         DetailView(
                             icon: selected,
                             fontSize: $fontSize,
-                            showingDetail: $vmo.showingDetail,
-//                            animation: animation,
-                            color: Color.random()
+                            showingDetail: $vmo.showingDetail
                         )
                         .presentationDetents([.medium])
                     }
@@ -98,12 +151,9 @@ struct FavoritesView: View {
         .hoverEffect(.highlight)
 #endif
         .onAppear {
-//            if !hasIndexedSymbols {
-                for item in icons {
-                    addIndex(item.name, "com.alexandrefamilyfarm.symbols")
-                }
-//                hasIndexedSymbols = true
-//            }
+            for favorite in favorites {
+                addIndex(favorite.glyph, "com.alexandrefamilyfarm.symbols")
+            }
         }
         .edgesIgnoringSafeArea(.all)
 //        .dropDestination(for: String.self) { items, location in
@@ -116,55 +166,4 @@ struct FavoritesView: View {
 //            return false
 //        }
     }
-    @State private var draggedText = ""
-    @Namespace var animation
-    @State private var selected: String?
-    @State private var italic = false
-    @State private var isCopied = false
-
-//    var myFavorites: [String] {
-//        get { Array(jsonString: favorites) ?? [] }
-//        set { favorites = newValue.jsonString() ?? "[]" }
-//    }
-//
-//    var searchResults: [String] {
-//        return myFavorites.filter { key in
-//
-//            if !arabicSetting && key.hasSuffix(".ar") { return false }
-//            if !bengaliSetting && key.hasSuffix(".bn") { return false }
-//            if !burmeseSetting && key.hasSuffix(".my") { return false }
-//            if !chineseSetting && key.hasSuffix(".zh") { return false }
-//            if !gujaratiSetting && key.hasSuffix(".gu") { return false }
-//            if !hebrewSetting && key.hasSuffix(".he") { return false }
-//            if !hindiSetting && key.hasSuffix(".hi") { return false }
-//            if !japaneseSetting && key.hasSuffix(".ja") { return false }
-//            if !kannadaSetting && key.hasSuffix(".kn") { return false }
-//            if !khmerSetting && key.hasSuffix(".km") { return false }
-//            if !koreanSetting && key.hasSuffix(".ko") { return false }
-//            if !latinSetting && key.hasSuffix(".el") { return false }
-//            if !malayalamSetting && key.hasSuffix(".ml") { return false }
-//            if !manipuriSetting && key.hasSuffix(".mni") { return false }
-//            if !marathiSetting && key.hasSuffix(".mr") { return false }
-//            if !oriyaSetting && key.hasSuffix(".or") { return false }
-//            if !russianSetting && key.hasSuffix(".ru") { return false }
-//            if !santaliSetting && key.hasSuffix(".sat") { return false }
-//            if !sinhalaSetting && key.hasSuffix(".si") { return false }
-//            if !tamilSetting && key.hasSuffix(".ta") { return false }
-//            if !teluguSetting && key.hasSuffix(".te") { return false }
-//            if !thaiSetting && key.hasSuffix(".th") { return false }
-//            if !punjabiSetting && key.hasSuffix(".pa") { return false }
-//
-//            // Apply search text filter if searchText is not empty
-//            if !searchText.isEmpty { return key.contains(searchText.lowercased()) }
-//            return true // Include the key if none of the above conditions are met and searchText is empty
-//        }
-//    }
-//
-//    private var columns: [GridItem] {
-//        [GridItem(.flexible())]
-//    }
-//
-//    private var spacing: CGFloat {
-//        fontSize * 0.1
-//    }
 }

@@ -11,6 +11,34 @@ import SFSymbolKit
 import Design
 
 struct DetailView: View {
+    @Environment(\.presentationMode) private var presentationMode
+    var icon: Symbol
+    @Binding var fontSize: Double
+    @Binding var showingDetail: Bool
+
+    @State private var vmo = ViewModel()
+    @State private var showShadow: Bool = false
+    @State private var showSize: Bool = false
+    @State private var showScale: Bool = false
+    @State private var showWeight: Bool = false
+    @State private var showForeground: Bool = false
+    @State private var color: Color = .random()
+    @State private var showAlert = false
+    @State private var selectedScale = Scale.medium
+    @State private var selectedWeight = Weight.regular
+    @State private var accumulatedOffset = CGSize.zero
+    @State private var offset = CGSize.zero
+    @State private var isDragging = false
+    @State private var shadow: Color = .gray.opacity(0.5)
+    @State private var glyphSize = 200.0
+    @State private var linearValue: Double = log10(200)
+
+#if os(iOS)
+    @State var location: CGPoint = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
+#else
+    @State var location: CGPoint = CGPoint(x: NSScreen.main?.frame.size.width ?? 0, y: -150)
+#endif
+
     var body: some View {
         GeometryReader { geo in
             ZStack {
@@ -29,11 +57,9 @@ struct DetailView: View {
 #if os(iOS)
                 image
                     .position(location)
-                //                    .navigationTransition(.zoom(sourceID: icon, in: animation))
 #else
                 image
 #endif
-
                 VStack {
                     let code = "Image(systemName: \"\(icon)\")"
                     let scaleConfig = configureScale(
@@ -44,7 +70,7 @@ struct DetailView: View {
                         showSize: showSize,
                         showWeight: showWeight,
                         fontSize: glyphSize,
-                        selectedWeight: selectedWeight.name
+                        selectedWeight: selectedWeight
                     )
                     let colorConfig = configureColor(
                         showForeground: showForeground,
@@ -67,7 +93,7 @@ struct DetailView: View {
                     }.rotationEffect(Angle(degrees: 180.0))
                     ScrollView {
                         ScrollView(.horizontal) {
-                            Text("\(icon)")
+                            Text("\(icon.name)")
                                 .font(.title)
                                 .multilineTextAlignment(.leading)
                                 .fixedSize(horizontal: false, vertical: true)
@@ -118,6 +144,7 @@ struct DetailView: View {
                                 } else {
                                     Button {
                                         showWeight.toggle()
+                                        showSize = true
                                     } label: {
                                         Text("Weight")
                                     }.padding(4)
@@ -127,6 +154,7 @@ struct DetailView: View {
                                 if showSize {
                                     Button {
                                         showSize.toggle()
+                                        showWeight = false
                                     } label: {
                                         Text("Size:")
                                     }.buttonStyle(BorderedProminentButtonStyle())
@@ -224,55 +252,33 @@ struct DetailView: View {
             }
         }
     }
-
-    @Environment(\.presentationMode) private var presentationMode
-    var icon: Symbol
-    @Binding var fontSize: Double
-    @Binding var showingDetail: Bool
-
-    @State var vmo = ViewModel()
-    @State var showShadow: Bool = false
-    @State var showSize: Bool = false
-    @State var showScale: Bool = false
-    @State var showWeight: Bool = false
-    @State var showForeground: Bool = false
-    @State var color: Color = .random()
-    @State var showAlert = false
-    @State private var selectedScale = Scale.medium
-    @State private var selectedWeight = Weight.regular
-    @State private var accumulatedOffset = CGSize.zero
-    @State private var offset = CGSize.zero
-    @State private var isDragging = false
-    @State private var shadow: Color = .gray.opacity(0.5)
-    @State private var glyphSize = 200.0
-    @State private var linearValue: Double = log10(200)
-
-    var exponentialValue: Double {
-        get {
-            pow(10, linearValue)
-        }
-        set {
-            linearValue = log10(newValue)
-            glyphSize = newValue
-        }
-    }
-
-#if os(iOS)
-    @State var location: CGPoint = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
-#else
-    @State var location: CGPoint = CGPoint(x: NSScreen.main?.frame.size.width ?? 0, y: -150)
-#endif
 }
 
 #Preview {
     @Previewable @Namespace var animation
 #if os(iOS)
     DetailView(
-        icon: Symbol(name: "plus", categories: [.math]),
+        icon: Symbol(
+            name: "plus",
+            categories: [SymbolCategory(
+                icon: CategoryTokens.math.icon,
+                key: CategoryTokens.math.key,
+                label: CategoryTokens.math.label
+            )]
+        ),
         fontSize: .constant(50.0),
         showingDetail: .constant(true)
     )
 #else
-    DetailView(icon: Icon(id: "plus", color: .random(), uiColor: .black))
+    DetailView(
+        icon: Symbol(
+            name: "plus",
+            categories: [SymbolCategory(
+                icon: CategoryTokens.math.icon,
+                key: CategoryTokens.math.key,
+                label: CategoryTokens.math.label
+            )]
+        )
+    )
 #endif
 }

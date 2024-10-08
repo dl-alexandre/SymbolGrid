@@ -11,19 +11,19 @@ import SFSymbolKit
 
 @main
 struct SymbolGridApp: App {
+    let symbols: [Symbol]
+
     init() {
+        let categorizor = Categorizer()
+        let symbolizer = Symbolizer()
+        self.symbols = convertSymbols(categorization: categorizor, symbolization: symbolizer)
         registerDefaultsFromSettingsBundle()
-#if os(iOS)
-        let appearance = UINavigationBar.appearance()
-        appearance.setBackgroundImage(UIImage(), for: .default)
-        appearance.shadowImage = UIImage()
-        appearance.isTranslucent = true
-#endif
+        hideNavigationBar()
     }
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(symbols: symbols)
                 .modelContainer(sharedModelContainer)
 
         }
@@ -53,20 +53,4 @@ struct SymbolGridApp: App {
             fatalError("Could not create ModelContainer: \(error)")
         }
     }()
-}
-
-func registerDefaultsFromSettingsBundle() {
-    let defaults = UserDefaults.standard
-    if let settingsBundle = Bundle.main.path(forResource: "Settings", ofType: "bundle"),
-       let plistFullName = "\(settingsBundle)/Root.plist" as String?,
-       let settings = NSDictionary(contentsOfFile: plistFullName),
-       let preferences = settings["PreferenceSpecifiers"] as? [NSDictionary] {
-        for prefSpecification in preferences {
-            if let key = prefSpecification["Key"] as? String,
-               let value = prefSpecification["DefaultValue"] as? String { // Fix this line
-                defaults.set(value, forKey: key)
-            }
-        }
-    }
-
 }

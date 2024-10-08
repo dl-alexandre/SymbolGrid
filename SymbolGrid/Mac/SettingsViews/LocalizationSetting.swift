@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LocalizationSetting: View {
-    @State private var system = System()
+    @State private var system = Localizations()
 
     var body: some View {
         Rectangle()

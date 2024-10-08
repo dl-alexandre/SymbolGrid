@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SFSymbolKit
 
 extension DetailView {
     func configureShadow(showShadow: Bool, shadow: Color, offset: CGSize) -> String {
@@ -76,16 +77,16 @@ extension DetailView {
         showSize: Bool,
         showWeight: Bool,
         fontSize: CGFloat,
-        selectedWeight: String
+        selectedWeight: Weight
     ) -> String {
         var fontConfig = ""
 
         if showSize && showWeight {
             fontConfig = """
         
-        .font(.system(
-            size: \(String(format: "%.0f", fontSize)),
-            weight: .\(selectedWeight)))
+            .font(.system(
+                size: \(String(format: "%.0f", fontSize)),
+                weight: .\(selectedWeight)))
         """
         } else if showWeight {
             fontConfig = """

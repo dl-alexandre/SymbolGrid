@@ -14,20 +14,21 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) var moc
-    @State private var sys = System()
+    @State private var sys = Localizations()
     @Query var favorites: [Favorite]
     @State private var fontSize = 50.0
     @State private var selectedWeight: Weight = .regular
-    @State private var selectedSample: SymbolRenderingModes = .monochrome
+    @State private var selectedMode: SymbolRenderingModes = .monochrome
     @State private var showingSymbolMenu = false
     @State private var showingSearch = false
     @State private var showingDetail = false
     @State private var showingFavorites = false
     @State private var searchText = ""
-    @State private var searchScope: SymbolCategory = .all
+    @State private var searchScope: CategoryTokens = .all
     @State private var searchTokens: [SearchToken] = []
     @State private var isAnimating = true
 
+    let symbols: [Symbol]
 
     var body: some View {
         if isAnimating {
@@ -49,7 +50,7 @@ struct ContentView: View {
                 SymbolView(
                     fontSize: $fontSize,
                     selectedWeight: $selectedWeight,
-                    selectedSample: $selectedSample,
+                    selectedMode: $selectedMode,
                     showingSymbolMenu: $showingSymbolMenu,
                     showingDetail: $showingDetail,
                     showingSearch: $showingSearch,
@@ -66,7 +67,7 @@ struct ContentView: View {
                     SymbolMenu(
                         fontSize: $fontSize,
                         selectedWeight: $selectedWeight,
-                        selectedSample: $selectedSample,
+                        selectedMode: $selectedMode,
                         showingSymbolMenu: $showingSymbolMenu,
                         showingSearch: $showingSearch,
                         showingFavorites: $showingFavorites
@@ -86,41 +87,56 @@ struct ContentView: View {
     @State private var filteredFavoriteSuggestions: [Symbol] = []
 
     var searchResults: [Symbol] {
-        return filterResults(sys.symbols)
+        return filterResults(symbols, tokens: searchTokens)
     }
 
     var favoriteSuggestions: [Symbol] {
-        return filterResults(filteredFavoriteSuggestions)
+        return filterResults(filteredFavoriteSuggestions, tokens: searchTokens)
     }
 
-    func filterResults(_ list: [Symbol]) -> [Symbol] {
-        return list.filter { key in
+    func filterResults(_ list: [Symbol], tokens: [SearchToken]) -> [Symbol] {
+        return list.filter { symbol in
             let matchesScope: Bool
             switch searchScope {
             case .multicolor:
-                matchesScope = key.categories.contains(.multicolor)
+                matchesScope =  symbol.categories.contains {
+                    $0.key == CategoryTokens.multicolor.key
+                }
             case .variablecolor:
-                matchesScope = key.categories.contains(.variablecolor)
+                matchesScope = symbol.categories.contains {
+                    $0.key == CategoryTokens.variablecolor.key
+                }
             default:
                 matchesScope = true
             }
-            return matchesScope && applyFilters(to: key.name) && containsSearchText(key.name)
+
+            let matchesTokens: Bool = tokens.allSatisfy { token in
+                symbol.name.contains(token.text.lowercased())
+            }
+
+            return matchesScope
+            && matchesTokens
+            && applyFilters(to: symbol.name)
+            && containsSearchText(symbol.name)
+
         }
     }
 
     public func handleSearch() {
         // Split searchText into tokens
-        let keywords = searchText.split(separator: " ").map { String($0) }
-        searchTokens = keywords.map { SearchToken(text: $0) }
+        let newKeywords = searchText.split(separator: " ").map { String($0).lowercased() }
+        let newTokens = newKeywords.map { SearchToken(text: $0) }
+
+        // Append new tokens to existing searchTokens
+        searchTokens.append(contentsOf: newTokens)
 
         // Clear the current search text
         searchText = ""
 
         // Filter search results based on tokens
-        filteredSymbols = sys.symbols
-        for token in searchTokens {
-            filteredSymbols = filteredSymbols.filter { symbol in
-                containsSearchText(token.text)
+        filteredSymbols = symbols.filter { symbol in
+            searchTokens.allSatisfy { token in
+                symbol.name.lowercased().contains(token.text)
             }
         }
 
@@ -128,14 +144,11 @@ struct ContentView: View {
         let favoriteSymbols = favorites.map { favorite in
             Symbol(name: favorite.glyph, categories: [])
         }
-        
-        filteredFavoriteSuggestions = filteredSymbols
-        for token in searchTokens {
-            filteredFavoriteSuggestions = filteredFavoriteSuggestions.filter { symbol in
-                containsSearchText(token.text)
+        filteredFavoriteSuggestions = favoriteSymbols.filter { symbol in
+            searchTokens.allSatisfy { token in
+                symbol.name.lowercased().contains(token.text)
             }
         }
-
     }
 
     func containsSearchText(_ key: String) -> Bool {
@@ -179,5 +192,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    ContentView(symbols: [])
 }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 import SwiftData
-
+#warning("may need categories")
 @Model
 final class Favorite: Hashable, Equatable {
     var glyph: String = ""

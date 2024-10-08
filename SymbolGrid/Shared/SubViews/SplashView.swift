@@ -9,7 +9,6 @@ import SwiftUI
 import SFSymbolKit
 
 struct SplashView: View {
-    @State private var system = System()
     @State private var vmo = ViewModel()
 
     @Binding var fontSize: Double
@@ -43,8 +42,7 @@ struct SplashView: View {
                                         .symbolEffect(.breathe.byLayer.pulse)
                                         .foregroundStyle(Color.random())
                                         .onAppear {
-                                            isAnimating = true
-                                            DispatchQueue.main.asyncAfter(deadline: .now() + 3.4) {
+                                            DispatchQueue.main.asyncAfter(deadline: .now()/* + 3.4*/) {
                                                 withAnimation(.easeInOut(duration: 2)) {
                                                     isAnimating = false
                                                 }
@@ -55,7 +53,7 @@ struct SplashView: View {
                             }
                         }
                         .onAppear {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 3.14) {
                                 if limitedIcons.count > numberOfColumns {
                                     proxy.scrollTo(limitedIcons[numberOfColumns + 1], anchor: .top)
                                 }

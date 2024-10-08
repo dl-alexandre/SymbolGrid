@@ -39,7 +39,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             let styleMask: NSWindow.StyleMask = [.closable, .titled, .resizable]
             let window = NSWindow()
             window.styleMask = styleMask
-            //            window.title = "\(NSApplication.appName ?? "SymbolView") Help"
+            window.title = "\(NSApplication.appName ?? "SymbolView") Help"
             window.contentView = NSHostingView(rootView: HelpView())
             helpBoxWindowController = NSWindowController(window: window)
         }
@@ -50,7 +50,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         icon: Icon,
         detailIcon: Binding<Icon?>,
         selectedWeight: Binding<Weight>,
-        selectedSample: Binding<SymbolRenderingModes>,
+        selectedMode: Binding<SymbolRenderingModes>,
         showInspector: Binding<Bool>
     ) {
         if menuWindowController == nil {
@@ -71,7 +71,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     icon: icon,
                     detailIcon: detailIcon,
                     selectedWeight: selectedWeight,
-                    selectedSample: selectedSample,
+                    selectedMode: selectedMode,
                     showInspector: showInspector
                 )
             )

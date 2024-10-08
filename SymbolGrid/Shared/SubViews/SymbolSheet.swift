@@ -14,7 +14,6 @@ import UniformTypeIdentifiers
 struct SymbolSheet: View {
     @Environment(\.dismiss) var dismiss
     @State private var vmo = ViewModel()
-    @State private var sys = System()
 
     var icon: Symbol
     @Environment(\.modelContext) private var moc
@@ -24,7 +23,7 @@ struct SymbolSheet: View {
     @Binding var fontSize: Double
     @Binding var searchText: String
     @Binding var selectedWeight: Weight
-    @Binding var selectedSample: SymbolRenderingModes
+    @Binding var selectedMode: SymbolRenderingModes
     @Binding var showingDetail: Bool
     @Binding var showingSearch: Bool
     var favoriteSuggestions: [Symbol]
@@ -120,8 +119,7 @@ struct SymbolSheet: View {
                 fontSize: $fontSize,
                 showingDetail: $showingDetail,
                 showingSearch: $showingSearch,
-                searchText: $searchText,
-                favoriteSuggestions: favoriteSuggestions
+                searchText: $searchText
             )
         }
     }
@@ -129,16 +127,20 @@ struct SymbolSheet: View {
 
 #if os(iOS)
 #Preview {
+    let math = CategoryTokens.math
+    let category = SymbolCategory(icon: math.icon, key: math.key, label: math.label)
+    let symbol = Symbol(name: "plus", categories: [category])
+
     SymbolSheet(
-        icon: Symbol(name: "plus", categories: [.math]),
-        detailIcon: .constant(Symbol(name: "plus", categories: [.math])),
+        icon: symbol,
+        detailIcon: .constant(symbol),
         fontSize: .constant(50.0),
         searchText: .constant(""),
         selectedWeight: .constant(Weight.regular),
-        selectedSample: .constant(SymbolRenderingModes.monochrome),
+        selectedMode: .constant(SymbolRenderingModes.monochrome),
         showingDetail: .constant(false),
         showingSearch: .constant(false),
-        favoriteSuggestions: [Symbol(name: "plus", categories: [.math]),]
+        favoriteSuggestions: [symbol]
     )
 }
 #endif
