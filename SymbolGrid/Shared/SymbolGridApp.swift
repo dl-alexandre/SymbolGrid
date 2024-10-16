@@ -14,11 +14,12 @@ struct SymbolGridApp: App {
     let symbols: Set<Symbol>
 
     init() {
-        let categorizor = Categorizer()
+        let categorizer = Categorizer()
         let symbolizer = Symbolizer()
-        self.symbols = convertSymbols(categorization: categorizor, symbolization: symbolizer)
+        self.symbols = convertSymbols(categorization: categorizer, symbolization: symbolizer)
         registerDefaultsFromSettingsBundle()
         hideNavigationBar()
+        print("Total Symbols: \(symbols.count)")
     }
 
     var body: some Scene {

@@ -32,7 +32,6 @@ struct ContentView: View {
     var body: some View {
         @State var hasFavorites = !favorites.isEmpty
         let icons: [Symbol] = Array(searchResults)
-        let favoriteSuggestions = Array(favoriteSet)
         let firstSymbols = Array(icons.prefix(200))
 
         if isAnimating {
@@ -58,13 +57,12 @@ struct ContentView: View {
                     selectedMode: $selectedMode,
                     showingSymbolMenu: $showingSymbolMenu,
                     showingDetail: $showingDetail,
-                    handleSearch: handleSearch,
+                    showingFavorites: $showingFavorites,
                     showingSearch: $showingSearch,
                     searchText: $searchText,
                     searchScope: $searchScope,
                     searchTokens: $searchTokens,
-                    showingFavorites: $showingFavorites,
-                    favoriteSuggestions: favoriteSuggestions
+                    handleSearch: handleSearch
                 )
 #if os(iOS)
                 if showingSymbolMenu {
@@ -88,7 +86,6 @@ struct ContentView: View {
     }
 
     @State private var filteredSymbols: [Symbol] = []
-    @State private var filteredFavoriteSuggestions: [Symbol] = []
 
     var searchResults: [Symbol] {
         do {
@@ -98,41 +95,18 @@ struct ContentView: View {
         }
     }
 
-    var favoriteSet: [Symbol] {
-        do {
-            return try filterResults(filteredFavoriteSuggestions, tokens: searchTokens)
-        } catch {
-            print("Filter Error: \(error.localizedDescription)")
-            return []
-        }
-    }
-
     func filterResults(_ list: [Symbol], tokens: [SearchToken]) throws -> [Symbol] {
         return list.filter { symbol in
-            let matchesScope: Bool
-            switch searchScope {
-            case .favorites:
-                if !favorites.isEmpty {
-                    if favorites.contains(where: { $0.glyph == symbol.name }) {
-                        matchesScope = true
-                    } else {
-                        matchesScope = false
-                    }
-                } else {
-                    matchesScope = true
-                }
-            default:
-                matchesScope = true
-            }
-
-            let matchesTokens: Bool = tokens.allSatisfy { token in
+            let matchesScope = (
+                searchScope != .favorites || favorites.isEmpty || favorites.contains { $0.glyph == symbol.name
+                })
+            let matchesTokens = tokens.allSatisfy { token in
                 symbol.name.lowercased().contains(token.text.lowercased())
             }
-
-            return matchesScope
-            && matchesTokens
-            && applyFilters(to: symbol.name)
-            && containsSearchText(symbol.name)
+            return matchesScope &&
+            matchesTokens &&
+            applyFilters(to: symbol.name) &&
+            containsSearchText(symbol.name)
         }
     }
 
@@ -149,16 +123,6 @@ struct ContentView: View {
 
         // Filter search results based on tokens
         filteredSymbols = symbols.filter { symbol in
-            searchTokens.allSatisfy { token in
-                symbol.name.lowercased().contains(token.text)
-            }
-        }
-
-        // Filter favorite suggestions based on tokens
-        let favoriteSymbols = favorites.map { favorite in
-            Symbol(name: favorite.glyph, categories: [])
-        }
-        filteredFavoriteSuggestions = favoriteSymbols.filter { symbol in
             searchTokens.allSatisfy { token in
                 symbol.name.lowercased().contains(token.text)
             }

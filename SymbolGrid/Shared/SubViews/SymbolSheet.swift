@@ -37,7 +37,7 @@ struct SymbolSheet: View {
                 vmo.detailIcon = icon
                 vmo.showDetail()
             } label: {
-                Label("\(icon.name)", systemImage: "\(icon.name)")
+                Label(icon.name, systemImage: icon.name)
             }
             .buttonStyle(BorderedProminentButtonStyle())
             HStack {
@@ -98,7 +98,7 @@ struct SymbolSheet: View {
 //           }
         }
 #if os(macOS)
-        .inspector(isPresented: $showDetail) {
+        .inspector(isPresented: $showingDetail) {
             DetailView(icon: icon)
                 .inspectorColumnWidth(min: 300, ideal: 500, max: 1000)
         }
