@@ -162,9 +162,6 @@
         }
       }
     },
-    "Click me!" : {
-
-    },
     "Color" : {
 
     },
@@ -186,6 +183,9 @@
           }
         }
       }
+    },
+    "Download SF Symbols 6" : {
+
     },
     "Download SF Symbols 6 - beta" : {
       "extractionState" : "stale",
@@ -452,9 +452,6 @@
 
     },
     "No Favorites" : {
-
-    },
-    "No Icon Selected" : {
 
     },
     "Oriya" : {

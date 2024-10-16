@@ -13,42 +13,46 @@ struct SymbolCommands: Commands {
         SidebarCommands()
         CommandMenu("Symbols") {
             Button {
-                system.showSearch()
+//                vmo.showSearch()
             } label: {
                 Label("Search", systemImage: "magnifyingglass")
             }.keyboardShortcut("s")
             Button {
-                system.clearSearch()
+//                system.clearSearch()
             } label: {
                 Label("Clear", systemImage: "delete.left")
             }.keyboardShortcut(.escape, modifiers: [])
 
             Button {
-                system.fontSize = max(9, system.fontSize - 5)
+//                $vmo.fontSize = max(9, $vmo.fontSize - 5)
             } label: {
                 Label("Smaller", systemImage: "minus")
             }.keyboardShortcut("-")
 
             Button {
-                system.fontSize = min(2000, system.fontSize + 10)
+//                vmo.fontSize = min(2000, system.fontSize + 10)
             } label: {
                 Label("Larger", systemImage: "plus")
             }.keyboardShortcut("=")
             Section("Favorites") {
                 Button {
-                    system.showInspector.toggle()
+                    vmo.showFavorites()
                 } label: {
                     Label("Show", systemImage: "sparkle")
                 }.keyboardShortcut("f", modifiers: [])
 
                 Button {
-                    if system.myFavorites.contains(system.systemName) {
-                        removeFavorite(symbols: system.systemName)
+                    if favorites.contains(where: { $0.glyph == vmo.selected?.name }) {
+                        if let favoriteToDelete = favorites.first(where: { $0.glyph == vmo.selected?.name }) {
+                            deleteFavorite(glyph: favoriteToDelete, modelContext: moc)
+                        }
                     } else {
-                        addFavorite(symbols: system.systemName)
+                        if let favoriteToAdd = vmo.selected {
+                            addFavorite(glyph: favoriteToAdd.name, modelContext: moc, favorites: favorites)
+                        }
                     }
                 } label: {
-                    if system.myFavorites.contains(system.systemName) {
+                    if favorites.contains(where: { $0.glyph == vmo.selected?.name }) {
                         Label("Unfavorite", systemImage: "star.fill")
                     } else {
                         Label("Favorite", systemImage: "star")
@@ -56,7 +60,7 @@ struct SymbolCommands: Commands {
                 }.keyboardShortcut("f")
 
                 Button {
-                    system.clearFavorites()
+                    clearFavorites(favorites: favorites, modelContext: moc)
                 } label: {
                     Label("Clear", systemImage: "star.slash")
                 }.keyboardShortcut("f", modifiers: [.command, .shift])
@@ -99,11 +103,8 @@ struct SymbolCommands: Commands {
 
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @Environment(\.modelContext) private var moc
-    @State private var system = System()
-
-    var myFavorites: [String] {
-        get { Array(jsonString: system.favorites) ?? [] }
-        set { system.favorites = newValue.jsonString() ?? "[]" }
-    }
+    @Query var favorites: [Favorite]
+    @State private var localizations = Localizations()
+    @State private var vmo = ViewModel()
 }
 #endif

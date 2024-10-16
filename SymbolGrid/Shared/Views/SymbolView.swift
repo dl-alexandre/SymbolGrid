@@ -69,10 +69,13 @@ struct SymbolView: View {
 #else
                                             appDelegate.showMenuPanel(
                                                 icon: icon,
-                                                detailIcon: $detailIcon,
-                                                selectedWeight: $fontWeight,
-                                                selectedMode: $renderMode,
-                                                showInspector: $showInspector
+                                                detailIcon: $vmo.detailIcon,
+                                                fontSize: $fontSize,
+                                                searchText: $searchText,
+                                                selectedWeight: $selectedWeight,
+                                                selectedMode: $selectedMode,
+                                                showingDetail: $showingDetail,
+                                                showingSearch: $showingSearch
                                             )
 #endif
                                         }
@@ -87,10 +90,10 @@ struct SymbolView: View {
                                         .opacity(isHovered ? 0.5 : 1.0)
 #if os(iOS)
                                         .hoverEffect(.highlight)
-#endif
                                         .onHover { hovering in
                                             isHovered = hovering
                                         }
+#endif
                                         .previewLayout(.sizeThatFits)
                                         .padding(8)
                                         .contentShape(.dragPreview, RoundedRectangle(cornerRadius: 7))
@@ -143,16 +146,6 @@ struct SymbolView: View {
                                 }
                             }
                         }
-                    }
-                }
-                .toolbar {
-                    ToolbarItem(placement: .keyboard) {
-                        if let selectedIconName = vmo.selected?.name {
-                            Text(selectedIconName)
-                        } else {
-                            Text("No Icon Selected")
-                        }
-                        Text("No Icon Selected")
                     }
                 }
             }
@@ -208,12 +201,12 @@ struct SymbolView: View {
 #if os(macOS)
         .toolbar {
             ToolbarItem(placement: .automatic) {
-                if let selectedIcon = selected {
-                    Text("\(selectedIcon.id)")
+                if let icon = vmo.selected {
+                    Text("\(icon.name)")
                         .padding()
                         .onTapGesture(count: 1) {
-                            NSPasteboard.general.setString(selectedIcon.id, forType: .string)
-                            print(selectedIcon.id)
+                            NSPasteboard.general.setString(icon.name, forType: .string)
+                            print(icon.name)
                         }
                 }
             }

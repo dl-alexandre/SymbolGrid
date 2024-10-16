@@ -46,7 +46,7 @@ struct FavoritesView: View {
                                 vmo.copy()
                             }
 #if os(macOS)
-                            NSPasteboard.general.setString(systemName, forType: .string)
+                            NSPasteboard.general.setString(vmo.systemName, forType: .string)
 #else
                             UIPasteboard.general .setValue(vmo.systemName.description,
                                                            forPasteboardType: UTType.plainText .identifier)
@@ -56,7 +56,7 @@ struct FavoritesView: View {
 #if os(macOS)
                             let provider = NSItemProvider(
                                 object: (
-                                    Image(systemName: icon.id)
+                                    Image(systemName: favorite.glyph)
                                         .asNSImage() ?? Image(systemName: "plus")
                                         .asNSImage()!
                                 ) as NSImage
@@ -91,7 +91,7 @@ struct FavoritesView: View {
 #else
                                 let pasteboard = NSPasteboard.general
                                 pasteboard.declareTypes([.string], owner: nil)
-                                pasteboard.setString(icon.description, forType: .string)
+                                pasteboard.setString(favorite.glyph.description, forType: .string)
 #endif
                             } label: {
                                 Label("Copy", systemImage: "doc.on.doc")

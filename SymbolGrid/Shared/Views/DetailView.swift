@@ -279,7 +279,9 @@ struct DetailView: View {
                 key: CategoryTokens.math.key,
                 label: CategoryTokens.math.label
             )]
-        )
+        ),
+        fontSize: .constant(50.0),
+        showingDetail: .constant(true)
     )
 #endif
 }

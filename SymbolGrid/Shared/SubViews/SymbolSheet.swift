@@ -51,7 +51,7 @@ struct SymbolSheet: View {
 #else
                     let pasteboard = NSPasteboard.general
                     pasteboard.declareTypes([.string], owner: nil)
-                    pasteboard.setString(icon.id.description, forType: .string)
+                    pasteboard.setString(icon.name.description, forType: .string)
 #endif
                 } label: {
                     Image(systemName: "doc.on.doc").padding()
@@ -99,7 +99,11 @@ struct SymbolSheet: View {
         }
 #if os(macOS)
         .inspector(isPresented: $showingDetail) {
-            DetailView(icon: icon)
+            DetailView(
+                icon: icon,
+                fontSize: $fontSize,
+                showingDetail: $vmo.showingDetail
+            )
                 .inspectorColumnWidth(min: 300, ideal: 500, max: 1000)
         }
 #else

@@ -15,3 +15,11 @@ func deleteFavorite(glyph: Favorite, modelContext: ModelContext) {
         modelContext.delete(glyph)
     }
 }
+
+func clearFavorites(favorites: [Favorite], modelContext: ModelContext) {
+    withAnimation {
+        for favorite in favorites {
+            modelContext.delete(favorite)
+        }
+    }
+}

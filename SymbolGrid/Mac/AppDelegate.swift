@@ -22,7 +22,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     private var tabViewController: NSTabViewController?
 
-    func showAboutPanel() {
+    @MainActor func showAboutPanel() {
         if aboutBoxWindowController == nil {
             let styleMask: NSWindow.StyleMask = [.closable, .miniaturizable, .titled]
             let window = NSWindow()
@@ -34,7 +34,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         aboutBoxWindowController?.showWindow(aboutBoxWindowController?.window)
     }
 
-    func showHelpPanel() {
+    @MainActor func showHelpPanel() {
         if helpBoxWindowController == nil {
             let styleMask: NSWindow.StyleMask = [.closable, .titled, .resizable]
             let window = NSWindow()
@@ -46,12 +46,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         helpBoxWindowController?.showWindow(helpBoxWindowController?.window)
     }
 
-    func showMenuPanel(
-        icon: Icon,
-        detailIcon: Binding<Icon?>,
+    @MainActor func showMenuPanel(
+        icon: Symbol,
+        detailIcon: Binding<Symbol?>,
+        fontSize: Binding<Double>,
+        searchText: Binding<String>,
         selectedWeight: Binding<Weight>,
         selectedMode: Binding<SymbolRenderingModes>,
-        showInspector: Binding<Bool>
+        showingDetail: Binding<Bool>,
+        showingSearch: Binding<Bool>
     ) {
         if menuWindowController == nil {
             let styleMask: NSWindow.StyleMask = [
@@ -65,14 +68,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 backing: .buffered,
                 defer: false)
             window.styleMask = styleMask
-            window.title = icon.id
+            window.title = icon.name
             window.contentView = NSHostingView(
                 rootView: SymbolSheet(
                     icon: icon,
                     detailIcon: detailIcon,
+                    fontSize: fontSize,
+                    searchText: searchText,
                     selectedWeight: selectedWeight,
                     selectedMode: selectedMode,
-                    showInspector: showInspector
+                    showingDetail: showingDetail,
+                    showingSearch: showingSearch
                 )
             )
             menuWindowController = NSWindowController(window: window)
@@ -80,13 +86,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menuWindowController?.showWindow(menuWindowController?.window)
     }
 
-    func showDetailPanel(icon: Icon) {
+    @MainActor func showDetailPanel(
+        icon: Symbol,
+        fontSize: Binding<Double>,
+        showingDetail: Binding<Bool>
+    ) {
         if detailWindowController == nil {
             let styleMask: NSWindow.StyleMask = [.closable, .titled, .resizable]
             let window = NSWindow()
             window.styleMask = styleMask
-            window.title = icon.id
-            window.contentView = NSHostingView(rootView: DetailView(icon: icon, color: icon.color))
+            window.title = icon.name
+            window.contentView = NSHostingView(
+                rootView: DetailView(
+                    icon: icon,
+                    fontSize: fontSize,
+                    showingDetail: showingDetail
+                )
+            )
             detailWindowController = NSWindowController(window: window)
         }
         detailWindowController?.showWindow(detailWindowController?.window)
