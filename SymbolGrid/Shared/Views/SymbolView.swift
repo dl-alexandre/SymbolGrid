@@ -8,34 +8,35 @@
 import SwiftUI
 import Design
 import SFSymbolKit
+import SwiftData
 
 struct SymbolView: View {
 #if os(macOS)
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 #endif
     @Environment(\.verticalSizeClass) var verticalSizeClass
-
+    @Query var favorites: [Favorite]
+    var icons: [Symbol]
     @Binding var fontSize: Double
     @Binding var selectedWeight: Weight
     @Binding var selectedMode: SymbolRenderingModes
     @Binding var showingSymbolMenu: Bool
     @Binding var showingDetail: Bool
-    @Binding var showingSearch: Bool
-    @Binding var showingFavorites: Bool
-    @Binding var searchText: String
-    @Binding var searchScope: CategoryTokens
-    @Binding var searchTokens: [SearchToken]
-    var searchResults: [Symbol]
-    var favoriteSuggestions: [Symbol]
     let handleSearch: () -> Void
+    @Binding var showingSearch: Bool
+    @Binding var searchText: String
+    @Binding var searchScope: SearchScope
+    @Binding var searchTokens: [SearchToken]
+    @Binding var showingFavorites: Bool
+    var favoriteSuggestions: [Symbol]
 
     @State var isHovered = false
     @State private var vmo = ViewModel()
 
     var body: some View {
-        let icons: [Symbol] = searchResults
-        let suggestions: [Symbol] = favoriteSuggestions
-        ZStack {
+//        let iconArray: [Symbol] = icons
+//        @State var isKeyboardVisible = false
+//        let suggestions: [Symbol] = favoriteSuggestions
             GeometryReader { geo in
                 let minColumnWidth = 1.5 * fontSize
                 let numberOfColumns = max(1, Int(geo.size.width / minColumnWidth))
@@ -51,21 +52,25 @@ struct SymbolView: View {
                             LazyVGrid(columns: columns, spacing: fontSize * 0.1) {
                                 ForEach(icons, id: \.self) { icon in
                                     Button {
-                                        if vmo.selected == icon {
-                                            vmo.showSheet()
-                                        } else {
-                                            vmo.selected = icon
+                                        if !showingSearch {
+                                            if vmo.selected == icon {
+                                                vmo.showSheet()
+                                            } else {
+                                                vmo.selected = icon
 #if os(iOS)
-                                            vmo.showingSheet = true
+                                                vmo.showingSheet = true
 #else
-                                            appDelegate.showMenuPanel(
-                                                icon: icon,
-                                                detailIcon: $detailIcon,
-                                                selectedWeight: $fontWeight,
-                                                selectedMode: $renderMode,
-                                                showInspector: $showInspector
-                                            )
+                                                appDelegate.showMenuPanel(
+                                                    icon: icon,
+                                                    detailIcon: $detailIcon,
+                                                    selectedWeight: $fontWeight,
+                                                    selectedMode: $renderMode,
+                                                    showInspector: $showInspector
+                                                )
 #endif
+                                            }
+                                        } else if vmo.selected != icon {
+                                            vmo.selected = icon
                                         }
                                     } label: {
                                         Image(systemName: icon.name)
@@ -80,53 +85,68 @@ struct SymbolView: View {
                                                 isHovered = hovering
                                             }
                                             .previewLayout(.sizeThatFits)
-                                        .padding(8)
-                                        .contentShape(.dragPreview, RoundedRectangle(cornerRadius: 7))
-                                        .foregroundStyle((vmo.selected == icon) ? Color.random() : .primary)
-                                        .draggable(Image(systemName: icon.name)) {
-                                            Text("\(icon)")
-                                        }
-                                    }.buttonStyle(BorderlessButtonStyle())
+                                            .padding(8)
+                                            .contentShape(.dragPreview, RoundedRectangle(cornerRadius: 7))
+                                            .foregroundStyle(
+                                                (vmo.selected == icon) ? Color.random() : .primary
+                                            )
+                                            .draggable(Image(systemName: icon.name)) {
+                                                Text("\(icon)")
+                                            }
+                                            .scrollTransition(.interactive) { content, phase in
+                                                content
+                                                    .scaleEffect(phase.isIdentity ? 1 : 0.25, anchor: .center)
+                                                    .opacity(phase.isIdentity ? 1 : 0.05)
+                                            }
+                                            .edgesIgnoringSafeArea(.all)
+                                    }
+                                    .buttonStyle(BorderlessButtonStyle())
+                                }
+                            }
+                            .searchable(
+                                text: $searchText,
+                                tokens: $searchTokens,
+                                isPresented: $showingSearch,
+                                prompt: Text("Search \(icons.count) Symbols"),
+                                token: { token in
+                                    Text(token.text)
+                                })
+                            .onSubmit(of: .search, {
+                                handleSearch()
+                                searchScope = .all
+                            })
+                            .searchScopes($searchScope, activation: .onSearchPresentation) {
+                                if !favorites.isEmpty {
+                                    Text("Symbols").tag(SearchScope.all)
+                                    Text("Favorites").tag(SearchScope.favorites)
+                                }
+                            }
+                            .onChange(of: showingSearch) { isPresented, _ in
+                                if !isPresented {
+                                    searchScope = .all
                                 }
                             }
                         }
+                        .scrollTargetLayout()
                         .onAppear {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            DispatchQueue.main.asyncAfter(deadline: .now()) {
                                 if icons.count > numberOfColumns {
-                                    proxy.scrollTo(icons[numberOfColumns + 1], anchor: .top)
+                                    withAnimation(.easeIn(duration: 1.0)) {
+                                        proxy.scrollTo(icons[numberOfColumns + 1], anchor: .zero)
+                                    }
                                 }
                             }
                         }
                     }
-                    .searchable(
-                        text: $searchText,
-                        tokens: $searchTokens,
-                        isPresented: $showingSearch,
-                        prompt: Text("Search Symbols"),
-                        token: { token in
-                        Text(token.text)
-                    })
-                    .onSubmit(of: .search, {
-                        handleSearch()
-                    })
-                    .searchSuggestions {
-                        if !suggestions.isEmpty {
-                            ForEach(suggestions, id: \.self) { suggestion in
-                                Button {
-                                    searchText = suggestion.name
-                                } label: {
-                                    Label(suggestion.name, systemImage: suggestion.name)
-                                }
+                    .toolbar {
+                        ToolbarItem(placement: .keyboard) {
+                            if let selectedIconName = vmo.selected?.name {
+                                Text(selectedIconName)
+                            } else {
+                                Text("No Icon Selected")
                             }
+                            Text("No Icon Selected")
                         }
-                    }
-                    .searchScopes($searchScope, activation: .onSearchPresentation) {
-                        Text("\(CategoryTokens.all.label)")
-                            .tag(CategoryTokens.all)
-                        Text("\(CategoryTokens.multicolor.label)")
-                            .tag(CategoryTokens.multicolor)
-                        Text("\(CategoryTokens.variablecolor.label)")
-                            .tag(CategoryTokens.variablecolor)
                     }
                 }
                 .refreshable {
@@ -134,7 +154,7 @@ struct SymbolView: View {
                 }
 #if os(iOS)
                 .sheet(isPresented: $vmo.showingSheet) {
-                    if let selectedIcon = vmo.selected {
+                    if let selectedIcon = vmo.selected, !showingSearch {
                         SymbolSheet(
                             icon: selectedIcon,
                             detailIcon: $vmo.detailIcon,
@@ -143,21 +163,20 @@ struct SymbolView: View {
                             selectedWeight: $selectedWeight,
                             selectedMode: $selectedMode,
                             showingDetail: $showingDetail,
-                            showingSearch: $showingSearch,
-                            favoriteSuggestions: favoriteSuggestions
+                            showingSearch: $showingSearch
                         )
-                            .presentationBackgroundInteraction(.enabled)
-                            .presentationDetents(
-                                showingSearch ? [.medium] : [.height(geo.size.height / 4), .medium]
+                        .presentationBackgroundInteraction(.enabled)
+                        .presentationDetents(
+                            /*isKeyboardVisible ? [.medium] :*/ [.height(geo.size.height / 4), .medium]
+                        )
+                        .sheet(isPresented: $vmo.showingDetail) {
+                            DetailView(
+                                icon: selectedIcon,
+                                fontSize: $fontSize,
+                                showingDetail: $vmo.showingDetail
                             )
-                            .sheet(isPresented: $vmo.showingDetail) {
-                                DetailView(
-                                    icon: selectedIcon,
-                                    fontSize: $fontSize,
-                                    showingDetail: $vmo.showingDetail
-                                )
-                                    .presentationDetents([.medium])
-                            }
+                            .presentationDetents([.large])
+                        }
                     }
                 }
 #endif
@@ -168,19 +187,17 @@ struct SymbolView: View {
                         showingSearch: $showingSearch,
                         searchText: $searchText
                     )
-//                    .dropDestination(for: String.self) { items, _ in
-//                        if let item = items.first {
-//                            draggedText = item
-//                            print("\(draggedText) added to favorites")
-//                            addFavorite(glyph: <#T##Icon#>: draggedText)
-//                            return true
-//                        }
-//                        return false
-//                    }
+                    //                    .dropDestination(for: String.self) { items, _ in
+                    //                        if let item = items.first {
+                    //                            draggedText = item
+                    //                            print("\(draggedText) added to favorites")
+                    //                            addFavorite(glyph: <#T##Icon#>: draggedText)
+                    //                            return true
+                    //                        }
+                    //                        return false
+                    //                    }
                 }
             }
-        }
-
 #if os(macOS)
         .toolbar {
             ToolbarItem(placement: .automatic) {
@@ -200,18 +217,18 @@ struct SymbolView: View {
 
 #Preview {
     SymbolView(
+        icons: [],
         fontSize: .constant(50.0),
         selectedWeight: .constant(.regular),
         selectedMode: .constant(.monochrome),
         showingSymbolMenu: .constant(false),
         showingDetail: .constant(false),
+        handleSearch: {},
         showingSearch: .constant(false),
-        showingFavorites: .constant(false),
         searchText: .constant(""),
         searchScope: .constant(.all),
         searchTokens: .constant([]),
-        searchResults: [],
-        favoriteSuggestions: [],
-        handleSearch: {}
+        showingFavorites: .constant(false),
+        favoriteSuggestions: []
     )
 }

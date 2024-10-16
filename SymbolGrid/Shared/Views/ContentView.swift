@@ -13,7 +13,6 @@ import CoreSpotlight
 import SwiftData
 
 struct ContentView: View {
-    @Environment(\.modelContext) var moc
     @State private var sys = Localizations()
     @Query var favorites: [Favorite]
     @State private var fontSize = 50.0
@@ -24,19 +23,24 @@ struct ContentView: View {
     @State private var showingDetail = false
     @State private var showingFavorites = false
     @State private var searchText = ""
-    @State private var searchScope: CategoryTokens = .all
+    @State private var searchScope: SearchScope = .all
     @State private var searchTokens: [SearchToken] = []
     @State private var isAnimating = true
 
     let symbols: [Symbol]
 
     var body: some View {
+        @State var hasFavorites = !favorites.isEmpty
+        let icons: [Symbol] = Array(searchResults)
+        let favoriteSuggestions = Array(favoriteSet)
+        let firstSymbols = Array(icons.prefix(200))
+
         if isAnimating {
             SplashView(
                 fontSize: $fontSize,
                 selectedWeight: $selectedWeight,
                 isAnimating: $isAnimating,
-                searchResults: searchResults
+                firstSymbols: firstSymbols
             )
 #if os(macOS)
             .background(HideTabBar())
@@ -48,19 +52,19 @@ struct ContentView: View {
         } else {
             ZStack {
                 SymbolView(
+                    icons: icons,
                     fontSize: $fontSize,
                     selectedWeight: $selectedWeight,
                     selectedMode: $selectedMode,
                     showingSymbolMenu: $showingSymbolMenu,
                     showingDetail: $showingDetail,
+                    handleSearch: handleSearch,
                     showingSearch: $showingSearch,
-                    showingFavorites: $showingFavorites,
                     searchText: $searchText,
                     searchScope: $searchScope,
                     searchTokens: $searchTokens,
-                    searchResults: searchResults,
-                    favoriteSuggestions: favoriteSuggestions,
-                    handleSearch: handleSearch
+                    showingFavorites: $showingFavorites,
+                    favoriteSuggestions: favoriteSuggestions
                 )
 #if os(iOS)
                 if showingSymbolMenu {
@@ -87,38 +91,48 @@ struct ContentView: View {
     @State private var filteredFavoriteSuggestions: [Symbol] = []
 
     var searchResults: [Symbol] {
-        return filterResults(symbols, tokens: searchTokens)
+        do {
+            return try filterResults(symbols, tokens: searchTokens)
+        } catch {
+            return []
+        }
     }
 
-    var favoriteSuggestions: [Symbol] {
-        return filterResults(filteredFavoriteSuggestions, tokens: searchTokens)
+    var favoriteSet: [Symbol] {
+        do {
+            return try filterResults(filteredFavoriteSuggestions, tokens: searchTokens)
+        } catch {
+            print("Filter Error: \(error.localizedDescription)")
+            return []
+        }
     }
 
-    func filterResults(_ list: [Symbol], tokens: [SearchToken]) -> [Symbol] {
+    func filterResults(_ list: [Symbol], tokens: [SearchToken]) throws -> [Symbol] {
         return list.filter { symbol in
             let matchesScope: Bool
             switch searchScope {
-            case .multicolor:
-                matchesScope =  symbol.categories.contains {
-                    $0.key == CategoryTokens.multicolor.key
-                }
-            case .variablecolor:
-                matchesScope = symbol.categories.contains {
-                    $0.key == CategoryTokens.variablecolor.key
+            case .favorites:
+                if !favorites.isEmpty {
+                    if favorites.contains(where: { $0.glyph == symbol.name }) {
+                        matchesScope = true
+                    } else {
+                        matchesScope = false
+                    }
+                } else {
+                    matchesScope = true
                 }
             default:
                 matchesScope = true
             }
 
             let matchesTokens: Bool = tokens.allSatisfy { token in
-                symbol.name.contains(token.text.lowercased())
+                symbol.name.lowercased().contains(token.text.lowercased())
             }
 
             return matchesScope
             && matchesTokens
             && applyFilters(to: symbol.name)
             && containsSearchText(symbol.name)
-
         }
     }
 

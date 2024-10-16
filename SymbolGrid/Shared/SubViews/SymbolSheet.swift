@@ -26,7 +26,7 @@ struct SymbolSheet: View {
     @Binding var selectedMode: SymbolRenderingModes
     @Binding var showingDetail: Bool
     @Binding var showingSearch: Bool
-    var favoriteSuggestions: [Symbol]
+
 #if os(macOS)
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 #endif
@@ -85,8 +85,6 @@ struct SymbolSheet: View {
             }
             .buttonStyle(PlainButtonStyle())
             .font(.system(size: fontSize))
-            //            .buttonStyle(BorderedProminentButtonStyle())
-            //            .background(.ultraThinMaterial)
             copyNotification(isCopied: $vmo.isCopied, icon: $vmo.systemName)
 //                .dropDestination(for: String.self) { items, _ in
 //                    if let item = items.first {
@@ -139,8 +137,7 @@ struct SymbolSheet: View {
         selectedWeight: .constant(Weight.regular),
         selectedMode: .constant(SymbolRenderingModes.monochrome),
         showingDetail: .constant(false),
-        showingSearch: .constant(false),
-        favoriteSuggestions: [symbol]
+        showingSearch: .constant(false)
     )
 }
 #endif

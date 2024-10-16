@@ -11,7 +11,7 @@ import SFSymbolKit
 
 @main
 struct SymbolGridApp: App {
-    let symbols: [Symbol]
+    let symbols: Set<Symbol>
 
     init() {
         let categorizor = Categorizer()
@@ -22,8 +22,9 @@ struct SymbolGridApp: App {
     }
 
     var body: some Scene {
+        let symbolArray = Array(symbols)
         WindowGroup {
-            ContentView(symbols: symbols)
+            ContentView(symbols: symbolArray)
                 .modelContainer(sharedModelContainer)
 
         }

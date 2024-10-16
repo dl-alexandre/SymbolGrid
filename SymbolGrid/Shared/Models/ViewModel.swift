@@ -7,6 +7,7 @@
 
 import SFSymbolKit
 import Observation
+import SwiftData
 
 @Observable class ViewModel {
     var systemName = ""

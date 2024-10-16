@@ -14,12 +14,10 @@ struct SplashView: View {
     @Binding var fontSize: Double
     @Binding var selectedWeight: Weight
     @Binding var isAnimating: Bool
-    var searchResults: [Symbol]
+    var firstSymbols: [Symbol]
 
     var body: some View {
-        let limitedIcons: [Symbol] = Array(searchResults.prefix(200)).map { symbolName in
-            symbolName
-        }
+        let limitedIcons: [Symbol] = Array(firstSymbols.prefix(200))
         GeometryReader { geo in
             let minColumnWidth = 1.5 * fontSize
             let numberOfColumns = max(1, Int(geo.size.width / minColumnWidth))
@@ -41,21 +39,27 @@ struct SplashView: View {
                                         .font(.system(size: fontSize, weight: selectedWeight.weight))
                                         .symbolEffect(.breathe.byLayer.pulse)
                                         .foregroundStyle(Color.random())
+                                        .animation(.default, value: isAnimating)
+                                        .scrollTransition(.interactive, axis: .vertical) { content, phase in
+                                            content
+                                                .scaleEffect(phase.isIdentity ? 1 : 0.25, anchor: .center)
+                                                .opacity(phase.isIdentity ? 1 : 0.05)
+                                        }
                                         .onAppear {
-                                            DispatchQueue.main.asyncAfter(deadline: .now()/* + 3.4*/) {
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + 3.14) {
                                                 withAnimation(.easeInOut(duration: 2)) {
                                                     isAnimating = false
                                                 }
                                             }
                                         }
-                                        .animation(.default, value: isAnimating)
+                                        .edgesIgnoringSafeArea(.all)
                                 }
                             }
                         }
                         .onAppear {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 3.14) {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2.14) {
                                 if limitedIcons.count > numberOfColumns {
-                                    proxy.scrollTo(limitedIcons[numberOfColumns + 1], anchor: .top)
+                                    proxy.scrollTo(limitedIcons[1], anchor: .init(x: 0, y: 10))
                                 }
                             }
                         }
@@ -86,6 +90,6 @@ struct SplashView: View {
         fontSize: .constant(50.0),
         selectedWeight: .constant(.regular),
         isAnimating: .constant(true),
-        searchResults: []
+        firstSymbols: []
     )
 }

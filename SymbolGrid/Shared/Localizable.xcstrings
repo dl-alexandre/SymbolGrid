@@ -451,6 +451,9 @@
     "No Favorites" : {
 
     },
+    "No Icon Selected" : {
+
+    },
     "Oriya" : {
       "localizations" : {
         "es" : {
@@ -536,7 +539,7 @@
         }
       }
     },
-    "Search Symbols" : {
+    "Search %lld Symbols" : {
 
     },
     "Search Symbols %@" : {

@@ -12,7 +12,6 @@ import SFSymbolKit
 struct SymbolMenu: View {
     @Environment(\.verticalSizeClass) var verticalSizeClass
     @Environment(\.colorScheme) var colorScheme
-    @Environment(\.modelContext) private var moc
     @Query var favorites: [Favorite]
     @Binding var fontSize: Double
     @Binding var selectedWeight: Weight

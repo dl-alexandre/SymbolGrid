@@ -5,16 +5,16 @@
 //  Created by Dalton Alexandre on 5/31/24.
 //
 
-import XCTest
+import Testing
 @testable import SymbolGrid
+@Suite("SymbolGridTests")
+struct SymbolGridTests {
 
-final class SymbolGridTests: XCTestCase {
-
-    override func setUpWithError() throws {
+    func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
-    override func tearDownWithError() throws {
+    func tearDownWithError() throws {
         // Put teardown code here. This method is called post invocation of each test method in the class.
     }
 
@@ -29,8 +29,6 @@ final class SymbolGridTests: XCTestCase {
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+
     }
 }

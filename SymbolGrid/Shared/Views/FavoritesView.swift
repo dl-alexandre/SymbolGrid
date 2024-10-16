@@ -71,13 +71,16 @@ struct FavoritesView: View {
                         .contextMenu {
                             Section("Symbol") {
                                 Button {
-#warning("Maybe doesn't work")
-                                    vmo.selected = Symbol(name: favorite.glyph, categories: [])
-                                    //            vmo.showDetail()
-                                    showingDetail = true
+                                    let symbol = Symbol(name: favorite.glyph)
+                                    vmo.selected = symbol
+                                    if let selectedSymbol = vmo.selected {
+                                        print("open detail with: \(selectedSymbol.name)")
+                                    }
+                                    vmo.showDetail()
                                 } label: {
                                     Label("View", systemImage: "drop.halffull")
                                 }
+
                             }
                             Button {
 #if os(iOS)
@@ -141,7 +144,7 @@ struct FavoritesView: View {
                             fontSize: $fontSize,
                             showingDetail: $vmo.showingDetail
                         )
-                        .presentationDetents([.medium])
+                        .presentationDetents([.large])
                     }
                 }
 #endif

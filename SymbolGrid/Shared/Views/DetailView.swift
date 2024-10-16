@@ -12,6 +12,7 @@ import Design
 
 struct DetailView: View {
     @Environment(\.presentationMode) private var presentationMode
+    @Environment(\.colorScheme) var colorScheme
     var icon: Symbol
     @Binding var fontSize: Double
     @Binding var showingDetail: Bool
@@ -45,15 +46,17 @@ struct DetailView: View {
                 let image = Image(systemName: icon.name)
                     .font(.system(size: glyphSize, weight: selectedWeight.weight))
                     .imageScale(selectedScale.scale)
-                    .foregroundStyle(showForeground ? color.gradient : Color.black.gradient)
+                    .foregroundStyle(showForeground ?
+                        color.gradient : colorScheme == .dark ?
+                        Color.gray.gradient : Color.black.gradient
+                    )
                     .shadow(
-                        color: showShadow ? shadow : . clear,
+                        color: showShadow ? shadow : .clear,
                         radius: 3,
                         x: offset.width,
                         y: offset.height - 10
                     )
                     .frame(maxWidth: .infinity, minHeight: 50, maxHeight: .infinity, alignment: .top)
-
 #if os(iOS)
                 image
                     .position(location)
@@ -61,7 +64,7 @@ struct DetailView: View {
                 image
 #endif
                 VStack {
-                    let code = "Image(systemName: \"\(icon)\")"
+                    let code = "Image(systemName: \"\(icon.name)\")"
                     let scaleConfig = configureScale(
                         showScale: showScale,
                         selectedScale: selectedScale.scale
@@ -123,7 +126,6 @@ struct DetailView: View {
                                         Text("Scale")
                                     }.padding(4)
                                 }
-
                                 if showWeight {
                                     Spacer()
                                     Button {
@@ -212,7 +214,6 @@ struct DetailView: View {
                                     withAnimation(.spring()) {
                                         vmo.copy()
                                     }
-                                    //                                print(text)
 #if os(macOS)
                                     NSPasteboard.general.setString(text, forType: .string)
 #else
