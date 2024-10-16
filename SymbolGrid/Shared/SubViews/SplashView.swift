@@ -70,12 +70,12 @@ struct SplashView: View {
 #if os(macOS)
             .toolbar {
                 ToolbarItem(placement: .automatic) {
-                    if let selectedIcon = selected {
-                        Text("\(selectedIcon.id)")
+                    if let selectedIcon = vmo.selected {
+                        Text("\(selectedIcon.name)")
                             .padding()
                             .onTapGesture(count: 1) {
-                                NSPasteboard.general.setString(selectedIcon.id, forType: .string)
-                                print(selectedIcon.id)
+                                NSPasteboard.general.setString(selectedIcon.name, forType: .string)
+                                print(selectedIcon.name)
                             }
                     }
                 }

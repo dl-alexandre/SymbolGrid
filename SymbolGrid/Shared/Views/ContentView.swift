@@ -42,8 +42,6 @@ struct ContentView: View {
                 firstSymbols: firstSymbols
             )
 #if os(macOS)
-            .background(HideTabBar())
-
             .task {
                 handleSearch()
             }
@@ -79,9 +77,6 @@ struct ContentView: View {
 #endif
             }
             .edgesIgnoringSafeArea(.all)
-#if os(macOS)
-            .background(HideTabBar())
-#endif
         }
     }
 

@@ -18,7 +18,9 @@ struct SymbolGridApp: App {
         let symbolizer = Symbolizer()
         self.symbols = convertSymbols(categorization: categorizer, symbolization: symbolizer)
         registerDefaultsFromSettingsBundle()
+        #if os(iOS)
         hideNavigationBar()
+        #endif
         print("Total Symbols: \(symbols.count)")
     }
 
