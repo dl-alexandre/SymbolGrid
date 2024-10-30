@@ -256,16 +256,17 @@ struct DetailView: View {
 }
 
 #Preview {
-    @Previewable @Namespace var animation
+    var mathCategory = SymbolCategory(
+        icon: CategoryTokens.math.icon,
+        key: CategoryTokens.math.key,
+        label: CategoryTokens.math.label
+    )
+
 #if os(iOS)
     DetailView(
         icon: Symbol(
             name: "plus",
-            categories: [SymbolCategory(
-                icon: CategoryTokens.math.icon,
-                key: CategoryTokens.math.key,
-                label: CategoryTokens.math.label
-            )]
+            categories: [mathCategory]
         ),
         fontSize: .constant(50.0),
         showingDetail: .constant(true)
@@ -274,11 +275,7 @@ struct DetailView: View {
     DetailView(
         icon: Symbol(
             name: "plus",
-            categories: [SymbolCategory(
-                icon: CategoryTokens.math.icon,
-                key: CategoryTokens.math.key,
-                label: CategoryTokens.math.label
-            )]
+            categories: [mathCategory]
         ),
         fontSize: .constant(50.0),
         showingDetail: .constant(true)

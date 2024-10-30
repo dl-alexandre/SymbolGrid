@@ -73,9 +73,6 @@ struct FavoritesView: View {
                                 Button {
                                     let symbol = Symbol(name: favorite.glyph)
                                     vmo.selected = symbol
-                                    if let selectedSymbol = vmo.selected {
-                                        print("open detail with: \(selectedSymbol.name)")
-                                    }
                                     vmo.showDetail()
                                 } label: {
                                     Label("View", systemImage: "drop.halffull")
@@ -154,9 +151,7 @@ struct FavoritesView: View {
         .hoverEffect(.highlight)
 #endif
         .onAppear {
-            for favorite in favorites {
-                addIndex(favorite.glyph, "com.alexandrefamilyfarm.symbols")
-            }
+            addIndex("com.alexandrefamilyfarm.symbols", Set(favorites.map{$0.glyph}))
         }
         .edgesIgnoringSafeArea(.all)
 //        .dropDestination(for: String.self) { items, location in

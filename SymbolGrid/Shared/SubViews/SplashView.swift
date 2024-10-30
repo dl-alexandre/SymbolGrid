@@ -75,7 +75,6 @@ struct SplashView: View {
                             .padding()
                             .onTapGesture(count: 1) {
                                 NSPasteboard.general.setString(selectedIcon.name, forType: .string)
-                                print(selectedIcon.name)
                             }
                     }
                 }

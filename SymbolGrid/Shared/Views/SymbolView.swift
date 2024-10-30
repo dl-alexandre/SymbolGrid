@@ -47,10 +47,9 @@ struct SymbolView: View {
                 ScrollViewReader { proxy in
                     if showingSearch, let icon = vmo.selected, !icon.name.isEmpty {
                         Button {
-                            print("Showing Detail")
                             vmo.detailIcon = icon
                             showingSearch = false
-                            showingDetail = true
+                            vmo.showSheet()
                         } label: {
                             Label(icon.name, systemImage: icon.name)
                         }.buttonStyle(BorderedProminentButtonStyle())
@@ -110,6 +109,7 @@ struct SymbolView: View {
                                         }
                                         .edgesIgnoringSafeArea(.all)
                                 }
+                                .accessibilityIdentifier("iconButton-\(icon.name)")
                                 .buttonStyle(BorderlessButtonStyle())
                             }
                         }
@@ -206,7 +206,6 @@ struct SymbolView: View {
                         .padding()
                         .onTapGesture(count: 1) {
                             NSPasteboard.general.setString(icon.name, forType: .string)
-                            print(icon.name)
                         }
                 }
             }

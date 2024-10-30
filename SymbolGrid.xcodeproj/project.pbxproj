@@ -71,6 +71,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		5CB2F4AB2CD19C3F00DA8C2F /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Project.xcconfig,
+				Search.xcconfig,
+				UITests.xcconfig,
+				UnitTests.xcconfig,
+			);
+			target = 778C783A2C0A4656000CDC92 /* SymbolGrid */;
+		};
 		5CD9FDBD2CA76E0700248FDF /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -92,7 +102,7 @@
 		5CD9FDB52CA76E0500248FDF /* SymbolGridUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SymbolGridUITests; sourceTree = "<group>"; };
 		5CD9FDBB2CA76E0600248FDF /* SymbolGridSearch */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (5CD9FDBD2CA76E0700248FDF /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = SymbolGridSearch; sourceTree = "<group>"; };
 		5CD9FDEC2CA76F9300248FDF /* SymbolGrid */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (5CD9FE1A2CA7700E00248FDF /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = SymbolGrid; sourceTree = "<group>"; };
-		5CD9FE2B2CA77E9500248FDF /* Configurations */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Configurations; sourceTree = "<group>"; };
+		5CD9FE2B2CA77E9500248FDF /* Configurations */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (5CB2F4AB2CD19C3F00DA8C2F /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Configurations; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,7 +267,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1600;
-				LastUpgradeCheck = 1600;
+				LastUpgradeCheck = 1610;
 				TargetAttributes = {
 					778C783A2C0A4656000CDC92 = {
 						CreatedOnToolsVersion = 15.4;
@@ -397,6 +407,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -462,6 +473,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

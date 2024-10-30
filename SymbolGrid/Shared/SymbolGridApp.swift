@@ -21,7 +21,6 @@ struct SymbolGridApp: App {
         #if os(iOS)
         hideNavigationBar()
         #endif
-        print("Total Symbols: \(symbols.count)")
     }
 
     var body: some Scene {
