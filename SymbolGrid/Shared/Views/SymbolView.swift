@@ -43,8 +43,10 @@ struct SymbolView: View {
                 ),
                 count: numberOfColumns
             )
+            let enumeratedIconArray = Array(icons.enumerated())
             NavigationView {
                 ScrollViewReader { proxy in
+#if os(iOS)
                     if showingSearch, let icon = vmo.selected, !icon.name.isEmpty {
                         Button {
                             vmo.detailIcon = icon
@@ -54,9 +56,10 @@ struct SymbolView: View {
                             Label(icon.name, systemImage: icon.name)
                         }.buttonStyle(BorderedProminentButtonStyle())
                     }
+#endif
                     ScrollView {
                         LazyVGrid(columns: columns, spacing: fontSize * 0.1) {
-                            ForEach(icons, id: \.self) { icon in
+                            ForEach(enumeratedIconArray, id: \.element) { index, icon in
                                 Button {
                                     if !showingSearch {
                                         if vmo.selected == icon {
@@ -66,7 +69,7 @@ struct SymbolView: View {
 #if os(iOS)
                                             vmo.showingSheet = true
 #else
-                                            appDelegate.showMenuPanel(
+                                            let config = AppDelegate.MenuPanelConfig(
                                                 icon: icon,
                                                 detailIcon: $vmo.detailIcon,
                                                 fontSize: $fontSize,
@@ -76,6 +79,7 @@ struct SymbolView: View {
                                                 showingDetail: $showingDetail,
                                                 showingSearch: $showingSearch
                                             )
+                                            appDelegate.showMenuPanel(with: config)
 #endif
                                         }
                                     } else if vmo.selected != icon {
@@ -109,7 +113,7 @@ struct SymbolView: View {
                                         }
                                         .edgesIgnoringSafeArea(.all)
                                 }
-                                .accessibilityIdentifier("iconButton-\(icon.name)")
+                                .accessibilityIdentifier("iconButton-\(index)")
                                 .buttonStyle(BorderlessButtonStyle())
                             }
                         }
@@ -142,7 +146,7 @@ struct SymbolView: View {
                         DispatchQueue.main.asyncAfter(deadline: .now()) {
                             if icons.count > numberOfColumns {
                                 withAnimation(.easeIn(duration: 1.0)) {
-                                    proxy.scrollTo(icons[numberOfColumns + 1], anchor: .zero)
+                                    proxy.scrollTo(icons[numberOfColumns], anchor: .zero)
                                 }
                             }
                         }

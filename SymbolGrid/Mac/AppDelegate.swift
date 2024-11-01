@@ -46,16 +46,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         helpBoxWindowController?.showWindow(helpBoxWindowController?.window)
     }
 
-    @MainActor func showMenuPanel(
-        icon: Symbol,
-        detailIcon: Binding<Symbol?>,
-        fontSize: Binding<Double>,
-        searchText: Binding<String>,
-        selectedWeight: Binding<Weight>,
-        selectedMode: Binding<SymbolRenderingModes>,
-        showingDetail: Binding<Bool>,
-        showingSearch: Binding<Bool>
-    ) {
+    struct MenuPanelConfig {
+        let icon: Symbol
+        let detailIcon: Binding<Symbol?>
+        let fontSize: Binding<Double>
+        let searchText: Binding<String>
+        let selectedWeight: Binding<Weight>
+        let selectedMode: Binding<SymbolRenderingModes>
+        let showingDetail: Binding<Bool>
+        let showingSearch: Binding<Bool>
+    }
+
+    @MainActor func showMenuPanel(with config: MenuPanelConfig) {
         if menuWindowController == nil {
             let styleMask: NSWindow.StyleMask = [
                 .closable,
@@ -68,17 +70,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 backing: .buffered,
                 defer: false)
             window.styleMask = styleMask
-            window.title = icon.name
+            window.title = config.icon.name
             window.contentView = NSHostingView(
                 rootView: SymbolSheet(
-                    icon: icon,
-                    detailIcon: detailIcon,
-                    fontSize: fontSize,
-                    searchText: searchText,
-                    selectedWeight: selectedWeight,
-                    selectedMode: selectedMode,
-                    showingDetail: showingDetail,
-                    showingSearch: showingSearch
+                    icon: config.icon,
+                    detailIcon: config.detailIcon,
+                    fontSize: config.fontSize,
+                    searchText: config.searchText,
+                    selectedWeight: config.selectedWeight,
+                    selectedMode: config.selectedMode,
+                    showingDetail: config.showingDetail,
+                    showingSearch: config.showingSearch
                 )
             )
             menuWindowController = NSWindowController(window: window)

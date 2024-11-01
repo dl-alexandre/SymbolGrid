@@ -36,98 +36,101 @@ struct FavoritesView: View {
                 }
             } else {
                 List {
-                    ForEach(favorites, id: \.glyph) { favorite in
+                    ForEach(0..<favorites.count, id: \.self) { index in
+                        let favorite = favorites[index]
                         Label(favorite.glyph, systemImage: favorite.glyph)
+                            .accessibilityIdentifier("favoriteRow-\(index)")
                             .foregroundColor(
                                 vmo.systemName == favorite.glyph ? Color.secondary : Color.primary
                             )
-                        .onTapGesture(count: 2) {
-                            withAnimation(.spring()) {
-                                vmo.copy()
-                            }
-#if os(macOS)
-                            NSPasteboard.general.setString(vmo.systemName, forType: .string)
-#else
-                            UIPasteboard.general .setValue(vmo.systemName.description,
-                                                           forPasteboardType: UTType.plainText .identifier)
-#endif
-                        }
-                        .onDrag {
-#if os(macOS)
-                            let provider = NSItemProvider(
-                                object: (
-                                    Image(systemName: favorite.glyph)
-                                        .asNSImage() ?? Image(systemName: "plus")
-                                        .asNSImage()!
-                                ) as NSImage
-                            )
-#else
-                            let provider = NSItemProvider(
-                                object: (UIImage(systemName: favorite.glyph) ?? UIImage(systemName: "plus")!)
-                            )
-#endif
-                            return provider
-                        }
-                        .contextMenu {
-                            Section("Symbol") {
-                                Button {
-                                    let symbol = Symbol(name: favorite.glyph)
-                                    vmo.selected = symbol
-                                    vmo.showDetail()
-                                } label: {
-                                    Label("View", systemImage: "drop.halffull")
+                            .onTapGesture(count: 2) {
+                                withAnimation(.spring()) {
+                                    vmo.copy()
                                 }
-
+#if os(macOS)
+                                NSPasteboard.general.setString(vmo.systemName, forType: .string)
+#else
+                                UIPasteboard.general .setValue(vmo.systemName.description,
+                                                               forPasteboardType: UTType.plainText .identifier)
+#endif
                             }
-                            Button {
-#if os(iOS)
-                                UIPasteboard.general .setValue(
-                                    favorite.glyph.description,
-                                    forPasteboardType: UTType.plainText .identifier
+                            .onDrag {
+#if os(macOS)
+                                let provider = NSItemProvider(
+                                    object: (
+                                        Image(systemName: favorite.glyph)
+                                            .asNSImage() ?? Image(systemName: "plus")
+                                            .asNSImage()!
+                                    ) as NSImage
                                 )
 #else
-                                let pasteboard = NSPasteboard.general
-                                pasteboard.declareTypes([.string], owner: nil)
-                                pasteboard.setString(favorite.glyph.description, forType: .string)
+                                let provider = NSItemProvider(
+                                    object: (UIImage(systemName: favorite.glyph) ?? UIImage(systemName: "plus")!)
+                                )
 #endif
-                            } label: {
-                                Label("Copy", systemImage: "doc.on.doc")
+                                return provider
                             }
-                            Button {
-                                searchText =  favorite.glyph
-                                showingSearch = true
-                            } label: {
-                                Label("Search", systemImage: "magnifyingglass")
+                            .contextMenu {
+                                Section("Symbol") {
+                                    Button {
+                                        let symbol = Symbol(name: favorite.glyph)
+                                        vmo.selected = symbol
+                                        vmo.showDetail()
+                                    } label: {
+                                        Label("View", systemImage: "drop.halffull")
+                                    }
+
+                                }
+                                Button {
+#if os(iOS)
+                                    UIPasteboard.general .setValue(
+                                        favorite.glyph.description,
+                                        forPasteboardType: UTType.plainText .identifier
+                                    )
+#else
+                                    let pasteboard = NSPasteboard.general
+                                    pasteboard.declareTypes([.string], owner: nil)
+                                    pasteboard.setString(favorite.glyph.description, forType: .string)
+#endif
+                                } label: {
+                                    Label("Copy", systemImage: "doc.on.doc")
+                                }
+                                Button {
+                                    searchText =  favorite.glyph
+                                    showingSearch = true
+                                } label: {
+                                    Label("Search", systemImage: "magnifyingglass")
+                                }
+                            } preview: {
+                                Group {
+                                    Image(systemName: favorite.glyph)
+                                        .foregroundColor(.primary)
+                                    Text(favorite.glyph)
+                                }.padding()
                             }
-                        } preview: {
-                            Group {
-                                Image(systemName: favorite.glyph)
-                                    .foregroundColor(.primary)
-                                Text(favorite.glyph)
-                            }.padding()
-                        }
-                        .draggable("\(favorite.glyph)") {
-                            Image(systemName: "\(favorite.glyph)")
-                        }
-                        .swipeActions(edge: .leading, allowsFullSwipe: true) {
-                            Button(role: .destructive) {
-                                deleteFavorite(glyph: favorite, modelContext: moc)
-                                removeIndex(favorite.glyph, "com.alexandrefamilyfarm.symbols")
-                            } label: {
-                                Label("Delete", systemImage: "trash")
+                            .draggable("\(favorite.glyph)") {
+                                Image(systemName: "\(favorite.glyph)")
                             }
-                        }
+                            .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                                Button(role: .destructive) {
+                                    deleteFavorite(glyph: favorite, modelContext: moc)
+                                    removeIndex(favorite.glyph, "com.alexandrefamilyfarm.symbols")
+                                } label: {
+                                    Label("Delete", systemImage: "trash")
+                                }.accessibilityIdentifier("removeFavorite-\(index)")
+
+                            }
                     }
                 }
-//                .dropDestination(for: String.self) { items, location in
-//                    if let item = items.first {
-//                        draggedText = item
-//                        print("\(draggedText) added to favorites")
-//                        addFavorite(symbols: draggedText)
-//                        return true
-//                    }
-//                    return false
-//                }
+                //                .dropDestination(for: String.self) { items, location in
+                //                    if let item = items.first {
+                //                        draggedText = item
+                //                        print("\(draggedText) added to favorites")
+                //                        addFavorite(symbols: draggedText)
+                //                        return true
+                //                    }
+                //                    return false
+                //                }
                 .toolbar {
                     ToolbarItem(placement: .principal) {
                         copyNotification(isCopied: $vmo.isCopied, icon: $vmo.systemName)
@@ -151,17 +154,17 @@ struct FavoritesView: View {
         .hoverEffect(.highlight)
 #endif
         .onAppear {
-            addIndex("com.alexandrefamilyfarm.symbols", Set(favorites.map{$0.glyph}))
+            addIndex("com.alexandrefamilyfarm.symbols", Set(favorites.map {$0.glyph}))
         }
         .edgesIgnoringSafeArea(.all)
-//        .dropDestination(for: String.self) { items, location in
-//            if let item = items.first {
-//                draggedText = item
-//                print("\(draggedText) added to favorites")
-//                addFavorite(symbols: draggedText)
-//                return true
-//            }
-//            return false
-//        }
+        //        .dropDestination(for: String.self) { items, location in
+        //            if let item = items.first {
+        //                draggedText = item
+        //                print("\(draggedText) added to favorites")
+        //                addFavorite(symbols: draggedText)
+        //                return true
+        //            }
+        //            return false
+        //        }
     }
 }

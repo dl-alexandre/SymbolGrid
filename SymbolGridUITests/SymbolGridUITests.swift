@@ -8,36 +8,63 @@
 import XCTest
 
 final class SymbolGridUITests: XCTestCase {
-
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state -
-        // such as interface orientation - required for your tests
-        // before they run. The setUp method is a good place to do this.
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called post invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // UI tests must launch the application that they test.
+    private func launchApp() -> XCUIApplication {
         let app = XCUIApplication()
         app.launch()
-
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        return app
     }
 
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
+    private func tapIcons(_ app: XCUIApplication, indices: [Int]) {
+        let elementsQuery = app.scrollViews.otherElements
+        for index in indices {
+            elementsQuery.buttons["iconButton-\(index)"].tap()
         }
     }
+
+    private func refresh(_ app: XCUIApplication, element: XCUIElement) {
+        let startCoordinate = element.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
+        let endCoordinate = startCoordinate.withOffset(CGVector(dx: 0, dy: 600))
+        startCoordinate.press(forDuration: 0.1, thenDragTo: endCoordinate)
+    }
+
+    func testTapFiveSymbols() throws {
+        let app = launchApp()
+        tapIcons(app, indices: [0, 1, 2, 3, 4])
+    }
+
+    func testAddRemoveFavorite() throws {
+        let app = launchApp()
+        tapIcons(app, indices: [5])
+        app.buttons["favorite"].tap()
+        app.buttons["showFavorites"].tap()
+        app.collectionViews.staticTexts["favoriteRow-0"].swipeRight()
+        app.collectionViews.buttons["removeFavorite-0"].tap()
+    }
+
+    func testSymbolRenderingPicker() throws {
+        let app = launchApp()
+        sleep(5)
+        let elementsQuery = app.scrollViews.otherElements
+        refresh(app, element: elementsQuery.buttons["iconButton-0"])
+        app.pickerWheels["Underline, Monochrome"].swipeUp()
+        app.pickerWheels["Underline, Palette"].swipeDown()
+    }
+
+    func testFontWeightPicker() throws {
+        let app = launchApp()
+        sleep(5)
+        let elementsQuery = app.scrollViews.otherElements
+        refresh(app, element: elementsQuery.buttons["iconButton-0"])
+        app.pickerWheels["Regular"].swipeUp()
+        app.pickerWheels["UltraLight"].swipeDown()
+    }
 }
+

@@ -73,6 +73,7 @@ struct SymbolSheet: View {
                         Image(systemName: "star").padding()
                     }
                 }
+                .accessibilityIdentifier("favorite")
                 Button {
                     withAnimation {
                         vmo.showFavorites()
@@ -82,6 +83,7 @@ struct SymbolSheet: View {
                         Image(systemName: "sparkles").padding()
                     }
                 }
+                .accessibilityIdentifier("showFavorites")
             }
             .buttonStyle(PlainButtonStyle())
             .font(.system(size: fontSize))
