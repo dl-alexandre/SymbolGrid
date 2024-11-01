@@ -50,8 +50,10 @@ struct FavoritesView: View {
 #if os(macOS)
                                 NSPasteboard.general.setString(vmo.systemName, forType: .string)
 #else
-                                UIPasteboard.general .setValue(vmo.systemName.description,
-                                                               forPasteboardType: UTType.plainText .identifier)
+                                UIPasteboard.general .setValue(
+                                    vmo.systemName.description,
+                                    forPasteboardType: UTType.plainText .identifier
+                                )
 #endif
                             }
                             .onDrag {
@@ -65,7 +67,11 @@ struct FavoritesView: View {
                                 )
 #else
                                 let provider = NSItemProvider(
-                                    object: (UIImage(systemName: favorite.glyph) ?? UIImage(systemName: "plus")!)
+                                    object: (
+                                        UIImage(
+                                            systemName: favorite.glyph
+                                        ) ?? UIImage(systemName: "plus")!
+                                    )
                                 )
 #endif
                                 return provider

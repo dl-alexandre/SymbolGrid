@@ -67,4 +67,3 @@ final class SymbolGridUITests: XCTestCase {
         app.pickerWheels["UltraLight"].swipeDown()
     }
 }
-
