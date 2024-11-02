@@ -66,4 +66,11 @@ final class SymbolGridUITests: XCTestCase {
         app.pickerWheels["Regular"].swipeUp()
         app.pickerWheels["UltraLight"].swipeDown()
     }
+
+    func testDetailView() throws {
+        let app = launchApp()
+        sleep(5)
+        app.scrollViews.otherElements.buttons["iconButton-0"].tap()
+        app.buttons["detailButton"].tap()
+    }
 }

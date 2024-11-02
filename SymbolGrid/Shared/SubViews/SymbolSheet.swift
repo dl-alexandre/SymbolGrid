@@ -39,6 +39,7 @@ struct SymbolSheet: View {
             } label: {
                 Label(icon.name, systemImage: icon.name)
             }
+            .accessibilityIdentifier("detailButton")
             .buttonStyle(BorderedProminentButtonStyle())
             HStack {
                 Button {
