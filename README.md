@@ -3,7 +3,7 @@
 </p>
 
 # SymbolGrid
-Welcome to my open source app! It is ready for contributors for [Hacktoberfest](https://hacktoberfest.com/)! Use this app to gain experience getting started in open source for iOS and macOS development using Swift and SwiftUI.
+
 
 # Getting Started
 
@@ -19,7 +19,7 @@ Welcome to my open source app! It is ready for contributors for [Hacktoberfest](
    * It is only one person per issue, except where noted.
 * **Fork** this repo
 * **Clone** the repo to your machine (do **not** open Xcode yet)
-* In the same folder that contains the `Basic-Car-Maintenance.xcconfig.template`, run this command, in Terminal, to create a new Xcode configuration file (which properly sets up the signing information)
+* In the same folder that contains the `SymbolGrid.xcconfig.template`, run this command, in Terminal, to create a new Xcode configuration file (which properly sets up the signing information)
 
 ```sh
 cp SymbolGrid.xcconfig.template SymbolGrid.xcconfig
@@ -64,7 +64,7 @@ Made with [contrib.rocks](https://contrib.rocks).
 
 # License
 This project is licensed under [Apache 2.0](https://github.com/dl-alexandre/SymbolGrid/blob/main/LICENSE).
-<!--
+
 ## Star History
 
 <a href="https://star-history.com/#dl-alexandre/SymbolGrid&Date">
@@ -74,6 +74,3 @@ This project is licensed under [Apache 2.0](https://github.com/dl-alexandre/Symb
     <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=dl-alexandre/SymbolGrid&type=Date" />
   </picture>
 </a>
-
---!>
-
