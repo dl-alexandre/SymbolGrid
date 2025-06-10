@@ -104,7 +104,7 @@ struct SymbolView: View {
                                             (vmo.selected == icon) ? Color.random() : .primary
                                         )
                                         .draggable(Image(systemName: icon.name)) {
-                                            Text("\(icon)")
+                                            Text(icon.name)
                                         }
                                         .scrollTransition(.interactive) { content, phase in
                                             content
@@ -234,3 +234,4 @@ struct SymbolView: View {
         handleSearch: {}
     )
 }
+
