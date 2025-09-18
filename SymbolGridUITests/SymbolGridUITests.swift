@@ -57,12 +57,13 @@ final class SymbolGridUITests: XCTestCase {
         app.pickerWheels["Underline, Monochrome"].swipeUp()
         app.pickerWheels["Underline, Palette"].swipeDown()
     }
-
+ 
     func testFontWeightPicker() throws {
         let app = launchApp()
         sleep(5)
         let elementsQuery = app.scrollViews.otherElements
         refresh(app, element: elementsQuery.buttons["iconButton-0"])
+        sleep(1)
         app.pickerWheels["Regular"].swipeUp()
         app.pickerWheels["UltraLight"].swipeDown()
     }
@@ -70,7 +71,27 @@ final class SymbolGridUITests: XCTestCase {
     func testDetailView() throws {
         let app = launchApp()
         sleep(5)
-        app.scrollViews.otherElements.buttons["iconButton-0"].tap()
+        app.scrollViews.otherElements.buttons["iconButton-5"].tap()
         app.buttons["detailButton"].tap()
+    }
+
+    func testSearchDetailView() throws {
+        let app = launchApp()
+        sleep(5)
+        app.scrollViews.otherElements.buttons["iconButton-5"].tap()
+        app.scrollViews.otherElements.buttons["iconButton-5"].swipeDown()
+        app.searchFields["Search 6,000 Symbols"].tap()
+        app.buttons["detailView"].tap()
+    }
+
+    func testSearchScopes() throws {
+        let app = launchApp()
+        sleep(5)
+        app.scrollViews.otherElements.buttons["iconButton-5"].tap()
+        app.buttons["favorite"].tap()
+        app.scrollViews.otherElements.buttons["iconButton-5"].swipeDown()
+        app.searchFields["Search 6,000 Symbols"].tap()
+        app.buttons["Favorites"].tap()
+        app.buttons["Symbols"].tap()
     }
 }

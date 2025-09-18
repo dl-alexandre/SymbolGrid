@@ -13,27 +13,23 @@ import CoreSpotlight
 import SwiftData
 
 struct ContentView: View {
-    @State private var sys = Localizations()
     @Query var favorites: [Favorite]
-    @State private var fontSize = 50.0
-    @State private var selectedWeight: Weight = .regular
-    @State private var selectedMode: SymbolRenderingModes = .monochrome
-    @State private var showingSymbolMenu = false
-    @State private var showingSearch = false
-    @State private var showingDetail = false
-    @State private var showingFavorites = false
-    @State private var searchText = ""
-    @State private var searchScope: SearchScope = .all
-    @State private var searchTokens: [SearchToken] = []
-    @State private var isAnimating = true
-
+    @State var sys = Localizations()
+    @State var fontSize: Double = 50.0
+    @State var selectedWeight: Weight = .regular
+    @State var selectedMode: SymbolRenderingModes = .monochrome
+    @State var showingSymbolMenu = false
+    @State var showingSearch = false
+    @State var showingDetail = false
+    @State var showingFavorites = false
+    @State var searchText = ""
+    @State var searchScope: SearchScope = .all
+    @State var searchTokens: [SearchToken] = []
+    @State var isAnimating = true
+    @State var filteredSymbols: [Symbol] = []
     let symbols: [Symbol]
 
     var body: some View {
-        @State var hasFavorites = !favorites.isEmpty
-        let icons: [Symbol] = Array(searchResults)
-        let firstSymbols = Array(icons.prefix(200))
-
         if isAnimating {
             SplashView(
                 fontSize: $fontSize,
@@ -75,12 +71,16 @@ struct ContentView: View {
                     .padding(.top)
                 }
 #endif
+                    
+            }
+            .onTapGesture(count: 2) {
+                showingSearch.toggle()
             }
             .edgesIgnoringSafeArea(.all)
         }
     }
 
-    @State private var filteredSymbols: [Symbol] = []
+
 
     var searchResults: [Symbol] {
         do {
@@ -103,6 +103,18 @@ struct ContentView: View {
             applyFilters(to: symbol.name) &&
             containsSearchText(symbol.name)
         }
+    }
+
+    var hasFavorites: Bool {
+        !favorites.isEmpty
+    }
+
+    var icons: [Symbol] {
+        Array(searchResults)
+    }
+
+    var firstSymbols: [Symbol] {
+        Array(icons.prefix(200))
     }
 
     public func handleSearch() {

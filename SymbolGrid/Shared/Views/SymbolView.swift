@@ -14,6 +14,7 @@ struct SymbolView: View {
 #if os(macOS)
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 #endif
+    @Environment(\.modelContext) var modelContext
     @Environment(\.verticalSizeClass) var verticalSizeClass
     @Query var favorites: [Favorite]
     var icons: [Symbol]
@@ -54,7 +55,10 @@ struct SymbolView: View {
                             vmo.showSheet()
                         } label: {
                             Label(icon.name, systemImage: icon.name)
-                        }.buttonStyle(BorderedProminentButtonStyle())
+
+                        }
+                        .accessibilityIdentifier("detailView")
+                        .buttonStyle(BorderedProminentButtonStyle())
                     }
 #endif
                     ScrollView {
@@ -63,6 +67,7 @@ struct SymbolView: View {
                                 Button {
                                     if !showingSearch {
                                         if vmo.selected == icon {
+                                            vmo.selected = nil
                                             vmo.showSheet()
                                         } else {
                                             vmo.selected = icon
@@ -84,6 +89,8 @@ struct SymbolView: View {
                                         }
                                     } else if vmo.selected != icon {
                                         vmo.selected = icon
+                                    } else {
+                                        vmo.selected = nil
                                     }
                                 } label: {
                                     Image(systemName: icon.name)
@@ -104,7 +111,7 @@ struct SymbolView: View {
                                             (vmo.selected == icon) ? Color.random() : .primary
                                         )
                                         .draggable(Image(systemName: icon.name)) {
-                                            Text("\(icon)")
+                                            Text(verbatim: icon.name)
                                         }
                                         .scrollTransition(.interactive) { content, phase in
                                             content
@@ -157,6 +164,7 @@ struct SymbolView: View {
                 showingSymbolMenu.toggle()
             }
 #if os(iOS)
+            .navigationViewStyle(StackNavigationViewStyle())
             .sheet(isPresented: $vmo.showingSheet) {
                 if let selectedIcon = vmo.selected, !showingSearch {
                     SymbolSheet(
@@ -183,6 +191,19 @@ struct SymbolView: View {
                     }
                 }
             }
+#else
+            .toolbar {
+                ToolbarItem(placement: .automatic) {
+                    if let icon = vmo.selected {
+                        Text("\(icon.name)")
+                            .padding()
+                            .onTapGesture(count: 1) {
+                                NSPasteboard.general.setString(icon.name, forType: .string)
+                            }
+                    }
+                }
+            }
+
 #endif
             .inspector(isPresented: $showingFavorites) {
                 FavoritesView(
@@ -202,19 +223,6 @@ struct SymbolView: View {
                 //                    }
             }
         }
-#if os(macOS)
-        .toolbar {
-            ToolbarItem(placement: .automatic) {
-                if let icon = vmo.selected {
-                    Text("\(icon.name)")
-                        .padding()
-                        .onTapGesture(count: 1) {
-                            NSPasteboard.general.setString(icon.name, forType: .string)
-                        }
-                }
-            }
-        }
-#endif
     }
 }
 
@@ -234,3 +242,4 @@ struct SymbolView: View {
         handleSearch: {}
     )
 }
+

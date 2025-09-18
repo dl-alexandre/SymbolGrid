@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SearchToken: Identifiable {
+struct SearchToken: Identifiable, Equatable {
     let id = UUID()
     let text: String
 }

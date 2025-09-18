@@ -1,0 +1,35 @@
+{
+  "configurations" : [
+    {
+      "id" : "18AD877A-9DBD-4539-8CC5-995AB8386FE3",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "skippedTests" : {
+        "suites" : [
+          {
+            "name" : "SymbolGridTests",
+            "testFunctions" : [
+              "testInitialization()",
+              "testSymbolGrid()"
+            ]
+          }
+        ]
+      },
+      "target" : {
+        "containerPath" : "container:SymbolGrid.xcodeproj",
+        "identifier" : "778C784A2C0A4658000CDC92",
+        "name" : "SymbolGridTests"
+      }
+    }
+  ],
+  "version" : 2
+}

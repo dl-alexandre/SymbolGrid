@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C6ED4C02CD7D4790080D54B /* XCTestPlan.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 5C6ED4BF2CD7D4790080D54B /* XCTestPlan.xctestplan */; };
 		5CD9FE1E2CA7751800248FDF /* Contributing.md in Resources */ = {isa = PBXBuildFile; fileRef = 5CD9FE1D2CA7751800248FDF /* Contributing.md */; };
 		5CD9FE202CA778A200248FDF /* SymbolGrid.xcconfig.template in Resources */ = {isa = PBXBuildFile; fileRef = 5CD9FE1F2CA778A200248FDF /* SymbolGrid.xcconfig.template */; };
 		5CD9FE222CA7794000248FDF /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 5CD9FE212CA7794000248FDF /* README.md */; };
@@ -58,6 +59,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5C6ED4BF2CD7D4790080D54B /* XCTestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = XCTestPlan.xctestplan; sourceTree = "<group>"; };
 		5CD9FE1D2CA7751800248FDF /* Contributing.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Contributing.md; sourceTree = "<group>"; };
 		5CD9FE1F2CA778A200248FDF /* SymbolGrid.xcconfig.template */ = {isa = PBXFileReference; lastKnownFileType = text; path = SymbolGrid.xcconfig.template; sourceTree = "<group>"; };
 		5CD9FE212CA7794000248FDF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 		778C78322C0A4656000CDC92 = {
 			isa = PBXGroup;
 			children = (
+				5C6ED4BF2CD7D4790080D54B /* XCTestPlan.xctestplan */,
 				5CD9FE2B2CA77E9500248FDF /* Configurations */,
 				5CD9FE212CA7794000248FDF /* README.md */,
 				5CD9FE252CA77C4B00248FDF /* .gitignore */,
@@ -267,7 +270,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1600;
-				LastUpgradeCheck = 1610;
+				LastUpgradeCheck = 2600;
 				TargetAttributes = {
 					778C783A2C0A4656000CDC92 = {
 						CreatedOnToolsVersion = 15.4;
@@ -322,6 +325,7 @@
 			files = (
 				5CD9FE282CA77C9D00248FDF /* .swiftlint.yml in Resources */,
 				5CD9FE1E2CA7751800248FDF /* Contributing.md in Resources */,
+				5C6ED4C02CD7D4790080D54B /* XCTestPlan.xctestplan in Resources */,
 				5CD9FE242CA77C0B00248FDF /* LICENSE in Resources */,
 				5CD9FE202CA778A200248FDF /* SymbolGrid.xcconfig.template in Resources */,
 				5CD9FE262CA77C4B00248FDF /* .gitignore in Resources */,
@@ -438,6 +442,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 2MP8QWK7R6;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -462,6 +467,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -504,6 +510,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 2MP8QWK7R6;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -521,6 +528,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
@@ -537,7 +545,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SymbolGrid/Shared/Preview Content\"";
-				DEVELOPMENT_TEAM = 2MP8QWK7R6;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -555,7 +562,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 3.5.3;
+				MARKETING_VERSION = 3.5.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamilyfarm.symbols;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -580,7 +587,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SymbolGrid/Shared/Preview Content\"";
-				DEVELOPMENT_TEAM = 2MP8QWK7R6;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -598,7 +604,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 3.5.3;
+				MARKETING_VERSION = 3.5.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamilyfarm.symbols;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -619,7 +625,6 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2MP8QWK7R6;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
@@ -643,7 +648,6 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2MP8QWK7R6;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
@@ -666,7 +670,6 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2MP8QWK7R6;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
@@ -689,7 +692,6 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2MP8QWK7R6;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
@@ -713,7 +715,6 @@
 				CODE_SIGN_ENTITLEMENTS = SymbolGridSearch/Search.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2MP8QWK7R6;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SymbolGridSearch/Info.plist;
@@ -726,7 +727,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 3.5.3;
+				MARKETING_VERSION = 3.5.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamilyfarm.symbols.Search;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -746,7 +747,6 @@
 				CODE_SIGN_ENTITLEMENTS = SymbolGridSearch/Search.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2MP8QWK7R6;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SymbolGridSearch/Info.plist;
@@ -759,7 +759,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 3.5.3;
+				MARKETING_VERSION = 3.5.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexandrefamilyfarm.symbols.Search;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;

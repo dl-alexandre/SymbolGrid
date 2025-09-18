@@ -1,0 +1,36 @@
+{
+  "configurations" : [
+    {
+      "id" : "375B4231-2DBB-485B-904A-77A67B4780D4",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : false,
+      "target" : {
+        "containerPath" : "container:SymbolGrid.xcodeproj",
+        "identifier" : "778C784A2C0A4658000CDC92",
+        "name" : "SymbolGridTests"
+      }
+    },
+    {
+      "skippedTests" : [
+        "SymbolGridUITests",
+        "SymbolGridUITestsLaunchTests"
+      ],
+      "target" : {
+        "containerPath" : "container:SymbolGrid.xcodeproj",
+        "identifier" : "778C78542C0A4658000CDC92",
+        "name" : "SymbolGridUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
