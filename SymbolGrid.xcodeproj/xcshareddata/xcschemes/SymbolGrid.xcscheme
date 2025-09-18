@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "2600"
+<<<<<<< HEAD
    version = "2.1">
+=======
+   version = "2.2">
+>>>>>>> origin/main
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES"
@@ -42,9 +46,12 @@
          <TestPlanReference
             reference = "container:TestPlan.xctestplan"
             default = "YES">
+<<<<<<< HEAD
          </TestPlanReference>
          <TestPlanReference
             reference = "container:XCTestPlan.xctestplan">
+=======
+>>>>>>> origin/main
          </TestPlanReference>
       </TestPlans>
       <Testables>
