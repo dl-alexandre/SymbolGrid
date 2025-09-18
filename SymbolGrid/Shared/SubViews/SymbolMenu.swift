@@ -23,8 +23,7 @@ struct SymbolMenu: View {
 
     var body: some View {
         GeometryReader { geo in
-            RoundedRectangle(cornerRadius: 9)
-                .fill(.ultraThinMaterial)
+            RoundedRectangle(cornerRadius: 20)
                 .frame(
                     maxWidth: .infinity,
                     maxHeight: geo.size.height / 4,

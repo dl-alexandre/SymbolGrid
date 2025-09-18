@@ -35,9 +35,9 @@ struct DetailView: View {
     @State private var linearValue: Double = log10(200)
 
 #if os(iOS)
-    @State var location: CGPoint = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
+    @State var location: CGPoint = .zero
 #else
-    @State var location: CGPoint = CGPoint(x: NSScreen.main?.frame.size.width ?? 0, y: -150)
+    @State var location: CGPoint = .zero
 #endif
 
     var body: some View {
@@ -244,14 +244,21 @@ struct DetailView: View {
                     .frame(maxHeight: geo.size.height/3, alignment: .bottomLeading)
                 }
                 .padding(.horizontal)
-            }.onTapGesture(count: 2) {
+            }
+            .onTapGesture(count: 2) {
 #if os(iOS)
-                location = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
+                location = CGPoint(x: geo.size.width / 2, y: geo.size.height / 2)
 #else
-                location = CGPoint(x: NSScreen.main?.frame.size.width ?? 0, y: 150)
+                location = CGPoint(x: geo.size.width / 2, y: geo.size.height / 2)
 #endif
             }
+            .onAppear {
+                location = CGPoint(x: geo.size.width / 2, y: geo.size.height / 2)
+            }
         }
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+        )
     }
 }
 
